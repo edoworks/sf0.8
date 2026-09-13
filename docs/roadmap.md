@@ -31,6 +31,7 @@ Source of rationale: [factory-v0.1-design-review.md](factory-v0.1-design-review.
 - [x] Open-source gate prep (SECURITY.md + CONTRIBUTING.md both repos; LICENSE/DCO/trademark still publication-gated per Charter)
 - [x] Entropy pass (both repos: 1.7M/1.1M total, no caches, no stale files, all artifacts paying rent)
 - [x] Blank-Mac disaster drill (`docs/disaster-drill-2026-09-13.md`: clone-from-origin, clean verify, restore, disposability invariant — all pass; RTO ≈6 min warm)
+- [x] v0.1 retrospective (`docs/v0.1-retrospective.md`: five-proofs verdict with commit-level evidence; honest gaps recorded; v0.2 earns itself or waits)
 
 ## Explicitly deferred
 
