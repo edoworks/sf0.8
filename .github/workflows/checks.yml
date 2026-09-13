@@ -1,0 +1,27 @@
+name: checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  policy:
+    runs-on: macos-26
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - name: Tracked-file link check (docs reference existing files)
+        run: |
+          # Verify roadmap links resolve to tracked files
+          for f in docs/factory-v0.1-design-review.md docs/research/prior-art.md NORTH_STAR.md .factory/governance.yaml; do
+            test -f "$f" || { echo "missing: $f"; exit 1; }
+          done
+          echo "policy files present"
