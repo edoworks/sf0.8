@@ -25,6 +25,20 @@ repos:
       blockers: [ip_review, secret_history_scan, privacy_review, bundle_id_rename(com.foculoom→ai.edoworks)]
     destructive_actions: {delete_repo: human_only, make_public: human_only}
 
+  - id: foculoom/sf0.7
+    visibility: private
+    lifecycle: parked           # not archived: working runtime, Cat Whispers shipping; resume via /continue-original
+    disposition: keep           # KEEP under lifecycle rules; archived-by-neglect is not allowed
+    purpose: predecessor factory runtime; Cat Whispers (shipping on helloMax), evidence trail, INC queue
+    working_root: /Users/hello/sf0.7
+    health.last_reviewed: 2026-09-13
+    health.next_review_due: 2026-10-13
+    open_source:
+      candidate: false
+      ready: false
+      blockers: [mixed_personal_and_work_history, signing_evidence_present]
+    destructive_actions: {delete_repo: human_only, make_public: human_only, merge_into_sf0.8: human_only}
+
 inventory_notes:
   - scope is edoworks org + local sf0.8 worktree; wider personal portfolio is a later inventory
   - lifecycle review cadence: monthly; triage must not consume product shipping (design review)
