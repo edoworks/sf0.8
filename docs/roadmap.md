@@ -16,7 +16,10 @@ Source of rationale: [factory-v0.1-design-review.md](factory-v0.1-design-review.
 
 ## Phase 1 — weeks 2–4
 
-- [ ] First PRD-backed increment to device/internal TestFlight; handoff format written from actual work
+- [x] First PRD-backed increment to device: record→waveform→card loop (`d803d54`), live on Karen's iPad
+- [x] INC-2026-09-13 crash fix + AC-2 verified (`af9096d`); 5-Whys + guards in handoff
+- [x] AC-6 profiles + persisted history, both sim destinations green (`85b5e26`)
+- [x] Non-reader surfaces both layers (`280211a`); decision doc 2026-09-13
 - [ ] GitHub Actions `verify.yml` on `macos-26` (no release credentials); rulesets: protected main + required verify check
 - [ ] Secret scanning + push protection + Dependabot on both repos
 - [ ] One primary agent + one fallback; handoff proven on a real task
