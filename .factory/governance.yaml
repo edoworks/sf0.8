@@ -1,0 +1,54 @@
+# Humanity & Safety Charter — human-changeable only
+# Rationale: docs/factory-v0.1-design-review.md
+
+governance:
+  mission:
+    optimize: verified_human_value
+    denominator: [human_attention, safety_risk, privacy_risk, financial_cost]
+
+  immutable_without_human_change:
+    human_is_final_authority: true
+    factory_may_expand_own_permissions: false
+    factory_may_weaken_safety_policy: false
+    autonomous_replication_outside_authorized_hosts: false
+    conceal_actions_from_operator: false
+    intentionally_deceive_operator_or_verifier: false
+
+    publish_external:
+      approval: human
+    app_store_release:
+      approval: human
+    destructive_repo_operation:
+      approval: human
+    repository_visibility_change:
+      approval: human
+    sensitive_data_to_unapproved_cloud:
+      action: deny
+    credentials:
+      policy: least_privilege
+    shutdown_and_interrupt:
+      must_remain_available: true
+
+  learnable_later:
+    - model_selection
+    - harness_selection
+    - context_retrieval
+    - retry_strategy
+    - task_budget_allocation_inside_ceiling
+
+  owner_defined_envelope:
+    single_task_cloud_usd: 5    # EXAMPLE; owner must choose
+    daily_cloud_usd: 20         # EXAMPLE
+    monthly_cloud_usd: 200      # EXAMPLE
+    max_attempts_per_issue: 4
+    max_harness_switches: 2
+
+  escalation:
+    - safety_boundary_encountered
+    - privacy_classification_uncertain
+    - destructive_action_required
+    - external_publication_or_release
+    - hard_budget_would_be_exceeded
+    - acceptance_criteria_ambiguous
+    - repeated_verification_failure
+    - legal_or_ip_ownership_uncertain

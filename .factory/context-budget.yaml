@@ -1,0 +1,26 @@
+context_budget:
+  root_agent_instructions:
+    target_lines: 100
+    review_required_over_lines: 150
+
+  current_prd:
+    executive_summary_pages: 1
+    details_load_on_demand: true
+
+  handoff:
+    required_fields: [goal, accepted_scope, current_state, decisions, changed_files, verification_evidence, blockers, next_action]
+
+  retrieval:
+    default: task_scoped
+    load_entire_docs_tree: false
+    load_closed_legacy_issues: false
+    load_archived_products: false
+
+  duplication:
+    canonical_source_required: true
+    generated_copies_marked_generated: true
+
+  lifecycle:
+    stale_feature_flag_days: 30
+    stale_todo_review_days: 60
+    docs_require_owner_or_scope: true
