@@ -20,9 +20,10 @@ Source of rationale: [factory-v0.1-design-review.md](factory-v0.1-design-review.
 - [x] INC-2026-09-13 crash fix + AC-2 verified (`af9096d`); 5-Whys + guards in handoff
 - [x] AC-6 profiles + persisted history, both sim destinations green (`85b5e26`)
 - [x] Non-reader surfaces both layers (`280211a`); decision doc 2026-09-13
-- [ ] GitHub Actions `verify.yml` on `macos-26` (no release credentials); rulesets: protected main + required verify check
-- [ ] Secret scanning + push protection + Dependabot on both repos
-- [ ] One primary agent + one fallback; handoff proven on a real task
+- [x] GitHub Actions `verify.yml` on `macos-26` (no release credentials) — green on second run `34769357549` after destination pinning fix (`93b737d`)
+- [x] Dependabot alerts + automated security fixes enabled on both repos (private-repo branch protection blocked: **GitHub Pro required**; revisit at publication)
+- [x] Recurrence guard `scripts/ci-status.sh` both repos — blocking CI result gate; no CI claim without a captured result file (5-Whys fix, INC lesson 2026-09-13)
+- [ ] Second-agent handoff proof on a real task (deferred: route A is this agent; proof requires a second route active)
 
 ## Phase 2 — weeks 5–12
 

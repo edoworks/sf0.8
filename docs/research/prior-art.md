@@ -71,6 +71,20 @@ Public availability and IP protection are compatible via layered, industry-stand
 
 **Timing:** LICENSE/DCO/trademark-policy files are added when a repo crosses the publication gate — not before. Until then, `edoworks/sf0.8` stays **private**, which is itself the default classification per the repo-lifecycle invariant.
 
+### License pattern evidence (deep dive 2026-09-13)
+
+The industry has converged on layered protection; the license is never the sole control:
+
+| Pattern | Mechanism | Practitioners | Fit |
+|---|---|---|---|
+| Open core | MIT/BSD/Apache code | GitLab, Docker, pre-2023 HashiCorp, VS Code | factory template |
+| Copyleft | AGPLv3 → proprietary dual | Grafana Labs, early MongoDB | products only if cloud-resale feared |
+| BUSL-1.1 (source-available) | non-production free; converts to GPL-compatible ≤4 yrs/version | **MariaDB (author), HashiCorp, CockroachDB, Sentry (2019–2023)** | alternative if commercial exclusivity needed; not OSI-open; expect community debate (OpenTofu fork precedent) |
+| Fair Source (FSL-1.1) | BUSL variant, 2-yr change delay | **Sentry (current), Codecov** | cleaner optics than BUSL |
+| Trademark-only moat | registered mark + policy, code stays permissive | Linux Foundation projects, Red Hat, Python | **the real moat for iOS products** — App Store naming is trademark-gated |
+
+Sources: mariadb.com/bsl11, fair.io, Sentry's open-source-values series (BSD→Apache→BUSL→FSL trajectory), Wikipedia FOSS history, HashiCorp/OpenTofu fork record. Decision unchanged: Apache-2.0 + CC BY 4.0 + DCO + trademark; this table exists so the publication-gate flip is informed, not improvised.
+
 **The moat is never the code.** It is the judgment encoded in the harness, the shipped products, and the brand.
 
 ## 7. Standing reference list
