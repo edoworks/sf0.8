@@ -9,10 +9,10 @@ Source of rationale: [factory-v0.1-design-review.md](factory-v0.1-design-review.
 - [x] Private remote: `edoworks/sf0.8`; brand: edoworks.ai; license stance decided (Apache-2.0/CC-BY-4.0/DCO, publication-gated)
 - [x] Product skeleton: `product-a/` (AGENTS.md, PRD template, handoff, repo.yaml, doctor/verify/bootstrap scripts)
 - [x] NORTH_STAR.md + `.factory/governance.yaml` + `.factory/context-budget.yaml`
-- [ ] **HUMAN: create `product-a/ProductA.xcodeproj`** (Xcode → iOS App → SwiftUI, Swift Testing, unit+UI tests)
-- [ ] `./scripts/verify.sh` green on clean checkout
-- [ ] **HUMAN: write the real 1-page `product-a/docs/PRD.md`** — exit criterion for Phase 0
-- [ ] `edoworks/product-a` private remote created, main pushed
+- [x] **HUMAN: create `product-a/ProductA.xcodeproj`** (Xcode → iOS App → SwiftUI, Swift Testing, unit+UI tests) — done 2026-09-13; agent repaired placement to repo root, removed nested `.git`
+- [x] `./scripts/verify.sh` green on clean checkout — TEST SUCCEEDED, iPhone 17 Pro / iOS 26.5, 2026-09-13; swift-format lint advisory-only (indentation warnings on template code)
+- [x] **HUMAN: write the real 1-page `product-a/docs/PRD.md`** — done 2026-09-13 ("Whisker & Whistle" working title; AC-1..AC-8 open)
+- [x] `edoworks/product-a` private remote created, main pushed
 
 ## Phase 1 — weeks 2–4
 
