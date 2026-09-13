@@ -1,2 +1,5 @@
 product-a/
 .DS_Store
+.factory/factory.sqlite
+.factory/*.sqlite-journal
+.factory/*.sqlite-wal

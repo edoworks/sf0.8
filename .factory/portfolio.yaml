@@ -1,0 +1,30 @@
+# portfolio.yaml — edoworks org + local factory repos
+# Every repo gets an explicit disposition. No accidental immortality.
+
+repos:
+  - id: edoworks/sf0.8
+    visibility: private
+    lifecycle: active
+    disposition: keep
+    purpose: factory engine/template; design review + governance + harness evidence
+    health.last_reviewed: 2026-09-13
+    health.next_review_due: 2026-10-13
+    destructive_actions: {delete_repo: human_only, make_public: human_only}
+
+  - id: edoworks/product-a
+    visibility: private
+    lifecycle: active
+    disposition: keep
+    purpose: "Whisker & Whistle" — greenfield reference workload (iOS/iPadOS playful-interpretation)
+    health.last_verified_build: 2026-09-13
+    health.last_reviewed: 2026-09-13
+    health.next_review_due: 2026-10-13
+    open_source:
+      candidate: true
+      ready: false
+      blockers: [ip_review, secret_history_scan, privacy_review, bundle_id_rename(com.foculoom→ai.edoworks)]
+    destructive_actions: {delete_repo: human_only, make_public: human_only}
+
+inventory_notes:
+  - scope is edoworks org + local sf0.8 worktree; wider personal portfolio is a later inventory
+  - lifecycle review cadence: monthly; triage must not consume product shipping (design review)

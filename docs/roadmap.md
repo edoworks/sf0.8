@@ -28,9 +28,10 @@ Source of rationale: [factory-v0.1-design-review.md](factory-v0.1-design-review.
 ## Phase 2 — weeks 5–12
 
 - [ ] Legacy quarantine (active product only)
-- [ ] SQLite telemetry ledger + encrypted backup + first restore test
-- [ ] Simple two-route routing policy (privacy/risk/complexity → primary/fallback)
-- [ ] Portfolio inventory + lifecycle states (no mass rebuild)
+- [x] SQLite telemetry ledger (`.factory/factory.sqlite` + `scripts/ledger.sh`; disposability verified)
+- [x] Encrypted backup + first restore test (`scripts/backup.sh`/`restore.sh`; restore verified, RPO/RTO measured as same-session)
+- [x] Simple two-route routing policy (`.factory/routing.md` — deterministic, learnable-later)
+- [x] Portfolio inventory + lifecycle states (`.factory/portfolio.yaml`; 2 repos classified)
 - [ ] Open-source gate prep (LICENSE, DCO, SECURITY.md, trademark note) — publication is human-gated
 - [ ] Entropy pass; blank-Mac disaster drill; v0.1 retrospective
 
