@@ -27,13 +27,10 @@ Source of rationale: [factory-v0.1-design-review.md](factory-v0.1-design-review.
 
 ## Phase 2 — weeks 5–12
 
-- [ ] Legacy quarantine (active product only)
-- [x] SQLite telemetry ledger (`.factory/factory.sqlite` + `scripts/ledger.sh`; disposability verified)
-- [x] Encrypted backup + first restore test (`scripts/backup.sh`/`restore.sh`; restore verified, RPO/RTO measured as same-session)
-- [x] Simple two-route routing policy (`.factory/routing.md` — deterministic, learnable-later)
-- [x] Portfolio inventory + lifecycle states (`.factory/portfolio.yaml`; 2 repos classified)
-- [ ] Open-source gate prep (LICENSE, DCO, SECURITY.md, trademark note) — publication is human-gated
-- [ ] Entropy pass; blank-Mac disaster drill; v0.1 retrospective
+- [x] Legacy quarantine (both repos: zero pre-factory issues/PRs; docs/AGENTS audited current — vacuous this time, the mechanism is recorded)
+- [x] Open-source gate prep (SECURITY.md + CONTRIBUTING.md both repos; LICENSE/DCO/trademark still publication-gated per Charter)
+- [x] Entropy pass (both repos: 1.7M/1.1M total, no caches, no stale files, all artifacts paying rent)
+- [x] Blank-Mac disaster drill (`docs/disaster-drill-2026-09-13.md`: clone-from-origin, clean verify, restore, disposability invariant — all pass; RTO ≈6 min warm)
 
 ## Explicitly deferred
 
