@@ -1,6 +1,6 @@
 repo=edoworks/sf0.8
-run=34778342816
-checked_at=2026-09-14T21:06:45Z
+run=34897768895
+checked_at=2026-09-14T21:16:03Z
 status=completed
-conclusion=success
+conclusion=failure
 failed_steps=
