@@ -62,6 +62,25 @@ repos:
     destructive_actions: {delete_repo: human_only, make_public: human_only}
 
 surfaces:
+  - id: edoworks/factory-constitution
+    type: public_template
+    lifecycle: active
+    disposition: keep
+    source_of_truth: https://github.com/edoworks/factory-constitution
+    purpose: public thin-factory constitution, skills, and 5-Whys templates
+  - id: edoworks/edoworks.github.io
+    type: public_distribution_surface
+    lifecycle: active
+    disposition: keep
+    source_of_truth: https://github.com/edoworks/edoworks.github.io
+    purpose: Edoworks portfolio, release notes, and engineering case studies
+  - id: rung.edoworks.com
+    type: public_web_surface
+    lifecycle: active
+    health: degraded
+    disposition: keep
+    source_of_truth: https://github.com/edoworks/rung
+    purpose: Rung public web distribution URL; currently returning Cloudflare 530
   - id: edoworks/rung
     type: public_product
     lifecycle: active
