@@ -29,6 +29,11 @@ governance:
     shutdown_and_interrupt:
       must_remain_available: true
 
+    routine_local_work:
+      approval: not_required
+      examples: [staging, ordinary_commit, local_verification]
+      safeguards: [issue_scope, staged_file_review, verification_before_claim]
+
   learnable_later:
     - model_selection
     - harness_selection

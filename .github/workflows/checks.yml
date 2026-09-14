@@ -25,3 +25,5 @@ jobs:
             test -f "$f" || { echo "missing: $f"; exit 1; }
           done
           echo "policy files present"
+      - name: Successor lifecycle guard
+        run: python3 scripts/validate-lifecycle.py
