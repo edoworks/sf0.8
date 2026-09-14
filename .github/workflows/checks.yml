@@ -14,7 +14,9 @@ concurrency:
 
 jobs:
   policy:
-    runs-on: macos-26
+    # Use the repository-scoped runner; hosted macOS is unavailable under the
+    # current account spending policy.
+    runs-on: [self-hosted, macOS, ARM64, sf08]
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v6
