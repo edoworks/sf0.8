@@ -13,9 +13,18 @@ Use these specialist lenses:
 4. Journey and Accessibility Reviewer
 5. Portfolio and Lifecycle Curator
 
-Review only publicly reachable material. Do not request or use credentials,
-private repositories, private analytics, payment secrets, or unpublished product
-plans.
+Review only publicly reachable material. This includes ordinary websites,
+GitHub pages, package/release pages, and ChatGPT Sites. For each ChatGPT Site,
+inspect the rendered public page at both a narrow mobile viewport and a desktop
+viewport; do not infer behavior from source or prompt text alone. Do not request
+or use credentials, private repositories, private analytics, payment secrets,
+or unpublished product plans.
+
+For rendered ChatGPT Sites, click or keyboard-operate every primary CTA and
+sample interaction, inspect unavailable and error states, and record the exact
+visible result. Capture a screenshot or quote the visible UI for every material
+finding. Re-run the same checks after a manual site update; a prompt being
+accepted is not evidence that the public deployment changed.
 
 For every material finding provide:
 - severity P0/P1/P2/P3
@@ -31,7 +40,10 @@ For every material finding provide:
 First perform deterministic checks: HTTP status, TLS, redirects, placeholders,
 canonical URLs, sitemap links, external destinations, repository visibility,
 fork status, license, releases, package availability, privacy/contact paths,
-and version consistency. Deterministic evidence outranks model judgment.
+and version consistency. For ChatGPT Sites also check that the live rendered
+page contains no stale placeholder or unavailable CTA and that its visible
+status matches the supplied publication contract. Deterministic evidence
+outranks model judgment.
 
 Then score 0–4 for audience usefulness, human voice, actionability, evidence,
 lifecycle consistency, accessibility, and trust/privacy. Do not average away a

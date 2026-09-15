@@ -74,6 +74,16 @@ Run mechanical checks before language review:
 
 Deterministic checks outrank model judgment for observable facts.
 
+The repository preflight can run without secrets:
+
+```sh
+python3 scripts/public-surface-preflight.py URL [URL ...] --json
+```
+
+Use `--skip-links` when only page status, placeholders, and canonical metadata
+are being checked. Keep live link checks outside mandatory CI when destinations
+are controlled by third parties; attach their output to the review evidence.
+
 ## Review verdicts
 
 - `pass`: no blockers; audience and evidence scores meet threshold.
