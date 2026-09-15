@@ -41,8 +41,14 @@ Update the site as a concept preview, not an open beta.
 7. Keep App Store and TestFlight as clearly labeled “Coming soon” text only;
    do not make them links.
 8. Keep the FAQ answer that audio storage and processing are to be confirmed.
-9. Do not add a donation link because no verified Stripe Payment Link has been
-   supplied in this update.
+9. Add a secondary, optional support section using the verified Edoworks Open
+   Source Support Payment Links below. Keep it outside the primary journey and
+   do not imply that payment is required or that support proves demand.
+   - Support with $1: https://buy.stripe.com/5kQ7sL2zx3snavce9t9AA03
+   - Support with $3: https://buy.stripe.com/dRm8wP2zxd2X32KaXh9AA08
+   - Support with $8: https://buy.stripe.com/5kQfZheif1kf6eW5CX9AA09
+   Label the section “Optional support for this experiment.” Do not collect
+   payment details on the site and do not add payment gating.
 10. Add a small client-side sample interaction if supported by the site:
     choose cat or dog, choose context, show a fictional playful line, and offer
     replay. It must require no account, microphone, audio, network request, or
@@ -96,6 +102,14 @@ experiment.
     outbound analytics requests.
 11. Keep all disclaimers excluding certification, compliance guarantees, legal
     advice, and specialist security advice.
+12. Add a secondary “Optional support for this experiment” section using the
+    verified Edoworks Open Source Support Payment Links below. Keep it outside
+    the assessment and free CLI journey. Do not imply that payment is required,
+    purchases an audit, or proves demand. Do not collect payment details on the
+    site or add payment gating.
+    - Support with $1: https://buy.stripe.com/5kQ7sL2zx3snavce9t9AA03
+    - Support with $3: https://buy.stripe.com/dRm8wP2zxd2X32KaXh9AA08
+    - Support with $8: https://buy.stripe.com/5kQfZheif1kf6eW5CX9AA09
 
 Rung acceptance checks:
 
@@ -105,6 +119,17 @@ Rung acceptance checks:
 - All eight assessment paths work on mobile and desktop.
 - Results remain informational and non-certifying.
 - No answers, results, free text, identifiers, or payment data leave the page.
+
+## Verified optional support links
+
+These active Stripe Payment Links belong to the Edoworks Open Source Support
+product and were independently checked on 2026-09-15:
+
+- $1: https://buy.stripe.com/5kQ7sL2zx3snavce9t9AA03
+- $3: https://buy.stripe.com/dRm8wP2zxd2X32KaXh9AA08
+- $8: https://buy.stripe.com/5kQfZheif1kf6eW5CX9AA09
+
+Use them only as optional support links. Do not expose Stripe credentials.
 
 ## Final publication check
 
