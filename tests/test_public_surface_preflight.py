@@ -15,6 +15,8 @@ PLACEHOLDER_RE = MODULE.PLACEHOLDER_RE
 audit = MODULE.audit
 check_link = MODULE.check_link
 github_metadata = MODULE.github_metadata
+github_release = MODULE.github_release
+pypi_metadata = MODULE.pypi_metadata
 
 
 class PublicSurfacePreflightTests(unittest.TestCase):
@@ -63,6 +65,18 @@ class PublicSurfacePreflightTests(unittest.TestCase):
         self.assertEqual(result["status"], "pass")
         result = audit("https://site.test/", None, ["Concept preview"], ["beta not open"], 1, False)
         self.assertEqual(result["status"], "blocked")
+
+    @patch.object(MODULE, "fetch_json")
+    def test_draft_release_blocks(self, fetch_json):
+        fetch_json.return_value = {"html_url": "https://github.com/o/r/releases/tag/v1", "draft": True, "prerelease": False}
+        self.assertEqual(github_release("o/r", "v1", 1)["status"], "blocked")
+
+    @patch.object(MODULE, "fetch_json")
+    def test_missing_package_license_blocks(self, fetch_json):
+        fetch_json.return_value = {"info": {"version": "1.0.0", "license": None, "home_page": None}}
+        result = pypi_metadata("example-package", 1)
+        self.assertEqual(result["status"], "blocked")
+        self.assertIn("declared license", result["errors"][0])
 
 
 if __name__ == "__main__":

@@ -74,6 +74,42 @@ def github_metadata(repo: str, timeout: float) -> dict:
     }
 
 
+def github_release(repo: str, tag: str, timeout: float) -> dict:
+    data = fetch_json(f"https://api.github.com/repos/{repo}/releases/tags/{tag}", timeout)
+    errors = []
+    if data.get("draft"):
+        errors.append("release is a draft")
+    if data.get("prerelease"):
+        errors.append("release is a prerelease")
+    return {
+        "repo": repo,
+        "tag": tag,
+        "html_url": data.get("html_url"),
+        "draft": bool(data.get("draft")),
+        "prerelease": bool(data.get("prerelease")),
+        "errors": errors,
+        "status": "pass" if not errors else "blocked",
+    }
+
+
+def pypi_metadata(package: str, timeout: float) -> dict:
+    data = fetch_json(f"https://pypi.org/pypi/{package}/json", timeout)
+    info = data.get("info", {})
+    errors = []
+    if not info.get("version"):
+        errors.append("package has no current version")
+    if not info.get("license"):
+        errors.append("package has no declared license")
+    return {
+        "package": package,
+        "version": info.get("version"),
+        "license": info.get("license"),
+        "home_page": info.get("home_page"),
+        "errors": errors,
+        "status": "pass" if not errors else "blocked",
+    }
+
+
 def check_link(base: str, href: str, timeout: float) -> str | None:
     if href.startswith(("#", "mailto:", "tel:", "javascript:", "data:")):
         return None
@@ -143,6 +179,15 @@ def main() -> int:
     parser.add_argument("--require-text", action="append", default=[], help="visible text required on every page")
     parser.add_argument("--forbid-text", action="append", default=[], help="visible text forbidden on every page")
     parser.add_argument("--github-repo", action="append", default=[], help="public OWNER/REPO metadata to validate")
+    parser.add_argument(
+        "--github-release",
+        action="append",
+        nargs=2,
+        metavar=("OWNER/REPO", "TAG"),
+        default=[],
+        help="stable GitHub release metadata to validate",
+    )
+    parser.add_argument("--pypi-package", action="append", default=[], help="PyPI package metadata to validate")
     parser.add_argument("--timeout", type=float, default=10.0)
     parser.add_argument("--skip-links", action="store_true", help="skip outbound link requests")
     parser.add_argument("--json", action="store_true", help="emit machine-readable output")
@@ -164,8 +209,20 @@ def main() -> int:
             metadata.append(github_metadata(repo, args.timeout))
         except (HTTPError, URLError, TimeoutError, ValueError, json.JSONDecodeError) as error:
             metadata.append({"repo": repo, "errors": [f"metadata unavailable: {error}"], "status": "blocked"})
+    releases = []
+    for repo, tag in args.github_release:
+        try:
+            releases.append(github_release(repo, tag, args.timeout))
+        except (HTTPError, URLError, TimeoutError, ValueError, json.JSONDecodeError) as error:
+            releases.append({"repo": repo, "tag": tag, "errors": [f"release unavailable: {error}"], "status": "blocked"})
+    packages = []
+    for package in args.pypi_package:
+        try:
+            packages.append(pypi_metadata(package, args.timeout))
+        except (HTTPError, URLError, TimeoutError, ValueError, json.JSONDecodeError) as error:
+            packages.append({"package": package, "errors": [f"package unavailable: {error}"], "status": "blocked"})
     if args.json:
-        print(json.dumps({"pages": results, "github_repositories": metadata}, indent=2, sort_keys=True))
+        print(json.dumps({"pages": results, "github_repositories": metadata, "github_releases": releases, "pypi_packages": packages}, indent=2, sort_keys=True))
     else:
         for result in results:
             print(f"{result['status']}: {result['url']}")
@@ -175,7 +232,16 @@ def main() -> int:
             print(f"{item['status']}: github.com/{item['repo']}")
             for error in item["errors"]:
                 print(f"  ERROR: {error}")
-    return 0 if all(result["status"] == "pass" for result in results) and all(item["status"] == "pass" for item in metadata) else 1
+        for item in releases:
+            print(f"{item['status']}: github.com/{item['repo']}/releases/tag/{item['tag']}")
+            for error in item["errors"]:
+                print(f"  ERROR: {error}")
+        for item in packages:
+            print(f"{item['status']}: pypi.org/project/{item['package']}")
+            for error in item["errors"]:
+                print(f"  ERROR: {error}")
+    checks = results + metadata + releases + packages
+    return 0 if all(item["status"] == "pass" for item in checks) else 1
 
 
 if __name__ == "__main__":

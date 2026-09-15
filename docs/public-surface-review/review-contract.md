@@ -85,7 +85,8 @@ are being checked. Keep live link checks outside mandatory CI when destinations
 are controlled by third parties; attach their output to the review evidence.
 Use `--require-text` and `--forbid-text` for lifecycle assertions, and
 `--github-repo OWNER/REPO` for public visibility, fork, archive, and license
-metadata checks.
+metadata checks, `--github-release OWNER/REPO TAG` for stable release metadata,
+and `--pypi-package NAME` for package version and license metadata.
 
 ## Review verdicts
 
