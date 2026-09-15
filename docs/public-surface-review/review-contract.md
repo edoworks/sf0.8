@@ -83,6 +83,9 @@ python3 scripts/public-surface-preflight.py URL [URL ...] --json
 Use `--skip-links` when only page status, placeholders, and canonical metadata
 are being checked. Keep live link checks outside mandatory CI when destinations
 are controlled by third parties; attach their output to the review evidence.
+Use `--require-text` and `--forbid-text` for lifecycle assertions, and
+`--github-repo OWNER/REPO` for public visibility, fork, archive, and license
+metadata checks.
 
 ## Review verdicts
 

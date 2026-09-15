@@ -41,6 +41,39 @@ def fetch(url: str, timeout: float) -> tuple[int, str, str]:
         return response.status, response.geturl(), response.read().decode("utf-8", "replace")
 
 
+def fetch_json(url: str, timeout: float) -> dict:
+    request = Request(
+        url,
+        headers={
+            "Accept": "application/vnd.github+json",
+            "User-Agent": "edoworks-public-surface-preflight/1",
+        },
+    )
+    with urlopen(request, timeout=timeout) as response:
+        return json.loads(response.read().decode("utf-8"))
+
+
+def github_metadata(repo: str, timeout: float) -> dict:
+    if "/" not in repo or repo.startswith("/") or repo.endswith("/"):
+        raise ValueError(f"invalid GitHub repository: {repo}")
+    data = fetch_json(f"https://api.github.com/repos/{repo}", timeout)
+    errors = []
+    if data.get("visibility") != "public":
+        errors.append(f"repository is not public: {data.get('visibility', 'unknown')}")
+    if not data.get("license"):
+        errors.append("repository has no detected license")
+    return {
+        "repo": repo,
+        "html_url": data.get("html_url"),
+        "visibility": data.get("visibility"),
+        "fork": bool(data.get("fork")),
+        "archived": bool(data.get("archived")),
+        "license": (data.get("license") or {}).get("spdx_id"),
+        "errors": errors,
+        "status": "pass" if not errors else "blocked",
+    }
+
+
 def check_link(base: str, href: str, timeout: float) -> str | None:
     if href.startswith(("#", "mailto:", "tel:", "javascript:", "data:")):
         return None
@@ -54,7 +87,14 @@ def check_link(base: str, href: str, timeout: float) -> str | None:
     return None
 
 
-def audit(url: str, expected_canonical: str | None, timeout: float, check_links: bool) -> dict:
+def audit(
+    url: str,
+    expected_canonical: str | None,
+    required_text: list[str],
+    forbidden_text: list[str],
+    timeout: float,
+    check_links: bool,
+) -> dict:
     result: dict = {"url": url, "errors": [], "warnings": [], "status": "blocked"}
     try:
         status, final_url, body = fetch(url, timeout)
@@ -70,6 +110,12 @@ def audit(url: str, expected_canonical: str | None, timeout: float, check_links:
     placeholders = sorted(set(PLACEHOLDER_RE.findall(body)))
     if placeholders:
         result["errors"].append(f"placeholder content: {placeholders}")
+    for text in required_text:
+        if text not in body:
+            result["errors"].append(f"required lifecycle/status text missing: {text}")
+    for text in forbidden_text:
+        if text in body:
+            result["errors"].append(f"forbidden lifecycle/status text present: {text}")
 
     parser = PageParser()
     parser.feed(body)
@@ -94,19 +140,42 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("urls", nargs="+", help="public URLs to audit")
     parser.add_argument("--expected-canonical", help="canonical URL required on every page")
+    parser.add_argument("--require-text", action="append", default=[], help="visible text required on every page")
+    parser.add_argument("--forbid-text", action="append", default=[], help="visible text forbidden on every page")
+    parser.add_argument("--github-repo", action="append", default=[], help="public OWNER/REPO metadata to validate")
     parser.add_argument("--timeout", type=float, default=10.0)
     parser.add_argument("--skip-links", action="store_true", help="skip outbound link requests")
     parser.add_argument("--json", action="store_true", help="emit machine-readable output")
     args = parser.parse_args()
-    results = [audit(url, args.expected_canonical, args.timeout, not args.skip_links) for url in args.urls]
+    results = [
+        audit(
+            url,
+            args.expected_canonical,
+            args.require_text,
+            args.forbid_text,
+            args.timeout,
+            not args.skip_links,
+        )
+        for url in args.urls
+    ]
+    metadata = []
+    for repo in args.github_repo:
+        try:
+            metadata.append(github_metadata(repo, args.timeout))
+        except (HTTPError, URLError, TimeoutError, ValueError, json.JSONDecodeError) as error:
+            metadata.append({"repo": repo, "errors": [f"metadata unavailable: {error}"], "status": "blocked"})
     if args.json:
-        print(json.dumps(results, indent=2, sort_keys=True))
+        print(json.dumps({"pages": results, "github_repositories": metadata}, indent=2, sort_keys=True))
     else:
         for result in results:
             print(f"{result['status']}: {result['url']}")
             for error in result["errors"]:
                 print(f"  ERROR: {error}")
-    return 0 if all(result["status"] == "pass" for result in results) else 1
+        for item in metadata:
+            print(f"{item['status']}: github.com/{item['repo']}")
+            for error in item["errors"]:
+                print(f"  ERROR: {error}")
+    return 0 if all(result["status"] == "pass" for result in results) and all(item["status"] == "pass" for item in metadata) else 1
 
 
 if __name__ == "__main__":
