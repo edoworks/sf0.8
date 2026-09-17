@@ -9,4 +9,16 @@ Before committing, review the staged paths, run the applicable verification, and
 include the issue reference. Protected-branch pushes, tags, releases, deletion,
 visibility changes, and history-rewriting or bypass operations remain gated.
 
+Completion requires more than a local commit. After the approved push, run
+`./scripts/check-repo-sync.sh` from this repository and from `product-a/`:
+
+```bash
+./scripts/check-repo-sync.sh
+./scripts/check-repo-sync.sh product-a
+```
+
+Both commands must report a clean worktree whose `HEAD` exactly matches
+`origin/main`. If CI-status collection modifies tracked evidence, commit that
+evidence before running the final synchronization check.
+
 The active agent contract is `AGENTS.md` in each product repo; the governing constitution is `sf0.8/NORTH_STAR.md` + `.factory/governance.yaml`.
