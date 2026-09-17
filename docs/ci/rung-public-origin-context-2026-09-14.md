@@ -21,6 +21,18 @@ without publishing credentials, host paths, or Cloudflare resource identifiers.
 - The current public probe returns Cloudflare HTTP 530. The current origin is
   not identified by repository contents or public DNS alone.
 
+## Cloudflare account inspection
+
+- The `edoworks.com` zone is active on the Free Website plan.
+- `rung.edoworks.com` is a proxied CNAME to a `cfargotunnel.com` hostname.
+- The account currently has no non-deleted Cloudflare Tunnels.
+- The available DNS-scoped credential can inspect the record but cannot edit
+  Cloudflare Redirect Rules.
+- Therefore the 530 is confirmed as a stale Tunnel route, and the safe fix is
+  either a Cloudflare redirect rule to `/rung/` or a deliberately rebuilt,
+  independently monitored Tunnel. A DNS-only CNAME change would not provide
+  the required path redirect and was not made.
+
 ## 5-Whys
 
 1. Why is `rung.edoworks.com` unavailable? The public probe returns HTTP 530.

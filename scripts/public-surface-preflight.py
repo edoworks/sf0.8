@@ -98,7 +98,13 @@ def pypi_metadata(package: str, timeout: float) -> dict:
     errors = []
     if not info.get("version"):
         errors.append("package has no current version")
-    if not info.get("license"):
+    has_license = bool(
+        info.get("license")
+        or info.get("license_expression")
+        or info.get("license_files")
+        or any("License ::" in item for item in info.get("classifiers", []))
+    )
+    if not has_license:
         errors.append("package has no declared license")
     return {
         "package": package,

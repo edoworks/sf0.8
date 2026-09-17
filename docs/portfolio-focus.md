@@ -12,7 +12,7 @@ Neither is an execution target. Revival requires an explicit owner instruction.
 
 ## Active Work
 
-- **Private product:** Mews & Woofs (`product-a`), limited to Pet Listen + Profiles and its repeat-use gate.
+- **Private product:** Mews & Woofs (`product-a`), limited to the single pet-native Listen loop and its repeat-use gate.
 - **Commercial experiment:** Rung, limited to organic discovery and paid audit validation.
 
 ## Not Active

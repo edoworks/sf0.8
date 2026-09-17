@@ -1,0 +1,64 @@
+{
+  "rules": [
+    ["git status*", "allow"],
+    ["git diff*", "allow"],
+    ["git log*", "allow"],
+    ["git show*", "allow"],
+    ["git add *", "allow"],
+    ["git commit -m *", "allow"],
+    ["git commit*--no-verify*", "deny"],
+    ["git commit*-n*", "deny"],
+    ["git reset --hard*", "deny"],
+    ["git clean -f*", "deny"],
+    ["git rebase -i*", "deny"],
+    ["git push*", "ask"],
+    ["git tag*", "ask"],
+    ["git commit*--amend*", "ask"],
+    ["git push*--force*", "deny"],
+    ["git push*--mirror*", "deny"],
+    ["git push*-f*", "deny"],
+    ["git push*+*", "deny"],
+    ["git push*--delete*", "ask"],
+    ["git add .", "ask"],
+    ["git add -A*", "ask"],
+    ["git add --all*", "ask"],
+    ["git add -u*", "ask"],
+    ["git add --update*", "ask"],
+    ["git add --pathspec-from-file*", "ask"],
+    ["git add -*", "ask"],
+    ["git add --*", "ask"],
+    ["*;*", "deny"],
+    ["*&&*", "deny"],
+    ["*||*", "deny"],
+    ["*|*", "deny"],
+    ["*\n*", "deny"]
+  ],
+  "expectations": {
+    "allow": [
+      "git status --short",
+      "git diff --check",
+      "git add ProductA/ListenView.swift",
+      "git commit -m \"test policy\""
+    ],
+    "ask": [
+      "git add .",
+      "git add -A",
+      "git commit --amend",
+      "git push origin main",
+      "git push --delete origin feature",
+      "git tag v1.0.0"
+    ],
+    "deny": [
+      "git commit -m \"bypass\" --no-verify",
+      "git commit -m \"bypass\" -n",
+      "git reset --hard HEAD",
+      "git clean -fd",
+      "git push --force origin main",
+      "git push -f origin main",
+      "git push --mirror origin",
+      "git status; git push --force origin main",
+      "git diff && git push origin main",
+      "git log | sh"
+    ]
+  }
+}

@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import re
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -29,8 +30,77 @@ def require(condition: bool, message: str) -> None:
         raise SystemExit(f"lifecycle validation failed: {message}")
 
 
+def portfolio_errors(portfolio: str) -> list[str]:
+    """Validate invariants that can be checked from the portable registry alone."""
+    try:
+        repo_text = portfolio.split("repos:\n", 1)[1].split("\nsurfaces:", 1)[0]
+        surface_text = portfolio.split("surfaces:\n", 1)[1].split("\ninventory_notes:", 1)[0]
+    except IndexError:
+        return ["portfolio registry is missing repos or surfaces"]
+
+    repo_blocks = [block for block in re.split(r"(?=  - id: )", repo_text) if block.strip()]
+    surface_blocks = [block for block in re.split(r"(?=  - id: )", surface_text) if block.strip()]
+    factory_blocks = [block for block in repo_blocks if "purpose:" in block and "factory" in block.split("purpose:", 1)[1].split("\n", 1)[0]]
+
+    errors = []
+    active_factories = [block for block in factory_blocks if "lifecycle: active" in block]
+    if len(active_factories) != 1:
+        errors.append(f"expected exactly one active factory, found {len(active_factories)}")
+    if not any("id: edoworks/sf0.8" in block and "lifecycle: active" in block for block in active_factories):
+        errors.append("sf0.8 is not the sole active factory")
+    active_product = next(
+        (line.split(":", 1)[1].strip() for line in portfolio.splitlines() if line.startswith("active_private_product:")),
+        None,
+    )
+    if active_product and not any(
+        f"id: {active_product}" in block and "lifecycle: active" in block for block in repo_blocks
+    ):
+        errors.append(f"active private product is not active in the repo registry: {active_product}")
+    for block in repo_blocks + surface_blocks:
+        if "disposition:" not in block:
+            item = block.split("id:", 1)[1].split("\n", 1)[0].strip() if "id:" in block else "unknown"
+            errors.append(f"inventoried item lacks a disposition: {item}")
+    for block in surface_blocks:
+        if "lifecycle: deployed" in block and "release_evidence:" not in block:
+            item = block.split("id:", 1)[1].split("\n", 1)[0].strip() if "id:" in block else "unknown"
+            errors.append(f"deployed public surface lacks release evidence: {item}")
+    return errors
+
+
+def continuation_errors(texts: list[str]) -> list[str]:
+    errors = []
+    for path, text in texts:
+        lowered = text.lower()
+        if "sf0.7 is the active factory" in lowered:
+            errors.append(f"stale sf0.7 authority in {path}")
+        if "sf0.7" in lowered and "read-only" not in lowered and "deprecated" not in lowered:
+            errors.append(f"unqualified sf0.7 reference in {path}")
+        if "sf0.5" in lowered and "read-only" not in lowered and "frozen" not in lowered:
+            errors.append(f"unqualified sf0.5 reference in {path}")
+    return errors
+
+
+def legacy_state_errors(status: dict | None, queue: dict | None) -> list[str]:
+    errors = []
+    if status is not None:
+        if status.get("state") != "deprecated_read_only":
+            errors.append("sf0.7 status is not deprecated_read_only")
+        if status.get("active_increment") is not None:
+            errors.append("sf0.7 has an active increment")
+    if queue is not None:
+        if queue.get("read_only") is not True:
+            errors.append("sf0.7 queue is not read-only")
+        if queue.get("lifecycle") != "deprecated_read_only":
+            errors.append("sf0.7 queue lifecycle drifted")
+        if any(item.get("status") == "active" for item in queue.get("increments", [])):
+            errors.append("sf0.7 queue contains active work")
+    return errors
+
+
 def main() -> None:
     portfolio = PORTFOLIO.read_text(encoding="utf-8")
+    for error in portfolio_errors(portfolio):
+        require(False, error)
     require("active_factory: edoworks/sf0.8" in portfolio, "sf0.8 is not the active factory")
     require("active_private_product: edoworks/product-a" in portfolio, "active private product drifted")
     require("active_commercial_experiment: edoworks/rung" in portfolio, "commercial experiment drifted")
@@ -46,23 +116,18 @@ def main() -> None:
     require("resume_requires_owner_instruction: true" in sf05, "sf0.5 revival guard missing")
     require(FOCUS.exists(), "portfolio focus document missing")
 
-    for path in CONTINUATIONS:
-        if not path.exists():
-            continue
-        text = path.read_text(encoding="utf-8").lower()
-        require("sf0.7 is the active factory" not in text, f"stale sf0.7 authority in {path}")
-        require("sf0.7" not in text or "read-only" in text or "deprecated" in text, f"unqualified sf0.7 reference in {path}")
-        require("sf0.5" not in text or "read-only" in text or "frozen" in text, f"unqualified sf0.5 reference in {path}")
+    continuation_texts = [(path, path.read_text(encoding="utf-8")) for path in CONTINUATIONS if path.exists()]
+    for error in continuation_errors(continuation_texts):
+        require(False, error)
 
+    status = None
     if SF07_STATUS.exists():
         status = json.loads(SF07_STATUS.read_text(encoding="utf-8"))
-        require(status.get("state") == "deprecated_read_only", "sf0.7 status is not deprecated_read_only")
-        require(status.get("active_increment") is None, "sf0.7 has an active increment")
+    queue = None
     if SF07_QUEUE.exists():
         queue = json.loads(SF07_QUEUE.read_text(encoding="utf-8"))
-        require(queue.get("read_only") is True, "sf0.7 queue is not read-only")
-        require(queue.get("lifecycle") == "deprecated_read_only", "sf0.7 queue lifecycle drifted")
-        require(all(item.get("status") != "active" for item in queue.get("increments", [])), "sf0.7 queue contains active work")
+    for error in legacy_state_errors(status, queue):
+        require(False, error)
 
     print("lifecycle validation passed: sf0.8 is sole active factory")
 

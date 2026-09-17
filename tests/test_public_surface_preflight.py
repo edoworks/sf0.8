@@ -78,6 +78,18 @@ class PublicSurfacePreflightTests(unittest.TestCase):
         self.assertEqual(result["status"], "blocked")
         self.assertIn("declared license", result["errors"][0])
 
+    @patch.object(MODULE, "fetch_json")
+    def test_modern_package_license_metadata_passes(self, fetch_json):
+        fetch_json.return_value = {
+            "info": {
+                "version": "1.0.0",
+                "license": None,
+                "license_expression": "MIT",
+                "home_page": None,
+            }
+        }
+        self.assertEqual(pypi_metadata("example-package", 1)["status"], "pass")
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -16,3 +16,6 @@ If a credential, personal/work reference, or private path leaks into history, th
 
 - Deterministic verification beats AI confidence: nothing is closed without `./scripts/verify.sh` or equivalent evidence.
 - Release/publish/visibility changes are human-approved only.
+- The safety-kernel prototype in `safety_kernel/` decides authorization but
+  does not execute effects or provide host-level sandboxing. Its local audit
+  chain is tamper-evident, not immutable against a privileged host.

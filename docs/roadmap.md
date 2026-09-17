@@ -11,8 +11,16 @@ Source of rationale: [factory-v0.1-design-review.md](factory-v0.1-design-review.
 - [x] NORTH_STAR.md + `.factory/governance.yaml` + `.factory/context-budget.yaml`
 - [x] **HUMAN: create `product-a/ProductA.xcodeproj`** (Xcode → iOS App → SwiftUI, Swift Testing, unit+UI tests) — done 2026-09-13; agent repaired placement to repo root, removed nested `.git`
 - [x] `./scripts/verify.sh` green on clean checkout — TEST SUCCEEDED, iPhone 17 Pro / iOS 26.5, 2026-09-13; swift-format lint advisory-only (indentation warnings on template code)
-- [x] **HUMAN: write the real 1-page `product-a/docs/PRD.md`** — done 2026-09-13 ("Whisker & Whistle" working title; AC-1..AC-8 open)
+- [x] **HUMAN: write the real `product-a/docs/PRD.md`** — current contract; AC-1..AC-10 require evidence, not documentation claims
 - [x] `edoworks/product-a` private remote created, main pushed
+
+## Current execution authority
+
+The production-readiness audit and single backlog are authoritative for current
+sequencing: `docs/production-readiness-audit.md`. Product A's contract remains
+`product-a/docs/PRD.md`; its release evidence boundary is
+`product-a/docs/device-validation-runbook.md`. Historical issue status and
+simulator green results do not override those documents.
 
 ## Phase 1 — weeks 2–4
 
@@ -36,3 +44,48 @@ Source of rationale: [factory-v0.1-design-review.md](factory-v0.1-design-review.
 ## Explicitly deferred
 
 Learned routing/budgets; workspace MCP server; vector DB / knowledge graph; web dashboard; publication automation; flipping any repo public; self-hosted runners for public PRs (never).
+
+## Safety-kernel increment — Issue #12
+
+- [x] Safety-kernel PRD, threat model, constitution, boundaries, capability
+  model, envelopes, evaluations, and ADR drafted.
+- [x] Dependency-free deny-by-default authorization prototype added with
+  scoped capabilities, hard ceilings, delegation narrowing, and hash-chained
+  audit evidence.
+- [x] Initial adversarial tests cover missing/unknown/expired capabilities,
+  scope confusion, human-only operations, budget exhaustion, audit failure,
+  and delegation amplification.
+- [x] Cost-neutral Docker adapter added with a fixed restricted profile and
+  fail-closed daemon/container failure handling; Docker Desktop 29.7.2 smoke
+  passed for non-root execution, read-only filesystem, and no outbound TCP.
+- [x] Docker execution is now reachable only through an `ALLOW` decision, with
+  approved-root/symlink confinement, digest pinning, and completed-effect audit
+  evidence; integrated smoke passed.
+- [ ] Host-enforced sandbox, credential broker, and externally protected audit.
+- [ ] Dogfood through the kernel and complete collusion evaluation before any
+  meaningful autonomous external action.
+
+## Session priority — 2026-09-17
+
+The production-readiness audit is the active queue. Validation of this session
+passed the repository lifecycle gate, 40 factory tests, the safety-kernel suite,
+Product A doctor, and Product A verification (24 unit tests and 13 UI tests,
+one intentional skip). These results do not close physical-device or release
+gates.
+
+1. **P0 Product A:** exact artifact, real audio/lifecycle, accessibility and
+   adaptive layout, current-artifact specialist review, and migration/privacy
+   inspection.
+2. **P1 factory:** consolidate the governed release evidence path only after
+   the archive/TestFlight path exposes the concrete missing control.
+3. **P1 factory:** prove a second-agent handoff on a real bounded task when a
+   second route is available; do not build transcript or harness abstractions.
+4. **P2 safety:** preserve the prototype boundary; host isolation, credential
+   brokering, external audit, and collusion evaluation remain blocked from
+   autonomous use.
+5. **Recovery:** resolve off-device backup and cold-machine authentication gaps
+   as owner recovery actions.
+
+Learned routing/budgets, MCP, vector or knowledge systems, dashboards,
+publication automation, public self-hosted runners, and sf0.7/sf0.5 queue
+items remain rejected or read-only evidence, not active work.

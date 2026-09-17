@@ -29,3 +29,7 @@ jobs:
           echo "policy files present"
       - name: Successor lifecycle guard
         run: python3 scripts/validate-lifecycle.py
+      - name: Factory policy unit tests
+        run: python3 -m unittest discover -s tests -p 'test_*.py'
+      - name: Safety-kernel adversarial unit tests
+        run: ./scripts/verify-safety-kernel.sh
