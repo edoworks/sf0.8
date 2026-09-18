@@ -52,6 +52,8 @@ def portfolio_errors(portfolio: str) -> list[str]:
         (line.split(":", 1)[1].strip() for line in portfolio.splitlines() if line.startswith("active_private_product:")),
         None,
     )
+    if active_product in {"null", "~", "''", '""'}:
+        active_product = None
     if active_product and not any(
         f"id: {active_product}" in block and "lifecycle: active" in block for block in repo_blocks
     ):
@@ -102,7 +104,7 @@ def main() -> None:
     for error in portfolio_errors(portfolio):
         require(False, error)
     require("active_factory: edoworks/sf0.8" in portfolio, "sf0.8 is not the active factory")
-    require("active_private_product: edoworks/product-a" in portfolio, "active private product drifted")
+    require("active_private_product: null" in portfolio, "active private product was not cleared")
     require("active_commercial_experiment: edoworks/rung" in portfolio, "commercial experiment drifted")
 
     sf07 = section(portfolio, "foculoom/sf0.7", "foculoom/sf0.5")

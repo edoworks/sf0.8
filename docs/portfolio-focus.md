@@ -12,7 +12,8 @@ Neither is an execution target. Revival requires an explicit owner instruction.
 
 ## Active Work
 
-- **Private product:** Mews & Woofs (`product-a`), limited to the single pet-native Listen loop and its repeat-use gate.
+- **Private product:** none currently active. Mews & Woofs (`product-a`) is
+  shelved as read-only evidence; revival requires explicit owner instruction.
 - **Commercial experiment:** Rung, limited to organic discovery and paid audit validation.
 
 ## Not Active
@@ -21,6 +22,10 @@ Veilsort, Vorynce, Edglex, Docketloom, Skiplet, Jumpyloo, Bloomline, TapDots,
 BookMarks, OllamaProbe, Rung Report, Rendit productization, and FLocal product
 development are frozen, conditional, internal-only, or technical fixtures as
 recorded in `.factory/portfolio.yaml`. Surviving code is not active authorization.
+
+Product A is archived rather than deleted. Its reusable learnings are recorded
+in `docs/decisions/2026-09-17-product-a-shelved.md`; its product repository,
+history, handoff, and evidence remain read-only reference material.
 
 ## Admission Rule
 

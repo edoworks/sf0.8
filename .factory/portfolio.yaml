@@ -2,7 +2,7 @@
 # Every repo gets an explicit disposition. No accidental immortality.
 
 active_factory: edoworks/sf0.8
-active_private_product: edoworks/product-a
+active_private_product: null
 active_commercial_experiment: edoworks/rung
 policy: >-
   sf0.8 is the sole active factory. Deprecated or frozen predecessors are
@@ -20,10 +20,13 @@ repos:
 
   - id: edoworks/product-a
     visibility: private
-    lifecycle: active
-    disposition: keep
+    lifecycle: archived
+    disposition: keep_read_only
     successor_of: foculoom/sf0.7/apps/catwhispers
     purpose: "Mews & Woofs" — greenfield reference workload (iOS/iPadOS playful-interpretation)
+    read_only: true
+    resume_requires_owner_instruction: true
+    archive_reason: owner quality-bar decision after repeated iterations; learnings retained in docs/decisions/2026-09-17-product-a-shelved.md
     health.last_verified_build: 2026-09-13
     health.last_reviewed: 2026-09-13
     health.next_review_due: 2026-10-13

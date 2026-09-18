@@ -44,11 +44,17 @@ class LifecycleValidationTests(unittest.TestCase):
 
     def test_active_product_must_exist_as_active_repo(self):
         fixture = self.portfolio.replace(
-            "active_private_product: edoworks/product-a",
+            "active_private_product: null",
             "active_private_product: edoworks/other-product",
         )
         errors = MODULE.portfolio_errors(fixture)
         self.assertTrue(any("active private product" in error for error in errors))
+
+    def test_no_active_private_product_is_valid_for_shelved_portfolio(self):
+        self.assertNotIn(
+            "active private product is not active in the repo registry",
+            MODULE.portfolio_errors(self.portfolio),
+        )
 
     def test_stale_continuation_is_blocked(self):
         errors = MODULE.continuation_errors(
