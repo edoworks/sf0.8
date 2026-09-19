@@ -221,6 +221,11 @@ class ControlPlaneTests(unittest.TestCase):
         workflow = (ROOT / ".github/workflows/checks.yml").read_text()
         for command in ("validate-ecosystem.py", "validate-reuse-registry.py", "validate-apple-distribution.py", "validate-control-plane.py", "validate-review-contract.py", "test_*.py"):
             self.assertIn(command, workflow)
+        self.assertIn("validate-ci-change.py", workflow)
+        self.assertIn("fetch-depth: 0", workflow)
+        self.assertNotIn("HEAD^ HEAD", workflow)
+        self.assertIn("executive_council.py validate --input", workflow)
+        self.assertNotIn("--record .factory/artifacts/ledger/issue-33.json", workflow)
 
 
 if __name__ == "__main__":

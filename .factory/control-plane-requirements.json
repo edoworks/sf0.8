@@ -7,6 +7,8 @@
     {"id": "testflight", "control_plane": "TestFlight", "required_before": "TestFlight delivery", "human_authority": "owner release decision", "proof": "processed build evidence", "status": "UNPROVEN"},
     {"id": "signing-notarization", "control_plane": "signing/notarization", "required_before": "signed delivery", "human_authority": "owner-controlled credentials", "proof": "exact artifact signature inspection", "status": "UNPROVEN"},
     {"id": "publishing-deployment", "control_plane": "publishing/deployment", "required_before": "external publication", "human_authority": "human publication approval", "proof": "approved publication receipt", "status": "UNPROVEN"},
-    {"id": "artifact-publication", "control_plane": "artifact publication", "required_before": "shared artifact publication", "human_authority": "human publication approval", "proof": "publication receipt and provenance", "status": "UNPROVEN"}
+    {"id": "artifact-publication", "control_plane": "artifact publication", "required_before": "shared artifact publication", "human_authority": "human publication approval", "proof": "publication receipt and provenance", "status": "UNPROVEN"},
+    {"id": "external-artifact-intake", "control_plane": "dependency, skill, plugin, and MCP installation", "required_before": "installing, activating, configuring, or executing an external artifact", "human_authority": "explicit human intake approval", "proof": "immutable artifact identity, license/security review, permission review, and mediated installation receipt", "status": "UNPROVEN"},
+    {"id": "external-contribution", "control_plane": "upstream or marketplace contribution", "required_before": "opening an external issue, pull request, publication, or marketplace submission", "human_authority": "explicit human contribution approval", "proof": "target, diff, provenance, private-data review, contributor terms, and external write receipt", "status": "UNPROVEN"}
   ]
 }

@@ -1,0 +1,60 @@
+{
+  "issue": 53,
+  "capability": "verifiable external reuse discovery",
+  "change_units": 8,
+  "changed_paths": [
+    ".agents/skills/ecosystem-compounding/SKILL.md",
+    "safety_kernel/kernel.py",
+    "scripts/discover-reuse.py",
+    "scripts/ecosystem_gates.py",
+    "scripts/validate-change.py"
+  ],
+  "reuse": {
+    "searched": 3,
+    "compatible": 1,
+    "reason": "Extend the existing proportional gate and consume official discovery formats rather than build a crawler, marketplace, or installer.",
+    "discovery": {
+      "capability": "verifiable external reuse discovery",
+      "decision": "EXTEND_EXISTING",
+      "matches": ["proportional-reuse-gate"],
+      "specialization_reason": "The local gate already provides policy and candidate evaluation; only evidence binding, source coverage, and authority guards are missing."
+    },
+    "candidates": [
+      {
+        "id": "foculoom-proportional-reuse-gate",
+        "source": ".factory/artifacts/packages/proportional-reuse-gate",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "decision-contract",
+        "revision": "1.0.0-candidate",
+        "license": "Apache-2.0",
+        "security": "local deterministic metadata evaluator",
+        "disposition": "ADAPT",
+        "reason": "Preserve the existing proportional policy and add verifiable candidate records and diff binding."
+      },
+      {
+        "id": "agent-skills-specification",
+        "source": "https://agentskills.io/specification",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "open-specification",
+        "revision": "retrieved-2026-09-19",
+        "license": "specification repository Apache-2.0; documentation CC-BY-4.0",
+        "security": "format reference only; no remote skill executed",
+        "disposition": "LEARN_FROM",
+        "reason": "Use the portable skill structure while retaining local trust and authority controls."
+      },
+      {
+        "id": "awesome-copilot-contribution-workflow",
+        "source": "https://github.com/github/awesome-copilot/blob/main/CONTRIBUTING.md",
+        "source_type": "CURATED_CATALOG",
+        "artifact_type": "contribution-workflow",
+        "revision": "retrieved-2026-09-19",
+        "license": "MIT repository; exact contribution terms require review",
+        "security": "documentation metadata only; no plugin installed",
+        "disposition": "LEARN_FROM",
+        "reason": "Use its preview, validation, and upstream destination model without adopting its marketplace machinery."
+      }
+    ]
+  },
+  "contribution": {"classification": "internal-reusable"},
+  "shareability": {"disposition": "REUSE_CANDIDATE", "evidence": "First consumer is the sf0.8 changed-path gate; no second independent consumer yet."}
+}

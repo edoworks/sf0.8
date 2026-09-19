@@ -5,6 +5,26 @@
       "number": 50,
       "url": "https://github.com/edoworks/sf0.8/issues/50",
       "repo": "edoworks/sf0.8"
+    },
+    "evidence-driven executive review": {
+      "number": 52,
+      "url": "https://github.com/edoworks/sf0.8/issues/52",
+      "repo": "edoworks/sf0.8"
+    },
+    "verifiable external reuse discovery": {
+      "number": 53,
+      "url": "https://github.com/edoworks/sf0.8/issues/53",
+      "repo": "edoworks/sf0.8"
+    },
+    "durable issue lifecycle permissions": {
+      "number": 54,
+      "url": "https://github.com/edoworks/sf0.8/issues/54",
+      "repo": "edoworks/sf0.8"
+    },
+    "complete-event changed-path validation": {
+      "number": 55,
+      "url": "https://github.com/edoworks/sf0.8/issues/55",
+      "repo": "edoworks/sf0.8"
     }
   },
   "policy": "Material work without a factory binding is blocked; callers cannot select an arbitrary issue."

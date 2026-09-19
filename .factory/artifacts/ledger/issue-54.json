@@ -1,0 +1,52 @@
+{
+  "issue": 54,
+  "capability": "durable issue lifecycle permissions",
+  "change_units": 8,
+  "changed_paths": [
+    "tests/permission_policy_fixture.json",
+    "tests/test_permission_policy.py"
+  ],
+  "reuse": {
+    "searched": 2,
+    "compatible": 1,
+    "reason": "Extend the existing repository permission fixture and OpenCode-native ask policy rather than build a second authorization mechanism.",
+    "discovery": {
+      "capability": "durable issue lifecycle permissions",
+      "decision": "EXTEND_EXISTING",
+      "matches": ["permission-policy-fixture"],
+      "specialization_reason": "The existing fixture needs future-issue and effective-config drift coverage."
+    },
+    "candidates": [
+      {
+        "id": "permission-policy-fixture",
+        "source": "tests/permission_policy_fixture.json",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "test fixture",
+        "revision": "working-tree",
+        "license": "internal",
+        "security": "deny-by-default with last-match-wins regression tests",
+        "disposition": "ADAPT",
+        "reason": "Existing canonical portable contract for OpenCode bash permissions."
+      },
+      {
+        "id": "opencode-permissions-documentation",
+        "source": "https://opencode.ai/docs/permissions/",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "documentation",
+        "revision": "retrieved-2026-09-19",
+        "license": "documentation terms not evaluated for redistribution",
+        "security": "confirms last-match-wins and ask auto-approval under --auto",
+        "disposition": "LEARN_FROM",
+        "reason": "Use native ask semantics interactively while retaining explicit compound-command denials."
+      }
+    ]
+  },
+  "contribution": {
+    "classification": "internal-reusable",
+    "target": "repository permission policy fixture"
+  },
+  "shareability": {
+    "disposition": "INTERNAL_SHARED",
+    "evidence": "The fixture and tests protect every future issue-tracked work chunk in this repository."
+  }
+}

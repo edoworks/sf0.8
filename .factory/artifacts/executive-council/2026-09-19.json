@@ -1,0 +1,459 @@
+{
+  "schema_version": 1,
+  "review_id": "executive-council-2026-09-19",
+  "generated_at": "2026-09-19T16:44:00.694332+00:00",
+  "authority": {
+    "founder_is_final_authority": true,
+    "operational_authority": "OBSERVE_ANALYZE_CHALLENGE_RECOMMEND_LEARN",
+    "external_release": "HUMAN_ONLY"
+  },
+  "evidence": {
+    "snapshot_date": "2026-09-19",
+    "sources": [
+      ".factory/artifacts/reports/apple-distribution/release-board-2026-09-19.json",
+      ".factory/customer-zero.json",
+      ".factory/artifacts/evidence/education-opportunity-discovery.json",
+      ".factory/automation/evidence-bundle.json",
+      ".factory/portfolio.yaml"
+    ],
+    "portfolio": {
+      "apple_products": {
+        "kind": "FACT",
+        "source": ".factory/artifacts/reports/apple-distribution/release-board-2026-09-19.json",
+        "claim": "Apple products discovered",
+        "value": 12
+      },
+      "candidates": {
+        "kind": "FACT",
+        "source": ".factory/artifacts/reports/apple-distribution/release-board-2026-09-19.json",
+        "claim": "independent candidates",
+        "value": 49
+      },
+      "ready_for_review": {
+        "kind": "FACT",
+        "source": ".factory/artifacts/reports/apple-distribution/release-board-2026-09-19.json",
+        "claim": "products ready for review",
+        "value": 0
+      },
+      "blocked": {
+        "kind": "FACT",
+        "source": ".factory/artifacts/reports/apple-distribution/release-board-2026-09-19.json",
+        "claim": "blocked products",
+        "value": 1
+      },
+      "shelved": {
+        "kind": "FACT",
+        "source": ".factory/artifacts/reports/apple-distribution/release-board-2026-09-19.json",
+        "claim": "shelved products",
+        "value": 11
+      },
+      "working": {
+        "kind": "FACT",
+        "source": ".factory/artifacts/reports/apple-distribution/release-board-2026-09-19.json",
+        "claim": "working products",
+        "value": 0
+      }
+    },
+    "customer": {
+      "customer_zero_records": {
+        "kind": "EVIDENCE",
+        "source": ".factory/customer-zero.json",
+        "claim": "Customer Zero records",
+        "value": 3
+      },
+      "external_validation": {
+        "kind": "UNKNOWN",
+        "source": "not recorded in canonical evidence",
+        "claim": "External customer behavior, payment, retention",
+        "value": "UNKNOWN"
+      },
+      "education_external_validation": {
+        "kind": "FACT",
+        "source": ".factory/artifacts/evidence/education-opportunity-discovery.json",
+        "claim": "direct customer evidence",
+        "value": "ABSENT"
+      },
+      "education_payment": {
+        "kind": "FACT",
+        "source": ".factory/artifacts/evidence/education-opportunity-discovery.json",
+        "claim": "external payment evidence",
+        "value": "ABSENT"
+      }
+    },
+    "economics": {
+      "revenue": {
+        "kind": "UNKNOWN",
+        "source": "not recorded in canonical evidence",
+        "claim": "Company revenue",
+        "value": "UNKNOWN"
+      },
+      "contribution_margin": {
+        "kind": "UNKNOWN",
+        "source": "not recorded in canonical evidence",
+        "claim": "Contribution margin",
+        "value": "UNKNOWN"
+      },
+      "operating_cost": {
+        "kind": "UNKNOWN",
+        "source": "not recorded in canonical evidence",
+        "claim": "Company operating cost",
+        "value": "UNKNOWN"
+      },
+      "factory_telemetry": {
+        "kind": "FACT",
+        "source": ".factory/factory.sqlite",
+        "claim": "recorded factory telemetry cost",
+        "value": {
+          "runs": 6,
+          "successful_runs": 6,
+          "recorded_factory_cost_usd": 0.42
+        }
+      }
+    },
+    "factory": {
+      "verification": {
+        "kind": "EVIDENCE",
+        "source": ".factory/artifacts/reports/apple-distribution/release-board-2026-09-19.json",
+        "claim": "factory verification",
+        "value": {
+          "unit_tests": "148 passed",
+          "portfolio_audit": "passed",
+          "lifecycle_contract": "passed",
+          "human_action_queue": "passed",
+          "apple_distribution": "passed",
+          "automation": "passed",
+          "ecosystem": "passed",
+          "control_plane": "passed"
+        }
+      },
+      "customer_zero_bundle": {
+        "kind": "EVIDENCE",
+        "source": ".factory/automation/evidence-bundle.json",
+        "claim": "Customer Zero category",
+        "value": {
+          "status": "VERIFIED",
+          "evidence": [
+            ".factory/customer-zero.json",
+            ".factory/automation/release-criteria.json"
+          ]
+        }
+      }
+    },
+    "conflicts": [
+      {
+        "topic": "Product A lifecycle",
+        "claims": [
+          {
+            "source": ".factory/portfolio.yaml",
+            "value": "shelved"
+          },
+          {
+            "source": ".factory/customer-zero.json",
+            "value": "active product direction"
+          },
+          {
+            "source": ".factory/artifacts/reports/apple-distribution/release-board-2026-09-19.json",
+            "value": "SHELVED"
+          }
+        ],
+        "status": "BLOCKED_UNRESOLVED_SOURCE_CONFLICT"
+      }
+    ]
+  },
+  "lenses": {
+    "CEO": {
+      "question": "Are we solving important problems and moving toward a durable business?",
+      "scorecard": {
+        "Customer-Zero validated products": "UNKNOWN",
+        "Externally validated products": 0,
+        "Paying products": "UNKNOWN",
+        "Founder decisions pending": 3
+      },
+      "claims": [
+        {
+          "kind": "FACT",
+          "text": "The portfolio snapshot is historical inventory-heavy: 12 Apple products but 0 working products.",
+          "evidence": [
+            "portfolio.apple_products",
+            "portfolio.working"
+          ]
+        },
+        {
+          "kind": "INFERENCE",
+          "text": "Strategy is not currently expressed as a coherent active product portfolio.",
+          "evidence": [
+            "portfolio.working",
+            "portfolio.shelved"
+          ]
+        },
+        {
+          "kind": "UNKNOWN",
+          "text": "Which commercial direction deserves sustained founder attention.",
+          "evidence": [
+            "customer.external_validation"
+          ]
+        },
+        {
+          "kind": "RECOMMENDATION",
+          "text": "Choose one founder-approved customer/economic validation lane before more product expansion.",
+          "evidence": [
+            "portfolio.working",
+            "customer.external_validation"
+          ],
+          "action": "Founder decision required."
+        }
+      ]
+    },
+    "CFO": {
+      "question": "Are we getting closer to sustainable profitability?",
+      "scorecard": {
+        "Revenue": "UNKNOWN",
+        "Operating cost": "UNKNOWN",
+        "AI/API cost": "UNKNOWN",
+        "Recorded factory telemetry": "$0.42",
+        "Known unit economics": "UNKNOWN"
+      },
+      "claims": [
+        {
+          "kind": "FACT",
+          "text": "The available ledger records $0.42 of factory telemetry cost, not company operating cost.",
+          "evidence": [
+            "economics.factory_telemetry"
+          ]
+        },
+        {
+          "kind": "UNKNOWN",
+          "text": "Revenue, contribution margin, and product-level economics are not recorded.",
+          "evidence": [
+            "economics.revenue",
+            "economics.contribution_margin"
+          ]
+        },
+        {
+          "kind": "RECOMMENDATION",
+          "text": "Do not authorize material product investment without a cheap experiment with a cost ceiling and a measurable payment or repeat-use outcome.",
+          "evidence": [
+            "economics.revenue",
+            "customer.education_payment"
+          ],
+          "action": "Set the ceiling before execution."
+        }
+      ]
+    },
+    "CPO": {
+      "question": "Are we building the right things for real customer problems?",
+      "scorecard": {
+        "Customer-Zero tested": 2,
+        "Repeated voluntary usage": "UNKNOWN",
+        "External problem validation": 0,
+        "Paying users": "UNKNOWN",
+        "Largest product uncertainty": "observed repeat value and payment"
+      },
+      "claims": [
+        {
+          "kind": "FACT",
+          "text": "Customer Zero direction records exist for Product A, Vorynce, and an unverified modeled intent compiler.",
+          "evidence": [
+            "customer.customer_zero_records"
+          ]
+        },
+        {
+          "kind": "FACT",
+          "text": "Education hypotheses explicitly have absent direct customer and payment evidence.",
+          "evidence": [
+            "customer.education_external_validation",
+            "customer.education_payment"
+          ]
+        },
+        {
+          "kind": "INFERENCE",
+          "text": "The highest-value next product learning is behavioral validation, not another feature.",
+          "evidence": [
+            "customer.external_validation",
+            "portfolio.ready_for_review"
+          ]
+        },
+        {
+          "kind": "RECOMMENDATION",
+          "text": "Run the cheapest founder-approved real-user experiment and record repeat or payment behavior.",
+          "evidence": [
+            "customer.education_external_validation"
+          ],
+          "action": "Founder approval and human participants required."
+        }
+      ]
+    },
+    "CTO": {
+      "question": "Are we building and operating these things well without over-engineering?",
+      "scorecard": {
+        "Build health": "VERIFIED for factory snapshot",
+        "Release failures": "UNKNOWN",
+        "Security findings": "PARTIALLY VERIFIED",
+        "Reuse opportunities": "EVIDENCE EXISTS",
+        "Maintenance burden": "UNKNOWN"
+      },
+      "claims": [
+        {
+          "kind": "EVIDENCE",
+          "text": "The release board records factory verification passing and a blocked Apple release lane.",
+          "evidence": [
+            "factory.verification",
+            "portfolio.blocked"
+          ]
+        },
+        {
+          "kind": "FACT",
+          "text": "Passing tests and archives do not establish customer value or release readiness.",
+          "evidence": [
+            "factory.verification",
+            "portfolio.ready_for_review"
+          ]
+        },
+        {
+          "kind": "INFERENCE",
+          "text": "Additional architecture or council infrastructure is not justified before customer evidence.",
+          "evidence": [
+            "portfolio.ready_for_review",
+            "customer.external_validation"
+          ]
+        },
+        {
+          "kind": "RECOMMENDATION",
+          "text": "Keep the council as a generated artifact and validator; defer services, schedulers, extra agents, and extraction.",
+          "evidence": [
+            "factory.verification"
+          ],
+          "action": "Reassess only after repeated founder use."
+        }
+      ]
+    },
+    "COO": {
+      "question": "Is the factory turning decisions into verified outcomes efficiently?",
+      "scorecard": {
+        "Cycle time": "UNKNOWN",
+        "Useful contributions completed": "UNKNOWN",
+        "Release frequency": "UNKNOWN",
+        "Blocked work": 1,
+        "Avoidable human escalations": "UNKNOWN",
+        "Repeated factory failures": "UNKNOWN"
+      },
+      "claims": [
+        {
+          "kind": "FACT",
+          "text": "The current release board has 0 Ready for Review, 1 blocked, and 11 shelved Apple products.",
+          "evidence": [
+            "portfolio.ready_for_review",
+            "portfolio.blocked",
+            "portfolio.shelved"
+          ]
+        },
+        {
+          "kind": "INFERENCE",
+          "text": "The visible bottleneck is decision-to-validated-outcome flow, not lack of portfolio inventory.",
+          "evidence": [
+            "portfolio.ready_for_review",
+            "portfolio.candidates"
+          ]
+        },
+        {
+          "kind": "UNKNOWN",
+          "text": "The causal operational bottleneck cannot be proven from the current snapshot alone.",
+          "evidence": [
+            "factory.verification"
+          ]
+        },
+        {
+          "kind": "RECOMMENDATION",
+          "text": "Stop broad portfolio expansion and measure one bounded validation lane from decision to observed outcome.",
+          "evidence": [
+            "portfolio.ready_for_review",
+            "customer.external_validation"
+          ],
+          "action": "Define one cycle-time observation."
+        }
+      ]
+    }
+  },
+  "disagreements": [
+    {
+      "topic": "next investment",
+      "positions": {
+        "CEO": "select one coherent customer/economic lane",
+        "CFO": "only below a cost ceiling with measurable economic learning",
+        "CPO": "run behavioral validation before features",
+        "CTO": "defer extraction and new infrastructure",
+        "COO": "measure one decision-to-outcome lane"
+      },
+      "material": true,
+      "synthesis": "Run one bounded validation experiment; do not expand the portfolio or council platform."
+    }
+  ],
+  "synthesis": {
+    "kind": "RECOMMENDATION",
+    "text": "Preserve the current portfolio as evidence, reconcile lifecycle conflicts, and run one cheap founder-approved customer/economic validation experiment before new product or council infrastructure work.",
+    "rationale": [
+      "0 Ready for Review",
+      "no recorded external payment or retention evidence",
+      "unknown company economics",
+      "unresolved lifecycle conflict"
+    ],
+    "founder_authority_required": true
+  },
+  "today": [
+    {
+      "id": "today-1",
+      "action": "Founder selects one validation lane and a reversible cost/time ceiling.",
+      "authority": "FOUNDER",
+      "status": "PENDING"
+    },
+    {
+      "id": "today-2",
+      "action": "Reconcile Product A and Vorynce lifecycle/authorization records before any release or revival work.",
+      "authority": "FOUNDER",
+      "status": "PENDING"
+    },
+    {
+      "id": "today-3",
+      "action": "Use this generated review once and record whether it changed a decision or reduced cognitive load.",
+      "authority": "FOUNDER",
+      "status": "PENDING"
+    }
+  ],
+  "stop_defer": [
+    "Do not reactivate shelved Apple products.",
+    "Defer extra council agents, services, schedulers, news feeds, and composite scores.",
+    "Defer product features without observed customer behavior or an approved experiment."
+  ],
+  "human_decisions": [
+    "Select and authorize one validation lane.",
+    "Resolve lifecycle and release authority conflicts.",
+    "Approve any spending, external contact, release, publication, or product mutation."
+  ],
+  "recommendation_tracking": [
+    {
+      "id": "rec-2026-09-19-01",
+      "recommendation": "Run one bounded customer/economic validation experiment.",
+      "evidence_at_time": [
+        "portfolio.ready_for_review",
+        "customer.education_payment",
+        "economics.revenue"
+      ],
+      "expected_outcome": "Reduce customer and economic uncertainty at low reversible cost.",
+      "founder_decision": "UNKNOWN",
+      "action_taken": "NOT_RECORDED",
+      "actual_outcome": "UNKNOWN"
+    }
+  ],
+  "customer_zero": {
+    "opened": "UNKNOWN",
+    "affected_decision": "UNKNOWN",
+    "caught_missed_fact": "UNKNOWN",
+    "prevented_work": "UNKNOWN",
+    "saved_founder_time": "UNKNOWN",
+    "reduced_cognitive_load": "UNKNOWN",
+    "created_cognitive_load": "UNKNOWN",
+    "redundant_sections": "UNKNOWN",
+    "continuation_test": "Founder voluntarily uses the review repeatedly and records decision value."
+  },
+  "practice_changes": []
+}

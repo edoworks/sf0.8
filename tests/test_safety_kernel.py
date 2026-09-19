@@ -73,6 +73,24 @@ class SafetyKernelTests(unittest.TestCase):
         request = self.request(operation="publish", resource="release")
         self.assertEqual(self.kernel.authorize(request, capability(operation="publish", resource="release")), Decision.REQUIRE_HUMAN_AUTHORIZATION)
 
+    def test_external_intake_and_contribution_operations_are_human_only(self):
+        for operation in ("install_dependency", "activate_skill", "configure_mcp", "install_plugin", "external_contribution"):
+            request = self.request(operation=operation, resource="external")
+            self.assertEqual(self.kernel.authorize(request, capability(operation=operation, resource="external")), Decision.REQUIRE_HUMAN_AUTHORIZATION)
+
+    def test_generic_command_cannot_alias_skill_install_or_publish(self):
+        for argv in (
+            ["gh", "skill", "install", "owner/repo", "skill"],
+            ["npx", "-y", "skills", "add", "owner/repo"],
+            ["npm", "install", "package"],
+            ["npm", "--prefix", "workspace", "install", "package"],
+            ["pip3", "install", "package"],
+            ["python3", "-m", "pip", "install", "package"],
+            ["gh", "pr", "create"],
+        ):
+            request = self.request(operation="run_command", resource="external", arguments={"argv": argv})
+            self.assertEqual(self.kernel.authorize(request, capability(operation="run_command", resource="external")), Decision.REQUIRE_HUMAN_AUTHORIZATION)
+
     def test_unknown_operation_is_denied(self):
         request = self.request(operation="erase_everything")
         self.assertEqual(self.kernel.authorize(request, capability(operation="erase_everything")), Decision.DENY)

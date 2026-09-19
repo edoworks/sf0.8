@@ -20,6 +20,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
       - name: Tracked-file link check (docs reference existing files)
         run: |
           # Verify roadmap links resolve to tracked files
@@ -56,8 +58,14 @@ jobs:
       - name: Apple distribution capability and preflight contract
         run: python3 scripts/validate-apple-distribution.py --validate
       - name: Changed-path ecosystem gate
-        run: |
-          python3 scripts/validate-change.py --record .factory/artifacts/ledger/issue-33.json $(git diff --name-only HEAD^ HEAD)
+        run: >-
+          python3 scripts/validate-ci-change.py
+          --event-name "${{ github.event_name }}"
+          --before "${{ github.event.before }}"
+          --base "${{ github.event.pull_request.base.sha }}"
+          --head "${{ github.event.pull_request.head.sha || github.sha }}"
+      - name: Executive council checked-in evidence
+        run: python3 scripts/executive_council.py validate --input .factory/artifacts/executive-council/2026-09-19.json
       - name: Factory policy unit tests
         run: python3 -m unittest discover -s tests -p 'test_*.py'
       - name: Safety-kernel adversarial unit tests

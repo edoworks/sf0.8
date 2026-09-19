@@ -65,6 +65,30 @@ EVALUATION_FIELDS = {
     "provenance",
 }
 
+CANDIDATE_FIELDS = {
+    "id",
+    "source",
+    "source_type",
+    "artifact_type",
+    "revision",
+    "license",
+    "security",
+    "disposition",
+    "reason",
+}
+
+CANDIDATE_DISPOSITIONS = {"ADOPT", "ADAPT", "LEARN_FROM", "REJECT"}
+COMPATIBLE_CANDIDATE_DISPOSITIONS = {"ADOPT", "ADAPT"}
+EXTERNAL_SOURCE_TYPES = {
+    "FIRST_PARTY",
+    "CURATED_CATALOG",
+    "COMMUNITY_CATALOG",
+    "PACKAGE_REGISTRY",
+    "SOURCE_REPOSITORY",
+    "PLATFORM_MARKETPLACE",
+}
+SOURCE_TYPES = EXTERNAL_SOURCE_TYPES | {"FOCULOOM_SHARED", "FOCULOOM_PRODUCT"}
+
 SUBSTANTIAL_PATHS = (
     ".agents/skills/",
     ".opencode/skills/",
@@ -115,6 +139,7 @@ def validate_change_record(paths: list[str], record: dict[str, Any] | None) -> d
             errors.append("discovery matches must be recorded")
         if discovery.get("matches") and discovery.get("decision") == "BUILD_NEW" and not str(discovery.get("specialization_reason", "")).strip():
             errors.append("existing capability found; BUILD_NEW requires specialization evidence")
+        errors.extend(validate_discovery_evidence(reuse))
         if record.get("contribution", {}).get("classification") not in {
             "product-specific", "internal-reusable", "public-reusable", "upstream-candidate", "upstream-contribution",
         }:
@@ -126,6 +151,91 @@ def validate_change_record(paths: list[str], record: dict[str, Any] | None) -> d
             errors.append("shareability evidence is required for substantial work")
         if shareability.get("disposition") in {"PRODUCT_ONLY", "NOT_SHAREABLE"} and not str(shareability.get("reuse_analysis", "")).strip():
             errors.append("product-only/non-shareable work must include reuse analysis")
+    return {"decision": "PASS" if not errors else "BLOCKED", "gated_paths": gated_paths, "errors": errors}
+
+
+def validate_discovery_evidence(reuse: dict[str, Any]) -> list[str]:
+    """Require inspectable candidate evidence instead of self-reported counts."""
+    candidates = reuse.get("candidates")
+    if not isinstance(candidates, list) or not candidates:
+        return ["reuse discovery requires non-empty candidate records"]
+    errors: list[str] = []
+    identities: set[str] = set()
+    compatible = 0
+    external = 0
+    for index, candidate in enumerate(candidates):
+        prefix = f"reuse.candidates[{index}]"
+        if not isinstance(candidate, dict):
+            errors.append(f"{prefix}: candidate must be an object")
+            continue
+        missing = sorted(CANDIDATE_FIELDS - candidate.keys())
+        if missing:
+            errors.append(f"{prefix}: missing {', '.join(missing)}")
+            continue
+        identity = str(candidate["id"]).strip().casefold()
+        if not identity or identity in identities:
+            errors.append(f"{prefix}: candidate id must be non-empty and unique")
+        identities.add(identity)
+        if candidate["source_type"] not in SOURCE_TYPES:
+            errors.append(f"{prefix}: invalid source_type")
+        if candidate["source_type"] in EXTERNAL_SOURCE_TYPES:
+            external += 1
+        if candidate["disposition"] not in CANDIDATE_DISPOSITIONS:
+            errors.append(f"{prefix}: invalid disposition")
+        if candidate["disposition"] in COMPATIBLE_CANDIDATE_DISPOSITIONS:
+            compatible += 1
+            if candidate["source_type"] in EXTERNAL_SOURCE_TYPES and candidate.get("immutable_ref") is not True:
+                errors.append(f"{prefix}: adopted external candidates require an immutable_ref")
+        for field in ("source", "artifact_type", "revision", "license", "security", "reason"):
+            if not str(candidate[field]).strip():
+                errors.append(f"{prefix}: {field} must be non-empty")
+    if reuse.get("searched") != len(candidates):
+        errors.append("reuse.searched must equal the number of candidate records")
+    if reuse.get("compatible") != compatible:
+        errors.append("reuse.compatible must equal ADOPT plus ADAPT candidates")
+    decision = reuse.get("discovery", {}).get("decision")
+    if decision in {"BUILD_NEW", "EXTEND_EXISTING", "SPECIALIZE"} and external == 0:
+        errors.append("new or extended machinery requires at least one external candidate")
+    return errors
+
+
+def validate_changed_records(
+    paths: list[str],
+    records: list[dict[str, Any]],
+    bindings: dict[str, Any],
+) -> dict[str, Any]:
+    """Bind every gated changed path to a current issue ledger and capability."""
+    gated_paths = sorted(path for path in paths if path_requires_gate(path))
+    if not gated_paths and not records:
+        return {"decision": "BYPASS", "gated_paths": [], "errors": []}
+    errors: list[str] = []
+    claimed: dict[str, int] = {}
+    for record in records:
+        capability = str(record.get("capability", "")).strip()
+        issue = record.get("issue")
+        binding = bindings.get("by_capability", {}).get(capability)
+        if not capability or not isinstance(issue, int):
+            errors.append("changed ledger requires capability and integer issue")
+        elif not binding or binding.get("number") != issue:
+            errors.append(f"issue {issue}: capability is not bound to this ledger")
+        record_paths = record.get("changed_paths")
+        if not isinstance(record_paths, list) or not record_paths:
+            errors.append(f"issue {issue}: changed_paths are required")
+            record_paths = []
+        result = validate_change_record(record_paths, record)
+        errors.extend(f"issue {issue}: {error}" for error in result["errors"])
+        if result["decision"] == "BYPASS":
+            errors.extend(f"issue {issue}: {error}" for error in validate_discovery_evidence(record.get("reuse", {})))
+        for path in result["gated_paths"]:
+            claimed[path] = claimed.get(path, 0) + 1
+    for path in gated_paths:
+        if claimed.get(path, 0) == 0:
+            errors.append(f"unclaimed gated changed path: {path}")
+        elif claimed[path] > 1:
+            errors.append(f"gated changed path claimed by multiple ledgers: {path}")
+    for path in claimed:
+        if path not in gated_paths:
+            errors.append(f"ledger claims unchanged gated path: {path}")
     return {"decision": "PASS" if not errors else "BLOCKED", "gated_paths": gated_paths, "errors": errors}
 
 

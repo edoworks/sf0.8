@@ -17,14 +17,23 @@ retirement candidates; they do not set publication quotas.
 ## Reuse Gate
 
 Before a substantial subsystem, search by capability and adjacent concepts,
-not only by the requested name. Record the sources searched, candidate count,
-compatible count, and a concise `BUILD_NEW` reason in
-`.factory/artifacts/ledger/`. The search budget scales with change units;
+not only by the requested name. Use `--artifact-type skill`, `mcp`, `library`,
+or `github-integration` with `scripts/discover-reuse.py` to print the applicable
+external source plan. Record one deduplicated candidate per result under the
+issue ledger, including source type, artifact type, revision, license, security,
+disposition, and reason. `searched` and `compatible` must agree with those
+records; counts alone are rejected. New or extended machinery requires at
+least one external candidate. The search budget scales with change units;
 five-line changes bypass the heavyweight ceremony.
 
 Evaluation requires relevance, quality, maintenance, license, security,
 privacy, dependency cost, portability, overlap, adaptability, and provenance.
 Popular or indexed content is not trusted or installed automatically.
+Skills are previewed, not installed; MCP metadata is inspected without adding
+a server or initiating a handshake; packages and plugins are not installed.
+Adopted external artifacts require an immutable revision. Installation,
+activation, MCP configuration, dependency mutation, publication, and external
+contribution remain human-only operations.
 
 ## Contribution Gate
 

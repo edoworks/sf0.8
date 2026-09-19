@@ -1,4 +1,5 @@
 import json
+import subprocess
 import unittest
 from pathlib import Path
 
@@ -9,12 +10,29 @@ from scripts.ecosystem_gates import (
     reuse_gate,
     validate_feedback_record,
     validate_change_record,
+    validate_changed_records,
+    validate_discovery_evidence,
     validate_reuse_registry,
     completion_state,
 )
 
 
 class EcosystemGateTests(unittest.TestCase):
+    def candidate(self, **overrides):
+        value = {
+            "id": "local-capability",
+            "source": ".factory/local",
+            "source_type": "FOCULOOM_SHARED",
+            "artifact_type": "tool",
+            "revision": "abc123",
+            "license": "internal",
+            "security": "reviewed",
+            "disposition": "ADAPT",
+            "reason": "reuse local capability",
+        }
+        value.update(overrides)
+        return value
+
     def test_reuse_gate_is_proportional(self):
         self.assertEqual(required_search(1), 1)
         self.assertEqual(required_search(8), 1)
@@ -26,6 +44,15 @@ class EcosystemGateTests(unittest.TestCase):
     def test_reuse_gate_rejects_bad_candidate_counts(self):
         result = reuse_gate(1, 1, 2)
         self.assertEqual(result["decision"], "BLOCKED")
+
+    def test_discovery_entrypoint_exposes_applicable_external_sources(self):
+        result = subprocess.run(
+            ["python3", "scripts/discover-reuse.py", "executive review", "--artifact-type", "skill"],
+            cwd=Path(__file__).parents[1], capture_output=True, text=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        payload = json.loads(result.stdout)
+        self.assertEqual([item["source"] for item in payload["external_sources"]], ["GitHub agent skills", "Awesome Copilot", "skills.sh"])
 
     def test_contribution_classification_preserves_product_boundary(self):
         result = contribution_gate(
@@ -148,7 +175,7 @@ class EcosystemGateTests(unittest.TestCase):
             [".agents/skills/example/SKILL.md"],
             {
                 "change_units": 8,
-                "reuse": {"searched": 1, "compatible": 0, "reason": "No compatible artifact", "discovery": {"capability": "new tool", "decision": "BUILD_NEW", "matches": [], "specialization_reason": "No compatible artifact"}},
+                "reuse": {"searched": 1, "compatible": 0, "reason": "No compatible artifact", "discovery": {"capability": "new tool", "decision": "BUILD_NEW", "matches": [], "specialization_reason": "No compatible artifact"}, "candidates": [self.candidate(id="external", source="https://example.invalid/tool", source_type="SOURCE_REPOSITORY", disposition="REJECT")]},
                 "contribution": {"classification": "internal-reusable"},
                 "shareability": {"disposition": "REUSE_CANDIDATE", "evidence": "first proven implementation"},
             },
@@ -161,6 +188,57 @@ class EcosystemGateTests(unittest.TestCase):
             {"change_units": 1, "reuse": {"searched": 1, "compatible": 0, "reason": "new"}, "contribution": {"classification": "product-specific"}},
         )
         self.assertEqual(result["decision"], "BLOCKED")
+
+    def test_discovery_rejects_counts_without_candidates_and_duplicates(self):
+        self.assertTrue(validate_discovery_evidence({"searched": 1, "compatible": 0, "discovery": {"decision": "BUILD_NEW"}}))
+        candidate = self.candidate()
+        errors = validate_discovery_evidence({"searched": 2, "compatible": 2, "discovery": {"decision": "EXTEND_EXISTING"}, "candidates": [candidate, candidate]})
+        self.assertTrue(any("unique" in error for error in errors))
+        self.assertTrue(any("external candidate" in error for error in errors))
+
+    def test_adopted_external_candidate_requires_immutable_ref(self):
+        reuse = {"searched": 1, "compatible": 1, "discovery": {"decision": "CONSUME_EXISTING"}, "candidates": [self.candidate(source="https://example.invalid/tool", source_type="SOURCE_REPOSITORY")]}
+        self.assertTrue(any("immutable_ref" in error for error in validate_discovery_evidence(reuse)))
+
+    def test_changed_paths_require_current_bound_ledgers(self):
+        path = "scripts/new-tool.py"
+        record = {
+            "issue": 9,
+            "capability": "new tool",
+            "change_units": 1,
+            "changed_paths": [path],
+            "reuse": {"searched": 1, "compatible": 0, "reason": "not compatible", "discovery": {"capability": "new tool", "decision": "BUILD_NEW", "matches": [], "specialization_reason": "different contract"}, "candidates": [self.candidate(id="external", source="https://example.invalid/tool", source_type="SOURCE_REPOSITORY", disposition="REJECT")]},
+            "contribution": {"classification": "internal-reusable"},
+            "shareability": {"disposition": "REUSE_CANDIDATE", "evidence": "first consumer"},
+        }
+        bindings = {"by_capability": {"new tool": {"number": 9}}}
+        self.assertEqual(validate_changed_records([path, ".factory/artifacts/ledger/issue-9.json"], [record], bindings)["decision"], "PASS")
+        self.assertEqual(validate_changed_records([path], [], bindings)["decision"], "BLOCKED")
+
+    def test_test_only_ledger_still_requires_valid_candidate_evidence(self):
+        record = {
+            "issue": 9,
+            "capability": "test-only guard",
+            "change_units": 1,
+            "changed_paths": ["tests/test_guard.py"],
+            "reuse": {
+                "searched": 1,
+                "compatible": 0,
+                "reason": "platform documentation",
+                "discovery": {"capability": "test-only guard", "decision": "EXTEND_EXISTING", "matches": [], "specialization_reason": "guard extension"},
+                "candidates": [self.candidate(source_type="PLATFORM_BUILTIN", disposition="LEARN_ONLY")],
+            },
+            "contribution": {"classification": "internal-reusable"},
+            "shareability": {"disposition": "REUSE_CANDIDATE", "evidence": "first consumer"},
+        }
+        result = validate_changed_records(
+            ["tests/test_guard.py", ".factory/artifacts/ledger/issue-9.json"],
+            [record],
+            {"by_capability": {"test-only guard": {"number": 9}}},
+        )
+        self.assertEqual(result["decision"], "BLOCKED")
+        self.assertTrue(any("invalid source_type" in error for error in result["errors"]))
+        self.assertTrue(any("invalid disposition" in error for error in result["errors"]))
 
     def test_rule_of_two_and_public_safety_registry_rules(self):
         base = {

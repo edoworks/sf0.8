@@ -1,0 +1,16 @@
+{
+  "capability": "complete-event changed-path validation",
+  "material": true,
+  "change_units": 4,
+  "repo": "edoworks/sf0.8",
+  "decision": "BUILD_NEW",
+  "build_new_reason": "Extend the current changed-ledger validator with event-aware Git diff selection rather than introduce another policy system.",
+  "issue": {
+    "number": 55,
+    "url": "https://github.com/edoworks/sf0.8/issues/55",
+    "repo": "edoworks/sf0.8",
+    "canonical": true,
+    "created_or_reused": true,
+    "write_probe": "Issue-first control-plane preflight for complete-event changed-path validation."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "capability": "verifiable external reuse discovery",
+  "material": true,
+  "change_units": 8,
+  "repo": "edoworks/sf0.8",
+  "decision": "BUILD_NEW",
+  "build_new_reason": "Extend the existing local reuse gate with evidence-bound external discovery rather than create a separate platform.",
+  "issue": {
+    "number": 53,
+    "url": "https://github.com/edoworks/sf0.8/issues/53",
+    "repo": "edoworks/sf0.8",
+    "canonical": true,
+    "created_or_reused": true,
+    "write_probe": "Issue-first control-plane preflight for verifiable external reuse discovery."
+  }
+}
