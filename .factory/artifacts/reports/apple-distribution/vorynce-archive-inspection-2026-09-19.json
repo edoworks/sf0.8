@@ -1,0 +1,36 @@
+{
+  "application": "/var/folders/m6/j69tcnk52059qvy0_6hnxk5r0000gq/T/opencode/Vorynce-distribution.xcarchive/Products/Applications/Vorynce.app",
+  "architectures": [
+    "arm64"
+  ],
+  "archive": "/var/folders/m6/j69tcnk52059qvy0_6hnxk5r0000gq/T/opencode/Vorynce-distribution.xcarchive",
+  "archive_metadata": {
+    "archive_identity": "iPhone Distribution: Foculoom LLC (H8MJMBTFVP)",
+    "creation_date": "2026-09-19 15:40:56",
+    "scheme": "Vorynce",
+    "team": "H8MJMBTFVP"
+  },
+  "archive_sha256": "7b46b9da234cc7bf3face6bf32c8e59c8431635504895a4ef679dfc398efb00c",
+  "build_version": "20260809.3",
+  "bundle_identifier": "com.foculoom.vorynce",
+  "deployment_target": "17.0",
+  "development_artifact": false,
+  "device_families": [
+    1,
+    2
+  ],
+  "display_name": "Vorynce",
+  "entitlements": "Executable=/private/var/folders/m6/j69tcnk52059qvy0_6hnxk5r0000gq/T/opencode/Vorynce-distribution.xcarchive/Products/Applications/Vorynce.app/Vorynce\nwarning: Specifying ':' in the path is deprecated and will not work in a future release\n<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"https://www.apple.com/DTDs/PropertyList-1.0.dtd\"><plist version=\"1.0\"><dict><key>application-identifier</key><string>H8MJMBTFVP.com.foculoom.vorynce</string><key>beta-reports-active</key><true/><key>com.apple.developer.team-identifier</key><string>H8MJMBTFVP</string><key>get-task-allow</key><false/></dict></plist>",
+  "marketing_version": "2.3.0",
+  "permission_purpose_strings": {
+    "NSMicrophoneUsageDescription": "Vorynce needs microphone access to record your voice notes. All audio stays on your device.",
+    "NSSpeechRecognitionUsageDescription": "Vorynce uses on-device speech recognition to transcribe your recordings. No audio leaves your device."
+  },
+  "platform": "iphoneos",
+  "privacy_manifest": true,
+  "sdk": "iphoneos26.5",
+  "signing": "Executable=/private/var/folders/m6/j69tcnk52059qvy0_6hnxk5r0000gq/T/opencode/Vorynce-distribution.xcarchive/Products/Applications/Vorynce.app/Vorynce\nIdentifier=com.foculoom.vorynce\nFormat=app bundle with Mach-O thin (arm64)\nCodeDirectory v=20400 size=2136 flags=0x0(none) hashes=56+7 location=embedded\nVersionPlatform=2\nVersionMin=1114112\nVersionSDK=1705216\nHash type=sha256 size=32\nCandidateCDHash sha256=2eb8fcd6f09c381b983bf4bab87ed5daa284c2c7\nCandidateCDHashFull sha256=2eb8fcd6f09c381b983bf4bab87ed5daa284c2c7952b15a65d2798d7ee3dce7f\nHash choices=sha256\nCMSDigest=2eb8fcd6f09c381b983bf4bab87ed5daa284c2c7952b15a65d2798d7ee3dce7f\nCMSDigestType=2\nExecutable Segment base=0\nExecutable Segment limit=704512\nExecutable Segment flags=0x1\nPage size=16384\nCDHash=2eb8fcd6f09c381b983bf4bab87ed5daa284c2c7\nSignature size=4762\nAuthority=iPhone Distribution: Foculoom LLC (H8MJMBTFVP)\nAuthority=Apple Worldwide Developer Relations Certification Authority\nAuthority=Apple Root CA\nSigned Time=Sep 19, 2026 at 8:40:56\u202fAM\nInfo.plist entries=31\nTeamIdentifier=H8MJMBTFVP\nSealed Resources version=2 rules=10 files=21\nInternal requirements count=1 size=184",
+  "unexpected_development_files": [],
+  "xcode": "2660",
+  "xcode_build": "17F113"
+}
