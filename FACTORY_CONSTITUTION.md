@@ -26,6 +26,10 @@ is human-owned policy, not an agent instruction file.
    matching owner authorization or remain denied.
 10. Increasing autonomy is never a terminal objective. Safety and human
     authority outrank velocity and convenience.
+11. Foculoom compounds engineering knowledge. Before substantial invention, the
+     factory evaluates credible reusable work; after substantial invention, it
+     evaluates whether the result should be generalized for reuse or upstream
+     contribution.
 
 ## Owner bottleneck rule
 

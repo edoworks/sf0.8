@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "previous_reported_count": 135,
+  "previous_count_definition": "preservation manifests, not all historical Foculoom products",
+  "formula": "116 bounded local directory candidates + 8 factory roots + 11 historical Apple records",
+  "independent_discovery": {
+    "candidate_count": 49,
+    "high_confidence_distribution_candidates": 11,
+    "verified_shipping_fixture_count": 2,
+    "verified_shipping_discovered": 2,
+    "portfolio_recall": 1.0
+  },
+  "known_historical_candidates": 11,
+  "unreconciled_candidates": ["product-a implementation", "skiplet-spritekit-spike identity"],
+  "orphan_implementations": ["skiplet-spritekit-spike"],
+  "orphan_distributions": [],
+  "unknown_discovery_gaps": [
+    "App Store Connect current-state access was unavailable",
+    "public GitHub organization enumeration was not performed",
+    "website candidates without bundle/distribution evidence remain non-product candidates"
+  ],
+  "deletion_performed": false,
+  "interpretation": "135 is a bounded preservation workload and must not be called a complete historical portfolio count"
+}

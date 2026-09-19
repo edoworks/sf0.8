@@ -1,0 +1,14 @@
+{
+  "id": "apple-quality-review",
+  "title": "Apple platform and experience-quality review contract",
+  "version": "1.0.0",
+  "kind": "tool",
+  "status": "candidate",
+  "source": {"repository": "edoworks/sf0.8", "path": "scripts/apple-quality.py", "revision": "issue-32-working-tree", "author": "Foculoom", "evaluated_at": "2026-09-18"},
+  "license": {"spdx": "Apache-2.0", "file": "packages/proportional-reuse-gate/LICENSE", "compatibility_checked": true},
+  "provenance": {"origin": "Issue #32 factory increment", "derived_from": ["docs/apple-platform-intelligence.md", "docs/design-intent-template.md", "docs/design-critic.md"], "human_reviewed": false, "modifications": "New dependency-free validator; no Apple source code copied.", "attribution": "Apple documentation is linked as authoritative source material; retain Apache-2.0 for factory code."},
+  "security": {"external_input": "untrusted", "execution": "local-only", "secrets_scan": "passed"},
+  "verification": {"tests": "python3 -m unittest tests.test_apple_quality", "docs": "evidence/apple-quality-review.md", "provenance": "packages/proportional-reuse-gate/PROVENANCE.md"},
+  "publication": {"human_approval_required": true, "approved": false},
+  "maintenance": {"owner": "sf0.8 factory maintainers", "next_review": "2026-10-18"}
+}

@@ -1,0 +1,7 @@
+{
+  "evidence": "Current product and factory artifacts were inspected.",
+  "challenge": "Attempted to falsify identity, readiness, reuse, and lifecycle claims.",
+  "findings": "The review contract must force an implementation handoff.",
+  "concrete_actions": "Add and run the contract validator.",
+  "implementation_prompt": "Implement the smallest safe fix for each blocking finding, or record the exact human-authority gate."
+}

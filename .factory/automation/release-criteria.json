@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "source_of_truth": "canonical product repositories",
+  "customer_zero_source": ".factory/customer-zero.json",
+  "sources": [
+    {
+      "product": "product-a",
+      "repository": "https://github.com/edoworks/product-a.git",
+      "path": "/Users/hello/actions-runner-producta/_work/product-a/product-a/docs/automation/release-criteria.json"
+    },
+    {
+      "product": "vorynce",
+      "repository": "https://github.com/foculoom/vorynce.git",
+      "path": "/Users/hello/foculoom/products/vorynce-rebuild/docs/automation/release-criteria.json"
+    },
+    {
+      "product": "intent-compiler-modeled",
+      "repository": "local-model",
+      "path": "/Users/hello/sf0.8/docs/automation/intent-compiler-assessment.json"
+    }
+  ]
+}

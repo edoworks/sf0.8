@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "issue": 47,
+  "source_of_truth": [
+    "/Users/hello/sf0.7/factory/app-portfolio.json",
+    "/Users/hello/sf0.7/evidence/inc-010/verification.txt",
+    "/Users/hello/sf0.7/evidence/inc-017/verification.txt",
+    "/Users/hello/sf0.7/evidence/inc-017/docketloom-verification.txt"
+  ],
+  "historical_truth": {
+    "products": 11,
+    "known_rejections": 6,
+    "removed_from_store": 2,
+    "prepare_for_submission": 3,
+    "testflight_valid_builds": 4,
+    "testflight_blocked_products": 1,
+    "usable_review_feedback_records": 1
+  },
+  "records": [
+    {"product": "Cat Whispers", "version": "UNKNOWN", "build": "20260911.100", "outcome": "TESTFLIGHT_VALID", "evidence": "sf0.7/evidence/inc-017/verification.txt"},
+    {"product": "Docketloom", "version": "UNKNOWN", "build": "20260911.1", "outcome": "TESTFLIGHT_VALID", "evidence": "sf0.7/evidence/inc-017/docketloom-verification.txt"},
+    {"product": "Edglex", "version": "UNKNOWN", "build": "20260915", "outcome": "TESTFLIGHT_VALID", "evidence": "sf0.7/evidence/inc-017/verification.txt"},
+    {"product": "Vorynce", "version": "2.3.0", "build": "20260913", "outcome": "APP_STORE_REJECTED_AND_TESTFLIGHT_VALID", "evidence": ["sf0.7/evidence/inc-010/verification.txt", "sf0.7/evidence/inc-017/verification.txt"]},
+    {"product": "Veilsort", "version": "UNKNOWN", "build": "UNKNOWN", "outcome": "TESTFLIGHT_BLOCKED_FIX06", "evidence": "sf0.7/evidence/inc-017/verification.txt"},
+    {"product": "Skiplet", "version": "UNKNOWN", "build": "UNKNOWN", "outcome": "REMOVED_FROM_APP_STORE", "evidence": "sf0.7/factory/app-portfolio.json"},
+    {"product": "Bloomline: Draw to Bloom", "version": "0.0.1", "build": "UNKNOWN", "outcome": "APP_STORE_DEVELOPER_REJECTED", "evidence": "sf0.7/factory/app-portfolio.json"},
+    {"product": "Docketloom", "version": "0.0.1", "build": "UNKNOWN", "outcome": "APP_STORE_DEVELOPER_REJECTED_RECORDED", "evidence": "sf0.7/factory/app-portfolio.json"},
+    {"product": "Legal Exception", "version": "0.0.1", "build": "UNKNOWN", "outcome": "APP_STORE_DEVELOPER_REJECTED_RECORDED", "evidence": "sf0.7/factory/app-portfolio.json"},
+    {"product": "Law Gaps", "version": "0.0.1", "build": "UNKNOWN", "outcome": "APP_STORE_DEVELOPER_REJECTED_RECORDED", "evidence": "sf0.7/factory/app-portfolio.json"},
+    {"product": "Find My Loophole", "version": "0.0.1", "build": "UNKNOWN", "outcome": "APP_STORE_DEVELOPER_REJECTED_RECORDED", "evidence": "sf0.7/factory/app-portfolio.json"}
+  ],
+  "current_reviewer_comparison": {
+    "historical_exact_submission_fixtures_available": false,
+    "current_product_reports_evaluated": ["product-a", "vorynce"],
+    "historical_comparison_status": "BLOCKED_BY_MISSING_EXACT_METADATA_AND_SCREENSHOTS",
+    "known_reusable_lesson": "Vorynce rejection evidence shows missing pre-submit rotation, paywall disclosure, and review-notes gates.",
+    "regression_fixture_candidate": {
+      "historical_outcome": "Vorynce rejected",
+      "root_cause": "inferred from post-rejection fixes; literal Apple reason unavailable at App Manager scope",
+      "current_reviewer_should_detect": ["universal orientation evidence gap", "paywall disclosure evidence gap", "review-notes preflight gap"],
+      "fixture_status": "IMPLEMENTED_AND_TESTED"
+    },
+    "false_blocker_analysis": "NOT_RUN: no exact historical accepted submission with complete metadata and screenshots was recovered."
+  },
+  "preserve_historical_truth": true,
+  "submission_performed": false
+}

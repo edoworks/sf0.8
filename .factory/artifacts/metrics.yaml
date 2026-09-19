@@ -1,0 +1,23 @@
+# Lightweight ecosystem-compounding measures. These are evidence fields, not
+# optimization targets; bypassing a gate for a tiny change is healthy.
+metrics:
+  reuse_rate:
+    definition: substantial increments with ADOPT or ADAPT disposition / substantial increments
+    purpose: measure whether credible prior work is being found before invention
+  reinvention_rate:
+    definition: equivalent external solution discovered after implementation / increments with later discovery
+    purpose: identify missed discovery without penalizing justified BUILD_NEW decisions
+  extraction_rate:
+    definition: substantial increments with INTERNAL_REUSABLE or PUBLIC_REUSABLE disposition / substantial increments
+    purpose: measure whether generalizable factory learning is being recognized
+  upstream_rate:
+    definition: reusable improvements prepared for upstream review / reusable improvements identified
+    purpose: track contribution readiness without counting unsubmitted work as published
+  cross_product_reuse:
+    definition: products consuming an artifact first created by another product or the factory
+    purpose: measure compounding across Product A, Product B, and future products
+  public_artifact_health:
+    definition: public artifacts with current tests, owner, provenance, and lifecycle disposition / public artifacts
+    purpose: prevent publication from becoming abandonment
+  guardrail:
+    rule: never optimize any metric by forcing reuse, publication, or upstream submission

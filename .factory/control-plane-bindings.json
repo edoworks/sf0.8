@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "by_capability": {
+    "AI-era individualized learning opportunity discovery": {
+      "number": 50,
+      "url": "https://github.com/edoworks/sf0.8/issues/50",
+      "repo": "edoworks/sf0.8"
+    }
+  },
+  "policy": "Material work without a factory binding is blocked; callers cannot select an arbitrary issue."
+}

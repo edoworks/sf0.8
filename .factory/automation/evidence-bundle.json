@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "release": "candidate",
+  "criteria_file": ".factory/automation/release-criteria.json",
+  "categories": {
+    "BUILD": {"status": "VERIFIED", "evidence": ["ci/build.log"]},
+    "UNIT": {"status": "VERIFIED", "evidence": ["ci/unit.xcresult"]},
+    "INTEGRATION": {"status": "NOT APPLICABLE", "evidence": []},
+    "E2E": {"status": "VERIFIED", "evidence": ["e2e/critical-journey/persist-relaunch.xcresult"]},
+    "VISUAL": {"status": "PARTIALLY VERIFIED", "evidence": ["visual/critical-journey/01-first-launch.png"]},
+    "ACCESSIBILITY": {"status": "PARTIALLY VERIFIED", "evidence": ["accessibility/xcui-audit.json"]},
+    "PERFORMANCE": {"status": "UNVERIFIED", "evidence": []},
+    "STOREKIT": {"status": "NOT APPLICABLE", "evidence": []},
+    "MIGRATION": {"status": "UNVERIFIED", "evidence": []},
+    "FAILURE/RECOVERY": {"status": "VERIFIED", "evidence": ["e2e/failure-worlds.xcresult"]},
+    "SECURITY/PRIVACY": {"status": "PARTIALLY VERIFIED", "evidence": ["ci/static-analysis.log"]},
+    "SIMULATOR": {"status": "VERIFIED", "evidence": ["e2e/critical-journey/persist-relaunch.xcresult"]},
+    "SANDBOX": {"status": "NOT APPLICABLE", "evidence": []},
+    "DEVICE": {"status": "UNVERIFIED", "evidence": []},
+    "EMPIRICAL": {"status": "UNVERIFIED", "evidence": []},
+    "CUSTOMER-ZERO": {"status": "VERIFIED", "evidence": [".factory/customer-zero.json", ".factory/automation/release-criteria.json"]}
+  }
+}

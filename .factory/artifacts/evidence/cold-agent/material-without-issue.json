@@ -1,0 +1,8 @@
+{
+  "material": true,
+  "repo": "edoworks/sf0.8",
+  "capability": "deliberate new capability",
+  "change_units": 4,
+  "decision": "BUILD_NEW",
+  "build_new_reason": "test fixture"
+}

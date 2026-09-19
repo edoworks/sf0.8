@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "principle": "prove a mandatory downstream capability before expensive upstream work",
+  "requirements": [
+    {"id": "github-issue-write", "control_plane": "GitHub issue operations", "required_before": "material work", "human_authority": "owner identity and scoped policy", "proof": "scripts/control_plane.py capability_preflight"},
+    {"id": "app-store-connect", "control_plane": "App Store Connect", "required_before": "submission preparation", "human_authority": "owner release decision", "proof": "Apple distribution preflight and non-submitting draft"},
+    {"id": "testflight", "control_plane": "TestFlight", "required_before": "TestFlight delivery", "human_authority": "owner release decision", "proof": "processed build evidence", "status": "UNPROVEN"},
+    {"id": "signing-notarization", "control_plane": "signing/notarization", "required_before": "signed delivery", "human_authority": "owner-controlled credentials", "proof": "exact artifact signature inspection", "status": "UNPROVEN"},
+    {"id": "publishing-deployment", "control_plane": "publishing/deployment", "required_before": "external publication", "human_authority": "human publication approval", "proof": "approved publication receipt", "status": "UNPROVEN"},
+    {"id": "artifact-publication", "control_plane": "artifact publication", "required_before": "shared artifact publication", "human_authority": "human publication approval", "proof": "publication receipt and provenance", "status": "UNPROVEN"}
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-09-18",
+  "entries": [
+    {"id": "edoworks/sf0.8", "local_evidence": "/Users/hello/sf0.8", "status": "VERIFIED_ACTIVE_FACTORY"},
+    {"id": "edoworks/product-a", "local_evidence": "/Users/hello/actions-runner-producta/_work/product-a/product-a", "status": "VERIFIED_EXTERNAL_LIFECYCLE_BLOCKER"},
+    {"id": "edoworks/rung", "local_evidence": "/Users/hello/rung", "status": "VERIFIED_ACTIVE_WITH_BLOCKER"},
+    {"id": "edoworks/edoworks.github.io", "local_evidence": null, "status": "NOT_LOCALLY_OBSERVED"},
+    {"id": "edoworks/factory-constitution", "local_evidence": "/Users/hello/edoworks-staging/factory-constitution", "status": "VERIFIED_STAGING_COPY"},
+    {"id": "edoworks/asc-client", "local_evidence": "/Users/hello/edoworks-staging/asc-client", "status": "VERIFIED_HISTORICAL_OR_STAGING_SURFACE"},
+    {"id": "edoworks/trycycle", "local_evidence": null, "status": "NOT_LOCALLY_OBSERVED"},
+    {"id": "foculoom/sf0.7", "local_evidence": "/Users/hello/sf0.7", "status": "VERIFIED_DEPRECATED_READ_ONLY"},
+    {"id": "foculoom/vorynce", "local_evidence": "/Users/hello/foculoom/products/vorynce-rebuild", "status": "VERIFIED_ACTIVE_WITH_RELEASE_BLOCKERS"}
+  ],
+  "absence_policy": "Not locally observed is not equivalent to deleted, archived, or safe to remove. Remote verification remains required.",
+  "urgent_findings_preserved": ["Rung branch protection evidence blocker", "Product A identity and Apple evidence blockers"]
+}

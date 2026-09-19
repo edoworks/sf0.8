@@ -1,0 +1,43 @@
+{
+  "id": "vorynce",
+  "repository": "https://github.com/foculoom/vorynce.git",
+  "source_commit": "7fa78e6cfa6cc4f631e2ceaae247addff57e1653",
+  "platform": "iOS",
+  "app_type": "on-device voice capture and organization app",
+  "factory_support_state": "PARTIAL",
+  "software_production_ready": false,
+  "default_blocking_issue": 44,
+  "identity": {
+    "internal_codename": "Vorynce",
+    "public_name": "Vorynce",
+    "authorized": true,
+    "product_purpose": "An on-device voice capture and organization app that turns spoken thoughts into trustworthy next actions or journal entries.",
+    "customer_zero_alignment": true,
+    "authorization_evidence": ["canonical product manifest name", "foculoom/vorynce repository identity"]
+  },
+  "discoverability": {"reviewed": false},
+  "metadata": {
+    "name": "Vorynce",
+    "subtitle": "",
+    "description": "",
+    "keywords": "",
+    "category": "Productivity",
+    "copyright": "",
+    "support_url": "",
+    "privacy_url": ""
+  },
+  "privacy": {"accessed_data": ["microphone audio"], "collected_data": [], "declared_data": []},
+  "age_rating": {"complete": false},
+  "screenshots": {"valid": false},
+  "review_information": {"complete": false},
+  "purchases": {"applicable": true, "configured": false, "product_identifiers": ["com.foculoom.vorynce.pro.monthly", "com.foculoom.vorynce.pro.yearly"], "storekit_configuration": null, "local_behavior_evidence": ["Sources/Shared/IAPService.swift", "Tests/VorynceTests/IAPServiceTests.swift"]},
+  "export_compliance": {"decided": false},
+  "human_authorized": false,
+  "evidence": {
+    "archive": null,
+    "processed_build": false,
+    "external_testflight": false,
+    "customer_zero": true,
+    "accessibility": false
+  }
+}

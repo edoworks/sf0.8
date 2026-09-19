@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "product": "product-a",
+  "repository": "https://github.com/edoworks/product-a.git",
+  "commit": "ef94f2492d3e73d98fb883320bad2902c64f3e15",
+  "archive": "/var/folders/m6/j69tcnk52059qvy0_6hnxk5r0000gq/T/opencode/ProductA-distribution-ef94f24.xcarchive",
+  "archive_info_sha256": "dbef7a48bb2704d7386b3a6be323f951a9ac500a59388d7dfefae53fb623bb50",
+  "exported_ipa": "/var/folders/m6/j69tcnk52059qvy0_6hnxk5r0000gq/T/opencode/ProductA-export-ef94f24-connect/ProductA.ipa",
+  "exported_ipa_sha256": "17216ec7e5d11a2832d5b183658ee47fe235967987ef1e571344ed2179f222e5",
+  "export_method": "app-store-connect",
+  "timestamp": "2026-09-18T21:16:27Z",
+  "toolchain": {
+    "xcode": "26.6",
+    "xcode_build": "17F113",
+    "sdk": "iphoneos26.5"
+  },
+  "observed": {
+    "bundle_identifier": "com.foculoom.ProductA",
+    "display_name": "Mews & Woofs",
+    "marketing_version": "1.0",
+    "build_version": "1",
+    "platform": "iphoneos",
+    "deployment_target": "26.5",
+    "architectures": ["arm64"],
+    "device_families": [1, 2],
+    "scheme": "ProductA",
+    "privacy_manifest": true,
+    "microphone_purpose_string": "Mews & Woofs listens to playful sounds so it can invent fun ideas about them. Audio stays on this device.",
+    "signing_identity": "iPhone Distribution: Foculoom LLC (H8MJMBTFVP)",
+    "team_identifier": "H8MJMBTFVP",
+    "get_task_allow": false,
+    "unexpected_development_files": []
+  },
+  "evidence_level": "DISTRIBUTION_SIGNED_LOCAL_ARCHIVE_PROOF",
+  "apple_pipeline_processed": false,
+  "testflight_ready": false,
+  "blocker_issue": 38
+}

@@ -1,0 +1,17 @@
+{
+  "issue": 31,
+  "change_units": 8,
+  "reuse": {
+    "searched": 3,
+    "compatible": 1,
+    "reason": "Adopt the portable SKILL.md convention and build the factory-specific gate because no compatible end-to-end lifecycle gate was found.",
+    "discovery": {"capability": "reuse and contribution gate", "decision": "BUILD_NEW", "matches": [], "specialization_reason": "No compatible end-to-end lifecycle gate was found."}
+  },
+  "contribution": {
+    "classification": "public-reusable"
+  },
+  "shareability": {
+    "disposition": "PUBLIC_CANDIDATE",
+    "evidence": ".factory/artifacts/reuse-registry.json#proportional-reuse-gate; two local consumers and tests"
+  }
+}

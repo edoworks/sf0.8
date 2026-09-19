@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "product": "intent-compiler-modeled",
+  "source_document": "docs/automation-first-production-readiness.md",
+  "customer_zero_journeys": [
+    {"id":"intent-to-versioned-artifact","outcome":"An experienced builder describes an intention, compares a deterministic compiled result, and saves an artifact they can reuse.","release_criteria":["IC-1","IC-3","IC-4","IC-6","IC-7"]}
+  ],
+  "criteria": [
+    {"id":"IC-1","source":"IC-1","requirement":"Intent text compiles to a versioned structured prompt contract.","classification":"AUTOMATED","production_blocker":true,"claim":"Compilation is deterministic and schema-valid.","evidence":["unit/integration tests"]},
+    {"id":"IC-2","source":"IC-2","requirement":"Malformed, refused, empty, slow, unavailable, and oversized model responses are handled without corrupting application state.","classification":"AUTOMATED","production_blocker":true,"claim":"Application correctness is independent of live model behavior.","evidence":["deterministic model-provider tests"]},
+    {"id":"IC-3","source":"IC-3","requirement":"Create, inspect, save, terminate, relaunch, edit, and diff a prompt contract.","classification":"SIMULATOR","production_blocker":true,"claim":"The critical versioning journey is unattended.","evidence":["XCTest/XCUIAutomation journey"]},
+    {"id":"IC-4","source":"IC-4","requirement":"Evaluation runs produce repeatable structured results for a fixed fixture set.","classification":"AUTOMATED","production_blocker":true,"claim":"Evaluation and regression detection are reproducible.","evidence":["deterministic integration tests"]},
+    {"id":"IC-5","source":"IC-5","requirement":"Critical journey renders semantic screenshots and machine-accessible controls.","classification":"SIMULATOR","production_blocker":true,"claim":"Visual and machine-observable accessibility regressions are detected.","evidence":["XCUITest attachments and accessibility audit"]},
+    {"id":"IC-6","source":"IC-6","requirement":"Import and export preserve the prompt contract, version identity, and evaluation metadata.","classification":"AUTOMATED","production_blocker":true,"claim":"Portable artifacts round-trip without silent loss.","evidence":["serialization tests"]},
+    {"id":"IC-7","source":"IC-7","requirement":"Live model behavior remains within the product's quality and safety evaluation envelope.","classification":"EMPIRICAL","production_blocker":false,"claim":"A changing live model remains useful for the declared quality claim.","escape":{"why_automation_is_insufficient":"Deterministic doubles prove application handling but cannot establish changing live-model quality.","physical_or_empirical_property":"Live model output quality across OS/model versions.","satisfying_evidence":"Versioned live-model evaluation report."},"evidence":["live-model evaluation suite"]},
+    {"id":"IC-8","source":"IC-8","requirement":"The exact software artifact is signed and released only with owner authorization.","classification":"HUMAN-AUTHORITY","production_blocker":true,"claim":"External release remains human-owned.","escape":{"why_automation_is_insufficient":"Signing and publication are irreversible governance operations.","physical_or_empirical_property":"Human authorization and external distribution effect.","satisfying_evidence":"Owner-approved release record."},"evidence":["release record"]}
+  ]
+}

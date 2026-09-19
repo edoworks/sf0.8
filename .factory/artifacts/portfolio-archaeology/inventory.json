@@ -1,0 +1,3109 @@
+{
+  "apple_history": {
+    "historical_app_count": 11,
+    "prepare_for_submission_count": 3,
+    "rejected_count": 6,
+    "removed_from_store_count": 2,
+    "review_feedback_evidence": [
+      "/Users/hello/sf0.7/evidence/inc-010/verification.txt"
+    ],
+    "source": "/Users/hello/sf0.7/factory/app-portfolio.json",
+    "statuses_observed": [
+      "Removed from App Store",
+      "iOS 0.0.1 Developer Rejected",
+      "iOS 0.0.1 Prepare for Submission",
+      "iOS 1.0 Prepare for Submission",
+      "iOS 1.0.0 Prepare for Submission",
+      "iOS 2.3.0 Rejected"
+    ],
+    "testflight_evidence": [
+      "/Users/hello/sf0.7/evidence/inc-017/verification.txt",
+      "/Users/hello/sf0.7/evidence/inc-017/docketloom-verification.txt"
+    ]
+  },
+  "canonical": {
+    "apple_product_ids": [
+      "product-a",
+      "vorynce"
+    ],
+    "historical_product_ids": [
+      "cat-whispers",
+      "veilsort",
+      "skiplet",
+      "edglex",
+      "docketloom",
+      "jumpyloo",
+      "legal-exception",
+      "law-gaps",
+      "find-my-loophole",
+      "bloomline"
+    ],
+    "repository_ids": [
+      "edoworks/sf0.8",
+      "edoworks/product-a",
+      "foculoom/vorynce",
+      "foculoom/sf0.7",
+      "foculoom/sf0.5",
+      "edoworks/factory-constitution",
+      "edoworks/edoworks.github.io",
+      "rung.edoworks.com",
+      "edoworks/rung",
+      "edoworks/rung-audit",
+      "edoworks/rungreport",
+      "foculoom/rendit",
+      "edoworks/flocal",
+      "product-a",
+      "vorynce",
+      "cat-whispers",
+      "veilsort",
+      "skiplet",
+      "edglex",
+      "docketloom",
+      "jumpyloo",
+      "legal-exception",
+      "law-gaps",
+      "find-my-loophole",
+      "bloomline"
+    ]
+  },
+  "deletion_policy": {
+    "human_authorization_required": true,
+    "source_repositories_deleted": 0,
+    "unique_artifacts_deleted": 0
+  },
+  "factory_roots": [
+    {
+      "certainty": "KNOWN",
+      "identity": "sf0.1",
+      "kind": "factory",
+      "path": "/Users/hello/sf0.1",
+      "source_control": {
+        "branch": "feature/session-145-daily-blog-round",
+        "dirty": true,
+        "remote": "https://github.com/foculoom/softwarefactory.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "KNOWN",
+      "identity": "sf0.2",
+      "kind": "factory",
+      "path": "/Users/hello/sf0.2",
+      "source_control": {
+        "branch": "feature/offline-root-authority",
+        "dirty": false,
+        "remote": "https://github.com/hellofoculoom/sf0.2.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "KNOWN",
+      "identity": "sf0.3",
+      "kind": "factory",
+      "path": "/Users/hello/sf0.3",
+      "source_control": {
+        "branch": "feature/sf-003-softwarefactory-qualification",
+        "dirty": true,
+        "remote": "https://github.com/foculoom/sf0.3.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "KNOWN",
+      "identity": "sf0.4",
+      "kind": "factory",
+      "path": "/Users/hello/sf0.4",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/sf0.4.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "KNOWN",
+      "identity": "sf0.5",
+      "kind": "factory",
+      "path": "/Users/hello/sf0.5",
+      "source_control": {
+        "branch": "main",
+        "dirty": true,
+        "remote": null,
+        "repository": true
+      }
+    },
+    {
+      "certainty": "KNOWN",
+      "identity": "sf0.6",
+      "kind": "factory",
+      "path": "/Users/hello/sf0.6",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": null,
+        "repository": true
+      }
+    },
+    {
+      "certainty": "KNOWN",
+      "identity": "sf0.7",
+      "kind": "factory",
+      "path": "/Users/hello/sf0.7",
+      "source_control": {
+        "branch": "main",
+        "dirty": true,
+        "remote": "https://github.com/foculoom/sf0.7.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "KNOWN",
+      "identity": "sf0.8",
+      "kind": "factory",
+      "path": "/Users/hello/sf0.8",
+      "source_control": {
+        "branch": "main",
+        "dirty": true,
+        "remote": "https://github.com/edoworks/sf0.8.git",
+        "repository": true
+      }
+    }
+  ],
+  "generated_at": "2026-09-19T06:53:11.647308+00:00",
+  "historical_apple_apps": [
+    {
+      "asc_status": "iOS 1.0 Prepare for Submission",
+      "bundle_id": "com.foculoom.meowcontext",
+      "certainty": "KNOWN",
+      "decision": "keep_active_reference",
+      "identity": "Cat Whispers",
+      "origin": "sf0.7/factory/app-portfolio.json",
+      "pending": "PIVOT-05+ (per-owner instructions)",
+      "reasoning": "sf0.7 v0.1 reference product. Imported and verified (INC-012). Active development continues here; other apps are deferred until they earn a rebuild slot.",
+      "source": "/Users/hello/sf0.5/catcomm/ios/",
+      "stack": "SwiftUI + AVFoundation + SoundAnalysis + FoundationModels (progressive). No SwiftData; MeowCore SPM package owns persistence.",
+      "tests": "CatWhispers/Tests/CatWhispersSwiftUIUITests + MeowCore/Tests/MeowCoreTests"
+    },
+    {
+      "asc_status": "Removed from App Store",
+      "bundle_id": "com.foculoom.veilsort",
+      "certainty": "KNOWN",
+      "decision": "active_fix_blocked",
+      "identity": "Veilsort",
+      "origin": "sf0.7/factory/app-portfolio.json",
+      "pending": "FIX-06 (owner-only per-app profile)",
+      "reasoning": "Active development paused on FIX-06 App Groups export blocker; owner action required to create per-app dist profile.",
+      "source": "/Users/hello/foculoom/products/veilsort/",
+      "stack": "SwiftUI + file-backed JSON persistence + FoundationModels + AppIntents + ShareExtension + StoreKit 2 freemium. iOS 26+.",
+      "tests": "Tests/VeilsortTests (11 suites) + VeilsortUITests"
+    },
+    {
+      "asc_status": "iOS 2.3.0 Rejected",
+      "bundle_id": "com.foculoom.vorynce",
+      "certainty": "KNOWN",
+      "decision": "on_hold",
+      "identity": "Vorynce",
+      "origin": "sf0.7/factory/app-portfolio.json",
+      "pending": "INC-010 (rejection extraction) then increment to import or targeted fix",
+      "reasoning": "No immediate need; will be re-assessed after Cat Whispers and Veilsort outcomes.",
+      "source": "/Users/hello/foculoom/products/vorynce-rebuild/",
+      "stack": "SwiftUI + SwiftData + AVFAudio + SFSpeechRecognizer + FoundationModels + StoreKit 2; local-only except ASC.",
+      "tests": "Tests/VorynceTests (~20 suites) + VorynceUITests"
+    },
+    {
+      "asc_status": "Removed from App Store",
+      "bundle_id": "com.foculoom.skiplet",
+      "certainty": "KNOWN",
+      "decision": "deferred",
+      "identity": "Skiplet",
+      "origin": "sf0.7/factory/app-portfolio.json",
+      "pending": "Owner decision: add Godot export increment, or port Skiplet to SpriteKit",
+      "reasoning": "Needs sf0.7 Godot-iOS export increment or SpriteKit port; not justified until Cat Whispers is stable and FIX-06 unblocked.",
+      "source": "/Users/hello/foculoom/products/skiplet/",
+      "stack": "Godot 4.7 + GDScript, native iOS export via godot/ios/ export config",
+      "tests": "GUT-style tests under godot/tests/"
+    },
+    {
+      "asc_status": "iOS 1.0.0 Prepare for Submission",
+      "bundle_id": "com.foculoom.edglex",
+      "certainty": "KNOWN",
+      "decision": "on_hold",
+      "identity": "Edglex",
+      "origin": "sf0.7/factory/app-portfolio.json",
+      "pending": "INC-015",
+      "reasoning": "No immediate need; will be re-assessed after Cat Whispers and Veilsort outcomes.",
+      "source": "/Users/hello/foculoom/products/edglex-rebuild/",
+      "stack": "SwiftUI + SwiftData + pure-Swift BM25 search + FoundationModels Pro tier; zero network. Consolidates FindMyLoophole+LawGaps+LegalException (FG-101).",
+      "tests": "Tests/EdglexTests + EdglexUITests"
+    },
+    {
+      "asc_status": "iOS 0.0.1 Developer Rejected",
+      "bundle_id": "com.foculoom.docketloom",
+      "certainty": "KNOWN",
+      "decision": "on_hold",
+      "identity": "Docketloom",
+      "origin": "sf0.7/factory/app-portfolio.json",
+      "pending": "INC-013 (after dist substrate)",
+      "reasoning": "No immediate need; will be re-assessed after Cat Whispers and Veilsort outcomes.",
+      "source": "/Users/hello/foculoom/products/docketloom-rebuild/",
+      "stack": "SwiftUI + SwiftData; no AI/FoundationModels; zero network. Pro-se docket/deadline tracker.",
+      "tests": "Tests/DocketloomTests + DocketloomUITests"
+    },
+    {
+      "asc_status": "iOS 0.0.1 Prepare for Submission",
+      "bundle_id": "com.foculoom.jumpyloo",
+      "certainty": "KNOWN",
+      "decision": "deferred",
+      "identity": "Jumpyloo",
+      "origin": "sf0.7/factory/app-portfolio.json",
+      "pending": "Owner decision on Godot export increment",
+      "reasoning": "Needs sf0.7 Godot-iOS export increment or SpriteKit port; not justified until Cat Whispers is stable and FIX-06 unblocked.",
+      "source": "/Users/hello/foculoom/products/jumpyloo-rebuild/",
+      "stack": "Godot 4.7 + FoundationModels adaptive platforms + IAP with parental gate",
+      "tests": "GUT tests under tests/"
+    },
+    {
+      "asc_status": "iOS 0.0.1 Developer Rejected",
+      "bundle_id": "com.foculoom.legalexception",
+      "certainty": "KNOWN",
+      "decision": "retired",
+      "identity": "Legal Exception",
+      "origin": "sf0.7/factory/app-portfolio.json",
+      "pending": "INC-016 (mark retired; ASC retirement is a separate owner gate already tracked in sf0.1)",
+      "reasoning": "FG-101 consolidation already completed; ASC retirement pending separate owner gate.",
+      "source": "/Users/hello/foculoom/products/legalexception-rebuild/ (scaffold)",
+      "stack": "SwiftUI + SwiftData + BM25 (scaffold-stage; 1-2 test files)",
+      "tests": "Single scaffold file"
+    },
+    {
+      "asc_status": "iOS 0.0.1 Developer Rejected",
+      "bundle_id": "com.foculoom.lawgaps",
+      "certainty": "KNOWN",
+      "decision": "retired",
+      "identity": "Law Gaps",
+      "origin": "sf0.7/factory/app-portfolio.json",
+      "pending": "INC-016",
+      "reasoning": "FG-101 consolidation already completed; ASC retirement pending separate owner gate.",
+      "source": "/Users/hello/foculoom/products/lawgaps-rebuild/ (scaffold)",
+      "stack": null,
+      "tests": null
+    },
+    {
+      "asc_status": "iOS 0.0.1 Developer Rejected",
+      "bundle_id": "com.foculoom.findmyloophole",
+      "certainty": "KNOWN",
+      "decision": "retired",
+      "identity": "Find My Loophole",
+      "origin": "sf0.7/factory/app-portfolio.json",
+      "pending": "INC-016",
+      "reasoning": "FG-101 consolidation already completed; ASC retirement pending separate owner gate.",
+      "source": "no local source (swept as stale after Edglex consolidation)",
+      "stack": null,
+      "tests": null
+    },
+    {
+      "asc_status": "iOS 0.0.1 Developer Rejected",
+      "bundle_id": "com.foculoom.bloomline",
+      "certainty": "KNOWN",
+      "decision": "on_hold",
+      "identity": "Bloomline: Draw to Bloom",
+      "origin": "sf0.7/factory/app-portfolio.json",
+      "pending": "Owner decision on Godot export increment",
+      "reasoning": "No immediate need; will be re-assessed after Cat Whispers and Veilsort outcomes.",
+      "source": "/Users/hello/foculoom/games/bloomline/",
+      "stack": "Godot 4.7 dual-orientation path-drawing lane-defense puzzle; richest Godot asset manifest in fleet (style pack, fal.ai provenance, export presets, playtest persona scenes).",
+      "tests": "GUT tests + playtest scenes under tests/"
+    }
+  ],
+  "independent_discovery": {
+    "candidates": [
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "blockworld-personal"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/games/blockworld-personal"
+        ],
+        "product_id": "blockworld-personal",
+        "provenance": [
+          "/Users/hello/foculoom/games/blockworld-personal"
+        ],
+        "repositories": [
+          "foculoom/blockworld-personal"
+        ],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [
+          "com.foculoom.bloomline"
+        ],
+        "confidence": "HIGH",
+        "display_names": [
+          "Bloomline: Draw to Bloom"
+        ],
+        "distribution_states": [
+          "iOS 0.0.1 Developer Rejected"
+        ],
+        "evidence_kinds": [
+          "distribution_record"
+        ],
+        "local_paths": [],
+        "product_id": "bloomline",
+        "provenance": [
+          "/Users/hello/sf0.7/factory/app-portfolio.json"
+        ],
+        "repositories": [],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "bloomline"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/games/bloomline"
+        ],
+        "product_id": "bloomline",
+        "provenance": [
+          "/Users/hello/foculoom/games/bloomline"
+        ],
+        "repositories": [
+          "foculoom/bloomline"
+        ],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "bounce-bloom"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/games/bounce-bloom"
+        ],
+        "product_id": "bounce-bloom",
+        "provenance": [
+          "/Users/hello/foculoom/games/bounce-bloom"
+        ],
+        "repositories": [
+          "foculoom/bounce-bloom"
+        ],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "diffrek"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/web/diffrek.com"
+        ],
+        "product_id": "diffrek",
+        "provenance": [
+          "/Users/hello/foculoom/web/diffrek.com"
+        ],
+        "repositories": [
+          "foculoom/diffrek.com"
+        ],
+        "website_domains": [
+          "diffrek.com"
+        ]
+      },
+      {
+        "bundle_ids": [
+          "com.foculoom.docketloom",
+          "com.foculoom.docketloom.uitests"
+        ],
+        "confidence": "HIGH",
+        "display_names": [
+          "Docketloom",
+          "docketloom-rebuild"
+        ],
+        "distribution_states": [
+          "iOS 0.0.1 Developer Rejected"
+        ],
+        "evidence_kinds": [
+          "distribution_record",
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/products/docketloom-rebuild"
+        ],
+        "product_id": "docketloom",
+        "provenance": [
+          "/Users/hello/sf0.7/factory/app-portfolio.json",
+          "/Users/hello/foculoom/products/docketloom-rebuild"
+        ],
+        "repositories": [
+          "foculoom/docketloom"
+        ],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "docketloom"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/web/docketloom.com"
+        ],
+        "product_id": "docketloom",
+        "provenance": [
+          "/Users/hello/foculoom/web/docketloom.com"
+        ],
+        "repositories": [
+          "foculoom/docketloom.com"
+        ],
+        "website_domains": [
+          "docketloom.com"
+        ]
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "dojaaa"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/web/dojaaa.com"
+        ],
+        "product_id": "dojaaa",
+        "provenance": [
+          "/Users/hello/foculoom/web/dojaaa.com"
+        ],
+        "repositories": [
+          "foculoom/dojaaa.com"
+        ],
+        "website_domains": [
+          "dojaaa.com"
+        ]
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "drawtobloom"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/web/drawtobloom.com"
+        ],
+        "product_id": "drawtobloom",
+        "provenance": [
+          "/Users/hello/foculoom/web/drawtobloom.com"
+        ],
+        "repositories": [
+          "foculoom/drawtobloom.com"
+        ],
+        "website_domains": [
+          "drawtobloom.com"
+        ]
+      },
+      {
+        "bundle_ids": [
+          "com.foculoom.edglex",
+          "com.foculoom.edglex.uitests"
+        ],
+        "confidence": "HIGH",
+        "display_names": [
+          "Edglex",
+          "edglex-rebuild"
+        ],
+        "distribution_states": [
+          "iOS 1.0.0 Prepare for Submission"
+        ],
+        "evidence_kinds": [
+          "distribution_record",
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/products/edglex-rebuild"
+        ],
+        "product_id": "edglex",
+        "provenance": [
+          "/Users/hello/sf0.7/factory/app-portfolio.json",
+          "/Users/hello/foculoom/products/edglex-rebuild"
+        ],
+        "repositories": [
+          "foculoom/findmyloophole-ios"
+        ],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "edglex"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/web/edglex.com"
+        ],
+        "product_id": "edglex",
+        "provenance": [
+          "/Users/hello/foculoom/web/edglex.com"
+        ],
+        "repositories": [
+          "foculoom/edglex.com"
+        ],
+        "website_domains": [
+          "edglex.com"
+        ]
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "edoworks.github.io"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/web/edoworks.github.io"
+        ],
+        "product_id": "edoworks-github-io",
+        "provenance": [
+          "/Users/hello/foculoom/web/edoworks.github.io"
+        ],
+        "repositories": [
+          "edoworks/edoworks.github.io"
+        ],
+        "website_domains": [
+          "edoworks.github.io"
+        ]
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "emtosa"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/web/emtosa.com"
+        ],
+        "product_id": "emtosa",
+        "provenance": [
+          "/Users/hello/foculoom/web/emtosa.com"
+        ],
+        "repositories": [
+          "emtosa/emtosa.github.io"
+        ],
+        "website_domains": [
+          "emtosa.com"
+        ]
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "endless-runner-template"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/games/endless-runner-template"
+        ],
+        "product_id": "endless-runner-template",
+        "provenance": [
+          "/Users/hello/foculoom/games/endless-runner-template"
+        ],
+        "repositories": [
+          "foculoom/endless-runner-template"
+        ],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [
+          "com.foculoom.findmyloophole"
+        ],
+        "confidence": "HIGH",
+        "display_names": [
+          "Find My Loophole"
+        ],
+        "distribution_states": [
+          "iOS 0.0.1 Developer Rejected"
+        ],
+        "evidence_kinds": [
+          "distribution_record"
+        ],
+        "local_paths": [],
+        "product_id": "findmyloophole",
+        "provenance": [
+          "/Users/hello/sf0.7/factory/app-portfolio.json"
+        ],
+        "repositories": [],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "findmyloophole"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/web/findmyloophole.com"
+        ],
+        "product_id": "findmyloophole",
+        "provenance": [
+          "/Users/hello/foculoom/web/findmyloophole.com"
+        ],
+        "repositories": [
+          "foculoom/findmyloophole.com"
+        ],
+        "website_domains": [
+          "findmyloophole.com"
+        ]
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "foculoom.github.io"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/web/foculoom.github.io"
+        ],
+        "product_id": "foculoom-github-io",
+        "provenance": [
+          "/Users/hello/foculoom/web/foculoom.github.io"
+        ],
+        "repositories": [
+          "foculoom/foculoom.github.io"
+        ],
+        "website_domains": [
+          "foculoom.github.io"
+        ]
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "foculoomllc"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/web/foculoomllc"
+        ],
+        "product_id": "foculoomllc",
+        "provenance": [
+          "/Users/hello/foculoom/web/foculoomllc"
+        ],
+        "repositories": [
+          "foculoom/foculoomllc"
+        ],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [
+          "com.foculoom.foculoomnow"
+        ],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "foculoom-now-ios"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/products/foculoom-now-ios"
+        ],
+        "product_id": "foculoomnow",
+        "provenance": [
+          "/Users/hello/foculoom/products/foculoom-now-ios"
+        ],
+        "repositories": [
+          "foculoom/foculoom-now-ios"
+        ],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "gameconcepts"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/games/gameconcepts"
+        ],
+        "product_id": "gameconcepts",
+        "provenance": [
+          "/Users/hello/foculoom/games/gameconcepts"
+        ],
+        "repositories": [
+          "foculoom/gameconcepts"
+        ],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "gem-cascade"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/games/gem-cascade"
+        ],
+        "product_id": "gem-cascade",
+        "provenance": [
+          "/Users/hello/foculoom/games/gem-cascade"
+        ],
+        "repositories": [
+          "foculoom/gem-cascade"
+        ],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [
+          "com.foculoom.grandma-storytime"
+        ],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "grandma-storytime-personal"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/products/grandma-storytime-personal"
+        ],
+        "product_id": "grandma-storytime",
+        "provenance": [
+          "/Users/hello/foculoom/products/grandma-storytime-personal"
+        ],
+        "repositories": [
+          "foculoom/grandma-storytime-personal"
+        ],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [
+          "com.foculoom.jumpyloo"
+        ],
+        "confidence": "HIGH",
+        "display_names": [
+          "Jumpyloo"
+        ],
+        "distribution_states": [
+          "iOS 0.0.1 Prepare for Submission"
+        ],
+        "evidence_kinds": [
+          "distribution_record"
+        ],
+        "local_paths": [],
+        "product_id": "jumpyloo",
+        "provenance": [
+          "/Users/hello/sf0.7/factory/app-portfolio.json"
+        ],
+        "repositories": [],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "jumpyloo-rebuild"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/products/jumpyloo-rebuild"
+        ],
+        "product_id": "jumpyloo-rebuild",
+        "provenance": [
+          "/Users/hello/foculoom/products/jumpyloo-rebuild"
+        ],
+        "repositories": [
+          "foculoom/jumpyloo"
+        ],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "kanyee"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/web/kanyee.com"
+        ],
+        "product_id": "kanyee",
+        "provenance": [
+          "/Users/hello/foculoom/web/kanyee.com"
+        ],
+        "repositories": [
+          "foculoom/kanyee.com"
+        ],
+        "website_domains": [
+          "kanyee.com"
+        ]
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "kinetic-foundry"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/games/kinetic-foundry"
+        ],
+        "product_id": "kinetic-foundry",
+        "provenance": [
+          "/Users/hello/foculoom/games/kinetic-foundry"
+        ],
+        "repositories": [
+          "foculoom/kinetic-foundry"
+        ],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [
+          "com.foculoom.lawgaps"
+        ],
+        "confidence": "HIGH",
+        "display_names": [
+          "Law Gaps"
+        ],
+        "distribution_states": [
+          "iOS 0.0.1 Developer Rejected"
+        ],
+        "evidence_kinds": [
+          "distribution_record"
+        ],
+        "local_paths": [],
+        "product_id": "lawgaps",
+        "provenance": [
+          "/Users/hello/sf0.7/factory/app-portfolio.json"
+        ],
+        "repositories": [],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "lawgaps"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/web/lawgaps.com"
+        ],
+        "product_id": "lawgaps",
+        "provenance": [
+          "/Users/hello/foculoom/web/lawgaps.com"
+        ],
+        "repositories": [
+          "foculoom/lawgaps.com"
+        ],
+        "website_domains": [
+          "lawgaps.com"
+        ]
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "lawgaps-rebuild"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/products/lawgaps-rebuild"
+        ],
+        "product_id": "lawgaps-rebuild",
+        "provenance": [
+          "/Users/hello/foculoom/products/lawgaps-rebuild"
+        ],
+        "repositories": [
+          "foculoom/lawgaps-ios"
+        ],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [
+          "com.foculoom.legalexception"
+        ],
+        "confidence": "HIGH",
+        "display_names": [
+          "Legal Exception",
+          "legalexception-rebuild"
+        ],
+        "distribution_states": [
+          "iOS 0.0.1 Developer Rejected"
+        ],
+        "evidence_kinds": [
+          "distribution_record",
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/products/legalexception-rebuild"
+        ],
+        "product_id": "legalexception",
+        "provenance": [
+          "/Users/hello/sf0.7/factory/app-portfolio.json",
+          "/Users/hello/foculoom/products/legalexception-rebuild"
+        ],
+        "repositories": [
+          "foculoom/legalexception"
+        ],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "legalexception"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/web/legalexception.com"
+        ],
+        "product_id": "legalexception",
+        "provenance": [
+          "/Users/hello/foculoom/web/legalexception.com"
+        ],
+        "repositories": [
+          "foculoom/legalexception.com"
+        ],
+        "website_domains": [
+          "legalexception.com"
+        ]
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "lumen-vault"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/games/lumen-vault"
+        ],
+        "product_id": "lumen-vault",
+        "provenance": [
+          "/Users/hello/foculoom/games/lumen-vault"
+        ],
+        "repositories": [
+          "foculoom/lumen-vault"
+        ],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [
+          "com.foculoom.meowcontext"
+        ],
+        "confidence": "HIGH",
+        "display_names": [
+          "Cat Whispers"
+        ],
+        "distribution_states": [
+          "iOS 1.0 Prepare for Submission"
+        ],
+        "evidence_kinds": [
+          "distribution_record"
+        ],
+        "local_paths": [],
+        "product_id": "meowcontext",
+        "provenance": [
+          "/Users/hello/sf0.7/factory/app-portfolio.json"
+        ],
+        "repositories": [],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "moodgarden"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/games/moodgarden"
+        ],
+        "product_id": "moodgarden",
+        "provenance": [
+          "/Users/hello/foculoom/games/moodgarden"
+        ],
+        "repositories": [
+          "foculoom/moodgarden"
+        ],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "noraze"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/web/noraze.com"
+        ],
+        "product_id": "noraze",
+        "provenance": [
+          "/Users/hello/foculoom/web/noraze.com"
+        ],
+        "repositories": [
+          "foculoom/noraze.com"
+        ],
+        "website_domains": [
+          "noraze.com"
+        ]
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "orientation-spike"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/games/orientation-spike"
+        ],
+        "product_id": "orientation-spike",
+        "provenance": [
+          "/Users/hello/foculoom/games/orientation-spike"
+        ],
+        "repositories": [
+          "foculoom/orientation-spike"
+        ],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [
+          "com.foculoom.proseprep",
+          "com.foculoom.proseprep.uitests"
+        ],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "pro-se-prep-personal"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/products/pro-se-prep-personal"
+        ],
+        "product_id": "proseprep",
+        "provenance": [
+          "/Users/hello/foculoom/products/pro-se-prep-personal"
+        ],
+        "repositories": [
+          "foculoom/pro-se-prep-personal"
+        ],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "rihanno"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/web/rihanno.com"
+        ],
+        "product_id": "rihanno",
+        "provenance": [
+          "/Users/hello/foculoom/web/rihanno.com"
+        ],
+        "repositories": [
+          "foculoom/rihanno.com"
+        ],
+        "website_domains": [
+          "rihanno.com"
+        ]
+      },
+      {
+        "bundle_ids": [
+          "com.foculoom.skiplet"
+        ],
+        "confidence": "HIGH",
+        "display_names": [
+          "Skiplet"
+        ],
+        "distribution_states": [
+          "Removed from App Store"
+        ],
+        "evidence_kinds": [
+          "distribution_record"
+        ],
+        "local_paths": [],
+        "product_id": "skiplet",
+        "provenance": [
+          "/Users/hello/sf0.7/factory/app-portfolio.json"
+        ],
+        "repositories": [],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "skiplet"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/products/skiplet",
+          "/Users/hello/foculoom/web/skiplet.com"
+        ],
+        "product_id": "skiplet",
+        "provenance": [
+          "/Users/hello/foculoom/products/skiplet",
+          "/Users/hello/foculoom/web/skiplet.com"
+        ],
+        "repositories": [
+          "foculoom/skiplet",
+          "foculoom/skiplet.com"
+        ],
+        "website_domains": [
+          "skiplet.com"
+        ]
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "skiplet-spike-assets"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/products/skiplet-spike-assets"
+        ],
+        "product_id": "skiplet-spike-assets",
+        "provenance": [
+          "/Users/hello/foculoom/products/skiplet-spike-assets"
+        ],
+        "repositories": [
+          "foculoom/skiplet-spike-assets"
+        ],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "skiplet-spritekit-spike"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/products/skiplet-spritekit-spike"
+        ],
+        "product_id": "skiplet-spritekit-spike",
+        "provenance": [
+          "/Users/hello/foculoom/products/skiplet-spritekit-spike"
+        ],
+        "repositories": [],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "taylerr"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/web/taylerr.com"
+        ],
+        "product_id": "taylerr",
+        "provenance": [
+          "/Users/hello/foculoom/web/taylerr.com"
+        ],
+        "repositories": [
+          "foculoom/taylerr.com"
+        ],
+        "website_domains": [
+          "taylerr.com"
+        ]
+      },
+      {
+        "bundle_ids": [
+          "com.foculoom.veilsort",
+          "com.foculoom.veilsort.ShareExtension"
+        ],
+        "confidence": "HIGH",
+        "display_names": [
+          "Veilsort",
+          "veilsort"
+        ],
+        "distribution_states": [
+          "Removed from App Store"
+        ],
+        "evidence_kinds": [
+          "distribution_record",
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/products/veilsort"
+        ],
+        "product_id": "veilsort",
+        "provenance": [
+          "/Users/hello/sf0.7/factory/app-portfolio.json",
+          "/Users/hello/foculoom/products/veilsort"
+        ],
+        "repositories": [
+          "foculoom/veilsort"
+        ],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "veilsort"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/web/veilsort.com"
+        ],
+        "product_id": "veilsort",
+        "provenance": [
+          "/Users/hello/foculoom/web/veilsort.com"
+        ],
+        "repositories": [
+          "foculoom/veilsort.com"
+        ],
+        "website_domains": [
+          "veilsort.com"
+        ]
+      },
+      {
+        "bundle_ids": [
+          "com.foculoom.vorynce",
+          "com.foculoom.vorynce.uitests"
+        ],
+        "confidence": "HIGH",
+        "display_names": [
+          "Vorynce",
+          "vorynce-rebuild"
+        ],
+        "distribution_states": [
+          "iOS 2.3.0 Rejected"
+        ],
+        "evidence_kinds": [
+          "distribution_record",
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/products/vorynce-rebuild"
+        ],
+        "product_id": "vorynce",
+        "provenance": [
+          "/Users/hello/sf0.7/factory/app-portfolio.json",
+          "/Users/hello/foculoom/products/vorynce-rebuild"
+        ],
+        "repositories": [
+          "foculoom/vorynce"
+        ],
+        "website_domains": []
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "vorynce"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/web/vorynce.com"
+        ],
+        "product_id": "vorynce",
+        "provenance": [
+          "/Users/hello/foculoom/web/vorynce.com"
+        ],
+        "repositories": [
+          "foculoom/vorynce.com"
+        ],
+        "website_domains": [
+          "vorynce.com"
+        ]
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "weekndd"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/web/weekndd.com"
+        ],
+        "product_id": "weekndd",
+        "provenance": [
+          "/Users/hello/foculoom/web/weekndd.com"
+        ],
+        "repositories": [
+          "foculoom/weekndd.com"
+        ],
+        "website_domains": [
+          "weekndd.com"
+        ]
+      },
+      {
+        "bundle_ids": [],
+        "confidence": "MEDIUM",
+        "display_names": [
+          "zendayaa"
+        ],
+        "distribution_states": [],
+        "evidence_kinds": [
+          "local_candidate"
+        ],
+        "local_paths": [
+          "/Users/hello/foculoom/web/zendayaa.com"
+        ],
+        "product_id": "zendayaa",
+        "provenance": [
+          "/Users/hello/foculoom/web/zendayaa.com"
+        ],
+        "repositories": [
+          "foculoom/zendayaa.com"
+        ],
+        "website_domains": [
+          "zendayaa.com"
+        ]
+      }
+    ],
+    "company": {
+      "entity_id": "foculoom",
+      "entity_type": "company",
+      "provenance": [
+        "local Foculoom workspace root",
+        "/Users/hello/foculoom"
+      ]
+    },
+    "discovery_input": "company identity plus independent local/distribution evidence; registry excluded",
+    "inaccessible_sources": [],
+    "metrics": {
+      "candidate_count": 49,
+      "high_confidence_count": 11
+    },
+    "schema_version": 2,
+    "sources": {
+      "app_store_connect": {
+        "reason": "no live ASC session or export supplied",
+        "state": "UNAVAILABLE_IN_THIS_RUN"
+      },
+      "github_organization": {
+        "reason": "no authenticated API evidence supplied",
+        "state": "REMOTE_API_NOT_QUERIED"
+      },
+      "historical_distribution": "/Users/hello/sf0.7/factory/app-portfolio.json",
+      "local_foculoom_roots": "/Users/hello/foculoom",
+      "public_website": {
+        "root": "/Users/hello/foculoom/web",
+        "state": "LOCAL_MIRROR_SCANNED"
+      }
+    }
+  },
+  "local_candidates": [
+    {
+      "certainty": "INFERRED",
+      "identity": "docketloom-rebuild",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/products/docketloom-rebuild",
+      "scope": "foculoom/products",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/docketloom.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "edglex-rebuild",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/products/edglex-rebuild",
+      "scope": "foculoom/products",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/findmyloophole-ios.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "foculoom-now-ios",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/products/foculoom-now-ios",
+      "scope": "foculoom/products",
+      "source_control": {
+        "branch": "master",
+        "dirty": true,
+        "remote": "https://github.com/foculoom/foculoom-now-ios.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "grandma-storytime-personal",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/products/grandma-storytime-personal",
+      "scope": "foculoom/products",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/grandma-storytime-personal.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "jumpyloo-rebuild",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/products/jumpyloo-rebuild",
+      "scope": "foculoom/products",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/jumpyloo.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "lawgaps-rebuild",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/products/lawgaps-rebuild",
+      "scope": "foculoom/products",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/lawgaps-ios.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "legalexception-rebuild",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/products/legalexception-rebuild",
+      "scope": "foculoom/products",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/legalexception.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "pro-se-prep-personal",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/products/pro-se-prep-personal",
+      "scope": "foculoom/products",
+      "source_control": {
+        "branch": "main",
+        "dirty": true,
+        "remote": "https://github.com/foculoom/pro-se-prep-personal.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "skiplet",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/products/skiplet",
+      "scope": "foculoom/products",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/skiplet.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "skiplet-spike-assets",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/products/skiplet-spike-assets",
+      "scope": "foculoom/products",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/skiplet-spike-assets.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "skiplet-spritekit-spike",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/products/skiplet-spritekit-spike",
+      "scope": "foculoom/products",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": null,
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "veilsort",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/products/veilsort",
+      "scope": "foculoom/products",
+      "source_control": {
+        "branch": "feature/app-review-subscription-disclosures",
+        "dirty": true,
+        "remote": "https://github.com/foculoom/veilsort.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "vorynce-rebuild",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/products/vorynce-rebuild",
+      "scope": "foculoom/products",
+      "source_control": {
+        "branch": "feature/app-review-subscription-disclosures",
+        "dirty": true,
+        "remote": "https://github.com/foculoom/vorynce.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "blockworld-personal",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/games/blockworld-personal",
+      "scope": "foculoom/games",
+      "source_control": {
+        "branch": "main",
+        "dirty": true,
+        "remote": "https://github.com/foculoom/blockworld-personal.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "bloomline",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/games/bloomline",
+      "scope": "foculoom/games",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/bloomline.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "bounce-bloom",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/games/bounce-bloom",
+      "scope": "foculoom/games",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/bounce-bloom.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "endless-runner-template",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/games/endless-runner-template",
+      "scope": "foculoom/games",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/endless-runner-template.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "gameconcepts",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/games/gameconcepts",
+      "scope": "foculoom/games",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/gameconcepts.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "gem-cascade",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/games/gem-cascade",
+      "scope": "foculoom/games",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/gem-cascade.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "kinetic-foundry",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/games/kinetic-foundry",
+      "scope": "foculoom/games",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/kinetic-foundry.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "lumen-vault",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/games/lumen-vault",
+      "scope": "foculoom/games",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/lumen-vault.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "moodgarden",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/games/moodgarden",
+      "scope": "foculoom/games",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/moodgarden.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "orientation-spike",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/games/orientation-spike",
+      "scope": "foculoom/games",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/orientation-spike.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "diffrek.com",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/web/diffrek.com",
+      "scope": "foculoom/web",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/diffrek.com.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "docketloom.com",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/web/docketloom.com",
+      "scope": "foculoom/web",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/docketloom.com.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "dojaaa.com",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/web/dojaaa.com",
+      "scope": "foculoom/web",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/dojaaa.com.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "drawtobloom.com",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/web/drawtobloom.com",
+      "scope": "foculoom/web",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/drawtobloom.com.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "edglex.com",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/web/edglex.com",
+      "scope": "foculoom/web",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/edglex.com.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "edoworks.github.io",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/web/edoworks.github.io",
+      "scope": "foculoom/web",
+      "source_control": {
+        "branch": "master",
+        "dirty": true,
+        "remote": "https://github.com/edoworks/edoworks.github.io.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "emtosa.com",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/web/emtosa.com",
+      "scope": "foculoom/web",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/emtosa/emtosa.github.io.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "findmyloophole.com",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/web/findmyloophole.com",
+      "scope": "foculoom/web",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/findmyloophole.com.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "foculoom.github.io",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/web/foculoom.github.io",
+      "scope": "foculoom/web",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/foculoom.github.io.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "foculoomllc",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/web/foculoomllc",
+      "scope": "foculoom/web",
+      "source_control": {
+        "branch": "feature/copilot-lane-deprecation",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/foculoomllc.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "kanyee.com",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/web/kanyee.com",
+      "scope": "foculoom/web",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/kanyee.com.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "lawgaps.com",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/web/lawgaps.com",
+      "scope": "foculoom/web",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/lawgaps.com.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "legalexception.com",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/web/legalexception.com",
+      "scope": "foculoom/web",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/legalexception.com.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "noraze.com",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/web/noraze.com",
+      "scope": "foculoom/web",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/noraze.com.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "rihanno.com",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/web/rihanno.com",
+      "scope": "foculoom/web",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/rihanno.com.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "skiplet.com",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/web/skiplet.com",
+      "scope": "foculoom/web",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/skiplet.com.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "taylerr.com",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/web/taylerr.com",
+      "scope": "foculoom/web",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/taylerr.com.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "veilsort.com",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/web/veilsort.com",
+      "scope": "foculoom/web",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/veilsort.com.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "vorynce.com",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/web/vorynce.com",
+      "scope": "foculoom/web",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/vorynce.com.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "weekndd.com",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/web/weekndd.com",
+      "scope": "foculoom/web",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/weekndd.com.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "zendayaa.com",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/web/zendayaa.com",
+      "scope": "foculoom/web",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/zendayaa.com.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "GameDemo",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/demos/GameDemo",
+      "scope": "foculoom/demos",
+      "source_control": {
+        "branch": "main",
+        "dirty": true,
+        "remote": null,
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "SnakeGame",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/demos/SnakeGame",
+      "scope": "foculoom/demos",
+      "source_control": {
+        "branch": "main",
+        "dirty": true,
+        "remote": null,
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "opencodedemo",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/demos/opencodedemo",
+      "scope": "foculoom/demos",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": null,
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "runner",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/demos/runner",
+      "scope": "foculoom/demos",
+      "source_control": {
+        "branch": "main",
+        "dirty": true,
+        "remote": null,
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "snake",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/demos/snake",
+      "scope": "foculoom/demos",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": null,
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "snake2",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/demos/snake2",
+      "scope": "foculoom/demos",
+      "source_control": {
+        "branch": "main",
+        "dirty": true,
+        "remote": null,
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "snake3",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/demos/snake3",
+      "scope": "foculoom/demos",
+      "source_control": {
+        "branch": null,
+        "dirty": null,
+        "remote": null,
+        "repository": false
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "testapp",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/demos/testapp",
+      "scope": "foculoom/demos",
+      "source_control": {
+        "branch": "main",
+        "dirty": true,
+        "remote": null,
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "trash",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/demos/trash",
+      "scope": "foculoom/demos",
+      "source_control": {
+        "branch": null,
+        "dirty": null,
+        "remote": null,
+        "repository": false
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "brandkit",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/tools/brandkit",
+      "scope": "foculoom/tools",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/brandkit.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "elevenlabs-mcp",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/tools/elevenlabs-mcp",
+      "scope": "foculoom/tools",
+      "source_control": {
+        "branch": null,
+        "dirty": null,
+        "remote": null,
+        "repository": false
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "fal-mcp",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/tools/fal-mcp",
+      "scope": "foculoom/tools",
+      "source_control": {
+        "branch": null,
+        "dirty": null,
+        "remote": null,
+        "repository": false
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "godot-ios-plugins",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/tools/godot-ios-plugins",
+      "scope": "foculoom/tools",
+      "source_control": {
+        "branch": null,
+        "dirty": null,
+        "remote": null,
+        "repository": false
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "mcp-registry",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/tools/mcp-registry",
+      "scope": "foculoom/tools",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/mcp-registry.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "openai-gpt-image-mcp",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/tools/openai-gpt-image-mcp",
+      "scope": "foculoom/tools",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/openai-gpt-image-mcp.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "orqit",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/tools/orqit",
+      "scope": "foculoom/tools",
+      "source_control": {
+        "branch": "archive/copilot-lane-deprecation",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/orqit.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "plugins",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/tools/plugins",
+      "scope": "foculoom/tools",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/plugins.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "rendit",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/tools/rendit",
+      "scope": "foculoom/tools",
+      "source_control": {
+        "branch": "master",
+        "dirty": true,
+        "remote": "https://github.com/foculoom/rendit.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "respit",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/tools/respit",
+      "scope": "foculoom/tools",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/respit.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "sprite-forge",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/tools/sprite-forge",
+      "scope": "foculoom/tools",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/sprite-forge.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "sprite-forge-reference",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/tools/sprite-forge-reference",
+      "scope": "foculoom/tools",
+      "source_control": {
+        "branch": "master",
+        "dirty": true,
+        "remote": "https://github.com/foculoom/sprite-forge-reference.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "suno-api",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/tools/suno-api",
+      "scope": "foculoom/tools",
+      "source_control": {
+        "branch": "main",
+        "dirty": true,
+        "remote": "https://github.com/gcui-art/suno-api.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "suno-mcp",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/tools/suno-mcp",
+      "scope": "foculoom/tools",
+      "source_control": {
+        "branch": "master",
+        "dirty": true,
+        "remote": "https://github.com/foculoom/suno-mcp.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "ads-tracker",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/ads-tracker",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/ads-tracker.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "ai-foculoom",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/ai-foculoom",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/ai-foculoom.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "be-positive",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/be-positive",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/be-positive.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "books",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/books",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/books.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "bubblepop",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/bubblepop",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/bubblepop.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "calm-command",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/calm-command",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/calm-command.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "dad",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/dad",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/dad.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "draw",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/draw",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/draw.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "foculoom-agent-stack",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/foculoom-agent-stack",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/foculoom-agent-stack.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "foculoom-backups-may24",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/foculoom-backups-may24",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": null,
+        "dirty": null,
+        "remote": null,
+        "repository": false
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "foculoom-law",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/foculoom-law",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/foculoom-law.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "foculoom-productivity",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/foculoom-productivity",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/foculoom-productivity.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "focus-tasks",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/focus-tasks",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/focus-tasks.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "game-starter-ios",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/game-starter-ios",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/game-starter-ios.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "games-2026-07-13",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/games-2026-07-13",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": null,
+        "dirty": null,
+        "remote": null,
+        "repository": false
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "gamesref",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/gamesref",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/gamesref.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "grocery",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/grocery",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/grocery.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "home-artifacts-apr2026",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/home-artifacts-apr2026",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": null,
+        "dirty": null,
+        "remote": null,
+        "repository": false
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "inkwell",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/inkwell",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/inkwell.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "ios-repo",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/ios-repo",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/ios-repo.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "kidslearningref",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/kidslearningref",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/kidslearningref.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "lantern-walk",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/lantern-walk",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/lantern-walk.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "letterpopios",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/letterpopios",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/letterpopios.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "letterpopmacos",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/letterpopmacos",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/letterpopmacos.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "letterpoptvos",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/letterpoptvos",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/letterpoptvos.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "letterpopvisionos",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/letterpopvisionos",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/letterpopvisionos.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "loomstep",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/loomstep",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/loomstep.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "maps",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/maps",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/maps.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "memory-aid",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/memory-aid",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/memory-aid.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "notes",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/notes",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/notes.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "one-clear-path",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/one-clear-path",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/one-clear-path.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "one-step",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/one-step",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/one-step.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "one-step-mvp",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/one-step-mvp",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/one-step-mvp.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "productivityref",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/productivityref",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/productivityref.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "products-2026-07-14",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/products-2026-07-14",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": null,
+        "dirty": null,
+        "remote": null,
+        "repository": false
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "prompt",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/prompt",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/prompt.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "prototype",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/prototype",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/prototype.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "qa",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/qa",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": null,
+        "dirty": null,
+        "remote": null,
+        "repository": false
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "quiet-room",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/quiet-room",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/quiet-room.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "repo-quality",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/repo-quality",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "main",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/repo-quality.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "repos-2026-07-26",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/repos-2026-07-26",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": null,
+        "dirty": null,
+        "remote": null,
+        "repository": false
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "skiplet",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/skiplet",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": true,
+        "remote": "https://github.com/foculoom/skiplet.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "skiplet-ios-screenshots-backup",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/skiplet-ios-screenshots-backup",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": null,
+        "dirty": null,
+        "remote": null,
+        "repository": false
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "small-business",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/small-business",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/small-business.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "sortable",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/sortable",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/sortable.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "stillwater",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/stillwater",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/stillwater.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "tidekeeper",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/tidekeeper",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/tidekeeper.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "toolsref",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/toolsref",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/toolsref.git",
+        "repository": true
+      }
+    },
+    {
+      "certainty": "INFERRED",
+      "identity": "v002",
+      "kind": "directory_candidate",
+      "path": "/Users/hello/foculoom/.archived/v002",
+      "scope": "foculoom/.archived",
+      "source_control": {
+        "branch": "master",
+        "dirty": false,
+        "remote": "https://github.com/foculoom/v002.git",
+        "repository": true
+      }
+    }
+  ],
+  "reconciliation": {
+    "canonical_apple_count": 2,
+    "competing_sources_requiring_review": [
+      {
+        "identity": "Vorynce",
+        "sources": [
+          "sf0.7/factory/app-portfolio.json",
+          "foculoom/products/vorynce-rebuild",
+          "sf0.8/.factory/portfolio.yaml"
+        ]
+      },
+      {
+        "identity": "Cat Whispers/Product A",
+        "sources": [
+          "sf0.7/apps/catwhispers",
+          "sf0.5/catcomm",
+          "edoworks/product-a",
+          "sf0.8/.factory/portfolio.yaml"
+        ]
+      },
+      {
+        "identity": "Jumpyloo/Docketloom",
+        "sources": [
+          "sf0.7/factory/queue.json",
+          "sf0.7/factory/legacy-quarantine.json",
+          "sf0.7/evidence/inc-013"
+        ]
+      }
+    ],
+    "discovery_completeness": {
+      "confidence": "INDEPENDENT_EVIDENCE_RECORDED",
+      "high_confidence_candidates": 11,
+      "registry_is_not_discovery_input": true,
+      "unexplained_candidates": [
+        "findmyloophole",
+        "lawgaps",
+        "legalexception",
+        "meowcontext"
+      ]
+    },
+    "historical_apple_count": 11,
+    "historical_apple_missing_from_canonical": [
+      "Cat Whispers",
+      "Veilsort",
+      "Skiplet",
+      "Edglex",
+      "Docketloom",
+      "Jumpyloo",
+      "Legal Exception",
+      "Law Gaps",
+      "Find My Loophole",
+      "Bloomline: Draw to Bloom"
+    ],
+    "historical_identity_names_normalized": [
+      "bloomline: draw to bloom",
+      "cat whispers",
+      "docketloom",
+      "edglex",
+      "find my loophole",
+      "jumpyloo",
+      "law gaps",
+      "legal exception",
+      "skiplet",
+      "veilsort",
+      "vorynce"
+    ],
+    "local_candidate_count": 116
+  },
+  "schema_version": 1,
+  "scope": {
+    "excluded": [
+      "arbitrary personal data",
+      "unrelated home directories",
+      "credential stores"
+    ],
+    "included": [
+      "sf0.8",
+      "sf0.1-sf0.7",
+      "foculoom products/games/web/demos/tools/.archived"
+    ]
+  }
+}

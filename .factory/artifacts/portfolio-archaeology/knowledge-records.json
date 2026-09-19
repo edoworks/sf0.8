@@ -1,0 +1,265 @@
+{
+  "records": [
+    {
+      "durable_knowledge": [
+        "Apple lifecycle state",
+        "bundle identity",
+        "originating source",
+        "historical decision"
+      ],
+      "kind": "historical_product",
+      "preservation_status": "EXTRACTED_TO_ARCHAEOLOGY_REPORT",
+      "product": "Cat Whispers",
+      "query_terms": [
+        "Cat Whispers",
+        "com.foculoom.meowcontext",
+        "Apple",
+        "App Review"
+      ],
+      "record_id": "apple-history:cat-whispers",
+      "source": "sf0.7/factory/app-portfolio.json"
+    },
+    {
+      "durable_knowledge": [
+        "Apple lifecycle state",
+        "bundle identity",
+        "originating source",
+        "historical decision"
+      ],
+      "kind": "historical_product",
+      "preservation_status": "EXTRACTED_TO_ARCHAEOLOGY_REPORT",
+      "product": "Veilsort",
+      "query_terms": [
+        "Veilsort",
+        "com.foculoom.veilsort",
+        "Apple",
+        "App Review"
+      ],
+      "record_id": "apple-history:veilsort",
+      "source": "sf0.7/factory/app-portfolio.json"
+    },
+    {
+      "durable_knowledge": [
+        "Apple lifecycle state",
+        "bundle identity",
+        "originating source",
+        "historical decision"
+      ],
+      "kind": "historical_product",
+      "preservation_status": "EXTRACTED_TO_ARCHAEOLOGY_REPORT",
+      "product": "Vorynce",
+      "query_terms": [
+        "Vorynce",
+        "com.foculoom.vorynce",
+        "Apple",
+        "App Review"
+      ],
+      "record_id": "apple-history:vorynce",
+      "source": "sf0.7/factory/app-portfolio.json"
+    },
+    {
+      "durable_knowledge": [
+        "Apple lifecycle state",
+        "bundle identity",
+        "originating source",
+        "historical decision"
+      ],
+      "kind": "historical_product",
+      "preservation_status": "EXTRACTED_TO_ARCHAEOLOGY_REPORT",
+      "product": "Skiplet",
+      "query_terms": [
+        "Skiplet",
+        "com.foculoom.skiplet",
+        "Apple",
+        "App Review"
+      ],
+      "record_id": "apple-history:skiplet",
+      "source": "sf0.7/factory/app-portfolio.json"
+    },
+    {
+      "durable_knowledge": [
+        "Apple lifecycle state",
+        "bundle identity",
+        "originating source",
+        "historical decision"
+      ],
+      "kind": "historical_product",
+      "preservation_status": "EXTRACTED_TO_ARCHAEOLOGY_REPORT",
+      "product": "Edglex",
+      "query_terms": [
+        "Edglex",
+        "com.foculoom.edglex",
+        "Apple",
+        "App Review"
+      ],
+      "record_id": "apple-history:edglex",
+      "source": "sf0.7/factory/app-portfolio.json"
+    },
+    {
+      "durable_knowledge": [
+        "Apple lifecycle state",
+        "bundle identity",
+        "originating source",
+        "historical decision"
+      ],
+      "kind": "historical_product",
+      "preservation_status": "EXTRACTED_TO_ARCHAEOLOGY_REPORT",
+      "product": "Docketloom",
+      "query_terms": [
+        "Docketloom",
+        "com.foculoom.docketloom",
+        "Apple",
+        "App Review"
+      ],
+      "record_id": "apple-history:docketloom",
+      "source": "sf0.7/factory/app-portfolio.json"
+    },
+    {
+      "durable_knowledge": [
+        "Apple lifecycle state",
+        "bundle identity",
+        "originating source",
+        "historical decision"
+      ],
+      "kind": "historical_product",
+      "preservation_status": "EXTRACTED_TO_ARCHAEOLOGY_REPORT",
+      "product": "Jumpyloo",
+      "query_terms": [
+        "Jumpyloo",
+        "com.foculoom.jumpyloo",
+        "Apple",
+        "App Review"
+      ],
+      "record_id": "apple-history:jumpyloo",
+      "source": "sf0.7/factory/app-portfolio.json"
+    },
+    {
+      "durable_knowledge": [
+        "Apple lifecycle state",
+        "bundle identity",
+        "originating source",
+        "historical decision"
+      ],
+      "kind": "historical_product",
+      "preservation_status": "EXTRACTED_TO_ARCHAEOLOGY_REPORT",
+      "product": "Legal Exception",
+      "query_terms": [
+        "Legal Exception",
+        "com.foculoom.legalexception",
+        "Apple",
+        "App Review"
+      ],
+      "record_id": "apple-history:legal-exception",
+      "source": "sf0.7/factory/app-portfolio.json"
+    },
+    {
+      "durable_knowledge": [
+        "Apple lifecycle state",
+        "bundle identity",
+        "originating source",
+        "historical decision"
+      ],
+      "kind": "historical_product",
+      "preservation_status": "EXTRACTED_TO_ARCHAEOLOGY_REPORT",
+      "product": "Law Gaps",
+      "query_terms": [
+        "Law Gaps",
+        "com.foculoom.lawgaps",
+        "Apple",
+        "App Review"
+      ],
+      "record_id": "apple-history:law-gaps",
+      "source": "sf0.7/factory/app-portfolio.json"
+    },
+    {
+      "durable_knowledge": [
+        "Apple lifecycle state",
+        "bundle identity",
+        "originating source",
+        "historical decision"
+      ],
+      "kind": "historical_product",
+      "preservation_status": "EXTRACTED_TO_ARCHAEOLOGY_REPORT",
+      "product": "Find My Loophole",
+      "query_terms": [
+        "Find My Loophole",
+        "com.foculoom.findmyloophole",
+        "Apple",
+        "App Review"
+      ],
+      "record_id": "apple-history:find-my-loophole",
+      "source": "sf0.7/factory/app-portfolio.json"
+    },
+    {
+      "durable_knowledge": [
+        "Apple lifecycle state",
+        "bundle identity",
+        "originating source",
+        "historical decision"
+      ],
+      "kind": "historical_product",
+      "preservation_status": "EXTRACTED_TO_ARCHAEOLOGY_REPORT",
+      "product": "Bloomline: Draw to Bloom",
+      "query_terms": [
+        "Bloomline: Draw to Bloom",
+        "com.foculoom.bloomline",
+        "Apple",
+        "App Review"
+      ],
+      "record_id": "apple-history:bloomline:-draw-to-bloom",
+      "source": "sf0.7/factory/app-portfolio.json"
+    },
+    {
+      "durable_knowledge": [
+        "rejection reason required resolution-center or review-message evidence",
+        "submit dry-run gate was previously missing"
+      ],
+      "kind": "lesson",
+      "preservation_status": "EXTRACTED_TO_APPLE_HISTORY_EVIDENCE",
+      "product": "Vorynce",
+      "query_terms": [
+        "Vorynce",
+        "rejection",
+        "App Review",
+        "dry run"
+      ],
+      "record_id": "lesson:apple-review-rejection-extraction",
+      "source": "/Users/hello/sf0.7/evidence/inc-010/verification.txt"
+    },
+    {
+      "durable_knowledge": [
+        "queue title and evidence payload diverged",
+        "historical identifiers require evidence cross-check"
+      ],
+      "kind": "lesson",
+      "preservation_status": "EXTRACTED_TO_RECONCILIATION_REPORT",
+      "product": "Docketloom/Jumpyloo",
+      "query_terms": [
+        "Docketloom",
+        "Jumpyloo",
+        "queue drift",
+        "identity"
+      ],
+      "record_id": "lesson:sf07-queue-title-drift",
+      "source": "/Users/hello/sf0.7/factory/legacy-quarantine.json"
+    },
+    {
+      "durable_knowledge": [
+        "content-addressed knowledge snapshots",
+        "source registry with scope and trust tier"
+      ],
+      "kind": "factory_capability",
+      "preservation_status": "REFERENCE_ONLY_NOT_COPIED",
+      "product": "sf0.5",
+      "query_terms": [
+        "knowledge",
+        "snapshot",
+        "sha256",
+        "source registry"
+      ],
+      "record_id": "lesson:sf05-knowledge-snapshot-integrity",
+      "source": "/Users/hello/sf0.5/factory/knowledge-sources.json"
+    }
+  ],
+  "schema_version": 1
+}

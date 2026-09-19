@@ -58,6 +58,12 @@ def portfolio_errors(portfolio: str) -> list[str]:
         f"id: {active_product}" in block and "lifecycle: active" in block for block in repo_blocks
     ):
         errors.append(f"active private product is not active in the repo registry: {active_product}")
+    if active_product:
+        active_block = next(
+            (block for block in repo_blocks if f"id: {active_product}" in block), ""
+        )
+        if "revival_issue:" not in active_block:
+            errors.append(f"active private product lacks a revival issue: {active_product}")
     for block in repo_blocks + surface_blocks:
         if "disposition:" not in block:
             item = block.split("id:", 1)[1].split("\n", 1)[0].strip() if "id:" in block else "unknown"
@@ -104,7 +110,16 @@ def main() -> None:
     for error in portfolio_errors(portfolio):
         require(False, error)
     require("active_factory: edoworks/sf0.8" in portfolio, "sf0.8 is not the active factory")
-    require("active_private_product: null" in portfolio, "active private product was not cleared")
+    active_product = next(
+        (line.split(":", 1)[1].strip() for line in portfolio.splitlines()
+         if line.startswith("active_private_product:")),
+        "null",
+    )
+    if active_product not in {"null", "~", "''", '""'}:
+        require(
+            "revival_issue:" in section(portfolio, active_product),
+            "active private product lacks a revival issue",
+        )
     require("active_commercial_experiment: edoworks/rung" in portfolio, "commercial experiment drifted")
 
     sf07 = section(portfolio, "foculoom/sf0.7", "foculoom/sf0.5")

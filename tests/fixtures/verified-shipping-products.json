@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "fixture_role": "evaluation_only_not_discovery_input",
+  "products": [
+    {
+      "product_id": "veilsort",
+      "bundle_id": "com.foculoom.veilsort",
+      "app_store_state": "previously_distributed",
+      "verification": "sf0.7/factory/app-portfolio.json and sf0.7/evidence/inc-014/veilsort-verification.txt"
+    },
+    {
+      "product_id": "skiplet",
+      "bundle_id": "com.foculoom.skiplet",
+      "app_store_state": "previously_distributed",
+      "verification": "sf0.7/factory/app-portfolio.json"
+    }
+  ]
+}

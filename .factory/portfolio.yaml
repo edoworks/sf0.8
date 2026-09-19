@@ -3,6 +3,7 @@
 
 active_factory: edoworks/sf0.8
 active_private_product: null
+shelved_private_product: edoworks/product-a
 active_commercial_experiment: edoworks/rung
 policy: >-
   sf0.8 is the sole active factory. Deprecated or frozen predecessors are
@@ -20,13 +21,22 @@ repos:
 
   - id: edoworks/product-a
     visibility: private
-    lifecycle: archived
+    lifecycle: shelved
     disposition: keep_read_only
+    source_of_truth: https://github.com/edoworks/product-a.git
+    default_branch: main
     successor_of: foculoom/sf0.7/apps/catwhispers
-    purpose: "Mews & Woofs" — greenfield reference workload (iOS/iPadOS playful-interpretation)
+    purpose: "Mews & Woofs" — iOS/iPadOS local adaptive pet-play experiment
     read_only: true
     resume_requires_owner_instruction: true
-    archive_reason: owner quality-bar decision after repeated iterations; learnings retained in docs/decisions/2026-09-17-product-a-shelved.md
+    product_work: prohibited
+    knowledge_and_artifacts: preserved
+    autonomous_resumption: prohibited
+    archive_eligibility:
+      state: blocked
+      reason: "External repository archive state and release/archive evidence require owner-authorized lifecycle processing."
+    revival_issue: https://github.com/edoworks/sf0.8/issues/30
+    revival_decision: docs/decisions/2026-09-18-adaptive-play-revival.md
     health.last_verified_build: 2026-09-13
     health.last_reviewed: 2026-09-13
     health.next_review_due: 2026-10-13
@@ -34,6 +44,16 @@ repos:
       candidate: true
       ready: false
       blockers: [ip_review, secret_history_scan, privacy_review, bundle_id_rename(com.foculoom→ai.edoworks)]
+    destructive_actions: {delete_repo: human_only, make_public: human_only}
+
+  - id: foculoom/vorynce
+    visibility: private
+    lifecycle: active
+    disposition: simplify
+    source_of_truth: https://github.com/foculoom/vorynce.git
+    default_branch: master
+    purpose: local-only voice capture and organization app
+    read_only: false
     destructive_actions: {delete_repo: human_only, make_public: human_only}
 
   - id: foculoom/sf0.7
@@ -118,3 +138,105 @@ surfaces:
 inventory_notes:
   - scope includes sf0.8, its known predecessors, and reviewed local public/internal surfaces
   - lifecycle review cadence: monthly; triage must not consume product shipping (design review)
+
+# Canonical Apple product inventory. Distribution tooling must enumerate this
+# section rather than maintaining a second product registry.
+apple_products:
+  - id: product-a
+    repository: edoworks/product-a
+    source_of_truth: https://github.com/edoworks/product-a.git
+    platform: iOS/iPadOS
+    lifecycle: active
+    release_state: never_released
+    bundle_id: com.foculoom.ProductA
+  - id: vorynce
+    repository: foculoom/vorynce
+    source_of_truth: https://github.com/foculoom/vorynce.git
+    platform: iOS
+    lifecycle: active
+    release_state: previously_released
+    bundle_id: com.foculoom.vorynce
+
+# Historical Apple products remain discoverable here without granting active
+# execution authority. Missing source paths are explicit rather than inferred.
+historical_products:
+  - id: cat-whispers
+    public_name: Cat Whispers
+    source: /Users/hello/sf0.7/apps/catwhispers
+    platform: iOS/iPadOS
+    lifecycle: dormant
+    release_state: testflight_valid
+    bundle_id: com.foculoom.meowcontext
+    origin: foculoom/sf0.7
+  - id: veilsort
+    public_name: Veilsort
+    source: /Users/hello/foculoom/products/veilsort
+    platform: iOS
+    lifecycle: dormant
+    release_state: removed_from_app_store
+    bundle_id: com.foculoom.veilsort
+    origin: foculoom/sf0.7
+  - id: skiplet
+    public_name: Skiplet
+    source: /Users/hello/foculoom/products/skiplet
+    platform: iOS
+    lifecycle: dormant
+    release_state: removed_from_app_store
+    bundle_id: com.foculoom.skiplet
+    origin: foculoom/sf0.7
+  - id: edglex
+    public_name: Edglex
+    source: /Users/hello/foculoom/products/edglex-rebuild
+    platform: iOS
+    lifecycle: dormant
+    release_state: testflight_valid
+    bundle_id: com.foculoom.edglex
+    origin: foculoom/sf0.7
+  - id: docketloom
+    public_name: Docketloom
+    source: /Users/hello/foculoom/products/docketloom-rebuild
+    platform: iOS
+    lifecycle: dormant
+    release_state: testflight_valid
+    bundle_id: com.foculoom.docketloom
+    origin: foculoom/sf0.7
+  - id: jumpyloo
+    public_name: Jumpyloo
+    source: /Users/hello/foculoom/products/jumpyloo-rebuild
+    platform: iOS
+    lifecycle: dormant
+    release_state: prepare_for_submission
+    bundle_id: com.foculoom.jumpyloo
+    origin: foculoom/sf0.7
+  - id: legal-exception
+    public_name: Legal Exception
+    source: /Users/hello/foculoom/products/legalexception-rebuild
+    platform: iOS
+    lifecycle: retired
+    release_state: developer_rejected
+    bundle_id: com.foculoom.legalexception
+    origin: foculoom/sf0.7
+  - id: law-gaps
+    public_name: Law Gaps
+    source: /Users/hello/foculoom/products/lawgaps-rebuild
+    platform: iOS
+    lifecycle: retired
+    release_state: developer_rejected
+    bundle_id: com.foculoom.lawgaps
+    origin: foculoom/sf0.7
+  - id: find-my-loophole
+    public_name: Find My Loophole
+    source: UNKNOWN
+    platform: iOS
+    lifecycle: retired
+    release_state: developer_rejected
+    bundle_id: com.foculoom.findmyloophole
+    origin: foculoom/sf0.7
+  - id: bloomline
+    public_name: Bloomline: Draw to Bloom
+    source: /Users/hello/foculoom/games/bloomline
+    platform: iOS
+    lifecycle: dormant
+    release_state: developer_rejected
+    bundle_id: com.foculoom.bloomline
+    origin: foculoom/sf0.7

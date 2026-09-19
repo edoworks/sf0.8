@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "work": "factory lifecycle, archaeology, and human-attention controls",
+  "canonical_issue": {"number": 43, "role": "existing portfolio archaeology map issue"},
+  "intent": "Implement and validate factory-level lifecycle truth, progressive archaeology, preservation gates, human action orchestration, evidence strength, and control-plane preflight.",
+  "authority": {
+    "execution": "BUILD",
+    "product_a_work": "PROHIBITED",
+    "education_research_or_build": "PROHIBITED",
+    "release_publication_deletion": "HUMAN_ONLY",
+    "issue_creation": "BLOCKED_BY_ACTIVE_PERMISSION_POLICY",
+    "owner_identity_verified": "hellofoculoom"
+  },
+  "product_a": {
+    "state": "SHELVED",
+    "archive_eligibility": "BLOCKED",
+    "reason": "External repository archive state and release/archive evidence require owner-authorized lifecycle processing.",
+    "product_work": "PROHIBITED",
+    "knowledge_preservation": "REQUIRED",
+    "autonomous_resumption": "PROHIBITED"
+  },
+  "controls": {
+    "progressive_archaeology": "METADATA_ONLY_STAGE_WITH_MAXIMUM_DEEP_BATCH_OF_4",
+    "deletion": "UNKNOWN_FAILS_CLOSED_AND_HUMAN_AUTHORIZATION_REQUIRED",
+    "human_actions": "STRUCTURED_QUEUE_WITH_SEPARATE_ORDERING_DIMENSIONS",
+    "evidence": "EXPLICIT_LEVELS_FROM_SCHEMA_VALID_TO_REAL_WORLD_VERIFIED",
+    "apple_distribution": "NON_SUBMITTING_AND_HUMAN_RELEASE_GATED",
+    "control_planes": "PER_CAPABILITY_DOWNSTREAM_PREFLIGHT_CONTRACT"
+  },
+  "education": {
+    "frontier": "REACHED",
+    "proof_tiles": "HYPOTHESIS",
+    "side_by_side_spark": "HYPOTHESIS",
+    "misconception_lens": "HYPOTHESIS",
+    "source_detective": "PARKED",
+    "question_garden": "PARKED",
+    "synthetic_observations_admissible": false
+  },
+  "verification": {
+    "unit_tests": {"command": "python3 -m unittest discover -s tests -p 'test_*.py'", "result": "134 passed"},
+    "validators": [
+      "validate-lifecycle.py",
+      "validate-lifecycle-contract.py",
+      "validate-portfolio-audit.py",
+      "validate-human-action-queue.py",
+      "validate-control-plane-contract.py",
+      "validate-control-plane.py",
+      "validate-ecosystem.py",
+      "validate-reuse-registry.py",
+      "validate-apple-distribution.py --validate",
+      "validate-education-evidence.py",
+      "validate-automation.py",
+      "validate-review-contract.py",
+      "select-lanes.py"
+    ],
+    "ledger_total_usd": 0.42
+  },
+  "blockers": [
+    "135 archaeology candidates remain preservation/knowledge-extraction constrained.",
+    "Portfolio reconciliation remains incomplete for two candidates.",
+    "Human experiments and Apple release authority remain pending.",
+    "Scoped issue creation was denied by the active permission policy; no permission expansion was attempted."
+  ],
+  "destructive_action_performed": false,
+  "submission_performed": false
+}

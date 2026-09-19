@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "extensible bounded idle-work providers",
+  "providers": [
+    {"id": "portfolio", "module": "idle_work", "function": "discover_portfolio"},
+    {"id": "lanes", "module": "idle_work", "function": "discover_lanes"},
+    {"id": "reuse", "module": "idle_work", "function": "discover_reuse"},
+    {"id": "hygiene", "module": "idle_work", "function": "discover_hygiene"},
+    {"id": "knowledge", "module": "idle_work", "function": "discover_knowledge"},
+    {"id": "rejections", "module": "idle_work", "function": "discover_rejections"},
+    {"id": "verification", "module": "idle_work", "function": "discover_verification"},
+    {"id": "ci", "module": "idle_work", "function": "discover_ci"}
+  ],
+  "policy": {
+    "waiting_dependency_requires_exhaustion": true,
+    "provider_failure_is_not_exhaustion": true,
+    "destructive_work_requires_human": true,
+    "unknown_work_fails_closed": true
+  }
+}

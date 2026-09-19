@@ -1,7 +1,15 @@
 # Production Readiness Audit
 
-Status: current audit, 2026-09-16. Scope: `sf0.8` and nested `product-a`.
-This is the single prioritized backlog after this audit.
+Status: historical audit, superseded 2026-09-18. Scope: prior audio
+conversation direction in `sf0.8` and nested `product-a`.
+The adaptive-play revival is now tracked by root issue #30 and
+`product-a/docs/PRD.md`.
+
+## Superseded Direction
+
+The Product A sections below describe the shelved audio-conversation product.
+They remain evidence for why that direction was stopped and are not acceptance
+criteria for the adaptive-play experiment.
 
 Authority: `product-a/docs/PRD.md` -> `product-a/docs/device-validation-runbook.md`
 -> this backlog and linked issues -> implementation -> tests/evidence -> human

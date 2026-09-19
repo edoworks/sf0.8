@@ -1,0 +1,8 @@
+{
+  "material": false,
+  "capability": "Apple distribution and submission preflight contract",
+  "change_units": 12,
+  "decision": "CONSUME_EXISTING",
+  "implementation": "consume apple-distribution-preflight",
+  "shareability": {"disposition": "PRODUCT_ONLY", "evidence": "consumer uses existing capability", "reuse_analysis": "Existing INTERNAL_SHARED capability found before implementation."}
+}

@@ -1,0 +1,21 @@
+{
+  "issue": 50,
+  "status": "PASS",
+  "checks": {
+    "missing_binding": "BLOCKED_BEFORE_REUSE",
+    "unrelated_issue": "BLOCKED_BEFORE_GITHUB_WRITE",
+    "denied_issue_write": "BLOCKED_BEFORE_WORK_CONTINUES",
+    "identity_without_write_capability": "BLOCKED",
+    "unrelated_issue_mutation": "DENIED_BY_POLICY_AND_BINDING",
+    "unrelated_github_write": "DENIED_BY_POLICY",
+    "reuse_discovery_bypass": "BLOCKED_AT_ENTRYPOINT"
+  },
+  "regression_tests": [
+    "tests/test_control_plane.py::test_unrelated_issue_is_rejected_before_write",
+    "tests/test_control_plane.py::test_material_work_fails_before_reuse_when_issue_write_is_denied",
+    "tests/test_control_plane.py::test_identity_without_canonical_marker_is_not_binding",
+    "tests/test_control_plane.py::test_material_entrypoint_blocks_before_reuse_when_issue_is_unbound",
+    "tests/test_permission_policy.py::PermissionPolicyFixtureTests"
+  ],
+  "authority": "Only the trusted binding for the material work may reach the issue comment probe; identity proves principal, not write capability."
+}

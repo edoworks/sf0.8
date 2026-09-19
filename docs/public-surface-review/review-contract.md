@@ -2,6 +2,15 @@
 
 ## Review record
 
+Every Foculoom factory/product review is incomplete until it contains the
+following executable handoff sequence:
+
+`EVIDENCE -> CHALLENGE -> FINDINGS -> CONCRETE ACTIONS -> ONE AGGRESSIVE IMPLEMENTATION-ORIENTED PROMPT`
+
+The prompt is required even when actions are blocked; it must identify the
+smallest next implementation or explicit human-authority action. Validate a
+machine-readable review record with `python3 scripts/validate-review-contract.py`.
+
 ```text
 surface:
 url:

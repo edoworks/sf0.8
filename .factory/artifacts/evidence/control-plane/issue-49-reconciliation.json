@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "incident": "issue-49",
+  "implementation": "complete",
+  "issue": {"number": 49, "required": true, "reconciled": true, "remote_state": "closed", "comment_url": "https://github.com/edoworks/sf0.8/issues/49#issuecomment-5739772613"},
+  "control_plane_blocker": null,
+  "intended_mutation": "Post verification evidence to issue 49 and close it after local verification.",
+  "idempotency_key": "sf08-issue-49-compounding-reuse-shareability",
+  "resume_action": "No reconciliation remains. If resumed, verify issue 49 remains closed before creating any new issue.",
+  "state": "DONE",
+  "done": true
+}

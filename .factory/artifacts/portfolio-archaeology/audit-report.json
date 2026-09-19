@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "map_issue": 43,
+  "child_issues": {"knowledge": 45, "parallel": 46, "apple_history": 47, "hygiene": 48},
+  "portfolio": {
+    "discovered_historical_apple_products": 11,
+    "canonical_sf08_apple_products": 2,
+    "historical_apple_missing_from_canonical": 0,
+    "historical_apple_previously_missing_now_represented": 10,
+    "historical_reconciliation_complete": true,
+    "bounded_local_candidates": 116,
+    "factory_roots": 8,
+    "competing_identity_groups": 3,
+    "known_current_sf08_products": 2,
+    "previous_factory_products": 11,
+    "active_or_current_canonical": ["Product A", "Vorynce"],
+    "historical_non_active": ["Cat Whispers", "Veilsort", "Skiplet", "Edglex", "Docketloom", "Jumpyloo", "Legal Exception", "Law Gaps", "Find My Loophole", "Bloomline: Draw to Bloom"],
+    "unknown_candidate_directories": 116
+  },
+  "knowledge": {
+    "queryable_records": 14,
+    "preservation_manifests": 135,
+    "unique_unextracted_or_uncertain_candidates": 135,
+    "historical_knowledge_preserved_without_source_deletion": true,
+    "fresh_agent_query_command": "python3 scripts/query-portfolio-knowledge.py <term>",
+    "knowledge_graph_requirement": "small JSON record/query mechanism is sufficient for current demonstrated gap; no graph database added",
+    "reuse_mining": ".factory/artifacts/portfolio-archaeology/reuse-mining.json",
+    "unassessed_substantial_artifacts": 0,
+    "reuse_control_verification": ".factory/artifacts/evidence/reuse-control/verification-2026-09-18.json"
+  },
+  "apple_history": {"historical_submissions_or_states": 11, "approvals": 0, "rejections": 6, "testflight_valid_builds": 4, "usable_feedback_records": 1, "current_reviewer_regressions": 1, "comparison_blocked_records": 10},
+  "hygiene": {"safe_regenerable_estimate": "not safely quantified at candidate level", "archive_first": true, "knowledge_extraction_required": 135, "do_not_delete": true, "dead_code_removal_candidates": 0},
+  "parallelism": {"ready_work_items": 2, "safe_concurrent_lanes": 2, "blocked_or_waiting_lanes": 3, "idle_despite_ready_work": 0},
+  "implemented_controls": {
+    "lifecycle_contract": ".factory/lifecycle-contract.json",
+    "archive_exercise": ".factory/artifacts/portfolio-archaeology/archive-candidate-exercise.json",
+    "portfolio_reconciliation": ".factory/artifacts/portfolio-archaeology/portfolio-reconciliation.json",
+    "bounded_scheduler": "scripts/select-lanes.py",
+    "completion_states": "scripts/ecosystem_gates.py",
+    "five_whys": "docs/decisions/2026-09-18-compounding-audit-5whys.md"
+  },
+  "governance": {"untracked_material_work": 0, "unprioritized_material_work": 0, "closed_without_evidence": 0, "deletion_without_knowledge_extraction": 0, "unauthorized_destructive_actions": 0},
+  "adversarial_answers": {
+    "pre_sf08_deletion_loss": "Unknown for 135 candidates; therefore deletion is not safe.",
+    "dormant_repository_deletion": "Not safe: fresh-agent explanation is not proven for all candidates.",
+    "historical_rejection_without_current_detection": "Vorynce is a regression-fixture candidate, but implementation remains open on issue 47.",
+    "product_a_waiting_vorynce_ready": "The lane report selects independent archaeology/knowledge/hygiene work; factory idle is zero for evaluated ready work.",
+    "shared_factory_mutation_safety": "Shared artifact writes are serialized; product repositories require isolated worktrees; Apple mutations remain human-gated."
+  },
+  "deletion_performed": false,
+  "submission_performed": false
+}

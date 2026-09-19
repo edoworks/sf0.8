@@ -1,0 +1,17 @@
+{
+  "issue": 33,
+  "change_units": 12,
+  "reuse": {
+    "searched": 4,
+    "compatible": 3,
+    "reason": "Adopt Apple-supported Xcode, Transporter, App Store Connect API, StoreKit, and existing sf0.8 evidence/screenshot/lifecycle contracts; build only thin registry and preflight glue.",
+    "discovery": {"capability": "Apple distribution and submission preflight contract", "decision": "CONSUME_EXISTING", "matches": ["apple-distribution-preflight"], "consumption": ".factory/apple-distribution/products/product-a.json and vorynce.json"}
+  },
+  "contribution": {
+    "classification": "internal-reusable"
+  },
+  "shareability": {
+    "disposition": "INTERNAL_SHARED",
+    "evidence": ".factory/artifacts/reuse-registry.json#apple-distribution-preflight; Product A and Vorynce profiles consume the contract"
+  }
+}

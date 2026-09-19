@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "issue": 48,
+  "observed_resource_footprint": {
+    "sf0.8": "55M",
+    "sf0.7": "1.8G",
+    "sf0.5": "2.0G",
+    "foculoom_scoped_root": "26G",
+    "recovery_work": "3.0M",
+    "encrypted_factory_backup": "52K"
+  },
+  "classifications": [
+    {"category": "DerivedData/build directories", "classification": "SAFE_REGENERABLE", "evidence_required": "path-specific build ownership and active-job check", "action": "REPORT_ONLY"},
+    {"category": "archives and IPAs", "classification": "ARCHIVE_FIRST", "evidence_required": "release/build/submission linkage and backup proof", "action": "REPORT_ONLY"},
+    {"category": "simulator artifacts and xcresults", "classification": "ARCHIVE_FIRST", "evidence_required": "test-evidence linkage and regeneration proof", "action": "REPORT_ONLY"},
+    {"category": "factory sqlite telemetry", "classification": "SAFE_REGENERABLE", "evidence_required": "schema and backup/restore verification", "action": "REPORT_ONLY"},
+    {"category": "historical source repositories", "classification": "SOURCE_OF_RECORD", "evidence_required": "knowledge manifest and recoverability proof", "action": "DO_NOT_DELETE"},
+    {"category": "archived product directories", "classification": "KNOWLEDGE_EXTRACTION_REQUIRED", "evidence_required": "per-candidate preservation manifest", "action": "DO_NOT_DELETE"},
+    {"category": "credential and signing material", "classification": "DO_NOT_DELETE", "evidence_required": "trust-boundary review", "action": "DO_NOT_INSPECT_OR_CLEAN"},
+    {"category": "unknown generated media and downloads", "classification": "UNKNOWN", "evidence_required": "provenance/license and regeneration review", "action": "DO_NOT_DELETE"}
+  ],
+  "dead_code": {
+    "identified_candidates": [],
+    "reason": "Read-only archaeology found names and paths but no safe static/dynamic proof of unreachability. No removal proposed."
+  },
+  "deletion": {"performed": false, "human_authorization_required": true}
+}

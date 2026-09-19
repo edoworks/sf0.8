@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["result_id", "hypothesis_id", "experiment_id", "participant_source", "synthetic", "observations", "behavior_change", "learning_evidence", "payment_signal", "consent"],
+  "properties": {
+    "result_id": {"type": "string", "minLength": 1},
+    "hypothesis_id": {"type": "string", "enum": ["proof-tiles", "side-by-side-spark", "misconception-lens"]},
+    "experiment_id": {"type": "string", "minLength": 1},
+    "participant_source": {"const": "EXTERNAL_HUMAN"},
+    "synthetic": {"const": false},
+    "generated_by_model": {"const": false},
+    "observations": {"type": "array", "minItems": 1},
+    "behavior_change": {"type": "object"},
+    "learning_evidence": {"type": "object"},
+    "payment_signal": {"type": "object", "required": ["stage", "raw_action"]},
+    "consent": {"type": "object"}
+  }
+}

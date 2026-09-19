@@ -1,0 +1,64 @@
+{
+  "age_rating": {
+    "complete": false
+  },
+  "apple_approval_claim": "NEVER_CLAIMED",
+  "build_association": {
+    "archive": "/var/folders/m6/j69tcnk52059qvy0_6hnxk5r0000gq/T/opencode/ProductA-distribution-ef94f24.xcarchive",
+    "processed_build": false
+  },
+  "export_compliance": {
+    "decided": false
+  },
+  "kind": "APP_STORE_CONNECT_DRAFT",
+  "metadata": {
+    "category": "",
+    "copyright": "",
+    "description": "",
+    "keywords": "",
+    "name": "",
+    "privacy_url": "",
+    "subtitle": "",
+    "support_url": ""
+  },
+  "platform": "iOS/iPadOS",
+  "preflight_report": ".factory/artifacts/reports/apple-distribution/product-a.json",
+  "privacy": {
+    "accessed_data": [
+      "microphone audio"
+    ],
+    "collected_data": [],
+    "declared_data": []
+  },
+  "product": "product-a",
+  "purchases": {
+    "applicable": false,
+    "configured": false
+  },
+  "readiness": {
+    "app_review_ready": false,
+    "archive_ready": true,
+    "build_ready": false,
+    "distribution_ready": true,
+    "external_testflight_ready": false,
+    "human_authorized": false,
+    "internal_testflight_ready": false,
+    "product_validation_ready": false,
+    "software_production_ready": false,
+    "submission": "NOT_SUBMITTED",
+    "test_ready": false
+  },
+  "review_information": {
+    "complete": false
+  },
+  "schema_version": 1,
+  "screenshots": {
+    "valid": false
+  },
+  "secrets": "NONE",
+  "submission": {
+    "endpoint": "NOT_INVOKED",
+    "human_authorization_required": true,
+    "performed": false
+  }
+}

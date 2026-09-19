@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "issue": 46,
+  "states": ["READY", "RUNNING", "BLOCKED_DEPENDENCY", "BLOCKED_EXTERNAL", "WAITING_APPLE", "WAITING_HUMAN_AUTHORITY", "WAITING_DEVICE", "WAITING_RESOURCE", "COMPLETED"],
+  "lanes": [
+    {"work": "portfolio archaeology", "issue": 43, "state": "RUNNING", "resource": "sf0.8 evidence artifacts", "conflicts": [], "priority": 1},
+    {"work": "historical knowledge extraction", "issue": 45, "state": "READY", "resource": "read-only source trees", "conflicts": [], "priority": 2},
+    {"work": "resource hygiene classification", "issue": 48, "state": "READY", "resource": "filesystem metadata", "conflicts": [], "priority": 3},
+    {"work": "historical Apple re-evaluation", "issue": 47, "state": "BLOCKED_EXTERNAL", "resource": "historical ASC metadata", "conflicts": ["exact metadata/screenshots unavailable"], "priority": 4},
+    {"work": "Product A distribution", "issue": 42, "state": "WAITING_HUMAN_AUTHORITY", "resource": "Product A repository and Apple identity", "conflicts": ["public identity and metadata authorization"], "priority": 5},
+    {"work": "Vorynce distribution", "issue": 44, "state": "BLOCKED_DEPENDENCY", "resource": "Vorynce repository/archive", "conflicts": ["archive and store evidence incomplete"], "priority": 6}
+  ],
+  "portfolio": {
+    "discovery_confidence": "INDEPENDENT_EVIDENCE_RECORDED_BUT_RECONCILIATION_BLOCKED",
+    "unreconciled_product_candidates": 2
+  },
+  "safe_concurrency": {
+    "ready_lanes": 2,
+    "safe_concurrent_lanes": 2,
+    "limiters": ["shared sf0.8 artifact writes should be serialized", "Xcode/device work is not launched by this audit", "App Store Connect mutations remain human-authorized and serialized"],
+    "product_a_can_wait_while_vorynce_proceeds": true,
+    "apple_wait_does_not_block_archaeology": true,
+    "independent_repository_builds": "POSSIBLE_WITH_ISOLATED_WORKTREES_AND_BOUNDED_RESOURCES",
+    "known_ready_work_idle": 0,
+    "idle_despite_ready_work": 0,
+    "portfolio_discovery_confidence": "INDEPENDENT_EVIDENCE_RECORDED_BUT_RECONCILIATION_BLOCKED",
+    "unreconciled_product_candidates": 2,
+    "portfolio_complete": false,
+    "metric_note": "idle_despite_ready_work covers only known lanes and must not imply portfolio completeness"
+  },
+  "uncontrolled_swarm": false
+}

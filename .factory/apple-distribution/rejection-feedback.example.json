@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "feedback": "Example only: reviewer reports an inaccessible critical action.",
+  "issue": 33,
+  "failure_class": "ACCESSIBILITY_EVIDENCE_GAP",
+  "root_cause": "The factory accepted simulator labels without requiring applicable device traversal evidence.",
+  "fix": "Require accessibility evidence for each declared critical journey before App Review readiness.",
+  "regression_criterion": "A preflight fixture with missing accessibility evidence produces an EVIDENCE_GAP and linked issue.",
+  "factory_lesson": "Do not infer declaration readiness from source labels alone.",
+  "contribution_gate": "INTERNAL_REUSABLE"
+}

@@ -6,6 +6,12 @@
     ["git show*", "allow"],
     ["git add *", "allow"],
     ["git commit -m *", "allow"],
+    ["gh issue *", "deny"],
+    ["gh pr *", "deny"],
+    ["gh repo *", "deny"],
+    ["gh issue create --repo edoworks/sf0.8 *", "allow"],
+    ["gh issue comment --repo edoworks/sf0.8 50 *", "allow"],
+    ["gh issue close --repo edoworks/sf0.8 50", "allow"],
     ["git commit*--no-verify*", "deny"],
     ["git commit*-n*", "deny"],
     ["git reset --hard*", "deny"],
@@ -38,7 +44,10 @@
       "git status --short",
       "git diff --check",
       "git add ProductA/ListenView.swift",
-      "git commit -m \"test policy\""
+      "git commit -m \"test policy\"",
+      "gh issue create --repo edoworks/sf0.8 --title test --body body",
+      "gh issue comment --repo edoworks/sf0.8 50 --body evidence",
+      "gh issue close --repo edoworks/sf0.8 50"
     ],
     "ask": [
       "git add .",
@@ -58,7 +67,10 @@
       "git push --mirror origin",
       "git status; git push --force origin main",
       "git diff && git push origin main",
-      "git log | sh"
+      "git log | sh",
+      "gh issue comment --repo edoworks/sf0.8 49 --body unrelated",
+      "gh pr create --repo edoworks/sf0.8 --title unrelated",
+      "gh repo edit edoworks/sf0.8 --visibility public"
     ]
   }
 }
