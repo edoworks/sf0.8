@@ -1,7 +1,7 @@
 {
   "issue": 83,
   "capability": "edoworks factory product definition",
-  "change_units": 3,
+  "change_units": 4,
   "changed_paths": [
     "scripts/create-edoworks-factory-repo.sh"
   ],

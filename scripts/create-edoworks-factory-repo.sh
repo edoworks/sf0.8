@@ -10,9 +10,13 @@ set -x
 # 1. Verify identity
 gh api user --jq .login
 
-# 2. Create the public repo
-gh repo create edoworks/factory --public \
-  --description "A public, versioned, MIT-licensed software factory for producing offline-first iOS/iPadOS apps through a deterministic paved road."
+# 2. Create the public repo (skip if it already exists)
+if ! gh repo view edoworks/factory >/dev/null 2>&1; then
+  gh repo create edoworks/factory --public \
+    --description "A public, versioned, MIT-licensed software factory for producing offline-first iOS/iPadOS apps through a deterministic paved road."
+else
+  echo "Repo edoworks/factory already exists, skipping creation."
+fi
 
 # 3. Create labels
 LABELS=(
@@ -26,6 +30,9 @@ LABELS=(
   "product:a2eeef:Product or app feature"
   "gate:e99695:Release gate or qualification milestone"
   "owner-only:b60205:Requires human or owner authorization"
+  "documentation:0075ca:Improvements or additions to documentation"
+  "enhancement:a2eeef:New feature or request"
+  "bug:d73a4a:Something isn't working"
 )
 
 for label in "${LABELS[@]}"; do
@@ -40,6 +47,13 @@ create_issue() {
   local title="$1"
   local labels="$2"
   local body="$3"
+  # Skip if an issue with the same title already exists
+  local existing
+  existing=$(gh issue list --repo edoworks/factory --state open --search "in:title ${title}" --json number --jq 'length' 2>/dev/null || echo "0")
+  if [ "$existing" != "0" ]; then
+    echo "Issue already exists, skipping: $title"
+    return 0
+  fi
   local tmpfile
   tmpfile=$(mktemp)
   printf '%s\n' "$body" > "$tmpfile"
