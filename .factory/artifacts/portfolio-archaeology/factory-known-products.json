@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "source": ".factory/portfolio.yaml plus historical App Store records",
+  "products": [
+    {"id": "product-a", "bundle_id": "com.foculoom.ProductA", "repository": "edoworks/product-a"},
+    {"id": "vorynce", "bundle_id": "com.foculoom.vorynce", "repository": "foculoom/vorynce"},
+    {"id": "cat-whispers", "bundle_id": "com.foculoom.meowcontext", "source": "/Users/hello/sf0.5/catcomm/ios/"},
+    {"id": "veilsort", "bundle_id": "com.foculoom.veilsort", "source": "/Users/hello/foculoom/products/veilsort/"},
+    {"id": "skiplet", "bundle_id": "com.foculoom.skiplet", "source": "/Users/hello/foculoom/products/skiplet/"},
+    {"id": "edglex", "bundle_id": "com.foculoom.edglex", "source": "/Users/hello/foculoom/products/edglex-rebuild/"},
+    {"id": "docketloom", "bundle_id": "com.foculoom.docketloom", "source": "/Users/hello/foculoom/products/docketloom-rebuild/"},
+    {"id": "jumpyloo", "bundle_id": "com.foculoom.jumpyloo", "source": "/Users/hello/foculoom/products/jumpyloo-rebuild/"},
+    {"id": "legal-exception", "bundle_id": "com.foculoom.legalexception", "source": "/Users/hello/foculoom/products/legalexception-rebuild/"},
+    {"id": "law-gaps", "bundle_id": "com.foculoom.lawgaps", "source": "/Users/hello/foculoom/products/lawgaps-rebuild/"},
+    {"id": "find-my-loophole", "bundle_id": "com.foculoom.findmyloophole", "source": "UNKNOWN"},
+    {"id": "bloomline", "bundle_id": "com.foculoom.bloomline", "source": "/Users/hello/foculoom/games/bloomline/"}
+  ]
+}

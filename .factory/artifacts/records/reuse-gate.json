@@ -1,0 +1,25 @@
+{
+  "id": "proportional-reuse-gate",
+  "title": "Proportional reuse and contribution gates",
+  "version": "1.0.0",
+  "kind": "tool",
+  "status": "validated-candidate",
+  "source": {"repository": "edoworks/sf0.8", "path": "scripts/ecosystem_gates.py", "revision": "issue-31-working-tree", "author": "Foculoom", "evaluated_at": "2026-09-18"},
+  "license": {"spdx": "Apache-2.0", "file": "packages/proportional-reuse-gate/LICENSE", "compatibility_checked": true},
+  "provenance": {
+    "origin": "Issue #31 factory increment",
+    "derived_from": [".factory/governance.yaml", "FACTORY_CONSTITUTION.md"],
+    "human_reviewed": true,
+    "review_note": "Factory review completed; human publication approval remains outstanding.",
+    "modifications": "Generalized pure gate logic; removed product-specific context and dependencies.",
+    "attribution": "Attribute Foculoom if redistributed; retain Apache-2.0 notice."
+  },
+  "security": {"external_input": "untrusted", "execution": "local-only", "secrets_scan": "passed"},
+  "verification": {
+    "tests": "python3 -m unittest tests.test_ecosystem_gates packages/proportional-reuse-gate/tests/test_package.py",
+    "docs": "packages/proportional-reuse-gate/README.md",
+    "provenance": "packages/proportional-reuse-gate/PROVENANCE.md"
+  },
+  "publication": {"human_approval_required": true, "approved": false},
+  "maintenance": {"owner": "sf0.8 factory maintainers", "next_review": "2026-10-18"}
+}

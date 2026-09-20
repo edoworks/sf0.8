@@ -1,0 +1,73 @@
+{
+  "age_rating": {
+    "complete": false
+  },
+  "apple_approval_claim": "NEVER_CLAIMED",
+  "build_association": {
+    "archive": null,
+    "processed_build": false
+  },
+  "export_compliance": {
+    "decided": false
+  },
+  "kind": "APP_STORE_CONNECT_DRAFT",
+  "metadata": {
+    "category": "Productivity",
+    "copyright": "",
+    "description": "",
+    "keywords": "",
+    "name": "Vorynce",
+    "privacy_url": "",
+    "subtitle": "",
+    "support_url": ""
+  },
+  "platform": "iOS",
+  "preflight_report": ".factory/artifacts/reports/apple-distribution/vorynce.json",
+  "privacy": {
+    "accessed_data": [
+      "microphone audio"
+    ],
+    "collected_data": [],
+    "declared_data": []
+  },
+  "product": "vorynce",
+  "purchases": {
+    "applicable": true,
+    "configured": false,
+    "local_behavior_evidence": [
+      "Sources/Shared/IAPService.swift",
+      "Tests/VorynceTests/IAPServiceTests.swift"
+    ],
+    "product_identifiers": [
+      "com.foculoom.vorynce.pro.monthly",
+      "com.foculoom.vorynce.pro.yearly"
+    ],
+    "storekit_configuration": null
+  },
+  "readiness": {
+    "app_review_ready": false,
+    "archive_ready": false,
+    "build_ready": false,
+    "distribution_ready": false,
+    "external_testflight_ready": false,
+    "human_authorized": false,
+    "internal_testflight_ready": false,
+    "product_validation_ready": false,
+    "software_production_ready": false,
+    "submission": "NOT_SUBMITTED",
+    "test_ready": false
+  },
+  "review_information": {
+    "complete": false
+  },
+  "schema_version": 1,
+  "screenshots": {
+    "valid": false
+  },
+  "secrets": "NONE",
+  "submission": {
+    "endpoint": "NOT_INVOKED",
+    "human_authorization_required": true,
+    "performed": false
+  }
+}

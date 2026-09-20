@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "fixture": "tests/fixtures/verified-shipping-products.json",
+  "fixture_outside_discovery_input": true,
+  "verified_known_products": 2,
+  "before": {
+    "discovered": 0,
+    "recall": 0.0,
+    "basis": "previous reconciliation had no product entries and did not evaluate the independent fixture"
+  },
+  "after": {
+    "discovered": 2,
+    "recall": 1.0,
+    "products": ["veilsort", "skiplet"],
+    "basis": "independent discovery from historical distribution evidence and local source/bundle evidence"
+  },
+  "completion_gate": "shipping recall must equal 1.0; current portfolio remains blocked by Product A implementation identity orphan"
+}

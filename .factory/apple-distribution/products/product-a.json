@@ -1,0 +1,45 @@
+{
+  "id": "product-a",
+  "platform": "iOS/iPadOS",
+  "app_type": "local microphone app for a child-directed pet experiment",
+  "factory_support_state": "PARTIAL",
+  "software_production_ready": false,
+  "default_blocking_issue": 42,
+  "identity": {
+    "internal_codename": "Product A",
+    "public_name": "",
+    "candidate_public_name": "Mews & Woofs",
+    "authorized": false,
+    "blocking_issue": 35,
+    "product_purpose": "A creature-led local pet-human exchange with a small living world that responds to the pet.",
+    "customer_zero_alignment": null,
+    "authorization_evidence": []
+  },
+  "metadata": {
+    "name": "",
+    "subtitle": "",
+    "description": "",
+    "keywords": "",
+    "category": "",
+    "copyright": "",
+    "support_url": "",
+    "privacy_url": ""
+  },
+  "privacy": {"accessed_data": ["microphone audio"], "collected_data": [], "declared_data": []},
+  "age_rating": {"complete": false},
+  "screenshots": {"valid": false},
+  "review_information": {"complete": false},
+  "purchases": {"applicable": false, "configured": false},
+  "export_compliance": {"decided": false},
+  "human_authorized": false,
+  "evidence": {
+    "archive": "/var/folders/m6/j69tcnk52059qvy0_6hnxk5r0000gq/T/opencode/ProductA-distribution-ef94f24.xcarchive",
+    "archive_inspection": ".factory/artifacts/evidence/apple-distribution/product-a-archive-inspection.json",
+    "archive_commit": "ef94f2492d3e73d98fb883320bad2902c64f3e15",
+    "archive_development_signed": false,
+    "processed_build": false,
+    "external_testflight": false,
+    "customer_zero": true,
+    "accessibility": false
+  }
+}

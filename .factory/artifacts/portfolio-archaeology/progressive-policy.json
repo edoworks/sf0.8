@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "stage_1": "METADATA_ONLY",
+  "max_deep_candidates": 4,
+  "unknown_fails_closed": true,
+  "deletion_during_triage": false,
+  "optimization": "expected knowledge value / estimated analysis cost",
+  "source_of_truth": "scripts/progressive_archaeology.py"
+}

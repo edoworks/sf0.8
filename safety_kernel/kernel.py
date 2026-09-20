@@ -22,6 +22,11 @@ HUMAN_ONLY = frozenset(
         "deploy",
         "delete",
         "github_write",
+        "install_dependency",
+        "activate_skill",
+        "configure_mcp",
+        "install_plugin",
+        "external_contribution",
     }
 )
 KNOWN_OPERATIONS = frozenset(
@@ -201,7 +206,7 @@ class SafetyKernel:
             reason = "malformed_request"
         elif request.operation not in KNOWN_OPERATIONS:
             reason = "unknown_operation"
-        elif request.operation in HUMAN_ONLY:
+        elif request.operation in HUMAN_ONLY or self._aliases_human_only_effect(request):
             decision = Decision.REQUIRE_HUMAN_AUTHORIZATION
             reason = "human_only_operation"
         elif capability is None:
@@ -247,6 +252,43 @@ class SafetyKernel:
             self._budget = self._budget.consume(request)
             self._authorized_requests.add(self._request_key(request))
         return decision
+
+    @staticmethod
+    def _aliases_human_only_effect(request: Request) -> bool:
+        if request.operation not in {"run_command", "network_request"}:
+            return False
+        declared = str(request.arguments.get("effect_operation", ""))
+        if declared in HUMAN_ONLY:
+            return True
+        argv = request.arguments.get("argv", [])
+        if not isinstance(argv, list):
+            return False
+        tokens = [str(item).casefold() for item in argv]
+        command = " ".join(tokens)
+        executable = tokens[0].rsplit("/", 1)[-1] if tokens else ""
+        package_install = (
+            (executable in {"npm", "pnpm", "yarn", "uv", "cargo", "brew"} and any(token in {"install", "add"} for token in tokens[1:]))
+            or (executable.startswith("pip") and "install" in tokens[1:])
+            or (executable.startswith("python") and any(tokens[index:index + 2] == ["-m", module] for index in range(len(tokens) - 1) for module in ("pip", "pip3")) and "install" in tokens)
+        )
+        guarded = (
+            "gh skill install",
+            "gh skill update",
+            "gh skill publish",
+            "skills add",
+            "copilot plugin install",
+            "plugin marketplace add",
+            "npm install",
+            "npm add",
+            "pnpm add",
+            "yarn add",
+            "pip install",
+            "uv add",
+            "cargo install",
+            "brew install",
+            "gh pr create",
+        )
+        return package_install or any(pattern in command for pattern in guarded)
 
     def record_effect(self, request: Request, *, effect: str, result: str) -> None:
         """Record the effect after a previously authorized mediated operation."""

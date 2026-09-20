@@ -1,0 +1,57 @@
+{
+  "issue": 52,
+  "capability": "evidence-driven executive review",
+  "change_units": 4,
+  "changed_paths": [
+    ".agents/skills/executive-council/SKILL.md",
+    "scripts/executive_council.py"
+  ],
+  "reuse": {
+    "searched": 3,
+    "compatible": 1,
+    "reason": "Adapt existing Foculoom evidence primitives. Reject persona-heavy external council implementations and add only the missing evidence-integrated review glue.",
+    "discovery": {
+      "capability": "evidence-driven executive review",
+      "decision": "EXTEND_EXISTING",
+      "matches": ["customer-zero", "release-board", "evidence-strength", "human-action-queue", "governance"],
+      "specialization_reason": "External candidates simulate executive personas but do not bind recommendations to Foculoom factory, customer, portfolio, and outcome evidence."
+    },
+    "candidates": [
+      {
+        "id": "foculoom-decision-evidence-primitives",
+        "source": ".factory/customer-zero.json and existing factory evidence contracts",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "evidence-contracts",
+        "revision": "working-tree-2026-09-19",
+        "license": "Foculoom internal",
+        "security": "local metadata only",
+        "disposition": "ADAPT",
+        "reason": "Reuse canonical evidence, authority, and tracking contracts instead of creating a council platform."
+      },
+      {
+        "id": "ajayjohn-tars-think",
+        "source": "https://github.com/ajayjohn/tars-work-assistant",
+        "source_type": "SOURCE_REPOSITORY",
+        "artifact_type": "agent-skill",
+        "revision": "previewed-2026-09-19",
+        "license": "requires exact artifact review",
+        "security": "preview only; not installed or executed",
+        "disposition": "REJECT",
+        "reason": "Executive persona simulation, memory persistence, and multi-agent ceremony conflict with the minimal evidence-first Foculoom objective."
+      },
+      {
+        "id": "awesome-copilot-ai-team-orchestration",
+        "source": "https://github.com/github/awesome-copilot/tree/main/plugins/ai-team-orchestration",
+        "source_type": "CURATED_CATALOG",
+        "artifact_type": "copilot-plugin",
+        "revision": "catalog-reviewed-2026-09-19",
+        "license": "repository MIT; exact plugin review required",
+        "security": "catalog metadata only; not installed or executed",
+        "disposition": "REJECT",
+        "reason": "A multi-agent development-team plugin would add orchestration and role simulation rather than compact founder decision support."
+      }
+    ]
+  },
+  "contribution": {"classification": "internal-reusable"},
+  "shareability": {"disposition": "REUSE_CANDIDATE", "evidence": "Generated review is internal-only and founder-gated; second real consumer not established."}
+}

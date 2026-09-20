@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "purpose": "Evidence for cold-agent, reuse-control, review-contract, archaeology, and control-plane regression verification.",
+  "commands": [
+    {"command": "python3 scripts/validate-lifecycle-contract.py", "result": "PASS"},
+    {"command": "python3 scripts/select-lanes.py .factory/artifacts/portfolio-archaeology/parallel-lanes.json", "result": "PASS: ready work selected; idle_despite_ready_work=0"},
+    {"command": "python3 scripts/validate-control-plane.py", "result": "PASS"},
+    {"command": "python3 scripts/validate-reuse-registry.py", "result": "PASS"},
+    {"command": "python3 scripts/validate-ecosystem.py", "result": "PASS"},
+    {"command": "python3 scripts/validate-portfolio-audit.py", "result": "PASS"},
+    {"command": "python3 scripts/validate-review-contract.py .factory/artifacts/evidence/review-contract/complete.json", "result": "PASS"},
+    {"command": "python3 scripts/start-work.py .factory/artifacts/evidence/cold-agent/apple-preflight-task.json", "result": "PASS: CONSUME_EXISTING apple-distribution-preflight"},
+    {"command": "python3 scripts/complete-work.py .factory/artifacts/evidence/control-plane/issue-49-reconciliation.json", "result": "EXPECTED_BLOCK: exit 2 CONTROL_PLANE_BLOCKED done=false"},
+    {"command": "python3 scripts/complete-work.py .factory/artifacts/evidence/control-plane/issue-49-reconciliation.json", "result": "PASS AFTER RECONCILIATION: DONE done=true"},
+    {"command": "gh issue view 49 --json number,state,title", "result": "PASS: issue 49 CLOSED"},
+    {"command": "python3 scripts/validate-lifecycle.py", "result": "PASS"},
+    {"command": "python3 scripts/validate-automation.py", "result": "PASS"},
+    {"command": "python3 scripts/validate-apple-distribution.py --validate", "result": "PASS"},
+    {"command": "python3 scripts/validate-apple-distribution.py --product product-a", "result": "EXPECTED_PRODUCT_BLOCK: existing Product A readiness findings"},
+    {"command": "python3 scripts/validate-apple-distribution.py --product vorynce", "result": "EXPECTED_PRODUCT_BLOCK: existing Vorynce readiness findings"},
+    {"command": "./scripts/verify-safety-kernel.sh", "result": "PASS"},
+    {"command": "python3 -m unittest discover -s tests -p 'test_*.py'", "result": "PASS: 108 tests"},
+    {"command": "git diff --check", "result": "PASS"}
+  ],
+  "unexecuted_claims": [],
+  "external_writes": {"issue_49": "BLOCKED_BY_PERMISSION", "publication": "NOT_ATTEMPTED", "upstream": "NOT_ATTEMPTED", "deletion": "NOT_ATTEMPTED"}
+}

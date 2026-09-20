@@ -1,0 +1,107 @@
+{
+  "product": "edoworks/product-a",
+  "issue": 31,
+  "search_date": "2026-09-18",
+  "search_scope": [
+    "skills.sh",
+    "OpenCode documentation",
+    "GitHub agent-skills repositories",
+    "Apple Developer documentation",
+    "Swift Package Index (unavailable: HTTP 403)"
+  ],
+  "candidates": [
+    {
+      "id": "opencode-agent-skills",
+      "source": "https://opencode.ai/docs/skills/",
+      "classification": "adopt",
+      "reason": "Authoritative support for portable SKILL.md discovery and required metadata; use the format without importing third-party instructions.",
+      "license": "documentation behavior reviewed; no source copied",
+      "security": "metadata only; no installation",
+      "reuse_search": {"searched": 1, "compatible_found": 1}
+    },
+    {
+      "id": "agents-md",
+      "source": "https://agents.md/",
+      "classification": "learn-from",
+      "reason": "Portable agent-instruction convention supports a concise factory contract; no external instructions are trusted automatically.",
+      "license": "concept/reference only",
+      "security": "metadata only; no execution",
+      "reuse_search": {"searched": 1, "compatible_found": 1}
+    },
+    {
+      "id": "skills-sh-directory",
+      "source": "https://skills.sh/",
+      "classification": "learn-from",
+      "reason": "Useful discovery index across agent ecosystems, but popularity is not evidence of license, security, or quality.",
+      "license": "per-artifact review required",
+      "security": "untrusted index; no installation",
+      "reuse_search": {"searched": 1, "compatible_found": 0}
+    },
+    {
+      "id": "anthropic-agent-skills",
+      "source": "https://github.com/anthropics/skills",
+      "classification": "learn-from",
+      "reason": "Credible public skills repository; individual artifacts still require exact revision, license, prompt-safety, and dependency review.",
+      "license": "per-artifact review required",
+      "security": "untrusted repository; no execution",
+      "reuse_search": {"searched": 1, "compatible_found": 0}
+    },
+    {
+      "id": "apple-spritekit",
+      "source": "https://developer.apple.com/documentation/spritekit",
+      "classification": "adopt",
+      "reason": "Product A already uses the platform-native SpriteKit API; importing an external framework would add unnecessary dependency cost.",
+      "license": "platform documentation; no source copied",
+      "security": "trusted platform API boundary",
+      "reuse_search": {"searched": 1, "compatible_found": 1}
+    },
+    {
+      "id": "adaptive-play-session-model",
+      "source": "product-a/ProductA/AdaptivePlay.swift",
+      "change_units": 3,
+      "classification": "product-specific",
+      "reason": "Coupled to Product A interaction and audio behavior; not generalized.",
+      "reuse_search": {"searched": 1, "compatible_found": 0},
+      "publication": "blocked-until-human-ip-and-privacy-review"
+    },
+    {
+      "id": "proportional-reuse-gate",
+      "source": "edoworks/sf0.8 issue #31",
+      "change_units": 8,
+      "classification": "public-reusable",
+      "reason": "Repository-agnostic deterministic gate with no product data or dependencies.",
+      "reuse_search": {"searched": 1, "compatible_found": 0},
+      "publication": "candidate-only-human-approval-required"
+    },
+    {
+      "id": "deterministic-state-machine-testing",
+      "source": "product-a/ProductA/AdaptivePlay.swift; ProductATests/ProductATests.swift",
+      "classification": "internal-reusable",
+      "reason": "MousePhase and transition tests are promising, but the current implementation is not yet extracted into a standalone, domain-neutral package.",
+      "license": "factory/product review required",
+      "security": "local source only",
+      "reuse_search": {"searched": 1, "compatible_found": 0},
+      "publication": "defer-generalization-until-independent-interface-and-tests"
+    },
+    {
+      "id": "apple-xctest-xcuiautomation",
+      "source": "https://developer.apple.com/documentation/xctest",
+      "classification": "adopt",
+      "reason": "Use the platform test and UI-automation boundary for deterministic interaction and screenshot evidence; no external code dependency is needed.",
+      "license": "Apple documentation reference; no source copied",
+      "security": "platform API; no installation",
+      "reuse_search": {"searched": 1, "compatible_found": 1},
+      "provenance": {"retrieved": "2026-09-18", "revision": "current documentation", "author": "Apple"}
+    },
+    {
+      "id": "swift-package-index",
+      "source": "https://swiftpackageindex.com/",
+      "classification": "reject",
+      "reason": "The registry was discovered but could not be evaluated in this run because retrieval returned HTTP 403; no package was copied or installed.",
+      "license": "not evaluated",
+      "security": "not evaluated",
+      "reuse_search": {"searched": 1, "compatible_found": 0},
+      "provenance": {"retrieved": "2026-09-18", "revision": "HTTP 403", "author": "Swift Package Index"}
+    }
+  ]
+}

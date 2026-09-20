@@ -1,0 +1,872 @@
+{
+  "budget": {
+    "max_cost": 5.0,
+    "remaining_eligible_cost": 0.0
+  },
+  "candidates_found": [
+    {
+      "action": null,
+      "category": "product",
+      "cost": 0.0,
+      "dependencies": [
+        "owner revival instruction"
+      ],
+      "evidence": [
+        ".factory/portfolio.yaml",
+        "docs/decisions/2026-09-17-product-a-shelved.md"
+      ],
+      "expected_validation": [
+        "owner decision"
+      ],
+      "id": "portfolio:product-a-resume",
+      "priority": 5,
+      "required_authority": "HUMAN",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "explicitly excluded from autonomous work",
+      "source": ".factory/portfolio.yaml",
+      "state": "BLOCKED",
+      "title": "Resume Product A implementation",
+      "urgency": "LOW",
+      "value": "HIGH"
+    },
+    {
+      "action": null,
+      "category": "portfolio",
+      "cost": 0.0,
+      "dependencies": [],
+      "evidence": [
+        ".factory/artifacts/portfolio-archaeology/parallel-lanes.json"
+      ],
+      "expected_validation": [
+        "lane-specific evidence record",
+        "bounded lane validator"
+      ],
+      "id": "lane:43",
+      "priority": 1,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "bounded lane work; no deletion, publication, or product resumption",
+      "source": "parallel-lanes.json",
+      "state": "BLOCKED",
+      "title": "portfolio archaeology",
+      "urgency": "LOW",
+      "value": "HIGH"
+    },
+    {
+      "action": null,
+      "category": "portfolio",
+      "cost": 0.0,
+      "dependencies": [],
+      "evidence": [
+        ".factory/artifacts/portfolio-archaeology/parallel-lanes.json"
+      ],
+      "expected_validation": [
+        "lane-specific evidence record",
+        "bounded lane validator"
+      ],
+      "id": "lane:45",
+      "priority": 2,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "bounded lane work; no deletion, publication, or product resumption",
+      "source": "parallel-lanes.json",
+      "state": "READY",
+      "title": "historical knowledge extraction",
+      "urgency": "MEDIUM",
+      "value": "HIGH"
+    },
+    {
+      "action": null,
+      "category": "product",
+      "cost": 0.0,
+      "dependencies": [],
+      "evidence": [
+        ".factory/artifacts/portfolio-archaeology/parallel-lanes.json"
+      ],
+      "expected_validation": [
+        "lane-specific evidence record",
+        "bounded lane validator"
+      ],
+      "id": "lane:48",
+      "priority": 3,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "bounded lane work; no deletion, publication, or product resumption",
+      "source": "parallel-lanes.json",
+      "state": "READY",
+      "title": "resource hygiene classification",
+      "urgency": "MEDIUM",
+      "value": "MEDIUM"
+    },
+    {
+      "action": null,
+      "category": "portfolio",
+      "cost": 0.0,
+      "dependencies": [
+        "exact metadata/screenshots unavailable"
+      ],
+      "evidence": [
+        ".factory/artifacts/portfolio-archaeology/parallel-lanes.json"
+      ],
+      "expected_validation": [
+        "lane-specific evidence record",
+        "bounded lane validator"
+      ],
+      "id": "lane:47",
+      "priority": 4,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "bounded lane work; no deletion, publication, or product resumption",
+      "source": "parallel-lanes.json",
+      "state": "BLOCKED",
+      "title": "historical Apple re-evaluation",
+      "urgency": "LOW",
+      "value": "MEDIUM"
+    },
+    {
+      "action": null,
+      "category": "product",
+      "cost": 0.0,
+      "dependencies": [
+        "public identity and metadata authorization"
+      ],
+      "evidence": [
+        ".factory/artifacts/portfolio-archaeology/parallel-lanes.json"
+      ],
+      "expected_validation": [
+        "lane-specific evidence record",
+        "bounded lane validator"
+      ],
+      "id": "lane:42",
+      "priority": 5,
+      "required_authority": "HUMAN",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "bounded lane work; no deletion, publication, or product resumption",
+      "source": "parallel-lanes.json",
+      "state": "BLOCKED",
+      "title": "Product A distribution",
+      "urgency": "LOW",
+      "value": "MEDIUM"
+    },
+    {
+      "action": null,
+      "category": "product",
+      "cost": 0.0,
+      "dependencies": [
+        "archive and store evidence incomplete"
+      ],
+      "evidence": [
+        ".factory/artifacts/portfolio-archaeology/parallel-lanes.json"
+      ],
+      "expected_validation": [
+        "lane-specific evidence record",
+        "bounded lane validator"
+      ],
+      "id": "lane:44",
+      "priority": 6,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "bounded lane work; no deletion, publication, or product resumption",
+      "source": "parallel-lanes.json",
+      "state": "BLOCKED",
+      "title": "Vorynce distribution",
+      "urgency": "LOW",
+      "value": "MEDIUM"
+    },
+    {
+      "action": null,
+      "category": "reuse",
+      "cost": 0.0,
+      "dependencies": [
+        "source review"
+      ],
+      "evidence": [
+        ".factory/artifacts/reuse-registry.json",
+        ".factory/artifacts/portfolio-archaeology/inventory.json"
+      ],
+      "expected_validation": [
+        "reuse decision record",
+        "registry validation"
+      ],
+      "id": "reuse:cat-whispers-meowcore-persistence",
+      "priority": 20,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "MEDIUM",
+      "scope": "read-only candidate evaluation; extraction and publication are excluded",
+      "source": ".factory/artifacts/reuse-registry.json",
+      "state": "BLOCKED",
+      "title": "Evaluate reusable capability: MeowCore file-backed persistence",
+      "urgency": "MEDIUM",
+      "value": "HIGH"
+    },
+    {
+      "action": null,
+      "category": "reuse",
+      "cost": 0.0,
+      "dependencies": [],
+      "evidence": [
+        ".factory/artifacts/reuse-registry.json",
+        "scripts/ecosystem_gates.py; cold-agent test"
+      ],
+      "expected_validation": [
+        "reuse decision record",
+        "registry validation"
+      ],
+      "id": "reuse:duplicate-overlap-detector",
+      "priority": 20,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "read-only candidate evaluation; extraction and publication are excluded",
+      "source": ".factory/artifacts/reuse-registry.json",
+      "state": "READY",
+      "title": "Evaluate reusable capability: Existing shared capability overlap check",
+      "urgency": "MEDIUM",
+      "value": "HIGH"
+    },
+    {
+      "action": null,
+      "category": "reuse",
+      "cost": 0.0,
+      "dependencies": [],
+      "evidence": [
+        ".factory/artifacts/reuse-registry.json",
+        ".factory/governance.yaml; scripts/ecosystem_gates.py"
+      ],
+      "expected_validation": [
+        "reuse decision record",
+        "registry validation"
+      ],
+      "id": "reuse:rule-of-two-enforcement",
+      "priority": 20,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "read-only candidate evaluation; extraction and publication are excluded",
+      "source": ".factory/artifacts/reuse-registry.json",
+      "state": "READY",
+      "title": "Evaluate reusable capability: Second-consumer promotion rule",
+      "urgency": "MEDIUM",
+      "value": "HIGH"
+    },
+    {
+      "action": null,
+      "category": "hygiene",
+      "cost": 0.0,
+      "dependencies": [],
+      "evidence": [
+        ".factory/artifacts/portfolio-archaeology/resource-hygiene.json"
+      ],
+      "expected_validation": [
+        "resource classification evidence"
+      ],
+      "id": "hygiene:0",
+      "priority": 30,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "metadata-only report; no cleanup or deletion",
+      "source": ".factory/artifacts/portfolio-archaeology/resource-hygiene.json",
+      "state": "READY",
+      "title": "Classify DerivedData/build directories without deletion",
+      "urgency": "LOW",
+      "value": "MEDIUM"
+    },
+    {
+      "action": null,
+      "category": "hygiene",
+      "cost": 0.0,
+      "dependencies": [],
+      "evidence": [
+        ".factory/artifacts/portfolio-archaeology/resource-hygiene.json"
+      ],
+      "expected_validation": [
+        "resource classification evidence"
+      ],
+      "id": "hygiene:1",
+      "priority": 30,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "metadata-only report; no cleanup or deletion",
+      "source": ".factory/artifacts/portfolio-archaeology/resource-hygiene.json",
+      "state": "READY",
+      "title": "Classify archives and IPAs without deletion",
+      "urgency": "LOW",
+      "value": "MEDIUM"
+    },
+    {
+      "action": null,
+      "category": "hygiene",
+      "cost": 0.0,
+      "dependencies": [],
+      "evidence": [
+        ".factory/artifacts/portfolio-archaeology/resource-hygiene.json"
+      ],
+      "expected_validation": [
+        "resource classification evidence"
+      ],
+      "id": "hygiene:2",
+      "priority": 30,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "metadata-only report; no cleanup or deletion",
+      "source": ".factory/artifacts/portfolio-archaeology/resource-hygiene.json",
+      "state": "READY",
+      "title": "Classify simulator artifacts and xcresults without deletion",
+      "urgency": "LOW",
+      "value": "MEDIUM"
+    },
+    {
+      "action": null,
+      "category": "hygiene",
+      "cost": 0.0,
+      "dependencies": [],
+      "evidence": [
+        ".factory/artifacts/portfolio-archaeology/resource-hygiene.json"
+      ],
+      "expected_validation": [
+        "resource classification evidence"
+      ],
+      "id": "hygiene:3",
+      "priority": 30,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "metadata-only report; no cleanup or deletion",
+      "source": ".factory/artifacts/portfolio-archaeology/resource-hygiene.json",
+      "state": "READY",
+      "title": "Classify factory sqlite telemetry without deletion",
+      "urgency": "LOW",
+      "value": "MEDIUM"
+    },
+    {
+      "action": null,
+      "category": "knowledge",
+      "cost": 0.0,
+      "dependencies": [],
+      "evidence": [
+        ".factory/artifacts/portfolio-archaeology/preservation-manifests.json",
+        ".factory/artifacts/portfolio-archaeology/knowledge-records.json"
+      ],
+      "expected_validation": [
+        "preservation provenance record",
+        "portfolio audit validator"
+      ],
+      "id": "knowledge:preservation-batch",
+      "priority": 15,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "metadata-only review; no archive or deletion",
+      "source": ".factory/artifacts/portfolio-archaeology/audit-report.json",
+      "state": "READY",
+      "title": "Review the next preserved historical knowledge batch",
+      "urgency": "LOW",
+      "value": "HIGH"
+    },
+    {
+      "action": null,
+      "category": "rejection-analysis",
+      "cost": 0.0,
+      "dependencies": [
+        "exact historical metadata/screenshots"
+      ],
+      "evidence": [
+        ".factory/artifacts/portfolio-archaeology/apple-history.json"
+      ],
+      "expected_validation": [
+        "review regression record"
+      ],
+      "id": "rejections:historical-comparison",
+      "priority": 40,
+      "required_authority": "EXTERNAL",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "blocked until historical evidence is available",
+      "source": ".factory/artifacts/portfolio-archaeology/audit-report.json",
+      "state": "BLOCKED",
+      "title": "Compare historical App Review evidence",
+      "urgency": "LOW",
+      "value": "MEDIUM"
+    },
+    {
+      "action": [
+        "python3",
+        "scripts/validate-portfolio-audit.py"
+      ],
+      "category": "validation",
+      "cost": 0.0,
+      "dependencies": [],
+      "evidence": [
+        ".factory/artifacts/portfolio-archaeology/audit-report.json"
+      ],
+      "expected_validation": [
+        "scripts/validate-portfolio-audit.py"
+      ],
+      "id": "verification:portfolio-audit",
+      "priority": 1,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "local validator only; no external writes",
+      "source": ".factory/artifacts/portfolio-archaeology/audit-report.json",
+      "state": "READY",
+      "title": "Re-run portfolio audit and preserve current evidence",
+      "urgency": "MEDIUM",
+      "value": "HIGH"
+    },
+    {
+      "action": [
+        "./scripts/ci-status.sh"
+      ],
+      "category": "reliability",
+      "cost": 0.0,
+      "dependencies": [],
+      "evidence": [
+        "docs/ci/last-ci-result.txt"
+      ],
+      "expected_validation": [
+        "scripts/ci-status.sh"
+      ],
+      "id": "ci:status-evidence",
+      "priority": 2,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "read-only CI status inspection; no external mutation",
+      "source": "scripts/ci-status.sh",
+      "state": "READY",
+      "title": "Refresh local CI status evidence",
+      "urgency": "LOW",
+      "value": "HIGH"
+    }
+  ],
+  "candidates_rejected_or_blocked": [
+    {
+      "candidate": "portfolio:product-a-resume",
+      "reason": "candidate is blocked or not ready"
+    },
+    {
+      "candidate": "lane:43",
+      "reason": "candidate is blocked or not ready"
+    },
+    {
+      "candidate": "lane:47",
+      "reason": "candidate is blocked or not ready"
+    },
+    {
+      "candidate": "lane:42",
+      "reason": "candidate is blocked or not ready"
+    },
+    {
+      "candidate": "lane:44",
+      "reason": "candidate is blocked or not ready"
+    },
+    {
+      "candidate": "reuse:cat-whispers-meowcore-persistence",
+      "reason": "candidate is blocked or not ready"
+    },
+    {
+      "candidate": "rejections:historical-comparison",
+      "reason": "candidate is blocked or not ready"
+    }
+  ],
+  "eligible_candidates": [
+    {
+      "action": [
+        "python3",
+        "scripts/validate-portfolio-audit.py"
+      ],
+      "category": "validation",
+      "cost": 0.0,
+      "dependencies": [],
+      "evidence": [
+        ".factory/artifacts/portfolio-archaeology/audit-report.json"
+      ],
+      "expected_validation": [
+        "scripts/validate-portfolio-audit.py"
+      ],
+      "id": "verification:portfolio-audit",
+      "priority": 1,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "local validator only; no external writes",
+      "source": ".factory/artifacts/portfolio-archaeology/audit-report.json",
+      "state": "READY",
+      "title": "Re-run portfolio audit and preserve current evidence",
+      "urgency": "MEDIUM",
+      "value": "HIGH"
+    },
+    {
+      "action": [
+        "./scripts/ci-status.sh"
+      ],
+      "category": "reliability",
+      "cost": 0.0,
+      "dependencies": [],
+      "evidence": [
+        "docs/ci/last-ci-result.txt"
+      ],
+      "expected_validation": [
+        "scripts/ci-status.sh"
+      ],
+      "id": "ci:status-evidence",
+      "priority": 2,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "read-only CI status inspection; no external mutation",
+      "source": "scripts/ci-status.sh",
+      "state": "READY",
+      "title": "Refresh local CI status evidence",
+      "urgency": "LOW",
+      "value": "HIGH"
+    },
+    {
+      "action": null,
+      "category": "portfolio",
+      "cost": 0.0,
+      "dependencies": [],
+      "evidence": [
+        ".factory/artifacts/portfolio-archaeology/parallel-lanes.json"
+      ],
+      "expected_validation": [
+        "lane-specific evidence record",
+        "bounded lane validator"
+      ],
+      "id": "lane:45",
+      "priority": 2,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "bounded lane work; no deletion, publication, or product resumption",
+      "source": "parallel-lanes.json",
+      "state": "READY",
+      "title": "historical knowledge extraction",
+      "urgency": "MEDIUM",
+      "value": "HIGH"
+    },
+    {
+      "action": null,
+      "category": "product",
+      "cost": 0.0,
+      "dependencies": [],
+      "evidence": [
+        ".factory/artifacts/portfolio-archaeology/parallel-lanes.json"
+      ],
+      "expected_validation": [
+        "lane-specific evidence record",
+        "bounded lane validator"
+      ],
+      "id": "lane:48",
+      "priority": 3,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "bounded lane work; no deletion, publication, or product resumption",
+      "source": "parallel-lanes.json",
+      "state": "READY",
+      "title": "resource hygiene classification",
+      "urgency": "MEDIUM",
+      "value": "MEDIUM"
+    },
+    {
+      "action": null,
+      "category": "knowledge",
+      "cost": 0.0,
+      "dependencies": [],
+      "evidence": [
+        ".factory/artifacts/portfolio-archaeology/preservation-manifests.json",
+        ".factory/artifacts/portfolio-archaeology/knowledge-records.json"
+      ],
+      "expected_validation": [
+        "preservation provenance record",
+        "portfolio audit validator"
+      ],
+      "id": "knowledge:preservation-batch",
+      "priority": 15,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "metadata-only review; no archive or deletion",
+      "source": ".factory/artifacts/portfolio-archaeology/audit-report.json",
+      "state": "READY",
+      "title": "Review the next preserved historical knowledge batch",
+      "urgency": "LOW",
+      "value": "HIGH"
+    },
+    {
+      "action": null,
+      "category": "reuse",
+      "cost": 0.0,
+      "dependencies": [],
+      "evidence": [
+        ".factory/artifacts/reuse-registry.json",
+        "scripts/ecosystem_gates.py; cold-agent test"
+      ],
+      "expected_validation": [
+        "reuse decision record",
+        "registry validation"
+      ],
+      "id": "reuse:duplicate-overlap-detector",
+      "priority": 20,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "read-only candidate evaluation; extraction and publication are excluded",
+      "source": ".factory/artifacts/reuse-registry.json",
+      "state": "READY",
+      "title": "Evaluate reusable capability: Existing shared capability overlap check",
+      "urgency": "MEDIUM",
+      "value": "HIGH"
+    },
+    {
+      "action": null,
+      "category": "reuse",
+      "cost": 0.0,
+      "dependencies": [],
+      "evidence": [
+        ".factory/artifacts/reuse-registry.json",
+        ".factory/governance.yaml; scripts/ecosystem_gates.py"
+      ],
+      "expected_validation": [
+        "reuse decision record",
+        "registry validation"
+      ],
+      "id": "reuse:rule-of-two-enforcement",
+      "priority": 20,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "read-only candidate evaluation; extraction and publication are excluded",
+      "source": ".factory/artifacts/reuse-registry.json",
+      "state": "READY",
+      "title": "Evaluate reusable capability: Second-consumer promotion rule",
+      "urgency": "MEDIUM",
+      "value": "HIGH"
+    },
+    {
+      "action": null,
+      "category": "hygiene",
+      "cost": 0.0,
+      "dependencies": [],
+      "evidence": [
+        ".factory/artifacts/portfolio-archaeology/resource-hygiene.json"
+      ],
+      "expected_validation": [
+        "resource classification evidence"
+      ],
+      "id": "hygiene:0",
+      "priority": 30,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "metadata-only report; no cleanup or deletion",
+      "source": ".factory/artifacts/portfolio-archaeology/resource-hygiene.json",
+      "state": "READY",
+      "title": "Classify DerivedData/build directories without deletion",
+      "urgency": "LOW",
+      "value": "MEDIUM"
+    },
+    {
+      "action": null,
+      "category": "hygiene",
+      "cost": 0.0,
+      "dependencies": [],
+      "evidence": [
+        ".factory/artifacts/portfolio-archaeology/resource-hygiene.json"
+      ],
+      "expected_validation": [
+        "resource classification evidence"
+      ],
+      "id": "hygiene:1",
+      "priority": 30,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "metadata-only report; no cleanup or deletion",
+      "source": ".factory/artifacts/portfolio-archaeology/resource-hygiene.json",
+      "state": "READY",
+      "title": "Classify archives and IPAs without deletion",
+      "urgency": "LOW",
+      "value": "MEDIUM"
+    },
+    {
+      "action": null,
+      "category": "hygiene",
+      "cost": 0.0,
+      "dependencies": [],
+      "evidence": [
+        ".factory/artifacts/portfolio-archaeology/resource-hygiene.json"
+      ],
+      "expected_validation": [
+        "resource classification evidence"
+      ],
+      "id": "hygiene:2",
+      "priority": 30,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "metadata-only report; no cleanup or deletion",
+      "source": ".factory/artifacts/portfolio-archaeology/resource-hygiene.json",
+      "state": "READY",
+      "title": "Classify simulator artifacts and xcresults without deletion",
+      "urgency": "LOW",
+      "value": "MEDIUM"
+    },
+    {
+      "action": null,
+      "category": "hygiene",
+      "cost": 0.0,
+      "dependencies": [],
+      "evidence": [
+        ".factory/artifacts/portfolio-archaeology/resource-hygiene.json"
+      ],
+      "expected_validation": [
+        "resource classification evidence"
+      ],
+      "id": "hygiene:3",
+      "priority": 30,
+      "required_authority": "NONE",
+      "reversibility": "HIGH",
+      "risk": "LOW",
+      "scope": "metadata-only report; no cleanup or deletion",
+      "source": ".factory/artifacts/portfolio-archaeology/resource-hygiene.json",
+      "state": "READY",
+      "title": "Classify factory sqlite telemetry without deletion",
+      "urgency": "LOW",
+      "value": "MEDIUM"
+    }
+  ],
+  "eligible_count": 11,
+  "execution": {
+    "candidate": "verification:portfolio-audit",
+    "command": [
+      "python3",
+      "scripts/validate-portfolio-audit.py"
+    ],
+    "returncode": 0,
+    "status": "PASSED",
+    "stderr": "",
+    "stdout": "portfolio audit validation passed\n"
+  },
+  "exhaustive": true,
+  "provider_results": [
+    {
+      "candidate_ids": [
+        "portfolio:product-a-resume"
+      ],
+      "source": "portfolio",
+      "status": "PASS"
+    },
+    {
+      "candidate_ids": [
+        "lane:43",
+        "lane:45",
+        "lane:48",
+        "lane:47",
+        "lane:42",
+        "lane:44"
+      ],
+      "source": "lanes",
+      "status": "PASS"
+    },
+    {
+      "candidate_ids": [
+        "reuse:cat-whispers-meowcore-persistence",
+        "reuse:duplicate-overlap-detector",
+        "reuse:rule-of-two-enforcement"
+      ],
+      "source": "reuse",
+      "status": "PASS"
+    },
+    {
+      "candidate_ids": [
+        "hygiene:0",
+        "hygiene:1",
+        "hygiene:2",
+        "hygiene:3"
+      ],
+      "source": "hygiene",
+      "status": "PASS"
+    },
+    {
+      "candidate_ids": [
+        "knowledge:preservation-batch"
+      ],
+      "source": "knowledge",
+      "status": "PASS"
+    },
+    {
+      "candidate_ids": [
+        "rejections:historical-comparison"
+      ],
+      "source": "rejections",
+      "status": "PASS"
+    },
+    {
+      "candidate_ids": [
+        "verification:portfolio-audit"
+      ],
+      "source": "verification",
+      "status": "PASS"
+    },
+    {
+      "candidate_ids": [
+        "ci:status-evidence"
+      ],
+      "source": "ci",
+      "status": "PASS"
+    }
+  ],
+  "schema_version": 1,
+  "selected": {
+    "action": [
+      "python3",
+      "scripts/validate-portfolio-audit.py"
+    ],
+    "category": "validation",
+    "cost": 0.0,
+    "dependencies": [],
+    "evidence": [
+      ".factory/artifacts/portfolio-archaeology/audit-report.json"
+    ],
+    "expected_validation": [
+      "scripts/validate-portfolio-audit.py"
+    ],
+    "id": "verification:portfolio-audit",
+    "priority": 1,
+    "required_authority": "NONE",
+    "reversibility": "HIGH",
+    "risk": "LOW",
+    "scope": "local validator only; no external writes",
+    "source": ".factory/artifacts/portfolio-archaeology/audit-report.json",
+    "state": "READY",
+    "title": "Re-run portfolio audit and preserve current evidence",
+    "urgency": "MEDIUM",
+    "value": "HIGH"
+  },
+  "sources_searched": [
+    "portfolio",
+    "lanes",
+    "reuse",
+    "hygiene",
+    "knowledge",
+    "rejections",
+    "verification",
+    "ci"
+  ],
+  "status": "READY_WORK_FOUND",
+  "waiting_dependency_legal": false
+}

@@ -12,8 +12,10 @@ Neither is an execution target. Revival requires an explicit owner instruction.
 
 ## Active Work
 
-- **Private product:** none currently active. Mews & Woofs (`product-a`) is
-  shelved as read-only evidence; revival requires explicit owner instruction.
+- **Private product:** none. Mews & Woofs (`product-a`) is shelved and read-only.
+  Product work, autonomous resumption, publication, and release are prohibited.
+  Its knowledge and artifacts are preserved; archive eligibility is separately
+  blocked by the external repository lifecycle and incomplete release evidence.
 - **Commercial experiment:** Rung, limited to organic discovery and paid audit validation.
 
 ## Not Active
@@ -23,9 +25,10 @@ BookMarks, OllamaProbe, Rung Report, Rendit productization, and FLocal product
 development are frozen, conditional, internal-only, or technical fixtures as
 recorded in `.factory/portfolio.yaml`. Surviving code is not active authorization.
 
-Product A is archived rather than deleted. Its reusable learnings are recorded
-in `docs/decisions/2026-09-17-product-a-shelved.md`; its product repository,
-history, handoff, and evidence remain read-only reference material.
+The prior Product A direction is archived rather than deleted. Its reusable
+learnings are recorded in `docs/decisions/2026-09-17-product-a-shelved.md`;
+the current repository revival is governed by
+`docs/decisions/2026-09-18-adaptive-play-revival.md`.
 
 ## Admission Rule
 

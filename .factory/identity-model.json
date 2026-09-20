@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "entity_types": [
+    "company",
+    "product",
+    "repository",
+    "local_folder",
+    "bundle_identifier",
+    "app_store_application",
+    "app_store_release",
+    "website_domain",
+    "package_component",
+    "historical_product",
+    "experiment",
+    "reusable_artifact"
+  ],
+  "durable_identifiers": ["entity_id", "bundle_id", "app_store_id", "repository_id", "domain", "path"],
+  "relations": ["owned_by", "implemented_by", "located_at", "distributed_as", "released_as", "published_at", "contains", "historical_successor_of", "consumes", "supports"],
+  "policy": "names are descriptive only; identity resolution prefers durable identifiers and provenance"
+}

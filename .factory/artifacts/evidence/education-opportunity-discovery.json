@@ -1,0 +1,266 @@
+{
+  "schema_version": 3,
+  "artifact_id": "education-opportunity-discovery-2026-09-19",
+  "status": "validation_ready_without_external_validation",
+  "issue_first": {
+    "required": true,
+    "issue_number": 50,
+    "issue_url": "https://github.com/edoworks/sf0.8/issues/50",
+    "bound_before_material_work": true,
+    "write_preflight_evidence": "issue comment 5740225377"
+  },
+  "evidence_discipline": {
+    "direct_customer_evidence": "ABSENT",
+    "external_learning_effect_evidence": "ABSENT",
+    "external_payment_evidence": "ABSENT",
+    "interpretation_is_not_evidence": true,
+    "external_behavior_change_evidence": "ABSENT",
+    "unsupported_claims_downgraded": true
+  },
+  "evidence_frontier": {
+    "reached": true,
+    "machine_obtainable": ["PUBLIC_RESEARCH", "COMPETITOR_EVIDENCE", "REVIEWS", "TECHNICAL_FEASIBILITY", "PUBLIC_PRICING", "EXISTING_ALTERNATIVE"],
+    "external_human_required": ["OBSERVED_BEHAVIOR", "INTERVIEW", "WORKFLOW_OBSERVATION", "LEARNING_OUTCOME", "REPEATED_USAGE_REQUEST", "DEPOSIT", "PREORDER", "PURCHASE", "REPEAT_PURCHASE"],
+    "stop_reason": "Remaining uncertainty is about real people, learning, behavior change, and payment; more autonomous research cannot materially resolve it.",
+    "next_action": "Run the cheapest human experiment and wait for admissible external results."
+  },
+  "state_catalog": {
+    "states": ["DISCOVERED", "HYPOTHESIS", "EVIDENCE-WEAK", "VALIDATION-READY", "VALIDATED", "FALSIFIED", "PARKED", "KILLED"],
+    "meaning": {
+      "DISCOVERED": "Observed or sourced opportunity signal recorded without interpretation.",
+      "HYPOTHESIS": "Plausible claim requiring external falsification.",
+      "EVIDENCE-WEAK": "Some external signal exists but it is insufficient for validation readiness.",
+      "VALIDATION-READY": "Customer, trigger, workaround, measurable gate, and experiment are specified.",
+      "VALIDATED": "Required external behavioral and outcome evidence has passed the declared gate.",
+      "FALSIFIED": "A declared pain, outcome, or switching assumption failed its falsification test.",
+      "PARKED": "Not worth active validation until a named evidence gap is closed.",
+      "KILLED": "Explicitly discontinued because of evidence, safety, economics, or strategic failure."
+    },
+    "transition_evidence_required": ["from", "to", "reason", "evidence_reference"]
+  },
+  "evidence_ledger": [
+    {
+      "id": "R1",
+      "source": "UNESCO 2023 generative AI education guidance",
+      "observed_evidence": "The guidance discusses privacy, age-appropriate use, human-centred design, and validation requirements.",
+      "interpretation": "Child-facing AI experiments have material safety and governance burden.",
+      "assumption": "Those burdens materially affect this factory's experiment choice.",
+      "unverified_claim": "The guidance does not prove demand, learning improvement, or payment.",
+      "class": "RESEARCH_EVIDENCE"
+    },
+    {
+      "id": "R2",
+      "source": "RAND teacher stress report",
+      "observed_evidence": "Survey respondents reported workload, technology burden, and stress in the studied period.",
+      "interpretation": "Teacher adaptation and checking work may be costly jobs.",
+      "assumption": "The studied burden is current for a reachable teacher Customer Zero.",
+      "unverified_claim": "The report does not prove a buyer, product gap, or willingness to pay.",
+      "class": "RESEARCH_EVIDENCE"
+    },
+    {
+      "id": "R3",
+      "source": "WWC regression-discontinuity standards",
+      "observed_evidence": "Credible learning claims require stronger evaluation than usage or satisfaction metrics.",
+      "interpretation": "Experiments must measure transfer and delayed retention, not engagement alone.",
+      "assumption": "A cheap deterministic pre/post experiment can detect a useful signal.",
+      "unverified_claim": "The standards do not validate any listed concept.",
+      "class": "METHOD_EVIDENCE"
+    },
+    {
+      "id": "U1",
+      "source": "Khan Academy public App Store listing/reviews",
+      "observed_evidence": "Public ratings and selected reviews contain positive usability signals and at least one reported correctness/trust concern.",
+      "interpretation": "Free practice and explanation are credible substitutes and trust may matter.",
+      "assumption": "The selected public corpus is relevant to the target Customer Zero.",
+      "unverified_claim": "Ratings do not prove learning, unmet demand, or payment for a substitute.",
+      "class": "PUBLIC_USER_SIGNAL"
+    },
+    {
+      "id": "U2",
+      "source": "Duolingo public App Store listing/reviews",
+      "observed_evidence": "Public ratings and selected reviews praise short practice and usability.",
+      "interpretation": "Short sessions can be an adoption pattern, not proof of mastery.",
+      "assumption": "The target learner and job resemble the review population.",
+      "unverified_claim": "Ratings do not prove durable learning or willingness to pay for these concepts.",
+      "class": "PUBLIC_USER_SIGNAL"
+    },
+    {
+      "id": "F1",
+      "source": ".factory/customer-zero.json and factory evidence bundle",
+      "observed_evidence": "The factory has internal customer-zero, privacy, accessibility, and release contracts, but no education interview, observation, artifact, or payment record.",
+      "interpretation": "The factory can run bounded experiments but has no education validation evidence.",
+      "assumption": "Existing local-first and evidence gates are useful without becoming education infrastructure.",
+      "unverified_claim": "Internal factory capability is not customer evidence.",
+      "class": "FACTORY_EVIDENCE"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "proof-tiles",
+      "name": "Proof Tiles",
+      "state": "HYPOTHESIS",
+      "state_reason": "Plausible learning mechanism; no direct user, transfer, repeat-use, or payment evidence.",
+      "customer_zero": "A homeschooling parent with a recent fraction-transfer incident.",
+      "substitution": {
+        "job": "Know whether a learner can use one narrow concept independently.",
+        "pain": "A parent cannot distinguish recognition from transferable understanding.",
+        "trigger": "A recent failed or ambiguous novel task.",
+        "current_workaround": "Worksheets, answer keys, parent explanation, tutor, or Khan practice.",
+        "cost_of_workaround": "Adult time, repeated checking, uncertainty, and possible unnecessary instruction.",
+        "why_current_workaround_fails": "Completion or correct answers may not reveal transfer without hints.",
+        "proposed_substitute": "A deterministic experiment artifact requiring prediction, manipulation, explanation, transfer, and delayed retest.",
+        "switching_cost": "Time to recruit, trust a new task, and replace familiar worksheets or free practice.",
+      "payment_evidence": {"strongest_observed": "NONE", "ladder_stage": "stated_interest_not_observed"}
+      },
+      "experiment": "E1-proof-tiles",
+      "kill_criteria": ["fewer than 3 of 5 improve on preregistered transfer", "adult rescue exceeds the predeclared threshold", "no payment, deposit, referral, or repeat scheduling after two attempts"]
+    },
+    {
+      "id": "side-by-side-spark",
+      "name": "Side-by-Side Spark",
+      "state": "HYPOTHESIS",
+      "state_reason": "Homework conflict is explicitly unverified; no observed family interaction or payment evidence exists.",
+      "customer_zero": "A parent with a recent documented homework argument.",
+      "substitution": {
+        "job": "Get through a homework friction while preserving child explanation and parent confidence.",
+        "pain": "Parent intervention can become repeated explanation, conflict, or answer leakage.",
+        "trigger": "A real homework session that recently escalated.",
+        "current_workaround": "Parent explains, searches, uses YouTube/Khan/ChatGPT, hires help, or stops intervening.",
+        "cost_of_workaround": "Conflict time, delayed completion, dependency, and reduced child independence.",
+        "why_current_workaround_fails": "The workaround may optimize completion rather than an independent explanation.",
+        "proposed_substitute": "A short non-answer-giving parent-child visual probe observed during real homework.",
+        "switching_cost": "Family time, parent trust, setup friction, and changing an established homework ritual.",
+      "payment_evidence": {"strongest_observed": "NONE", "ladder_stage": "stated_interest_not_observed"}
+      },
+      "experiment": "E2-side-by-side-spark",
+      "kill_criteria": ["no measurable interaction change", "child independence does not improve", "no repeat session, referral, deposit, or purchase"]
+    },
+    {
+      "id": "misconception-lens",
+      "name": "Misconception Lens",
+      "state": "HYPOTHESIS",
+      "state_reason": "Teacher workload is research-supported but the exact workflow, buyer, artifact access, and payment trigger are unverified.",
+      "customer_zero": "A teacher with a recent exit-ticket sorting burden and permitted anonymized artifacts.",
+      "substitution": {
+        "job": "Diagnose patterns in student work and choose the next instructional action.",
+        "pain": "Manual sorting consumes planning time and may not produce a changed action.",
+        "trigger": "A recent planning block spent sorting real work.",
+        "current_workaround": "Paper sorting, spreadsheet/LMS export, answer key, teacher judgment, or colleague help.",
+        "cost_of_workaround": "Planning time, delayed feedback, and opportunity cost of instructional action.",
+        "why_current_workaround_fails": "Time pressure may prevent consistent diagnosis or next-step selection.",
+        "proposed_substitute": "Manual generation of a proposed diagnosis from one anonymized artifact before software exists.",
+        "switching_cost": "Privacy review, trust in diagnosis, workflow integration, and procurement friction.",
+      "payment_evidence": {"strongest_observed": "NONE", "ladder_stage": "stated_interest_not_observed"}
+      },
+      "experiment": "E3-misconception-lens",
+      "kill_criteria": ["five teachers do not show the same repeated burden", "instructional action does not change", "no repeat request or paid pilot"]
+    },
+    {
+      "id": "source-detective",
+      "name": "Source Detective",
+      "state": "PARKED",
+      "state_reason": "Mechanism is plausible but customer, trigger, distribution, and payment evidence are absent; no active validation spend justified.",
+      "customer_zero": "A learner or adult responsible for a recent AI-generated false claim incident.",
+      "substitution": {
+        "job": "Decide whether a claim is supported before relying on it.",
+        "pain": "Fluent answers can be mistaken for trustworthy evidence.",
+        "trigger": "A recent false or disputed AI-generated claim.",
+        "current_workaround": "Teacher lesson, browser search, parent review, or media-literacy worksheet.",
+        "cost_of_workaround": "Review time and risk of repeating a false claim.",
+        "why_current_workaround_fails": "Review quality depends on adult time and source literacy.",
+        "proposed_substitute": "Curated claim-comparison experiment with provenance inspection.",
+        "switching_cost": "Content curation, trust, and classroom adoption.",
+        "payment_evidence": {"strongest_observed": "NONE", "ladder_stage": "none"}
+      },
+      "experiment": null,
+      "kill_criteria": ["remain parked until a recent incident and reachable buyer are documented"]
+    },
+    {
+      "id": "question-garden",
+      "name": "Question Garden",
+      "state": "PARKED",
+      "state_reason": "Curiosity loss and passive consumption are unverified; search, YouTube, libraries, and existing apps are strong substitutes.",
+      "customer_zero": "A learner with a recent abandoned inquiry and an adult willing to observe it.",
+      "substitution": {
+        "job": "Turn a question into a completed, sourced, testable artifact.",
+        "pain": "Interest may end in passive content consumption rather than completed work.",
+        "trigger": "A recently abandoned question or project.",
+        "current_workaround": "Search, YouTube, library, parent recommendation, or educational app.",
+        "cost_of_workaround": "Attention and time without a retained artifact or transfer evidence.",
+        "why_current_workaround_fails": "Abundance can produce browsing without a bounded next action.",
+        "proposed_substitute": "A curated inquiry trail ending in a sourced artifact.",
+        "switching_cost": "Content curation and replacing familiar discovery tools.",
+        "payment_evidence": {"strongest_observed": "NONE", "ladder_stage": "none"}
+      },
+      "experiment": null,
+      "kill_criteria": ["remain parked until a repeated abandonment pattern and buyer trigger are documented"]
+    }
+  ],
+  "experiment_contract": {
+    "artifact_types": ["EXPERIMENT_ARTIFACT", "PROTOTYPE", "PRODUCT"],
+    "experiment_artifact_is_not_product": true,
+    "learning_gate": ["BEFORE", "EXPERIENCE", "IMMEDIATE_AFTER", "NOVEL_TRANSFER_TASK", "48_HOUR_RETEST"],
+    "monetization_ladder": ["stated_interest", "waitlist_email", "interview", "request_for_access", "referral", "deposit_preorder", "purchase", "repeat_purchase"],
+    "strongest_behavior_required": true,
+    "behavior_change_evidence": ["independent_understanding_and_less_adult_rescue", "changed_parent_child_homework_interaction", "changed_teacher_instructional_action"],
+    "no_subscription_default": true,
+    "safety_checks": ["privacy", "data_minimization", "inappropriate_output", "hallucination", "persuasive_behavior", "dependency", "parental_involvement", "age_appropriateness", "ai_disclosure", "network_model_dependency"],
+    "child_data_preference": "avoid_collection"
+  },
+  "experiments": [
+    {
+      "id": "E1-proof-tiles",
+      "type": "EXPERIMENT_ARTIFACT",
+      "hypothesis": "One deterministic visual sequence improves independent transfer for one narrow concept.",
+      "method": "Paper or local artifact; preregister before score; observe adult rescue; run before, experience, immediate after, novel transfer, and 48-hour retest.",
+      "payment_test": "Request a real $9.99 purchase or refundable deposit for the next concept; record the strongest ladder stage.",
+      "gate": "3/5 transfer improvement, 3/5 complete without adult rescue, and 2/5 payment/deposit/referral behavior.",
+      "information_value": {"cost": "LOW", "human_time": "LOW", "implementation": "PAPER_OR_LOCAL_STATIC", "safety_burden": "LOW", "uncertainty_reduction": "HIGH", "reversibility": "HIGH"},
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "E2-side-by-side-spark",
+      "type": "EXPERIMENT_ARTIFACT",
+      "hypothesis": "A bounded non-answer-giving intervention materially changes a real homework interaction.",
+      "method": "Observe baseline homework session, introduce the probe, and record intervention, repeated explanation, friction, completion, independence, and interaction change.",
+      "payment_test": "Request a real $14.99 purchase, deposit, referral, or scheduled repeat; surveys are not sufficient.",
+      "gate": "interaction improves without answer leakage, child explains independently, repeat use occurs, and payment behavior is observed.",
+      "information_value": {"cost": "LOW", "human_time": "MEDIUM", "implementation": "NONE", "safety_burden": "MEDIUM", "uncertainty_reduction": "HIGH", "reversibility": "HIGH"},
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "E3-misconception-lens",
+      "type": "EXPERIMENT_ARTIFACT",
+      "hypothesis": "Manual diagnosis from permitted anonymized artifacts saves teacher time and changes instructional action.",
+      "method": "Collect no student data in the factory; observe current time, manually generate result, measure diagnosis, time saved, action change, repeat request, and pilot behavior.",
+      "payment_test": "Two teachers must accept a paid pilot after five independently show the same burden.",
+      "gate": "No software prototype until workflow repetition and paid-pilot behavior are demonstrated.",
+      "information_value": {"cost": "MEDIUM", "human_time": "HIGH", "implementation": "MANUAL_CONCIERGE", "safety_burden": "HIGH", "uncertainty_reduction": "HIGH", "reversibility": "HIGH"},
+      "status": "NOT_RUN"
+    }
+  ],
+  "factory_learning": {
+    "validated_pain": [],
+    "falsified_pain": [],
+    "current_workaround": [],
+    "switching_behavior": [],
+    "willingness_to_pay_evidence": [],
+    "learning_effect_evidence": [],
+    "behavior_change_evidence": [],
+    "external_observations": [],
+    "failed_assumptions": ["internal plausibility implies external opportunity", "stated willingness to pay is payment evidence", "software is the incumbent"],
+    "reusable_interaction_patterns": ["local deterministic interaction", "before/after/transfer/delayed-retention measurement", "adult-rescue observation"],
+    "candidate_shared_components": ["experiment evidence validator", "monetization ladder record", "safety checklist record"],
+    "candidate_components_rule_of_two": "candidates only; no shared education abstraction until two independent real consumers require the same tested capability",
+    "safety_findings": ["avoid child data collection", "avoid open-ended child AI", "do not claim educational effectiveness without evidence"],
+    "experiment_methodology": ["observe real workaround", "preregister measurable outcome", "prefer cheapest falsifying artifact", "record failures structurally"]
+  },
+  "rejected_or_out_of_scope": ["open-ai-tutor", "generic-ai-education-platform", "education-framework", "adaptive-engine", "mastery-platform", "subscription-first-assumption"],
+  "human_required": ["customer recruitment", "child observation", "adult consent", "teacher artifact permission", "educator review", "payment validation", "educational claims", "external publication"],
+  "experiment_kits": {
+    "root": ".factory/experiments/education/",
+    "shared": ["protocol.md", "participant-script.md", "observation-sheet.md", "results-schema.json"],
+    "specific": ["proof-tiles-material.md", "side-by-side-spark-material.md", "misconception-lens-material.md"],
+    "results_ingestion": "python3 scripts/ingest-education-result.py <record> <result> <output>"
+  }
+}

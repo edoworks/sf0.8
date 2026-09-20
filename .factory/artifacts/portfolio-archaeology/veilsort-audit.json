@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "product_id": "veilsort",
+  "identity": {
+    "bundle_id": "com.foculoom.veilsort",
+    "repository": "foculoom/veilsort",
+    "local_source": "/Users/hello/foculoom/products/veilsort",
+    "website": "/Users/hello/foculoom/web/veilsort.com",
+    "historical_distribution_record": "/Users/hello/sf0.7/factory/app-portfolio.json",
+    "source_state": "dirty feature/app-review-subscription-disclosures"
+  },
+  "distribution": {
+    "historical_app_store_state": "Removed from App Store",
+    "historical_verification": "/Users/hello/sf0.7/evidence/inc-014/veilsort-verification.txt",
+    "current_authoritative_app_store_connect_access": "UNAVAILABLE_IN_THIS_RUN",
+    "contradiction": "local release work and historical distribution evidence exist, but current store state was not queried"
+  },
+  "build": {
+    "manifest": "/Users/hello/foculoom/products/veilsort/project.yml",
+    "marketing_version": "2.3.0",
+    "build": "20260809.3",
+    "deployment_target": "iOS 26.0",
+    "historical_build_evidence": "Release build succeeded; iPad UI assertion remains a known matrix failure"
+  },
+  "quality_signals": {
+    "tests": "135 unit tests passed; approximately 15 UI tests with one iPad destination assertion failure",
+    "privacy": "PRD and privacy claims require release-group reconciliation",
+    "accessibility": "Accessibility Nutrition Labels and manual VoiceOver/Dynamic Type evidence are pending",
+    "metadata": "Six App Store screenshots require replacement; metadata alignment remains in progress",
+    "monetization": "monthly $2.99 and yearly $14.99 StoreKit 2 subscriptions; sandbox/TestFlight validation pending",
+    "known_blocker": "FIX-06 owner-only App Groups distribution profile/signing action"
+  },
+  "lifecycle": {
+    "current": "SHIPPING",
+    "next": "OBSERVE",
+    "candidate": "IMPROVEMENT_CANDIDATE",
+    "release_candidate": "BLOCKED_EXTERNAL_AND_HUMAN",
+    "publication_authorized": false
+  },
+  "improvement_delta": [
+    "reconcile App Store metadata and screenshots with v2.3 behavior",
+    "complete accessibility audit and labels",
+    "validate StoreKit sandbox/TestFlight purchase and restore flows",
+    "resolve App Groups signing/profile blocker",
+    "run clean-checkout build and full device/UI matrix"
+  ]
+}

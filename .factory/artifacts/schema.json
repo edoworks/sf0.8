@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edoworks.ai/factory/artifact.schema.json",
+  "title": "Factory artifact record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "version", "kind", "status", "source", "license", "provenance", "security", "verification", "publication"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._/-]*$"},
+    "title": {"type": "string", "minLength": 1},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "kind": {"enum": ["tool", "template", "documentation", "test-fixture"]},
+    "status": {"enum": ["candidate", "validated", "publication-ready", "blocked"]},
+    "source": {
+      "type": "object", "additionalProperties": false,
+       "required": ["repository", "path", "revision", "author", "evaluated_at"],
+      "properties": {
+        "repository": {"type": "string", "minLength": 1},
+        "path": {"type": "string", "pattern": "^[^/].*"},
+        "revision": {"type": "string", "minLength": 1}
+        ,"author": {"type": "string", "minLength": 1}
+        ,"evaluated_at": {"type": "string", "minLength": 1}
+      }
+    },
+    "license": {
+      "type": "object", "additionalProperties": false,
+      "required": ["spdx", "file", "compatibility_checked"],
+      "properties": {
+        "spdx": {"enum": ["Apache-2.0", "MIT", "CC-BY-4.0"]},
+        "file": {"type": "string", "minLength": 1},
+        "compatibility_checked": {"type": "boolean"}
+      }
+    },
+    "provenance": {
+      "type": "object", "additionalProperties": false,
+       "required": ["origin", "derived_from", "human_reviewed", "modifications", "attribution"],
+      "properties": {
+        "origin": {"type": "string", "minLength": 1},
+        "derived_from": {"type": "array", "items": {"type": "string"}},
+        "human_reviewed": {"type": "boolean"},
+        "review_note": {"type": "string"}
+        ,"modifications": {"type": "string", "minLength": 1}
+        ,"attribution": {"type": "string", "minLength": 1}
+      }
+    },
+    "security": {
+      "type": "object", "additionalProperties": false,
+      "required": ["external_input", "execution", "secrets_scan"],
+      "properties": {
+        "external_input": {"enum": ["none", "untrusted"]},
+        "execution": {"enum": ["not-executed", "local-only"]},
+        "secrets_scan": {"enum": ["passed", "not-run", "blocked"]}
+      }
+    },
+    "verification": {
+      "type": "object", "additionalProperties": false,
+      "required": ["tests", "docs"],
+      "properties": {
+        "tests": {"type": "string", "minLength": 1},
+        "docs": {"type": "string", "minLength": 1},
+        "provenance": {"type": "string", "minLength": 1}
+      }
+    },
+  "publication": {
+      "type": "object", "additionalProperties": false,
+      "required": ["human_approval_required", "approved"],
+      "properties": {
+        "human_approval_required": {"const": true},
+        "approved": {"const": false}
+      }
+   },
+   "maintenance": {
+     "type": "object", "additionalProperties": false,
+     "required": ["owner", "next_review"],
+     "properties": {
+       "owner": {"type": "string", "minLength": 1},
+       "next_review": {"type": "string", "minLength": 1}
+     }
+   }
+  }
+}

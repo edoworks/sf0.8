@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "fixture_id": "historical-vorynce-2.3.0-rejection",
+  "historical_evidence_only": true,
+  "source": "sf0.7/evidence/inc-010/verification.txt",
+  "literal_apple_reason_recovered": false,
+  "reusable_failure_classes": [
+    "universal orientation evidence gap",
+    "paywall disclosure evidence gap",
+    "missing pre-submit review-notes gate"
+  ],
+  "product_fixture": {
+    "id": "historical-vorynce-2.3.0",
+    "platform": "iOS/iPadOS",
+    "app_type": "on-device voice capture and organization app",
+    "default_blocking_issue": 47,
+    "universal_device_families": true,
+    "identity": {"internal_codename": "Vorynce", "public_name": "Vorynce", "authorized": true, "blocking_issue": 47, "customer_zero_alignment": true},
+    "discoverability": {"reviewed": true},
+    "metadata": {"name": "Vorynce", "subtitle": "Local voice organization", "description": "Local voice organization", "keywords": "voice,local", "category": "Productivity", "copyright": "Foculoom", "support_url": "https://vorynce.com/support", "privacy_url": "https://vorynce.com/privacy"},
+    "privacy": {"collected_data": [], "declared_data": []},
+    "age_rating": {"complete": true},
+    "screenshots": {"valid": true, "reviewer_validated": true},
+    "review_information": {"complete": true},
+    "purchases": {"applicable": true, "configured": true, "disclosure_evidence": false},
+    "export_compliance": {"decided": true},
+    "evidence": {"archive": "historical-archive-reference", "processed_build": true, "external_testflight": true, "customer_zero": true, "accessibility": true, "orientation_matrix": false}
+  }
+}

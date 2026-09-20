@@ -42,19 +42,23 @@ class LifecycleValidationTests(unittest.TestCase):
         errors = MODULE.portfolio_errors(fixture)
         self.assertTrue(any("lacks release evidence" in error for error in errors))
 
-    def test_active_product_must_exist_as_active_repo(self):
+    def test_shelved_product_is_not_the_active_private_product(self):
         fixture = self.portfolio.replace(
             "active_private_product: null",
-            "active_private_product: edoworks/other-product",
+            "active_private_product: edoworks/product-a",
         )
         errors = MODULE.portfolio_errors(fixture)
-        self.assertTrue(any("active private product" in error for error in errors))
+        self.assertTrue(any("active private product is not active" in error for error in errors))
 
-    def test_no_active_private_product_is_valid_for_shelved_portfolio(self):
-        self.assertNotIn(
-            "active private product is not active in the repo registry",
-            MODULE.portfolio_errors(self.portfolio),
+    def test_shelved_private_product_is_valid_with_owner_resume_gate(self):
+        self.assertEqual(MODULE.portfolio_errors(self.portfolio), [])
+
+    def test_shelved_private_product_without_revival_issue_is_still_valid(self):
+        fixture = self.portfolio.replace(
+            "    revival_issue: https://github.com/edoworks/sf0.8/issues/30\n", ""
         )
+        errors = MODULE.portfolio_errors(fixture)
+        self.assertEqual(errors, [])
 
     def test_stale_continuation_is_blocked(self):
         errors = MODULE.continuation_errors(

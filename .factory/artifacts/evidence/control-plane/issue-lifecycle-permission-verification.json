@@ -1,0 +1,22 @@
+{
+  "issue": 54,
+  "status": "VERIFIED_AFTER_RESTART",
+  "verified": {
+    "focused_tests": "80 passed",
+    "full_tests": "162 passed",
+    "resolved_config_drift_check": "PASS via opencode debug config --pure",
+    "dynamic_change_ledgers": "PASS",
+    "safety_kernel": "PASS",
+    "factory_validators": "PASS",
+    "whitespace": "PASS"
+  },
+  "pending": [],
+  "security": {
+    "issue_mutations": "repo-scoped ask",
+    "generic_gh_api": "deny",
+    "owner_identity_query": "allow",
+    "compound_commands": "deny",
+    "auto_mode_issue_mutation": "prohibited"
+  },
+  "active_session_probe": "PASS: after a full process restart, the resolved issue and gh api rules exactly match tests/permission_policy_fixture.json"
+}

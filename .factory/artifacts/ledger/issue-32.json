@@ -1,0 +1,22 @@
+{
+  "issue": 32,
+  "change_units": 12,
+  "reuse": {
+    "searched": 5,
+    "compatible": 0,
+    "reason": "Apple documentation and local/public skill inventories were reviewed; no Apple-maintained OpenCode-compatible skill or existing sf0.8 experience-review contract was found. Native Apple APIs remain product-side dependencies, so the small validator is new factory glue.",
+    "discovery": {"capability": "Foculoom review contract", "decision": "BUILD_NEW", "matches": [], "specialization_reason": "No existing contract required the implementation handoff."}
+  },
+  "candidates": [
+    {"source": "Apple Developer documentation", "disposition": "LEARN_FROM", "reason": "Authoritative evolving source; no code copied."},
+    {"source": "Apple HIG and accessibility guidance", "disposition": "LEARN_FROM", "reason": "Use system conventions and accessibility behavior rather than recreate them."},
+    {"source": "Apple Xcode 26 release notes", "disposition": "ADOPT", "reason": "Use current native profiling/icon tooling where the product benefits."},
+    {"source": "Local Foculoom SwiftUI/game/QA skills", "disposition": "ADAPT", "reason": "Reuse existing platform and evidence patterns; add only the missing factory contract."},
+    {"source": "Apple-maintained OpenCode SKILL.md", "disposition": "REJECT", "reason": "No compatible distributable artifact was found in the reviewed authoritative/local sources."}
+  ],
+  "contribution": {"classification": "internal-reusable"},
+  "shareability": {
+    "disposition": "INTERNAL_SHARED",
+    "evidence": ".factory/artifacts/reuse-registry.json#apple-distribution-preflight; Product A and Vorynce profiles consume the contract"
+  }
+}

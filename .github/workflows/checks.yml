@@ -20,6 +20,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
       - name: Tracked-file link check (docs reference existing files)
         run: |
           # Verify roadmap links resolve to tracked files
@@ -29,6 +31,41 @@ jobs:
           echo "policy files present"
       - name: Successor lifecycle guard
         run: python3 scripts/validate-lifecycle.py
+      - name: Lifecycle contract validation
+        run: python3 scripts/validate-lifecycle-contract.py
+      - name: Bounded lane selection
+        run: python3 scripts/select-lanes.py .factory/artifacts/portfolio-archaeology/parallel-lanes.json
+      - name: Bounded idle-work discovery and exhaustion contract
+        run: python3 scripts/idle-work.py --report .factory/artifacts/evidence/idle-work-discovery.json
+      - name: Validate idle-work evidence
+        run: python3 scripts/validate-idle-work.py .factory/artifacts/evidence/idle-work-discovery.json
+      - name: Ecosystem artifact and gate validation
+        run: python3 scripts/validate-ecosystem.py
+      - name: Shareability registry validation
+        run: python3 scripts/validate-reuse-registry.py
+      - name: Review implementation-handoff contract
+        run: python3 scripts/validate-review-contract.py .factory/artifacts/evidence/review-contract/complete.json
+      - name: Control-plane reconciliation validation
+        run: python3 scripts/validate-control-plane.py
+      - name: Control-plane capability contract
+        run: python3 scripts/validate-control-plane-contract.py .factory/control-plane-requirements.json
+      - name: Human action queue validation
+        run: python3 scripts/validate-human-action-queue.py .factory/human-action-queue.json
+      - name: Education evidence and hypothesis contract
+        run: python3 scripts/validate-education-evidence.py .factory/artifacts/evidence/education-opportunity-discovery.json
+      - name: Automation-first release evidence contract
+        run: python3 scripts/validate-automation.py
+      - name: Apple distribution capability and preflight contract
+        run: python3 scripts/validate-apple-distribution.py --validate
+      - name: Changed-path ecosystem gate
+        run: >-
+          python3 scripts/validate-ci-change.py
+          --event-name "${{ github.event_name }}"
+          --before "${{ github.event.before }}"
+          --base "${{ github.event.pull_request.base.sha }}"
+          --head "${{ github.event.pull_request.head.sha || github.sha }}"
+      - name: Executive council checked-in evidence
+        run: python3 scripts/executive_council.py validate --input .factory/artifacts/executive-council/2026-09-19.json
       - name: Factory policy unit tests
         run: python3 -m unittest discover -s tests -p 'test_*.py'
       - name: Safety-kernel adversarial unit tests

@@ -1,0 +1,11 @@
+{
+  "product_id": "veilsort",
+  "publication_authorized": false,
+  "steps": [
+    {"stage": "BUILD", "state": "READY_WITH_CLEAN_CHECKOUT_REQUIRED"},
+    {"stage": "TEST", "state": "PARTIAL", "blocker": "iPad UI matrix assertion and full device evidence"},
+    {"stage": "PRODUCT_VALIDATION", "state": "BLOCKED", "blockers": ["accessibility labels", "metadata/screenshots", "privacy release group", "StoreKit sandbox receipt"]},
+    {"stage": "TESTFLIGHT_APP_STORE_UPDATE_READINESS", "state": "BLOCKED_EXTERNAL", "blocker": "FIX-06 App Groups profile and human App Store authorization"}
+  ],
+  "external_submission_performed": false
+}

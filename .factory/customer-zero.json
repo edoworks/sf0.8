@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "principle": "MADE BY CUSTOMER ZERO",
+  "products": [
+    {
+      "id": "product-a",
+      "primary_customer_zero": "A person sitting with one individual pet who wants a small living world to notice, respond to, and settle with the pet without operating a recording tool.",
+      "evidence": [
+        {"kind": "OBSERVED_FACT", "source": "product-a/docs/PRD.md", "claim": "The active product is one bounded pet-human exchange with automatic listening and no user-facing modes, history, or feedback task."},
+        {"kind": "OWNER_DIRECTED_CONSTRAINT", "source": "sf0.8/docs/decisions/2026-09-18-adaptive-play-revival.md", "claim": "The active contract is PET <-> LITTLE WORLD <-> HUMAN and local adaptive play."},
+        {"kind": "INFERENCE", "source": "product-a/docs/decisions/2026-09-17-creature-first-exchange.md", "claim": "The person values the creature's response more than control of capture mechanics."}
+      ],
+      "assumptions": ["The person will return when the pet's response feels alive and worth repeating."],
+      "desired_outcome": "The pet notices something, the world responds, and the moment ends naturally without data entry or explanation.",
+      "workaround": "They currently use their voice, a toy, or a soundboard and judge the pet's response themselves.",
+      "tolerated_friction": "A short permission step and bounded silence while the world listens.",
+      "abandonment": "The app makes them choose modes, label moments, wait through dead screens, or claims to translate or diagnose the pet.",
+      "delight": "A tiny creature response makes the next turn obvious and the pet chooses to engage.",
+      "would_build": "One creature-led surface with automatic bounded listening, local expressive responses, honest uncertainty, and no visible recorder, history, or settings system.",
+      "critical_journeys": ["pet-moment", "quiet-recovery"]
+    },
+    {
+      "id": "vorynce",
+      "primary_customer_zero": "A person moving between conversations and work who needs to say a thought once, trust it will survive, and find the next action later without typing it into several places.",
+      "evidence": [
+        {"kind": "OBSERVED_FACT", "source": "sf0.1/projects/vorynce/PRD.md", "claim": "The declared core is voice capture to transcription to organization to action, on device, with speed valued over feature depth."},
+        {"kind": "OWNER_DIRECTED_CONSTRAINT", "source": "sf0.1/projects/vorynce/PRD.md", "claim": "No cloud, account, telemetry, or capture-routing choice is in the declared v1 scope."},
+        {"kind": "INFERENCE", "source": "vorynce-rebuild/Sources/App/ContentView.swift", "claim": "The current five-surface navigation exceeds the primary fast-capture outcome and should be treated as secondary until evidence earns it."}
+      ],
+      "assumptions": ["The primary user prefers automatic action extraction when grounded and a journal fallback when speech is not actionable."],
+      "desired_outcome": "A spoken thought becomes a trustworthy, searchable next action or remains a useful journal entry, with the original audio still available.",
+      "workaround": "They leave voice notes, type tasks, and search separate systems, then manually reconcile them.",
+      "tolerated_friction": "One recording tap, one finish action, and a short on-device wait.",
+      "abandonment": "The app creates false tasks, loses the original thought, forces configuration before capture, or exposes model/engineering language instead of a useful result.",
+      "delight": "They say it once and later find the right thing already waiting for them.",
+      "would_build": "A record-first surface that remembers defaults, separates actionable speech from ordinary reflection, and makes retrieval and completion direct rather than dashboard-like.",
+      "critical_journeys": ["spoken-thought-to-action", "find-and-trust-memory"]
+    },
+    {
+      "id": "intent-compiler-modeled",
+      "primary_customer_zero": "An experienced AI-assisted builder who repeatedly writes important instructions for multiple models or agents and needs durable, comparable versions instead of disposable prompt text.",
+      "evidence": [
+        {"kind": "RESEARCH_EVIDENCE", "source": "sf0.8/docs/automation/intent-compiler-assessment.json", "claim": "The modeled product requires a versioned contract, deterministic evaluation, diff, persistence, and import/export."},
+        {"kind": "INFERENCE", "source": "sf0.8/docs/automation/intent-compiler-assessment.json", "claim": "The smallest compelling flow may be describe -> compile -> test -> compare -> save."}
+      ],
+      "assumptions": ["The hypothesized builder values durable intent and comparison more than templates, social discovery, or prompt scoring."],
+      "uncertainty": "No direct user research or shipped product behavior establishes this Customer Zero; this remains a forward-looking product-direction hypothesis.",
+      "desired_outcome": "An important intention survives model changes as a clear, testable, comparable artifact.",
+      "workaround": "They keep prompt text in files, chat history, notes, and repeated copy-paste across agents.",
+      "tolerated_friction": "Explicit compile and compare steps when they preserve meaning and version identity.",
+      "abandonment": "The tool adds a marketplace, dashboard metrics, generic chat, or opaque rewriting instead of preserving the builder's intent.",
+      "delight": "They describe the goal once and immediately see a better-formed artifact they can trust and reuse.",
+      "would_build": "A small local workspace for describing intent, compiling a versioned contract, running deterministic fixtures, comparing results, and exporting the artifact.",
+      "critical_journeys": ["intent-to-versioned-artifact"]
+    }
+  ]
+}

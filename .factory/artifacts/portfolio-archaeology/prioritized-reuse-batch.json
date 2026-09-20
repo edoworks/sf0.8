@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "source": "preservation-manifests.json and inventory.json",
+  "method": "Rank by cross-product duplication likelihood, reuse value, loss risk, Apple/privacy relevance, provenance confidence, and investigation cost.",
+  "batch": [
+    {"candidate": "vorynce-rebuild", "priority": 1, "reason": "Historical Apple rejection and current product share the highest review-regression value; provenance and tests are known."},
+    {"candidate": "docketloom-rebuild", "priority": 2, "reason": "Known SwiftData product with Apple/TestFlight evidence and likely overlap with current local-first products."},
+    {"candidate": "skiplet", "priority": 3, "reason": "Godot/iOS export and orientation evidence may recur across multiple game products."},
+    {"candidate": "catcomm/ios/MeowCore", "priority": 4, "reason": "Concrete persistence implementation with plausible cross-product reuse, but license/source review is still required."}
+  ],
+  "processed_this_session": ["vorynce-rebuild"],
+  "processed_evidence": ".factory/artifacts/reuse-registry.json#vorynce-rejection-regression",
+  "remaining_count": 135,
+  "deletion_authorized": false
+}

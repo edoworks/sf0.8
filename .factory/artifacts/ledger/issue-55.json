@@ -1,0 +1,52 @@
+{
+  "issue": 55,
+  "capability": "complete-event changed-path validation",
+  "change_units": 4,
+  "changed_paths": [
+    ".github/workflows/checks.yml",
+    "scripts/validate-ci-change.py"
+  ],
+  "reuse": {
+    "searched": 2,
+    "compatible": 0,
+    "reason": "Extend the existing changed-ledger validator with documented Git and GitHub event-range semantics; no separate integration is needed.",
+    "discovery": {
+      "capability": "complete-event changed-path validation",
+      "decision": "EXTEND_EXISTING",
+      "matches": ["verifiable external reuse discovery"],
+      "specialization_reason": "The existing validator covers ledger binding but did not select complete pull-request and push ranges."
+    },
+    "candidates": [
+      {
+        "id": "git-diff-range-semantics",
+        "source": "https://git-scm.com/docs/git-diff",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "documentation",
+        "revision": "retrieved-2026-09-19",
+        "license": "Git documentation license; reference only",
+        "security": "Documentation consulted; no external code installed or executed",
+        "disposition": "LEARN_FROM",
+        "reason": "Use two-dot push and three-dot merge-base comparison semantics."
+      },
+      {
+        "id": "github-actions-event-payloads",
+        "source": "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "documentation",
+        "revision": "retrieved-2026-09-19",
+        "license": "GitHub documentation terms; reference only",
+        "security": "Documentation consulted; no marketplace integration installed",
+        "disposition": "LEARN_FROM",
+        "reason": "Use event-provided pull-request base/head and push before/after identities."
+      }
+    ]
+  },
+  "contribution": {
+    "classification": "internal-reusable",
+    "target": "sf0.8 changed-path CI gate"
+  },
+  "shareability": {
+    "disposition": "REUSE_CANDIDATE",
+    "evidence": "First consumer is sf0.8 CI; no second independent consumer is established."
+  }
+}

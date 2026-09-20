@@ -1,0 +1,18 @@
+{
+  "command_template": "xcodebuild -project <project> -scheme <scheme> -configuration Release -destination 'generic/platform=iOS' archive",
+  "kind": "XCODE_ARCHIVE_PLAN",
+  "missing_inputs": [
+    "project",
+    "scheme",
+    "bundle_id"
+  ],
+  "product": "vorynce",
+  "schema_version": 1,
+  "secrets": "NONE",
+  "status": "BLOCKED_INPUT_MISSING",
+  "submission": {
+    "endpoint": "NOT_INVOKED",
+    "human_authorization_required": true,
+    "performed": false
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "app_type": "local microphone app for a child-directed pet experiment",
+  "apple_approval_claim": "NEVER_CLAIMED",
+  "evidence_levels": {
+    "apple_pipeline_proof": false,
+    "local_implementation_proof": false,
+    "real_release_history": false
+  },
+  "factory_support_state": "PARTIAL",
+  "findings": [
+    {
+      "classification": "WARNING",
+      "code": "METADATA_INCOMPLETE",
+      "evidence": [
+        "missing fields: name, subtitle, description, keywords, category, copyright, support_url, privacy_url"
+      ],
+      "linked_issue": 42,
+      "must_become_true": "All applicable metadata fields are populated from product truth and reviewed.",
+      "requirement_at_risk": "App Store Connect metadata must be complete and accurate.",
+      "title": "Required store metadata is missing",
+      "type": "METADATA_DEFECT",
+      "validation_layer": "STRUCTURAL",
+      "verification": "Validate the metadata draft against the App Store Connect field contract."
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "PUBLIC_IDENTITY_UNRESOLVED",
+      "evidence": [
+        "public_name=''",
+        "internal_codename='Product A'",
+        "authorized=False"
+      ],
+      "linked_issue": 35,
+      "must_become_true": "An owner-authorized public identity is recorded and traceable to the product purpose.",
+      "requirement_at_risk": "App Review metadata must identify an intentional, authorized customer-facing product.",
+      "title": "Authorized public product identity is unresolved",
+      "type": "BLOCKER",
+      "validation_layer": "SEMANTIC",
+      "verification": "Review the identity decision and retain explicit owner authorization before App Review readiness."
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "AGE_RATING_MISSING",
+      "evidence": [
+        "product manifest: age_rating.complete is false"
+      ],
+      "linked_issue": 42,
+      "must_become_true": "Accurate age-rating answers are recorded for the actual product content and behavior.",
+      "requirement_at_risk": "An unrated product cannot be App Review ready.",
+      "title": "Age rating is incomplete",
+      "type": "BLOCKER",
+      "validation_layer": "STRUCTURAL",
+      "verification": "Complete the current App Store Connect age-rating questionnaire and review it against product evidence."
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "SCREENSHOTS_INVALID",
+      "evidence": [
+        "product manifest: screenshots.valid is false"
+      ],
+      "linked_issue": 42,
+      "must_become_true": "Current-build, device-correct, opaque screenshot candidates pass dimension and traceability checks.",
+      "requirement_at_risk": "Screenshots must match supported device families, dimensions, content, and build.",
+      "title": "Screenshot candidates are invalid or absent",
+      "type": "BLOCKER",
+      "validation_layer": "STRUCTURAL",
+      "verification": "Run the existing capture pipeline and validate its asset manifest."
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "REVIEW_INFORMATION_MISSING",
+      "evidence": [
+        "product manifest: review_information.complete is false"
+      ],
+      "linked_issue": 42,
+      "must_become_true": "Reviewer contact, notes, setup instructions, demo credentials if applicable, and hardware requirements are complete.",
+      "requirement_at_risk": "Reviewers need contact information, notes, setup, and access to non-obvious functionality.",
+      "title": "App Review information is incomplete",
+      "type": "BLOCKER",
+      "validation_layer": "STRUCTURAL",
+      "verification": "Validate the review-information draft before submission preparation."
+    },
+    {
+      "classification": "WARNING",
+      "code": "ACCESSIBILITY_EVIDENCE_MISSING",
+      "evidence": [
+        "product manifest: evidence.accessibility is false"
+      ],
+      "linked_issue": 42,
+      "must_become_true": "Automated and applicable device assistive-technology evidence supports each declaration.",
+      "requirement_at_risk": "Accessibility declarations must reflect tested behavior.",
+      "title": "Accessibility evidence is incomplete",
+      "type": "EVIDENCE_GAP",
+      "validation_layer": "STRUCTURAL",
+      "verification": "Run accessibility audits and applicable device traversal checks."
+    },
+    {
+      "classification": "WARNING",
+      "code": "EXPORT_COMPLIANCE_UNDECIDED",
+      "evidence": [
+        "product manifest: export_compliance.decided is false"
+      ],
+      "linked_issue": 42,
+      "must_become_true": "The encryption inventory and applicable export answers are reviewed and recorded.",
+      "requirement_at_risk": "Encryption/export questions must be answered accurately before submission.",
+      "title": "Export compliance decision is missing",
+      "type": "EVIDENCE_GAP",
+      "validation_layer": "STRUCTURAL",
+      "verification": "Complete the current export-compliance questionnaire and retain required documentation."
+    }
+  ],
+  "human_authority": {
+    "authorized": false,
+    "required_for": "APP_REVIEW_READY -> SUBMITTED",
+    "submission_performed": false
+  },
+  "identity_review": {
+    "authorized": false,
+    "candidate_public_name": "Mews & Woofs",
+    "internal_codename": "Product A",
+    "public_name": "",
+    "state": "UNRESOLVED",
+    "workflow": "CUSTOMER_ZERO -> PURPOSE -> CANDIDATES -> COLLISION_AND_TRADEMARK_RESEARCH -> HUMAN_SELECTION -> AUTHORIZATION -> PROPAGATION"
+  },
+  "invalid_finding_types": [],
+  "platform": "iOS/iPadOS",
+  "product": "product-a",
+  "registry_capabilities": 30,
+  "release_stage": "BUILD",
+  "schema_version": 1,
+  "states": {
+    "app_review_ready": false,
+    "archive_ready": true,
+    "build_ready": false,
+    "distribution_ready": true,
+    "external_testflight_ready": false,
+    "human_authorized": false,
+    "internal_testflight_ready": false,
+    "product_validation_ready": false,
+    "software_production_ready": false,
+    "submission": "NOT_SUBMITTED",
+    "test_ready": false
+  },
+  "unjustified_manual": 0,
+  "unlinked_blockers": [],
+  "validation_layers": {
+    "REVIEWER": 0,
+    "SEMANTIC": 1,
+    "STRUCTURAL": 6
+  }
+}

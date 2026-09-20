@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "fixture": "Veilsort blind discovery baseline",
+  "method": "Replayed prior reconciliation contract before independent product-set evaluation",
+  "target_name_supplied_to_discovery": false,
+  "independent_distribution_source": "/Users/hello/sf0.7/factory/app-portfolio.json",
+  "independent_source_contains_verified_product": true,
+  "verified_product": {
+    "bundle_id": "com.foculoom.veilsort",
+    "source": "/Users/hello/foculoom/products/veilsort",
+    "distribution_state": "Removed from App Store"
+  },
+  "previous_reconciliation_entries": 9,
+  "previous_reconciliation_product_entries": 0,
+  "previous_validator_result": "PASS",
+  "veilsort_in_previous_reconciliation": false,
+  "failure_class": "KNOWN_RECORDS_VALIDATED_WITHOUT_PORTFOLIO_RECALL",
+  "preserved_before_fix": true
+}

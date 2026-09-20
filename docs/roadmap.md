@@ -65,17 +65,17 @@ Learned routing/budgets; workspace MCP server; vector DB / knowledge graph; web 
 - [ ] Dogfood through the kernel and complete collusion evaluation before any
   meaningful autonomous external action.
 
-## Session priority — 2026-09-17
+## Session priority — 2026-09-18
 
-The production-readiness audit is the active queue. Validation of this session
-passed the repository lifecycle gate, 40 factory tests, the safety-kernel suite,
-Product A doctor, and Product A verification (24 unit tests and 13 UI tests,
-one intentional skip). These results do not close physical-device or release
-gates.
+The adaptive-play revival in root issue #30 is the active product queue. The
+prior audio-conversation production-readiness audit is historical evidence, not
+the current product contract. Validation of this increment passes the lifecycle
+gate, 42 factory tests, the safety-kernel suite, Product A doctor, and Product A
+verification (6 unit tests and 3 UI tests). Real-cat, four-year-old, physical
+device, and release evidence remain open.
 
-1. **P0 Product A:** exact artifact, real audio/lifecycle, accessibility and
-   adaptive layout, current-artifact specialist review, and migration/privacy
-   inspection.
+1. **P0 Product A:** validate the adaptive little world with real cats and a
+   textless four-year-old observation before adding assets or product machinery.
 2. **P1 factory:** consolidate the governed release evidence path only after
    the archive/TestFlight path exposes the concrete missing control.
 3. **P1 factory:** prove a second-agent handoff on a real bounded task when a

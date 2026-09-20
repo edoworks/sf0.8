@@ -1,0 +1,37 @@
+{
+  "product": "factory-dogfood-snapshot",
+  "reviewed_at": "2026-09-18",
+  "design_intent": {
+    "who": "People building Apple-platform products in sf0.8",
+    "feel": "Clear, intentional, and confident rather than ceremonious",
+    "notice_first": "The user's primary experience, not factory chrome",
+    "primary_experience": "Make a product decision with evidence before custom infrastructure",
+    "can_disappear": "Catalogs, duplicate harnesses, and process that does not change a decision",
+    "motion": "Origin, causality, state, and hierarchy where the product needs it",
+    "sound": "Only when sensory feedback improves the product; otherwise silence",
+    "physicality": "Direct manipulation and native touch/gesture behavior where appropriate",
+    "magic": "A small, natural platform behavior that removes friction",
+    "zero_explanation": "The next meaningful action and the result of the last one",
+    "distinctive": "Familiar Apple conventions with a specific product personality",
+    "current_apple_capabilities": "SwiftUI, App Intents, accessibility APIs, current Xcode diagnostics, and native SpriteKit where relevant"
+  },
+  "apple_capability_review": {
+    "capabilities": [
+      {"name": "SwiftUI native navigation and accessibility", "source": "https://developer.apple.com/documentation/swiftui.md", "maturity": "STABLE", "deployment_target": "iOS 17+", "disposition": "USE_NOW", "reason": "Avoid custom navigation and preserve platform behavior.", "fallback": "UIKit bridge only where a product-specific gap is evidenced."},
+      {"name": "App Intents", "source": "https://developer.apple.com/documentation/appintents.md", "maturity": "STABLE", "deployment_target": "iOS 16+", "disposition": "EVALUATE", "reason": "Useful only when a product action benefits from Siri, Spotlight, Shortcuts, widgets, or controls.", "fallback": "In-app action remains complete without system integration."},
+      {"name": "Foundation Models", "source": "https://developer.apple.com/documentation/foundationmodels.md", "maturity": "SUPPORTED", "deployment_target": "iOS 26+ and Apple Intelligence-capable devices", "disposition": "EXPERIMENT", "reason": "Potentially useful for local product-specific language tasks, but not a reason to raise the minimum target without measured benefit.", "fallback": "Deterministic non-model behavior and clear unavailable-state UI."},
+      {"name": "Liquid Glass", "source": "https://developer.apple.com/documentation/swiftui.md", "maturity": "SUPPORTED", "deployment_target": "Current SDK", "disposition": "EVALUATE", "reason": "Use system containers where navigation behavior benefits; do not cover content in glass by default.", "fallback": "System material and contrast-aware presentation on older targets."},
+      {"name": "Xcode performance instruments", "source": "https://developer.apple.com/documentation/xcode-release-notes/xcode-26-release-notes.md", "maturity": "STABLE", "deployment_target": "Xcode 26", "disposition": "USE_NOW", "reason": "Native profiling is lower-cost and more authoritative than a custom performance harness.", "fallback": "Existing Instruments workflow on older Xcode. Read-only review evidence."}
+    ]
+  },
+  "experience_evidence": {
+    "rendered": true,
+    "verification": "SIMULATOR_VERIFIED",
+    "attention_first": "The primary experience is named; product screenshot/device captures remain required for product acceptance.",
+    "generic_or_distinctive": "The critic asks for personality and subtraction; no product-specific visual verdict is claimed here.",
+    "remove_next": "Remove duplicate process records that do not alter a product decision.",
+    "critic_findings": ["Factory contract is now executable; product visuals still need independent review."]
+  },
+  "design_debt": ["Product-specific rendered evidence is not available in this sf0.8 checkout."],
+  "apple_platform_debt": ["Capability review is new and must be applied during the next substantial product increment."]
+}

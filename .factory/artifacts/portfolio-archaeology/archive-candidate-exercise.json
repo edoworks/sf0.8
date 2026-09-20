@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "candidate": "docketloom-rebuild",
+  "source": "/Users/hello/foculoom/products/docketloom-rebuild",
+  "observed_state": "DORMANT",
+  "exercised_transitions": [
+    {"from": "DORMANT", "to": "KNOWLEDGE_EXTRACTED", "result": "BLOCKED_INCOMPLETE_EVIDENCE"}
+  ],
+  "deletion_authorized": false,
+  "destructive_action_performed": false,
+  "blockers": [
+    "unique knowledge not fully extracted",
+    "Apple release evidence unresolved",
+    "recovery and backup evidence unresolved"
+  ],
+  "next_action": "Complete preservation evidence before ARCHIVED or DELETION_CANDIDATE."
+}

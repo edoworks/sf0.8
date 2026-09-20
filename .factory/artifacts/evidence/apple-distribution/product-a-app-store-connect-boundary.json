@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "product": "product-a",
+  "bundle_identifier": "com.foculoom.ProductA",
+  "api_access": "UNKNOWN",
+  "authorized_credential_source": "AVAILABLE",
+  "credential_source_type": "local approved private-key directory exists; key contents not inspected",
+  "role_capability": "UNKNOWN",
+  "app_record": "UNKNOWN",
+  "bundle_identity": "UNKNOWN",
+  "build_delivery": "NOT_AUTHORIZED",
+  "submit_for_review": "HUMAN_DENIED",
+  "delivery_operation": "NOT_INVOKED",
+  "apple_infrastructure_processed_build": false,
+  "secret_disclosure": "NONE",
+  "checked_at": "2026-09-18T21:10:00Z",
+  "toolchain_interfaces": {
+    "altool": "AVAILABLE",
+    "itmstransporter": "AVAILABLE",
+    "app_store_connect_api_client": "NOT_REGISTERED_IN_SF08"
+  },
+  "one_time_human_setup": "Confirm the approved App Store Connect API key, issuer, role, and Product A app-record/bundle association through the owner-controlled credential process; do not place secrets in the repository.",
+  "evidence_level": "LOCAL_INTERFACE_AVAILABILITY_ONLY"
+}

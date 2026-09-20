@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "by_capability": {
+    "AI-era individualized learning opportunity discovery": {
+      "number": 50,
+      "url": "https://github.com/edoworks/sf0.8/issues/50",
+      "repo": "edoworks/sf0.8"
+    },
+    "evidence-driven executive review": {
+      "number": 59,
+      "url": "https://github.com/edoworks/sf0.8/issues/59",
+      "repo": "edoworks/sf0.8"
+    },
+    "verifiable external reuse discovery": {
+      "number": 53,
+      "url": "https://github.com/edoworks/sf0.8/issues/53",
+      "repo": "edoworks/sf0.8"
+    },
+    "durable issue lifecycle permissions": {
+      "number": 54,
+      "url": "https://github.com/edoworks/sf0.8/issues/54",
+      "repo": "edoworks/sf0.8"
+    },
+    "complete-event changed-path validation": {
+      "number": 55,
+      "url": "https://github.com/edoworks/sf0.8/issues/55",
+      "repo": "edoworks/sf0.8"
+    },
+    "verified control-plane checkpoint": {
+      "number": 56,
+      "url": "https://github.com/edoworks/sf0.8/issues/56",
+      "repo": "edoworks/sf0.8"
+    }
+  },
+  "policy": "Material work without a factory binding is blocked; callers cannot select an arbitrary issue."
+}

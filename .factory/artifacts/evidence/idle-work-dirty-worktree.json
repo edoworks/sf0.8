@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-09-19",
+  "status": "PRESERVE_AND_CLASSIFY",
+  "basis": [
+    "git status showed pre-existing tracked edits and untracked factory artifacts before issue #51 implementation",
+    "checkpoint commits and existing evidence paths indicate an interrupted factory increment rather than disposable output",
+    "no source repository, product artifact, historical candidate, or generated evidence was deleted"
+  ],
+  "classifications": {
+    "tracked_edits": "LEGITIMATE_PENDING_FACTORY_INCREMENT; review before staging",
+    "factory_artifacts": "KNOWLEDGE_AND_EVIDENCE; preserve provenance",
+    "scripts_and_tests": "PENDING_IMPLEMENTATION; validate before staging",
+    "historical_sources": "SOURCE_OF_RECORD; read-only and non-disposable",
+    "unknown_paths": "UNKNOWN; fail closed and do not delete"
+  },
+  "destructive_action": "PROHIBITED_WITHOUT_HUMAN_AUTHORIZATION"
+}

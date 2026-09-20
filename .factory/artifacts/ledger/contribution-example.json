@@ -1,0 +1,11 @@
+{
+  "product_specific": false,
+  "portable": true,
+  "checks": {
+    "dependency_free": true,
+    "tests": true,
+    "docs": true,
+    "provenance": true,
+    "license_checked": true
+  }
+}

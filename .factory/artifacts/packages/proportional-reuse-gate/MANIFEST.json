@@ -1,0 +1,11 @@
+{
+  "artifact": "proportional-reuse-gate",
+  "version": "1.0.0",
+  "source_revision": "issue-31-working-tree",
+  "entrypoint": "reuse_gate.py",
+  "skill_entrypoint": "SKILL.md",
+  "distribution": "repository-artifact",
+  "release_state": "CANDIDATE_UNRELEASED",
+  "dependency_policy": "stdlib-only",
+  "publication_approved": false
+}
