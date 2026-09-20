@@ -58,13 +58,23 @@ class PermissionPolicyFixtureTests(unittest.TestCase):
         self.assertEqual(resolve(rules, command.replace("edoworks/sf0.8", "other/repo")), "deny")
         self.assertEqual(resolve(rules, "gh pr create --title test --repo edoworks/sf0.8"), "deny")
 
-    def test_sf08_integration_path_is_allowed_without_broad_push_permission(self):
+    def test_owner_org_integration_path_is_allowed_without_broad_push_permission(self):
         rules = self.fixture["rules"]
         feature_push = "git -c credential.helper= -c credential.helper='!gh auth git-credential' push --no-follow-tags origin HEAD:refs/heads/feature/test"
         self.assertEqual(resolve(rules, feature_push), "allow")
         self.assertEqual(resolve(rules, feature_push.replace("feature/test", "main")), "ask")
-        self.assertEqual(resolve(rules, "gh pr merge 80 --repo edoworks/sf0.8 --merge"), "allow")
-        self.assertEqual(resolve(rules, "gh pr merge 80 --repo other/repo --merge"), "deny")
+        for repository in ("edoworks/sf0.8", "edoworks/product-a", "foculoom/vorynce"):
+            with self.subTest(repository=repository, order="number-first"):
+                self.assertEqual(resolve(rules, f"gh pr merge 80 --repo {repository} --merge --delete-branch"), "allow")
+            with self.subTest(repository=repository, order="repo-first"):
+                self.assertEqual(resolve(rules, f"gh pr merge --repo {repository} 80 --merge --delete-branch"), "allow")
+
+        for repository in ("other/repo", "edoworks-malicious/repo", "foculoom-malicious/repo"):
+            with self.subTest(repository=repository):
+                self.assertEqual(resolve(rules, f"gh pr merge --repo {repository} 80 --merge"), "deny")
+
+        self.assertEqual(resolve(rules, "gh pr merge --repo edoworks/sf0.8 80 --merge --admin"), "deny")
+        self.assertEqual(resolve(rules, "gh pr merge 80 --repo foculoom/vorynce --squash --admin"), "deny")
 
     @unittest.skipUnless(shutil.which("opencode"), "opencode is not installed")
     def test_resolved_opencode_github_rules_match_fixture(self):
@@ -72,9 +82,7 @@ class PermissionPolicyFixtureTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         resolved = json.loads(result.stdout)["permission"]["bash"]
         def covered(pattern):
-            return pattern.startswith(("gh issue", "gh api")) or (
-                pattern.startswith("gh pr") and "edoworks/sf0.8" in pattern
-            )
+            return pattern.startswith(("gh issue", "gh api", "gh pr"))
 
         actual = [(pattern, action) for pattern, action in resolved.items() if covered(pattern)]
         expected = [(pattern, action) for pattern, action in self.fixture["rules"] if covered(pattern)]
