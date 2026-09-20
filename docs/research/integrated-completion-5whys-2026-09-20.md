@@ -153,6 +153,25 @@ permission fixtures around one completion postcondition. Recurrence guard: polic
 tests now require the compliant feature push and sf0.8 merge to resolve to
 `allow`, while main pushes and unrelated merges remain gated or denied.
 
+### Integration Blocker 5-Whys
+
+1. Why was PR 81 not merged in this session? The active tool policy denied the
+   repository-scoped `gh pr merge` command.
+2. Why did it deny a command now allowlisted in global configuration? OpenCode
+   loads configuration at startup and does not hot-reload the running session.
+3. Why could the fix not activate itself? A session must not expand its own live
+   permissions by editing configuration.
+4. Why was another transport not used? No separately authorized merge transport
+   was available, and using raw API or subprocess indirection would bypass the
+   explicit active deny rule.
+5. Evidence stops here: the remaining blocker is session lifecycle, not failed
+   code, checks, identity, or GitHub merge eligibility.
+
+Immediate correction: leave the passing PR open and merge it after restarting
+OpenCode so the reviewed configuration is loaded. Root-cause correction: the
+allowlist and recurrence test are already committed in the PR, preventing future
+sessions from recreating this permission mismatch.
+
 ## Conflicts And Unknowns
 
 - The 2026-09-19 optional-PR decision conflicts with the owner's 2026-09-20
@@ -162,7 +181,9 @@ tests now require the compliant feature push and sf0.8 merge to resolve to
   final diff. It is not proven independent review and cannot satisfy a live
   GitHub rule requiring another approver.
 - Live branch rulesets and whether GitHub will permit the configured merge method
-  were not readable through the allowed command surface in this session.
+  were not readable through the allowed command surface in this session. PR 81's
+  required check passed, but the active startup-time policy blocked the merge
+  attempt before GitHub evaluated it.
 - The existing dirty worktree contains multiple increments. This research does
   not establish that all current paths belong in one PR; issue 63 still requires
   path-by-path reconciliation.
