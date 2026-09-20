@@ -1,0 +1,59 @@
+{
+  "issue": 83,
+  "capability": "edoworks factory product definition",
+  "change_units": 3,
+  "changed_paths": [
+    "scripts/create-edoworks-factory-repo.sh"
+  ],
+  "reuse": {
+    "searched": 3,
+    "compatible": 0,
+    "reason": "New factory creation script; no existing factory-creation script exists in the reuse registry.",
+    "discovery": {
+      "capability": "edoworks factory product definition",
+      "decision": "BUILD_NEW",
+      "matches": [],
+      "specialization_reason": ""
+    },
+    "candidates": [
+      {
+        "id": "factory-bootstrap-scripts",
+        "source": "scripts/doctor.sh",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "lifecycle-script",
+        "revision": "working-tree",
+        "license": "internal",
+        "security": "local shell script only",
+        "disposition": "LEARN_FROM",
+        "reason": "Existing product-a doctor/verify pattern informs the factory lifecycle script design but is product-specific, not a factory-creation tool.",
+        "immutable_ref": false
+      },
+      {
+        "id": "github-repo-creation-pattern",
+        "source": "https://docs.github.com/en/repositories/creating-and-managing-repositories/quickly-create-a-repository",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "documentation",
+        "revision": "retrieved-2026-09-20",
+        "license": "CC-BY-4.0",
+        "security": "documentation reference only; not executed",
+        "disposition": "LEARN_FROM",
+        "reason": "GitHub CLI repo creation documentation informs the script structure.",
+        "immutable_ref": true
+      },
+      {
+        "id": "apple-distribution-validator",
+        "source": "scripts/validate-apple-distribution.py",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "validator",
+        "revision": "working-tree",
+        "license": "internal",
+        "security": "local Python validator only",
+        "disposition": "LEARN_FROM",
+        "reason": "The factory will port this validator but the creation script itself is new infrastructure.",
+        "immutable_ref": false
+      }
+    ]
+  },
+  "contribution": {"classification": "internal-reusable"},
+  "shareability": {"disposition": "REUSE_CANDIDATE", "evidence": "The creation script is internal infrastructure for the Edoworks Factory cutover; it will be replaced by the factory's own lifecycle scripts in edoworks/factory."}
+}
