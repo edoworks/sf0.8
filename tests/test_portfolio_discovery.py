@@ -32,11 +32,23 @@ class PortfolioDiscoveryTests(unittest.TestCase):
         self.assertTrue(IDENTITY.validate_entity({"entity_type": "product", "entity_id": "opaque"}))
 
     def test_blind_discovery_uses_distribution_and_bundle_identity(self):
-        result = DISCOVERY.discover()
-        veilsort = next(item for item in result["candidates"] if "com.foculoom.veilsort" in item["bundle_ids"])
-        self.assertNotIn("Veilsort", result["discovery_input"])
-        self.assertIn("/Users/hello/sf0.7/factory/app-portfolio.json", veilsort["provenance"])
-        self.assertIn("/Users/hello/foculoom/products/veilsort", veilsort["local_paths"])
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            history = root / "history.json"
+            history.write_text(json.dumps({"apps": [{
+                "name": "Historical Shipping App",
+                "bundle_id": "com.foculoom.veilsort",
+                "asc_status": "Ready for Sale",
+                "source": "historical-source",
+            }]}))
+            product = root / "foculoom" / "products" / "veilsort"
+            product.mkdir(parents=True)
+            (product / "project.yml").write_text("PRODUCT_BUNDLE_IDENTIFIER: com.foculoom.veilsort\n")
+            result = DISCOVERY.discover(foculoom=root / "foculoom", history=history)
+            veilsort = next(item for item in result["candidates"] if "com.foculoom.veilsort" in item["bundle_ids"])
+            self.assertNotIn("Veilsort", result["discovery_input"])
+            self.assertIn(str(history), veilsort["provenance"])
+            self.assertIn(str(product), veilsort["local_paths"])
 
     def test_discovery_is_independent_of_factory_registry(self):
         with tempfile.TemporaryDirectory() as directory:

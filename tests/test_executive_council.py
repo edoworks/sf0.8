@@ -1,4 +1,5 @@
 import importlib.util
+import tempfile
 import json
 import unittest
 from pathlib import Path
@@ -24,6 +25,17 @@ class ExecutiveCouncilTests(unittest.TestCase):
         economics = MODULE.review()["evidence"]["economics"]
         self.assertEqual(economics["revenue"]["value"], "UNKNOWN")
         self.assertEqual(economics["contribution_margin"]["value"], "UNKNOWN")
+
+    def test_missing_telemetry_schema_is_unknown_not_fabricated(self):
+        original = MODULE.TELEMETRY
+        try:
+            with tempfile.TemporaryDirectory() as directory:
+                MODULE.TELEMETRY = Path(directory) / "empty.sqlite"
+                telemetry = MODULE.telemetry()
+                self.assertEqual(telemetry["runs"], "UNKNOWN")
+                self.assertEqual(telemetry["recorded_factory_cost_usd"], "UNKNOWN")
+        finally:
+            MODULE.TELEMETRY = original
 
     def test_conflicting_lifecycle_sources_fail_closed(self):
         review = MODULE.review()

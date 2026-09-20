@@ -33,10 +33,13 @@ def source(path: Path, claim: str, value: Any, kind: str) -> dict[str, Any]:
 
 
 def telemetry() -> dict[str, Any]:
-    with sqlite3.connect(TELEMETRY) as connection:
-        runs = connection.execute("SELECT COUNT(*) FROM runs").fetchone()[0]
-        successes = connection.execute("SELECT COUNT(*) FROM runs WHERE outcome = 'success'").fetchone()[0]
-        cost = connection.execute("SELECT COALESCE(SUM(usd), 0) FROM costs").fetchone()[0]
+    try:
+        with sqlite3.connect(TELEMETRY) as connection:
+            runs = connection.execute("SELECT COUNT(*) FROM runs").fetchone()[0]
+            successes = connection.execute("SELECT COUNT(*) FROM runs WHERE outcome = 'success'").fetchone()[0]
+            cost = connection.execute("SELECT COALESCE(SUM(usd), 0) FROM costs").fetchone()[0]
+    except sqlite3.OperationalError:
+        return {"runs": "UNKNOWN", "successful_runs": "UNKNOWN", "recorded_factory_cost_usd": "UNKNOWN"}
     return {"runs": runs, "successful_runs": successes, "recorded_factory_cost_usd": cost}
 
 
@@ -46,6 +49,7 @@ def evidence() -> dict[str, Any]:
     zero = load(CUSTOMER_ZERO)
     bundle = load(EVIDENCE_BUNDLE)
     counts = board["summary"]
+    telemetry_value = telemetry()
     conflicts = [
         {
             "topic": "Product A lifecycle",
@@ -78,7 +82,12 @@ def evidence() -> dict[str, Any]:
             "revenue": {"kind": "UNKNOWN", "source": "not recorded in canonical evidence", "claim": "Company revenue", "value": "UNKNOWN"},
             "contribution_margin": {"kind": "UNKNOWN", "source": "not recorded in canonical evidence", "claim": "Contribution margin", "value": "UNKNOWN"},
             "operating_cost": {"kind": "UNKNOWN", "source": "not recorded in canonical evidence", "claim": "Company operating cost", "value": "UNKNOWN"},
-            "factory_telemetry": source(TELEMETRY, "recorded factory telemetry cost", telemetry(), "FACT"),
+            "factory_telemetry": source(
+                TELEMETRY,
+                "recorded factory telemetry cost",
+                telemetry_value,
+                "UNKNOWN" if telemetry_value["runs"] == "UNKNOWN" else "FACT",
+            ),
         },
         "factory": {
             "verification": source(BOARD, "factory verification", board["factory"]["verification"], "EVIDENCE"),

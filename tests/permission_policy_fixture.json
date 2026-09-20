@@ -93,7 +93,7 @@
       "gh issue create --repo edoworks/sf0.8 --title test --body inline;separator",
       "gh issue close --repo edoworks/sf0.8 52 && gh issue close --repo edoworks/sf0.8 53",
       "gh api --method PATCH repos/edoworks/sf0.8/issues/52 -f state=closed",
-      "gh pr create --repo edoworks/sf0.8 --title unrelated",
+      "gh pr create --repo other/repo --title unrelated",
       "gh repo edit edoworks/sf0.8 --visibility public"
     ]
   }
