@@ -30,6 +30,36 @@
       "number": 56,
       "url": "https://github.com/edoworks/sf0.8/issues/56",
       "repo": "edoworks/sf0.8"
+    },
+    "tool opportunity discovery": {
+      "number": 65,
+      "url": "https://github.com/edoworks/sf0.8/issues/65",
+      "repo": "edoworks/sf0.8"
+    },
+    "capability primitive discovery and externalization learning": {
+      "number": 69,
+      "url": "https://github.com/edoworks/sf0.8/issues/69",
+      "repo": "edoworks/sf0.8"
+    },
+    "primitive learning feedback ingestion": {
+      "number": 70,
+      "url": "https://github.com/edoworks/sf0.8/issues/70",
+      "repo": "edoworks/sf0.8"
+    },
+    "external reach and verified primitive use evidence": {
+      "number": 71,
+      "url": "https://github.com/edoworks/sf0.8/issues/71",
+      "repo": "edoworks/sf0.8"
+    },
+    "public artifact collection expansion decision": {
+      "number": 72,
+      "url": "https://github.com/edoworks/sf0.8/issues/72",
+      "repo": "edoworks/sf0.8"
+    },
+    "edoworks factory product definition": {
+      "number": 83,
+      "url": "https://github.com/edoworks/sf0.8/pull/83",
+      "repo": "edoworks/sf0.8"
     }
   },
   "policy": "Material work without a factory binding is blocked; callers cannot select an arbitrary issue."

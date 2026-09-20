@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "repo": "edoworks/factory",
+  "created_from": "docs/PRD-edoworks-factory.md",
+  "date": "2026-09-20",
+  "labels": [
+    {"name": "phase-0", "color": "0e8a16", "description": "Owner charter and decisions"},
+    {"name": "phase-1", "color": "1d76db", "description": "Factory skeleton v0.1.0"},
+    {"name": "phase-2", "color": "5319e7", "description": "Reference app 1: simpler offline utility"},
+    {"name": "phase-3", "color": "bfd4f2", "description": "Factory hardening and 30-day qualification"},
+    {"name": "phase-4", "color": "fbca04", "description": "Reference app 2: meow-capture"},
+    {"name": "phase-5", "color": "c5def5", "description": "Predecessor disposition and archival"},
+    {"name": "factory", "color": "a2eeef", "description": "Factory infrastructure or tooling"},
+    {"name": "product", "color": "a2eeef", "description": "Product or app feature"},
+    {"name": "gate", "color": "e99695", "description": "Release gate or qualification milestone"},
+    {"name": "owner-only", "color": "b60205", "description": "Requires human/owner authorization"}
+  ],
+  "issues": [
+    {
+      "id": "F-001",
+      "title": "Record owner charter and reconcile naming",
+      "labels": ["phase-0", "owner-only", "documentation"],
+      "priority": "critical",
+      "body": "Record the Edoworks Factory charter that supersedes sf0.8's canonical priority.\n\nDeliverables:\n- CHARTER.md with: one customer (founder as customer zero), one Apple-app paved road, non-goals, public API definition, success metrics, authority boundaries\n- Naming reconciliation: resolve edoworks/edoworks collision (repo = edoworks/factory), CLI/package name, constitution branding inconsistency (FACTORY_CONSTITUTION.md:29 says Foculoom vs NORTH_STAR.md:1 says edoworks.ai)\n- Explicit meow-capture lane decision: preserved as second reference app, not abandoned\n- Supported macOS + Xcode version matrix\n- Agent/provider dependencies for the public factory\n- Support promise + telemetry posture\n- Trademark policy for edoworks brand\n\nGate: Owner signs off on charter. No code is written.\n\nReference: docs/PRD-edoworks-factory.md"
+    },
+    {
+      "id": "F-002",
+      "title": "Create edoworks/factory public repo with MIT license",
+      "labels": ["phase-1", "factory", "owner-only"],
+      "priority": "critical",
+      "body": "Create the fresh public repository with minimal scaffolding.\n\nDeliverables:\n- Public repo edoworks/factory (fresh, not a fork of sf0.8)\n- LICENSE (MIT)\n- README.md (what it is, how to install, what it produces)\n- SECURITY.md (public security posture and contact)\n- CONTRIBUTING.md (support boundaries, contribution policy)\n- .gitignore for Swift/Xcode/Python\n- Default branch: main\n\nNo sf0.8 history or private control-plane data is published.\n\nGate: Repo exists and is publicly cloneable.\n\nReference: docs/PRD-edoworks-factory.md, research report lines 226-231"
+    },
+    {
+      "id": "F-003",
+      "title": "Port allowlisted factory components from sf0.8",
+      "labels": ["phase-1", "factory"],
+      "priority": "high",
+      "body": "Extract provenance-reviewed components from sf0.8 into edoworks/factory. No private history, no control-plane data, no secrets.\n\nComponents to port:\n- Apple distribution capability registry + validator (scripts/validate-apple-distribution.py, schema files)\n- Privacy manifest template (PrivacyInfo.xcprivacy pattern from product-a)\n- Release-criteria schema (.factory/automation/release-criteria.json)\n- Recovery knowledge boundary pattern (.factory/recovery/)\n- CI policy gate subset (.github/workflows/checks.yml validation steps)\n- Apple quality review script (scripts/apple-quality.py)\n\nEach extraction must have:\n- Provenance manifest (source file, source commit, license clearance)\n- No references to private repos, private products, or internal-only paths\n- Tests ported alongside\n\nGate: All ported scripts pass on clean checkout."
+    },
+    {
+      "id": "F-004",
+      "title": "Implement lifecycle scripts: doctor, bootstrap, verify, uninstall",
+      "labels": ["phase-1", "factory"],
+      "priority": "high",
+      "body": "Create the paved-road lifecycle scripts.\n\n- doctor.sh: verify Xcode version, simulators, disk space, dependencies; report pass/fail per check\n- bootstrap.sh: scaffold a new iOS app from the factory template (SwiftUI universal, iPhone+iPad)\n- verify.sh: run build, unit tests, UI tests, static analysis, archive; produce machine-readable evidence\n- uninstall.sh: remove factory and residual local state\n\nEach script must:\n- Exit non-zero on failure with machine-readable error code\n- Produce evidence receipt (JSON) on success\n- Have no hidden local state dependency\n- Work on a clean Mac with only Xcode installed\n\nGate: doctor.sh passes on a clean Mac."
+    },
+    {
+      "id": "F-005",
+      "title": "Create SwiftUI universal app template",
+      "labels": ["phase-1", "factory"],
+      "priority": "high",
+      "body": "Create the opinionated SwiftUI universal-app template that bootstrap.sh uses.\n\nTemplate includes:\n- SwiftUI @main App with NavigationStack\n- Adaptive iPhone+iPad layouts (not separate branches)\n- Local persistence (UserDefaults/SwiftData)\n- Import/export capability\n- Deliberate states: first-launch, content, empty, error\n- PrivacyInfo.xcprivacy (no tracking, no collected data)\n- Unit test target with example tests\n- UI test target with example XCUITests\n- Accessibility labels and traits on all interactive elements\n- xcodegen project.yml (pinned, reproducible)\n\nNo microphone, backend, accounts, analytics, or payment.\n\nGate: Template builds and tests pass on simulator for iPhone and iPad."
+    },
+    {
+      "id": "F-006",
+      "title": "Implement CI policy gate for edoworks/factory",
+      "labels": ["phase-1", "factory"],
+      "priority": "high",
+      "body": "Create .github/workflows/checks.yml for deterministic verification CI.\n\nSteps:\n- Run doctor.sh\n- Run verify.sh on the template app\n- Run ported validators (validate-apple-distribution, validate-lifecycle, validate-recovery)\n- Run ported unit tests (Python policy tests)\n- Run safety-kernel verification if applicable\n- Produce machine-readable evidence artifact\n\nUse ephemeral GitHub-hosted macOS runner (not self-hosted) for public reproducibility.\n\nGate: CI passes on a clean PR."
+    },
+    {
+      "id": "F-007",
+      "title": "Release v0.1.0-rc1 with immutable artifact and provenance",
+      "labels": ["phase-1", "factory", "gate"],
+      "priority": "high",
+      "body": "Cut the first release candidate.\n\nDeliverables:\n- Tag v0.1.0-rc1 (immutable)\n- GitHub release with artifact + SLSA-style provenance/digest\n- CHANGELOG.md entry\n- compatibility-matrix.md (supported macOS + Xcode versions)\n- public-api.md (the paved-road contract)\n- Clean-machine install receipt (evidence that doctor.sh passes on a fresh Mac)\n\nGate: Clean-machine install from downloaded artifact succeeds without source-tree access."
+    },
+    {
+      "id": "F-008",
+      "title": "Select and define Reference App 1 (simpler offline utility)",
+      "labels": ["phase-2", "product", "owner-only"],
+      "priority": "high",
+      "body": "Owner selects the specific offline utility concept for Reference App 1.\n\nConstraints:\n- Offline-only, no network, no accounts, no special permissions\n- iPhone + iPad adaptive layouts\n- Meaningful enough to not be a spam/template app\n- Owner-visible value (founder would actually use it)\n\nDeliverables:\n- PRD for the reference app (features, acceptance criteria, App Review readiness)\n- Separate repository created (edoworks/<app-name>) pinned to factory v0.1.0-rc1\n\nGate: Owner approves PRD and app concept."
+    },
+    {
+      "id": "F-009",
+      "title": "Build Reference App 1 using downloaded factory v0.1.0",
+      "labels": ["phase-2", "product"],
+      "priority": "high",
+      "body": "Build the simpler offline utility using only the downloaded factory release (not the source checkout).\n\nProcess:\n1. Download v0.1.0-rc1 artifact\n2. Run doctor.sh\n3. Run bootstrap.sh to scaffold\n4. Implement features per PRD\n5. Run verify.sh for each increment\n6. Produce distribution-signed archive\n\nEvery factory correction discovered during this phase ships as a new factory version (v0.1.1, v0.1.2, etc.). The app upgrades explicitly.\n\nGate: App builds and tests pass from clean checkout."
+    },
+    {
+      "id": "F-010",
+      "title": "Reference App 1: Apple submission and acceptance",
+      "labels": ["phase-2", "product", "gate", "owner-only"],
+      "priority": "high",
+      "body": "Complete the full release ladder for Reference App 1.\n\nGates (each must pass):\n1. Clean build + tests pass\n2. Simulator evidence on iPhone + iPad\n3. Accessibility audit (VoiceOver + Reduce Motion)\n4. Privacy manifest validation\n5. Distribution archive produced through factory\n6. Human-authorized TestFlight upload\n7. Apple processing succeeds\n8. Physical-device smoke test\n9. Recovery test (deliberately break and restore)\n10. Human-authorized App Store submission\n11. Apple accepts\n\nMust complete two full clean-checkout-to-Apple-processing cycles.\n\nGate: Apple accepts Reference App 1."
+    },
+    {
+      "id": "F-011",
+      "title": "30-day factory qualification",
+      "labels": ["phase-3", "factory", "gate"],
+      "priority": "high",
+      "body": "Run the 30-day qualification to prove factory reliability.\n\nRequirements:\n- 10 consecutive weekday changes producing reproducible archives\n- >=95% unattended run success without manual repair\n- Machine-readable failure classification and recovery for every failure\n- No hidden local state dependency\n- Second-operator documented execution (no oral help)\n- Measure: lead time, operator effort, escaped defects, storage growth, failure causes\n- Move routine builds to ephemeral CI\n- Credential isolation: per-customer, least-privilege API keys\n\nGate: 30-day qualification passes with evidence. Factory bumped to v0.2.0."
+    },
+    {
+      "id": "F-012",
+      "title": "Authorize meow-capture public identity and physical-device validation",
+      "labels": ["phase-4", "product", "owner-only"],
+      "priority": "medium",
+      "body": "Owner-gated prerequisites for Reference App 2.\n\nDecisions required:\n- Authorize a public product name (meow-capture is a codename)\n- Authorize physical-device validation session\n- Authorize first real-meow fixture\n- Decide whether Apple Intelligence is included or excluded\n- Confirm export-compliance answer for Sound Analysis encryption\n\nReference: docs/decisions/2026-09-20-meow-capture-product-contract.md\n\nGate: Owner authorizes each item."
+    },
+    {
+      "id": "F-013",
+      "title": "Build Reference App 2 (meow-capture) using factory v0.2.0",
+      "labels": ["phase-4", "product"],
+      "priority": "medium",
+      "body": "Build meow-capture using the hardened factory release.\n\nReuses from sf0.8 (allowlisted, provenance-reviewed):\n- experiments/audio-validation-macos/ AudioReplayCore (iOS-declared)\n- experiments/continuous-competence-ios/ SwiftUI spike\n- 2026-09-20-meow-capture-product-contract.md acceptance contract\n\nAcceptance contract:\n- Owner-started bounded listening session with visible mic indicator\n- Production pipeline identifies likely cat vocalization, retains bounded clip\n- Local replay of exact retained clip\n- Local deletion of clip\n- Explicit stop or time bound\n- Deliberate states on iPhone and iPad\n- Raw household audio stays local (never in Git, CI, logs, issues)\n- No fake classifier result; no translation/emotion/health/veterinary claim\n- Microphone permission OS-mediated, fails closed\n\nGate: App builds and tests pass from clean checkout."
+    },
+    {
+      "id": "F-014",
+      "title": "Reference App 2: Apple submission and acceptance",
+      "labels": ["phase-4", "product", "gate", "owner-only"],
+      "priority": "medium",
+      "body": "Complete the full release ladder for meow-capture.\n\nGates (same as F-010 plus):\n- Mac fixture replay via AudioReplayCore\n- Physical iPhone + iPad permission/interruption/persistence evidence\n- Owner-supervised real-cat observation (separately gated)\n- NSMicrophoneUsageDescription purpose string\n- Export-compliance for Sound Analysis encryption\n- Age rating determination\n- Apple Intelligence fallback evidence if used\n- Human-authorized App Store submission\n- Apple accepts\n\nGate: Apple accepts meow-capture. This establishes founder-internal canonicality."
+    },
+    {
+      "id": "F-015",
+      "title": "Freeze sf0.8 and publish successor notices",
+      "labels": ["phase-5", "factory", "owner-only"],
+      "priority": "medium",
+      "body": "Begin predecessor disposition after both reference apps are Apple-accepted.\n\nPrerequisites (all must be met):\n- Edoworks factory has produced two Apple-accepted apps\n- Recovery from factory failure rehearsed\n\nActions:\n- Freeze sf0.8 (read-only, no new work)\n- Publish successor notices in sf0.8 README and key docs\n- Update continue-sf08.md to point at edoworks/factory\n\nGate: sf0.8 frozen with successor notices published."
+    },
+    {
+      "id": "F-016",
+      "title": "Disposition all open sf0.8 issues with successor links",
+      "labels": ["phase-5", "factory"],
+      "priority": "medium",
+      "body": "Classify every open issue across sf0.8, product-a, sf0.7, sf0.5.\n\nDispositions: migrated / completed / superseded / rejected / duplicate / retained-evidence\n\nEach issue must have:\n- A disposition label\n- A successor link (to edoworks/factory issue or explicit retained-evidence note)\n- A reason\n\nNo blanket closure. Every obligation must be tracked to a successor.\n\nGate: Zero open issues without a disposition."
+    },
+    {
+      "id": "F-017",
+      "title": "Archive predecessor repositories after recovery proof",
+      "labels": ["phase-5", "factory", "owner-only", "gate"],
+      "priority": "medium",
+      "body": "Archive repositories only after all prerequisites are met.\n\nPrerequisites:\n- F-015 complete (sf0.8 frozen)\n- F-016 complete (all issues dispositioned)\n- Recovery proof verified (can restore from archive if needed)\n- Preservation manifest for portfolio-archaeology/ complete\n- All security, legal, privacy, retention obligations tracked to successor\n\nActions:\n- Archive repositories (read-only, never delete)\n- Verify archival did not destroy data\n\nGate: All predecessors archived. Recovery verified post-archive."
+    },
+    {
+      "id": "F-018",
+      "title": "Productization gate: assess paid pilot readiness",
+      "labels": ["gate", "owner-only"],
+      "priority": "low",
+      "body": "Future gate. Do not start until F-014 is complete.\n\nConditions for proceeding:\n- At least one paying external design partner\n- Repeat customer demand (renewal or second app)\n- Sustainable support economics measured\n- Tenant isolation demonstrated\n- Second independent consumer creates+verifies an app from released artifact without private founder knowledge\n- No template/spam/privacy/metadata/minimum-functionality objections from Apple\n\nIf conditions fail: Continue as bespoke managed development service.\nIf conditions pass: Bump to v1.0.0 with stable public compatibility contract.\n\nGate: Owner decision recorded."
+    }
+  ]
+}
