@@ -51,13 +51,25 @@ class PermissionPolicyFixtureTests(unittest.TestCase):
             self.assertEqual(resolve(self.fixture["rules"], f"gh issue close --repo other/repo {number}"), "deny")
             self.assertEqual(resolve(self.fixture["rules"], f"gh issue close --repo edoworks/sf0.8-malicious {number}"), "deny")
 
+    def test_pr_creation_is_repo_first_and_scoped(self):
+        rules = self.fixture["rules"]
+        command = "gh pr create --repo edoworks/sf0.8 --base main --head feature/test --title test --body-file pr.md"
+        self.assertEqual(resolve(rules, command), "allow")
+        self.assertEqual(resolve(rules, command.replace("edoworks/sf0.8", "other/repo")), "deny")
+        self.assertEqual(resolve(rules, "gh pr create --title test --repo edoworks/sf0.8"), "deny")
+
     @unittest.skipUnless(shutil.which("opencode"), "opencode is not installed")
-    def test_resolved_opencode_issue_rules_match_fixture(self):
+    def test_resolved_opencode_github_rules_match_fixture(self):
         result = subprocess.run(["opencode", "debug", "config", "--pure"], cwd=ROOT, capture_output=True, text=True)
         self.assertEqual(result.returncode, 0, result.stderr)
         resolved = json.loads(result.stdout)["permission"]["bash"]
-        actual = [(pattern, action) for pattern, action in resolved.items() if pattern.startswith(("gh issue", "gh api"))]
-        expected = [(pattern, action) for pattern, action in self.fixture["rules"] if pattern.startswith(("gh issue", "gh api"))]
+        def covered(pattern):
+            return pattern.startswith(("gh issue", "gh api")) or (
+                pattern.startswith("gh pr") and "edoworks/sf0.8" in pattern
+            )
+
+        actual = [(pattern, action) for pattern, action in resolved.items() if covered(pattern)]
+        expected = [(pattern, action) for pattern, action in self.fixture["rules"] if covered(pattern)]
         self.assertEqual(actual, expected)
 
 
