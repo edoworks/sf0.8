@@ -44,7 +44,10 @@ class PermissionPolicyFixtureTests(unittest.TestCase):
             without_repo = pattern.replace("edoworks/sf0.8", "")
             self.assertIsNone(re.search(r"\b\d+\b", without_repo), pattern)
             if pattern.startswith(("gh issue create ", "gh issue comment ", "gh issue close ")):
-                self.assertEqual(action, "ask", pattern)
+                if "edoworks/factory" in pattern and pattern.startswith("gh issue create "):
+                    self.assertEqual(action, "allow", pattern)
+                else:
+                    self.assertEqual(action, "ask", pattern)
 
         for number in (52, 53, 999999):
             self.assertEqual(resolve(self.fixture["rules"], f"gh issue close --repo edoworks/sf0.8 {number}"), "ask")
