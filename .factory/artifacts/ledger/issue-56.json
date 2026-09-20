@@ -3,6 +3,7 @@
   "capability": "verified control-plane checkpoint",
   "change_units": 12,
   "changed_paths": [
+    ".agents/skills/executive-council/SKILL.md",
     ".factory/artifacts/packages/proportional-reuse-gate/LICENSE",
     ".factory/artifacts/packages/proportional-reuse-gate/MANIFEST.json",
     ".factory/artifacts/packages/proportional-reuse-gate/PROVENANCE.md",
@@ -21,6 +22,7 @@
     "scripts/discover-portfolio.py",
     "scripts/evidence_frontier.py",
     "scripts/evidence_strength.py",
+    "scripts/executive_council.py",
     "scripts/human_actions.py",
     "scripts/identity_model.py",
     "scripts/idle-work.py",
