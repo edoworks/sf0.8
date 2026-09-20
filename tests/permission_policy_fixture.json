@@ -11,6 +11,8 @@
     ["gh pr view * --repo edoworks/sf0.8 *", "allow"],
     ["gh pr checks * --repo edoworks/sf0.8 *", "allow"],
     ["gh pr create --repo edoworks/sf0.8 *", "allow"],
+    ["gh pr edit * --repo edoworks/sf0.8 *", "allow"],
+    ["gh pr merge * --repo edoworks/sf0.8 *", "allow"],
     ["gh repo *", "deny"],
     ["gh api *", "deny"],
     ["gh api user --jq .login", "allow"],
@@ -34,6 +36,7 @@
     ["git push*-f*", "deny"],
     ["git push*+*", "deny"],
     ["git push*--delete*", "ask"],
+    ["git -c credential.helper= -c credential.helper=*gh auth git-credential* push --no-follow-tags origin HEAD:refs/heads/feature/*", "allow"],
     ["git add .", "ask"],
     ["git add -A*", "ask"],
     ["git add --all*", "ask"],
@@ -57,7 +60,11 @@
       "gh api user --jq .login",
       "gh issue view --repo edoworks/sf0.8 54",
       "gh issue list --repo edoworks/sf0.8 --state open",
-      "gh issue status --repo edoworks/sf0.8"
+      "gh issue status --repo edoworks/sf0.8",
+      "gh pr create --repo edoworks/sf0.8 --base main --head feature/test --title test --body-file pr.md",
+      "gh pr edit 80 --repo edoworks/sf0.8 --body-file pr.md",
+      "gh pr merge 80 --repo edoworks/sf0.8 --merge",
+      "git -c credential.helper= -c credential.helper='!gh auth git-credential' push --no-follow-tags origin HEAD:refs/heads/feature/test"
     ],
     "ask": [
       "gh issue create --repo edoworks/sf0.8 --title test --body-file evidence.md",

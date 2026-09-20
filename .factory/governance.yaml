@@ -67,7 +67,7 @@ governance:
     reuse_gate: proportional_to_change_size
     contribution_gate: required_before_generalization
     shareability_registry: .factory/artifacts/reuse-registry.json
-    completion_rule: substantial_work_requires_disposition_and_evidence
+    completion_rule: substantial_work_requires_disposition_evidence_and_verified_pr_merge
     rule_of_two: second_real_consumer_required_for_internal_shared
     discovery_order: [FOCULOOM_SHARED_ARTIFACT, FOCULOOM_PRODUCT, APPROVED_EXTERNAL, BUILD_NEW]
     compounding_loop: PRODUCT_WORK -> FACTORY_LEARNING -> SHAREABILITY_ASSESSMENT -> REUSE_REGISTRY -> SECOND_CONSUMER -> EXTRACTION -> INTERNAL_CONSUMPTION -> PUBLIC_OR_UPSTREAM_EVALUATION

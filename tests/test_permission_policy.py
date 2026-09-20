@@ -58,6 +58,14 @@ class PermissionPolicyFixtureTests(unittest.TestCase):
         self.assertEqual(resolve(rules, command.replace("edoworks/sf0.8", "other/repo")), "deny")
         self.assertEqual(resolve(rules, "gh pr create --title test --repo edoworks/sf0.8"), "deny")
 
+    def test_sf08_integration_path_is_allowed_without_broad_push_permission(self):
+        rules = self.fixture["rules"]
+        feature_push = "git -c credential.helper= -c credential.helper='!gh auth git-credential' push --no-follow-tags origin HEAD:refs/heads/feature/test"
+        self.assertEqual(resolve(rules, feature_push), "allow")
+        self.assertEqual(resolve(rules, feature_push.replace("feature/test", "main")), "ask")
+        self.assertEqual(resolve(rules, "gh pr merge 80 --repo edoworks/sf0.8 --merge"), "allow")
+        self.assertEqual(resolve(rules, "gh pr merge 80 --repo other/repo --merge"), "deny")
+
     @unittest.skipUnless(shutil.which("opencode"), "opencode is not installed")
     def test_resolved_opencode_github_rules_match_fixture(self):
         result = subprocess.run(["opencode", "debug", "config", "--pure"], cwd=ROOT, capture_output=True, text=True)
