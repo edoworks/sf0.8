@@ -105,6 +105,17 @@ class CIChangeTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "missing object"):
             self.module.changed_paths(f"{'a' * 40}..{'b' * 40}", root=self.root, runner=failed)
 
+    def test_unbound_historical_ledgers_do_not_override_current_bindings(self):
+        base, head = "a" * 40, "b" * 40
+        paths = ["scripts/current.py", ".factory/artifacts/ledger/issue-31.json", ".factory/artifacts/ledger/issue-55.json"]
+        (self.root / ".factory/artifacts/ledger/issue-31.json").write_text(json.dumps({"issue": 31}))
+        (self.root / ".factory/artifacts/ledger/issue-55.json").write_text(json.dumps(self.record(["scripts/current.py"])))
+        result = self.module.validate_event_change(
+            event_name="pull_request", before="", base=base, head=head,
+            root=self.root, runner=self.runner(f"{base}...{head}", paths),
+        )
+        self.assertEqual(result["decision"], "PASS")
+
 
 if __name__ == "__main__":
     unittest.main()

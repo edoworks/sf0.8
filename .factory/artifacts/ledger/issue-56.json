@@ -1,0 +1,93 @@
+{
+  "issue": 56,
+  "capability": "verified control-plane checkpoint",
+  "change_units": 12,
+  "changed_paths": [
+    ".factory/artifacts/packages/proportional-reuse-gate/LICENSE",
+    ".factory/artifacts/packages/proportional-reuse-gate/MANIFEST.json",
+    ".factory/artifacts/packages/proportional-reuse-gate/PROVENANCE.md",
+    ".factory/artifacts/packages/proportional-reuse-gate/README.md",
+    ".factory/artifacts/packages/proportional-reuse-gate/SKILL.md",
+    ".factory/artifacts/packages/proportional-reuse-gate/examples/decision-cases.json",
+    ".factory/artifacts/packages/proportional-reuse-gate/reuse_gate.py",
+    ".factory/artifacts/packages/proportional-reuse-gate/tests/test_package.py",
+    ".factory/artifacts/packages/proportional-reuse-gate/tests/test_skill_contract.py",
+    "scripts/__init__.py",
+    "scripts/apple-quality.py",
+    "scripts/audit-portfolio.py",
+    "scripts/complete-work.py",
+    "scripts/contribution-gate.py",
+    "scripts/control_plane.py",
+    "scripts/discover-portfolio.py",
+    "scripts/evidence_frontier.py",
+    "scripts/evidence_strength.py",
+    "scripts/human_actions.py",
+    "scripts/identity_model.py",
+    "scripts/idle-work.py",
+    "scripts/idle_work.py",
+    "scripts/ingest-education-result.py",
+    "scripts/inspect-apple-archive.py",
+    "scripts/lifecycle_contract.py",
+    "scripts/progressive_archaeology.py",
+    "scripts/query-portfolio-knowledge.py",
+    "scripts/reconcile-portfolio.py",
+    "scripts/resolve-portfolio.py",
+    "scripts/reuse-gate.py",
+    "scripts/select-lanes.py",
+    "scripts/start-work.py",
+    "scripts/validate-apple-distribution.py",
+    "scripts/validate-artifacts.py",
+    "scripts/validate-automation.py",
+    "scripts/validate-control-plane-contract.py",
+    "scripts/validate-control-plane.py",
+    "scripts/validate-ecosystem.py",
+    "scripts/validate-education-evidence.py",
+    "scripts/validate-human-action-queue.py",
+    "scripts/validate-idle-work.py",
+    "scripts/validate-lifecycle-contract.py",
+    "scripts/validate-lifecycle.py",
+    "scripts/validate-portfolio-audit.py",
+    "scripts/validate-reuse-registry.py",
+    "scripts/validate-review-contract.py"
+  ],
+  "reuse": {
+    "searched": 2,
+    "compatible": 1,
+    "reason": "Extend the existing capability ledgers and complete-event validator rather than introduce a second changed-path control plane.",
+    "discovery": {
+      "capability": "verified control-plane checkpoint",
+      "decision": "EXTEND_EXISTING",
+      "matches": ["complete-event changed-path validation"],
+      "specialization_reason": "The cumulative pull-request range needs one current checkpoint ledger to claim paths from earlier verified increments without treating superseded historical ledgers as current authority."
+    },
+    "candidates": [
+      {
+        "id": "complete-event-changed-path-validation",
+        "source": "scripts/validate-ci-change.py",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "changed-path validator",
+        "revision": "06ac7f9",
+        "license": "internal",
+        "security": "fail-closed path and ledger binding",
+        "disposition": "ADAPT",
+        "reason": "Use the existing complete-event validator and add current-binding selection plus checkpoint coverage."
+      },
+      {
+        "id": "github-pull-request-event-range",
+        "source": "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "event-range documentation",
+        "revision": "retrieved-2026-09-19",
+        "license": "documentation reference",
+        "security": "documentation only; no external code executed",
+        "disposition": "LEARN_FROM",
+        "reason": "Retain complete pull-request base/head range semantics."
+      }
+    ]
+  },
+  "contribution": {"classification": "internal-reusable"},
+  "shareability": {
+    "disposition": "REUSE_CANDIDATE",
+    "evidence": "The checkpoint ledger and current-binding selector are consumed by the sf0.8 pull-request gate; a second independent consumer is not established."
+  }
+}

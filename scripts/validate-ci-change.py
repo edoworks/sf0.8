@@ -68,8 +68,19 @@ def validate_event_change(
         for path in paths
         if path.startswith(".factory/artifacts/ledger/issue-") and path.endswith(".json")
     ]
-    records = [json.loads(path.read_text(encoding="utf-8")) for path in ledger_paths if path.is_file()]
     bindings = json.loads((root / ".factory/control-plane-bindings.json").read_text(encoding="utf-8"))
+    bound_issues = {
+        binding.get("number")
+        for binding in bindings.get("by_capability", {}).values()
+        if isinstance(binding, dict)
+    }
+    records = [
+        record
+        for path in ledger_paths
+        if path.is_file()
+        for record in [json.loads(path.read_text(encoding="utf-8"))]
+        if record.get("issue") in bound_issues
+    ]
     result = validate_changed_records(paths, records, bindings)
     result["event"] = event_name
     result["revision_range"] = revision_range

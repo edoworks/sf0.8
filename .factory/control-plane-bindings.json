@@ -7,8 +7,8 @@
       "repo": "edoworks/sf0.8"
     },
     "evidence-driven executive review": {
-      "number": 52,
-      "url": "https://github.com/edoworks/sf0.8/issues/52",
+      "number": 59,
+      "url": "https://github.com/edoworks/sf0.8/issues/59",
       "repo": "edoworks/sf0.8"
     },
     "verifiable external reuse discovery": {
@@ -24,6 +24,11 @@
     "complete-event changed-path validation": {
       "number": 55,
       "url": "https://github.com/edoworks/sf0.8/issues/55",
+      "repo": "edoworks/sf0.8"
+    },
+    "verified control-plane checkpoint": {
+      "number": 56,
+      "url": "https://github.com/edoworks/sf0.8/issues/56",
       "repo": "edoworks/sf0.8"
     }
   },
