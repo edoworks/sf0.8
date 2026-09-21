@@ -6,27 +6,16 @@
     ".agents/skills/evidence-research/SKILL.md"
   ],
   "reuse": {
-    "searched": 2,
-    "compatible": 1,
-    "reason": "Extend the existing evidence-research workflow and use OpenCode's documented argument transport rather than introduce a second research capability.",
+    "searched": 1,
+    "compatible": 0,
+    "reason": "The inspected OpenCode documentation provides argument transport but no subject-consistency research workflow, so this increment introduces the bounded local guard.",
     "discovery": {
       "capability": "subject-locked evidence research",
-      "decision": "EXTEND_EXISTING",
-      "matches": ["evidence-research"],
-      "specialization_reason": "Extend the existing local evidence-research contract with exact OpenCode command argument transport and a recurrence test."
+      "decision": "BUILD_NEW",
+      "matches": [],
+      "specialization_reason": "Combine exact OpenCode command argument transport with repository-specific subject locking and adjacent-product rejection."
     },
     "candidates": [
-      {
-        "id": "sf08-evidence-research",
-        "source": ".agents/skills/evidence-research/SKILL.md",
-        "source_type": "FOCULOOM_SHARED",
-        "artifact_type": "agent-skill",
-        "revision": "pre-issue-88 working contract",
-        "license": "Apache-2.0",
-        "security": "Local prompt contract with no executable external content",
-        "disposition": "ADAPT",
-        "reason": "Add subject locking and final consistency checks to the established bounded research workflow."
-      },
       {
         "id": "opencode-custom-command-arguments",
         "source": "https://opencode.ai/docs/commands/#arguments",
