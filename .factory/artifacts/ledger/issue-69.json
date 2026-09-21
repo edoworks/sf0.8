@@ -1,0 +1,62 @@
+{
+  "issue": 69,
+  "capability": "capability primitive discovery and externalization learning",
+  "change_units": 8,
+  "changed_paths": [
+    ".github/workflows/checks.yml",
+    "scripts/primitive_discovery.py",
+    "scripts/validate-ecosystem.py",
+    "scripts/validate-primitive-discovery.py"
+  ],
+  "reuse": {
+    "searched": 3,
+    "compatible": 1,
+    "reason": "Extend the existing opportunity ledger, reuse registry, evidence frontier, and human-action queue rather than introduce a parallel product or telemetry system.",
+    "discovery": {
+      "capability": "capability primitive discovery and externalization learning",
+      "decision": "EXTEND_EXISTING",
+      "matches": ["reusefirst", "evidence-frontier"],
+      "specialization_reason": "The reuse registry governs artifact shareability and the tool ledger governs second-order signals; this increment adds only the missing capability evidence overlay and learning gate."
+    },
+    "candidates": [
+      {
+        "id": "reusefirst",
+        "source": ".factory/artifacts/reuse-registry.json",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "decision-contract",
+        "revision": "working-tree-registry",
+        "license": "Apache-2.0",
+        "security": "local deterministic metadata evaluator",
+        "disposition": "ADAPT",
+        "reason": "Reuse the existing shareability and evidence boundary.",
+        "immutable_ref": true
+      },
+      {
+        "id": "evidence-frontier",
+        "source": "scripts/evidence_frontier.py",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "evidence-gate",
+        "revision": "working-tree",
+        "license": "internal",
+        "security": "external human evidence and consent gate",
+        "disposition": "LEARN_FROM",
+        "reason": "Preserve the existing boundary between machine research and human evidence.",
+        "immutable_ref": false
+      },
+      {
+        "id": "agent-skills-specification",
+        "source": "https://agentskills.io/specification",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "open-specification",
+        "revision": "retrieved-2026-09-19",
+        "license": "Apache-2.0 / CC-BY-4.0 documentation",
+        "security": "format reference only; not executed",
+        "disposition": "LEARN_FROM",
+        "reason": "Use explicit artifact metadata and progressive disclosure principles without installing or publishing a skill.",
+        "immutable_ref": true
+      }
+    ]
+  },
+  "contribution": {"classification": "internal-reusable"},
+  "shareability": {"disposition": "REUSE_CANDIDATE", "evidence": "The primitive inventory is consumed by validation and CI, but no second independent factory consumer or external demand evidence is claimed."}
+}

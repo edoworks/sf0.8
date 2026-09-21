@@ -1,0 +1,40 @@
+{
+  "stable_id": "inspect-ai-5369-lowercase-z-normalization",
+  "title": "Normalize lowercase z UTC timestamps",
+  "responsible_project": "UKGovernmentBEIS/inspect_ai",
+  "canonical_source": "https://github.com/UKGovernmentBEIS/inspect_ai/issues/5369",
+  "supporting_passage": "Issue body: datetime_from_iso_format_safe documents and attempts to support Z or z; lowercase z fails on Python 3.11+; proposed fix is to normalize lowercase z and add regression coverage.",
+  "source_publication_date": "2026-09-12",
+  "retrieval_date": "2026-09-19",
+  "verification_date": "2026-09-19",
+  "expiry_date": "2026-09-26",
+  "status": "open",
+  "contribution_requested": "Do not implement while the existing PR remains open; reverify the issue and competing work after that PR reaches a terminal state.",
+  "acceptance_route": "Follow Inspect AI's issue-first route: accepted issue #5369 is labeled accepted and good first issue; claim it before a PR; run make check and make test; submit only with human authorization.",
+  "prerequisites": ["Python", "pytest or the project's test workflow", "ability to read and test date parsing"],
+  "relevant_skills": ["Python", "testing"],
+  "estimated_effort": {"hours": 2, "basis": "OUR INFERENCE from the issue's one-function fix proposal plus regression tests; no maintainer estimate was found."},
+  "deliverable": "A small code change with regression coverage showing both uppercase and lowercase UTC suffixes parse correctly.",
+  "smallest_reversible_step": "Run the issue's minimal reproduction against a local checkout or inspect the implicated normalizer without changing upstream code.",
+  "risk_pathway": "AI evaluation infrastructure can affect the reliability of safety-evaluation tooling.",
+  "benefit_mechanism": "OUR INFERENCE: correcting a reproducible parser defect may reduce avoidable failures in evaluations that consume lowercase-z timestamps.",
+  "mechanism_assumptions": ["The defect affects real evaluation workflows", "the patch is correct and reviewed", "improved infrastructure is used in consequential evaluations"],
+  "counterevidence": ["The issue does not demonstrate safety impact or downstream users", "a fix could be unnecessary if affected inputs are absent", "maintainer review may reject or redirect the proposed approach"],
+  "uncertainties": ["Whether the issue remains wanted after expiry", "whether this changes any safety-relevant evaluation outcome", "whether the user's patch would be accepted", "whether the work would happen without this user"],
+  "downsides": ["Maintainer review and duplicate-work burden", "possible regression if normalization changes unrelated parsing behavior"],
+  "recipient_burden": "Low but non-zero: issue coordination, review, CI, and possible follow-up revisions.",
+  "competing_work": [
+    {
+      "url": "https://github.com/UKGovernmentBEIS/inspect_ai/pull/5410",
+      "status": "open draft",
+      "description": "PR explicitly closes issue #5369 and implements the proposed lowercase-z normalization."
+    }
+  ],
+  "expiry_rule": "Reverify the issue status, labels, latest activity, and repository contribution policy immediately before any claim or external action; abstain after 2026-09-26 without re-retrieval.",
+  "wanted_evidence": "Direct project evidence: CONTRIBUTING.md requires an accepted issue for non-qualified contributors; issue #5369 is open and labeled accepted and good first issue, with no assignee at retrieval.",
+  "source_verified": true,
+  "observed": ["Issue #5369 is open", "Issue #5369 has accepted and good first issue labels", "The issue contains a reproduction and proposed fix", "The project documents make check and make test"],
+  "organization_claim": ["Inspect AI regularly accepts community contributions through its documented issue-first process"],
+  "our_inference": ["The bounded parser fix is a plausible technical contribution for a software engineer"],
+  "evidence_classification": "No extinction, lives-saved, probability, or global-impact estimate is made."
+}

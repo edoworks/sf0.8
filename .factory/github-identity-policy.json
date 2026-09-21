@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "organization": "edoworks",
+  "allowed_username_suffix": "foculoom",
+  "matching": "case_insensitive",
+  "protected_actions": [
+    "organization_membership",
+    "repository_access",
+    "repository_update",
+    "issue_or_discussion_change",
+    "repository_settings_change"
+  ],
+  "required_github_controls": [
+    "Remove every organization member, outside collaborator, team member, and ruleset bypass actor whose login does not match the suffix.",
+    "Use active rulesets or branch protection on every protected branch and tag; disable administrator bypass where GitHub permits it.",
+    "Audit organization and repository audit-log events for membership, permission, settings, review, and update actions.",
+    "Keep the GitHub owner/admin account and every bypass actor individually verified; GitHub has no documented wildcard suffix principal."
+  ],
+  "local_controls": {
+    "actor_gate": "scripts/validate-github-identity.py --actor LOGIN",
+    "snapshot_gate": "scripts/validate-github-identity.py --snapshot FILE"
+  },
+  "fail_closed": true
+}

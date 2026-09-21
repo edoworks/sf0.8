@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "explicit distinction between canonical artifact presence and factory publication authorization",
+  "records": [
+    {
+      "artifact": "reusefirst",
+      "status": "RECONCILED",
+      "canonical_source_recorded": true,
+      "canonical_repository": "https://github.com/edoworks/artifacts",
+      "canonical_path": "artifacts/reusefirst",
+      "canonical_version": "1.2.1",
+      "canonical_revision": "30e588b4dc0d869da9b58a01d91c22d6f4931361",
+      "release_tag_recorded": "reusefirst/v1.2.1",
+      "external_presence_verified": true,
+      "external_tree_url": "https://github.com/edoworks/artifacts/tree/reusefirst/v1.2.1/artifacts/reusefirst",
+      "external_release_url": "https://github.com/edoworks/artifacts/releases/tag/reusefirst/v1.2.1",
+      "external_verification_date": "2026-09-20",
+      "external_manifest_release_state": "RELEASED",
+      "external_manifest_publication_approved": true,
+      "customer_zero_status": "VERIFIED",
+      "customer_zero_evidence": ".factory/artifacts/evidence/reusefirst-customer-zero-dogfood.json",
+      "external_metadata_reconciliation": ".factory/artifacts/evidence/reusefirst-canonical-metadata-reconciliation-2026-09-20.md",
+      "external_pull_request": "https://github.com/edoworks/artifacts/pull/2",
+      "external_pull_request_state": "MERGED",
+      "factory_registry_disposition": "PUBLIC_RELEASED",
+      "factory_publication_approved": true,
+      "factory_authorization": "OWNER_APPROVED",
+      "approval_date": "2026-09-20",
+      "interpretation": "Factory and all listed product Customer Zero workflows execute the pinned public contract; canonical v1.2.1 metadata and release are verified.",
+      "owner_action": "No further release action is required; maintain the artifact under its recorded owner and next review date.",
+      "evidence": [
+        ".factory/artifacts/public-sources.json",
+        ".factory/artifacts/reuse-registry.json",
+        ".factory/artifacts/records/reuse-gate.json",
+        ".factory/artifacts/evidence/reusefirst-publication-state-conflict-2026-09-20.md",
+        ".factory/artifacts/evidence/reusefirst-customer-zero-5whys-2026-09-20.md"
+      ],
+      "publication_performed_by_this_reconciliation": false
+    }
+  ]
+}

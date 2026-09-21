@@ -1,0 +1,50 @@
+{
+  "issue": 65,
+  "capability": "tool opportunity discovery",
+  "change_units": 8,
+  "changed_paths": [
+    ".factory/tool-opportunity-ledger.json",
+    "scripts/tool_opportunities.py",
+    "scripts/validate-ecosystem.py",
+    "tests/test_tool_opportunities.py",
+    "docs/tool-opportunity-discovery.md"
+  ],
+  "reuse": {
+    "searched": 2,
+    "compatible": 1,
+    "reason": "Extend the existing ecosystem evidence gate and reuse registry; no compatible opportunity-ledger capability was found.",
+    "discovery": {
+      "capability": "tool opportunity discovery",
+      "decision": "EXTEND_EXISTING",
+      "matches": ["reusefirst"],
+      "specialization_reason": "The existing reuse gate governs artifact intake and shareability, while the new ledger records second-order friction and economic evidence without duplicating product opportunity records."
+    },
+    "candidates": [
+      {
+        "id": "foculoom-reusefirst",
+        "source": "https://github.com/edoworks/artifacts/tree/reusefirst/v1.2.1/artifacts/reusefirst",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "decision-contract",
+        "revision": "reusefirst/v1.2.1",
+        "license": "Apache-2.0",
+        "security": "local deterministic metadata evaluator",
+        "disposition": "ADAPT",
+        "reason": "Reuse the existing proportional discovery and shareability boundary rather than create a second artifact lifecycle.",
+        "immutable_ref": true
+      },
+      {
+        "id": "agent-skills-specification",
+        "source": "https://agentskills.io/specification",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "open-specification",
+        "revision": "retrieved-2026-09-19",
+        "license": "Apache-2.0 / CC-BY-4.0 documentation",
+        "security": "format reference only; not executed",
+        "disposition": "LEARN_FROM",
+        "reason": "Use explicit artifact metadata and progressive disclosure principles without installing or publishing a skill."
+      }
+    ]
+  },
+  "contribution": {"classification": "internal-reusable"},
+  "shareability": {"disposition": "REUSE_CANDIDATE", "evidence": "The ecosystem validator is the first consumer; a second genuine consumer is not yet demonstrated."}
+}

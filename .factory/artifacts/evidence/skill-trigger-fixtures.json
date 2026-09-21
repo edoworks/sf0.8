@@ -1,0 +1,42 @@
+{
+  "bounded-work": {
+    "positive": [
+      "Run local hygiene for 20 minutes while I am away",
+      "Timebox this review to one hour and stop if the acceptance criteria are unclear"
+    ],
+    "negative": [
+      "Publish this release now",
+      "Keep working indefinitely until the repository is perfect"
+    ]
+  },
+  "evidence-research": {
+    "positive": [
+      "Deep-dive into the current patent landscape and cite primary sources",
+      "Give me a sourced briefing on today's news and label uncertainty"
+    ],
+    "negative": [
+      "Rewrite this paragraph to be shorter",
+      "Run the local test suite"
+    ]
+  },
+  "prose-editing": {
+    "positive": [
+      "Humanize this memo without changing its claims",
+      "Make this response no-fluff but retain caveats and citations"
+    ],
+    "negative": [
+      "Research whether this claim is true",
+      "Implement the missing API endpoint"
+    ]
+  },
+  "curiosity-audit": {
+    "positive": [
+      "Pressure-test this product hypothesis and identify a falsifiable test",
+      "Challenge this decision while preserving uncertainty and counterevidence"
+    ],
+    "negative": [
+      "Make this sound exactly like Joe Rogan",
+      "Publish the recommendation and spend the approved budget automatically"
+    ]
+  }
+}
