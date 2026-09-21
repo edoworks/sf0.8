@@ -33,6 +33,8 @@ Status: BLOCKED, not passed
 - iPad Pro simulator (iOS 26.5): automated NowNest UI suite passed 5/5. Result bundle: `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_12-45-33--0700.xcresult`.
 - The UI suite now retains screenshot attachments for launch, capture confirmation, parked-idea review, NOW edit, and deletion. The updated iPad simulator run passed 5/5 at `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_12-51-34--0700.xcresult`.
 - iPad Air physical device (iPadOS 26.7): automated NowNest UI suite passed 5/5 with screenshot attachments. Result bundle: `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_13-11-18--0700.xcresult`.
+- Persistence UI test passed on the iPhone simulator and physical iPad: a parked idea was saved, the app was terminated and relaunched, and the same `PARKED` idea was found in Review. Physical iPad result bundle: `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_13-27-24--0700.xcresult`.
+- Full iPad simulator verification passed 6 UI tests and 6 unit tests, including persistence relaunch and retained visual checkpoints. Result bundle: `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_13-25-55--0700.xcresult`.
 - G8 remains open until iPad device automation and human visual checks are complete.
 
 ## Recurrence guard
