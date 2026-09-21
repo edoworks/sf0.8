@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "declared skill roots plus evidence-backed review records",
+  "retrieved": "2026-09-20",
+  "roots": [
+    {"id": "project", "path": ".agents/skills", "source_type": "FOCULOOM_SHARED", "required": true},
+    {"id": "user-local", "path": "/Users/hello/.agents/skills", "source_type": "USER_LOCAL", "required": false}
+  ],
+  "records": [
+    {"id": "bounded-work", "root": "project", "used": true, "recommendation": "SHAREABILITY_REVIEW", "evidence": [".opencode/commands/brb.md", ".opencode/commands/timebox.md"], "reason": "Repeated bounded-work command use and explicit reusable contract.", "publication_approved": false},
+    {"id": "curiosity-audit", "root": "project", "used": true, "recommendation": "SHAREABILITY_REVIEW", "evidence": [".opencode/commands/curiosity.md", ".factory/artifacts/evidence/joe-rogan-inspired-curiosity-research.md"], "reason": "Command-backed review workflow with explicit safety and falsifiability boundaries.", "publication_approved": false},
+    {"id": "ecosystem-compounding", "root": "project", "used": false, "recommendation": "DEFER", "evidence": [".agents/skills/ecosystem-compounding/SKILL.md"], "reason": "Discoverable but no direct use evidence was established in this review.", "publication_approved": false},
+    {"id": "evidence-research", "root": "project", "used": true, "recommendation": "SHAREABILITY_REVIEW", "evidence": [".opencode/commands/deepdive.md", ".factory/artifacts/evidence/shareable-components-deep-dive-2026-09-20.md"], "reason": "Command-backed source-aware research workflow used in multiple evidence records.", "publication_approved": false},
+    {"id": "executive-council", "root": "project", "used": false, "recommendation": "DEFER", "evidence": [".agents/skills/executive-council/SKILL.md"], "reason": "Discoverable but no direct use evidence was established in this review.", "publication_approved": false},
+    {"id": "focusreset", "root": "project", "used": true, "recommendation": "SHAREABILITY_REVIEW", "evidence": [".agents/skills/focusreset/SKILL.md"], "reason": "Narrow, safety-bounded task-initiation workflow; consumer breadth is not yet demonstrated.", "publication_approved": false},
+    {"id": "prose-editing", "root": "project", "used": true, "recommendation": "SHAREABILITY_REVIEW", "evidence": [".opencode/commands/humanize.md", ".opencode/commands/nofluff.md"], "reason": "Two command consumers share a bounded prose-preservation contract.", "publication_approved": false},
+    {"id": "find-skills", "root": "user-local", "used": false, "recommendation": "DEFER", "evidence": ["/Users/hello/.agents/skills/find-skills/SKILL.md"], "reason": "Discoverable but no use evidence in this repository.", "publication_approved": false},
+    {"id": "macos-screenshot", "root": "user-local", "used": true, "recommendation": "SHAREABILITY_REVIEW", "evidence": ["docs/research/continuous-competence-skill-opportunities-2026-09-20.md", "docs/research/continuous-competence-ios-visual-defect-5whys-2026-09-20.md"], "reason": "Used on mobile web and native iPhone/iPad surfaces and caught a visual defect; ownership and publication review remain open.", "publication_approved": false}
+    ,{"id": "skiplet-playtest", "root": "user-local", "used": false, "recommendation": "DEFER", "evidence": ["/Users/hello/.agents/skills/skiplet-playtest/SKILL.md"], "reason": "Discoverable but no use evidence in this repository.", "publication_approved": false}
+  ],
+  "policy": {
+    "recommendation_is_not_publication": true,
+    "unknown_is_fail_closed": true,
+    "publication_requires_human_authorization": true,
+    "missing_inventory_record_is_error": true
+  }
+}

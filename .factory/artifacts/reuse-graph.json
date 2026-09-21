@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-20",
+  "source_of_truth": ".factory/artifacts/reuse-registry.json",
+  "scope": "locally evidenced submitted Foculoom Apple applications and shared factory artifacts",
+  "applications": [
+    {"id": "product-a", "repository": "edoworks/product-a", "status": "shelved_read_only", "artifacts": ["apple-distribution-preflight", "vorynce-rejection-regression", "reusefirst"]},
+    {"id": "vorynce", "repository": "foculoom/vorynce", "status": "active_release_blocked", "artifacts": ["apple-distribution-preflight", "vorynce-rejection-regression", "reusefirst"]},
+    {"id": "cat-whispers", "repository": "historical sf0.7 app", "status": "dormant_testflight_valid", "artifacts": ["vorynce-rejection-regression"]},
+    {"id": "veilsort", "repository": "foculoom/veilsort", "status": "dormant_removed_from_store", "artifacts": ["apple-distribution-preflight", "vorynce-rejection-regression"]},
+    {"id": "skiplet", "repository": "foculoom/skiplet", "status": "dormant_removed_from_store", "artifacts": ["vorynce-rejection-regression"]},
+    {"id": "edglex", "repository": "foculoom/findmyloophole-ios", "status": "dormant_prepare_for_submission", "artifacts": ["apple-distribution-preflight", "vorynce-rejection-regression"]},
+    {"id": "docketloom", "repository": "foculoom/docketloom", "status": "dormant_developer_rejected", "artifacts": ["apple-distribution-preflight", "vorynce-rejection-regression"]},
+    {"id": "jumpyloo", "repository": "foculoom/jumpyloo", "status": "dormant_prepare_for_submission", "artifacts": ["apple-distribution-preflight", "vorynce-rejection-regression"]},
+    {"id": "legal-exception", "repository": "foculoom/legalexception", "status": "retired_developer_rejected", "artifacts": ["vorynce-rejection-regression"]},
+    {"id": "law-gaps", "repository": "foculoom/lawgaps-ios", "status": "retired_developer_rejected", "artifacts": ["vorynce-rejection-regression"]},
+    {"id": "find-my-loophole", "repository": "historical_only", "status": "retired_developer_rejected", "artifacts": ["vorynce-rejection-regression"]},
+    {"id": "bloomline", "repository": "foculoom/bloomline", "status": "dormant_developer_rejected", "artifacts": ["vorynce-rejection-regression"]}
+  ],
+  "artifacts": [
+    {"id": "reusefirst", "applications": ["product-a", "vorynce"], "factory_consumers": ["sf0.8", "intent-compiler-modeled"], "version": "1.2.1", "relationship_basis": "verified Customer Zero evidence"},
+    {"id": "apple-distribution-preflight", "applications": ["product-a", "vorynce", "veilsort", "edglex", "docketloom", "jumpyloo"], "factory_consumers": ["sf0.8"], "version": "internal_shared", "relationship_basis": "two product profiles and validator evidence; historical applicability is a reuse opportunity, not proof of current consumption"},
+    {"id": "vorynce-rejection-regression", "applications": ["product-a", "vorynce", "cat-whispers", "veilsort", "skiplet", "edglex", "docketloom", "jumpyloo", "legal-exception", "law-gaps", "find-my-loophole", "bloomline"], "factory_consumers": ["sf0.8"], "version": "knowledge_artifact", "relationship_basis": "preserved historical evidence and regression fixture"}
+  ],
+  "uncertainty": [
+    "Historical application artifact links are eligibility/provenance links unless direct consumer evidence exists.",
+    "Remote GitHub and App Store Connect state was not queried in this pass.",
+    "The graph intentionally excludes unsubmitted local candidates and private product internals without verified artifact consumption."
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "issue": 92,
+  "capability": "session evidence preservation",
+  "change_units": 8,
+  "changed_paths": [
+    "scripts/check-apple-device.py",
+    "scripts/contribution_card.py",
+    "scripts/dogfood-reusefirst.py",
+    "scripts/notify-objective.py",
+    "scripts/objective_notification.py",
+    "scripts/objective_state.py",
+    "scripts/primitive_discovery.py",
+    "scripts/recover-objective.py",
+    "scripts/recovery.py",
+    "scripts/skill_sharing.py",
+    "scripts/tool_opportunities.py",
+    "scripts/validate-audio-replay.py",
+    "scripts/validate-github-identity.py",
+    "scripts/validate-primitive-discovery.py",
+    "scripts/validate-primitive-learning.py",
+    "scripts/validate-primitive-reach.py",
+    "scripts/validate-recovery.py",
+    ".agents/skills/bounded-work/SKILL.md",
+    ".agents/skills/curiosity-audit/SKILL.md",
+    ".agents/skills/focusreset/SKILL.md",
+    ".agents/skills/prose-editing/SKILL.md"
+  ],
+  "reuse": {
+    "searched": 2,
+    "compatible": 0,
+    "reason": "Preservation commit for scripts created across multiple prior sessions; no new external capability is introduced.",
+    "discovery": {
+      "capability": "session evidence preservation",
+      "decision": "BUILD_NEW",
+      "matches": [],
+      "specialization_reason": "Batch preservation of previously untracked scripts from multiple closed issues; no single external capability covers the set."
+    },
+    "candidates": [
+      {
+        "id": "opencode-commands-documentation",
+        "source": "https://opencode.ai/docs/commands/",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "platform-documentation",
+        "revision": "retrieved-2026-09-21",
+        "license": "Documentation reference only",
+        "security": "Static documentation inspected as untrusted data; no code installed or executed",
+        "disposition": "LEARN_FROM",
+        "reason": "OpenCode command and skill conventions inform the preservation structure without introducing new executable machinery."
+      },
+      {
+        "id": "sf08-existing-scripts",
+        "source": "scripts/",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "internal-scripts",
+        "revision": "pre-preservation working state",
+        "license": "Apache-2.0",
+        "security": "Local deterministic scripts with no external execution",
+        "disposition": "LEARN_FROM",
+        "reason": "These scripts already exist locally and are being preserved as-is; no new capability is adopted."
+      }
+    ]
+  },
+  "contribution": {
+    "classification": "internal-reusable"
+  },
+  "shareability": {
+    "disposition": "REUSE_CANDIDATE",
+    "evidence": "Scripts are internal factory tooling preserved from prior sessions; broader reuse is not yet demonstrated."
+  }
+}

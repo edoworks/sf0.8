@@ -1,0 +1,62 @@
+:root {
+  color-scheme: light;
+  --ink: #17211f;
+  --muted: #66716d;
+  --paper: #f5f2ea;
+  --card: #fffdf8;
+  --line: #d9d5ca;
+  --accent: #d85f3f;
+  --accent-dark: #a9412b;
+  --good: #2f7158;
+  font-family: ui-rounded, "SF Pro Rounded", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  color: var(--ink);
+  background: radial-gradient(circle at top right, #f2c6a0 0, transparent 34rem), var(--paper);
+}
+
+.shell { width: min(100% - 2rem, 42rem); margin: 0 auto; padding: 1.25rem 0 2rem; }
+.topbar { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 2rem; }
+.eyebrow { margin: 0 0 .3rem; color: var(--accent-dark); font-size: .72rem; font-weight: 800; letter-spacing: .14em; }
+h1, h2, p { margin-top: 0; }
+h1 { margin-bottom: 0; font-size: clamp(1.7rem, 7vw, 2.5rem); letter-spacing: -.04em; }
+h2 { font-size: clamp(1.35rem, 5vw, 1.8rem); letter-spacing: -.03em; }
+.badge { border: 1px solid var(--ink); border-radius: 999px; padding: .4rem .6rem; font-size: .68rem; font-weight: 800; white-space: nowrap; }
+.card { padding: clamp(1.1rem, 5vw, 2rem); border: 1px solid var(--line); border-radius: 1.25rem; background: color-mix(in srgb, var(--card) 92%, transparent); box-shadow: 0 .8rem 2rem #4f3d2412; }
+.kicker { color: var(--muted); font-size: .9rem; line-height: 1.5; }
+.prompt { font-size: 1.1rem; line-height: 1.55; }
+.code { overflow-x: auto; margin: 1rem 0; padding: 1rem; border-radius: .8rem; color: #f9f5ea; background: #202b28; font: .85rem/1.55 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: pre; }
+.grid { display: grid; gap: .9rem; }
+label { display: grid; gap: .4rem; color: var(--muted); font-size: .85rem; font-weight: 700; }
+textarea, input { width: 100%; border: 1px solid var(--line); border-radius: .7rem; padding: .75rem; color: var(--ink); background: #fffefa; font: inherit; }
+select { width: 100%; border: 1px solid var(--line); border-radius: .7rem; padding: .75rem; color: var(--ink); background: #fffefa; font: inherit; }
+textarea { min-height: 7rem; resize: vertical; }
+input[type="number"] { max-width: 8rem; }
+.actions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.3rem; }
+button { min-height: 2.8rem; border: 0; border-radius: 999px; padding: .7rem 1rem; color: #fffaf0; background: var(--ink); font: inherit; font-weight: 800; cursor: pointer; }
+button.secondary { color: var(--ink); background: transparent; border: 1px solid var(--line); }
+button:focus-visible, textarea:focus-visible, input:focus-visible { outline: 3px solid #e59a77; outline-offset: 2px; }
+.callout { margin: 1rem 0; padding: .9rem; border-left: 4px solid var(--accent); background: #f9e6d8; line-height: 1.5; }
+.hint-panel { margin: 1rem 0; padding: 1rem; border: 1px solid var(--line); border-radius: .8rem; background: #faf7ef; }
+.test-panel { margin: 1rem 0; padding: 1rem; border: 1px solid var(--line); border-radius: .8rem; background: #eef5f0; }
+.hint-panel .secondary { margin: .25rem .4rem .25rem 0; }
+.hints { margin: .7rem 0; padding-left: 1.4rem; color: var(--ink); line-height: 1.5; }
+.hint-panel .callout { margin-bottom: 0; }
+.hint-panel button:disabled { cursor: default; opacity: .55; }
+.learning-library { margin: 1rem 0; padding: .9rem 1rem; border: 1px solid var(--line); border-radius: .8rem; background: #faf7ef; line-height: 1.5; }
+.learning-library summary { cursor: pointer; font-weight: 800; }
+.learning-library h3 { margin: 1rem 0 .45rem; font-size: 1rem; }
+.learning-library p { font-size: .92rem; }
+a { color: var(--accent-dark); font-weight: 700; }
+.result { display: grid; gap: .6rem; margin: 1rem 0; }
+.result div { display: flex; justify-content: space-between; gap: 1rem; padding: .7rem 0; border-bottom: 1px solid var(--line); }
+.result dt { color: var(--muted); }
+.result dd { margin: 0; font-weight: 800; text-align: right; }
+.hidden { display: none; }
+footer { padding: 1rem .2rem; color: var(--muted); font-size: .78rem; line-height: 1.5; }
+@media (min-width: 42rem) { .shell { padding-top: 2.5rem; } }

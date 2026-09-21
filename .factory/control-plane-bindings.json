@@ -65,6 +65,11 @@
       "number": 88,
       "url": "https://github.com/edoworks/sf0.8/issues/88",
       "repo": "edoworks/sf0.8"
+    },
+    "session evidence preservation": {
+      "number": 92,
+      "url": "https://github.com/edoworks/sf0.8/pull/92",
+      "repo": "edoworks/sf0.8"
     }
   },
   "policy": "Material work without a factory binding is blocked; callers cannot select an arbitrary issue."

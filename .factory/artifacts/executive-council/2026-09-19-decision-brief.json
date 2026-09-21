@@ -1,0 +1,321 @@
+{
+  "schema_version": 2,
+  "review_id": "founder-decision-brief-2026-09-19",
+  "generated_at": "2026-09-19T19:57:33.053689+00:00",
+  "authority": {
+    "founder_is_final_authority": true,
+    "operational_authority": "OBSERVE_ANALYZE_CHALLENGE_RECOMMEND_LEARN",
+    "external_action": "HUMAN_ONLY"
+  },
+  "decision": {
+    "id": "education-proof-tiles-first-observation",
+    "question": "Should Foculoom authorize one human-run Proof Tiles observation before any new product or factory expansion?",
+    "owner": "FOUNDER",
+    "decision_due": "2026-09-20",
+    "status": "PENDING_HUMAN",
+    "options": [
+      {
+        "id": "RUN_PROOF_TILES",
+        "label": "Authorize one Proof Tiles observation",
+        "reversible": true
+      },
+      {
+        "id": "DO_NOTHING",
+        "label": "Keep all experiment work paused",
+        "reversible": true
+      },
+      {
+        "id": "BUILD_PRODUCT",
+        "label": "Start product implementation without external evidence",
+        "reversible": false
+      }
+    ],
+    "recommended_option": "RUN_PROOF_TILES"
+  },
+  "execution_contract": {
+    "founder_time_ceiling_minutes": 120,
+    "external_spend_ceiling_usd": 0,
+    "success_threshold": "One consented, schema-valid external observation records independent transfer, adult rescue, 48-hour retest, and an actual payment signal.",
+    "stop_rule": "Stop on distress, privacy uncertainty, answer leakage, missing consent, an inadmissible result, or the first protocol blocker; do not continue automatically to another kit."
+  },
+  "evidence": {
+    "snapshot_date": "2026-09-19",
+    "source_fingerprints": {
+      ".factory/artifacts/reports/apple-distribution/release-board-2026-09-19.json": "c4c70250f6dbfd177721e814f4562bed7d9952b139f292e261e14a0442189bae",
+      ".factory/customer-zero.json": "8350843a15b11848f184c6d53eb6252ed527d8b0f7fe0e431c9379afb791a4c6",
+      ".factory/artifacts/evidence/education-opportunity-discovery.json": "265762cbb669b9844991512b692c7a1ee8812c161146f1aa73e4c8b26e889631",
+      ".factory/automation/evidence-bundle.json": "b476c4f70e27da0b33263752300a24164e4e4a8e9c7db8b8494d1500d7e90e56",
+      ".factory/portfolio.yaml": "4a90fd0181f35eac4eec21a0f1a1b427e6fa06e25653804dfd2bfb48b6c3ddfb",
+      ".factory/experiments/education/protocol.md": "6cefc97785a7df6133866aeb94ecaaefd905ffc49edfbedd851606d6ac0f9228",
+      ".factory/experiments/education/experiment-order.md": "0a866c6708df18913bb413c88ddb3ea25517b75e51fac767e74ad83ef10f1c0a",
+      ".factory/factory.sqlite": "9c90e042ec465aea9b62100f4d07fb2606e416ec778c931456ca04b548ba7e1f"
+    },
+    "portfolio": {
+      "apple_products": {
+        "kind": "FACT",
+        "source": ".factory/artifacts/reports/apple-distribution/release-board-2026-09-19.json",
+        "claim": "Apple products discovered",
+        "value": 12
+      },
+      "candidates": {
+        "kind": "FACT",
+        "source": ".factory/artifacts/reports/apple-distribution/release-board-2026-09-19.json",
+        "claim": "independent candidates",
+        "value": 49
+      },
+      "ready_for_review": {
+        "kind": "FACT",
+        "source": ".factory/artifacts/reports/apple-distribution/release-board-2026-09-19.json",
+        "claim": "products ready for review",
+        "value": 0
+      },
+      "blocked": {
+        "kind": "FACT",
+        "source": ".factory/artifacts/reports/apple-distribution/release-board-2026-09-19.json",
+        "claim": "blocked products",
+        "value": 1
+      },
+      "shelved": {
+        "kind": "FACT",
+        "source": ".factory/artifacts/reports/apple-distribution/release-board-2026-09-19.json",
+        "claim": "shelved products",
+        "value": 11
+      },
+      "working": {
+        "kind": "FACT",
+        "source": ".factory/artifacts/reports/apple-distribution/release-board-2026-09-19.json",
+        "claim": "working products",
+        "value": 0
+      }
+    },
+    "customer": {
+      "customer_zero_records": {
+        "kind": "EVIDENCE",
+        "source": ".factory/customer-zero.json",
+        "claim": "Customer Zero records",
+        "value": 3
+      },
+      "external_validation": {
+        "kind": "UNKNOWN",
+        "source": "not recorded in canonical evidence",
+        "claim": "External customer behavior, payment, retention",
+        "value": "UNKNOWN"
+      },
+      "education_external_validation": {
+        "kind": "FACT",
+        "source": ".factory/artifacts/evidence/education-opportunity-discovery.json",
+        "claim": "direct customer evidence",
+        "value": "ABSENT"
+      },
+      "education_payment": {
+        "kind": "FACT",
+        "source": ".factory/artifacts/evidence/education-opportunity-discovery.json",
+        "claim": "external payment evidence",
+        "value": "ABSENT"
+      }
+    },
+    "economics": {
+      "revenue": {
+        "kind": "UNKNOWN",
+        "source": "not recorded in canonical evidence",
+        "claim": "Company revenue",
+        "value": "UNKNOWN"
+      },
+      "contribution_margin": {
+        "kind": "UNKNOWN",
+        "source": "not recorded in canonical evidence",
+        "claim": "Contribution margin",
+        "value": "UNKNOWN"
+      },
+      "operating_cost": {
+        "kind": "UNKNOWN",
+        "source": "not recorded in canonical evidence",
+        "claim": "Company operating cost",
+        "value": "UNKNOWN"
+      },
+      "factory_telemetry": {
+        "kind": "FACT",
+        "source": ".factory/factory.sqlite",
+        "claim": "recorded factory telemetry cost",
+        "value": {
+          "runs": 6,
+          "successful_runs": 6,
+          "recorded_factory_cost_usd": 0.42
+        }
+      }
+    },
+    "factory": {
+      "verification": {
+        "kind": "EVIDENCE",
+        "source": ".factory/artifacts/reports/apple-distribution/release-board-2026-09-19.json",
+        "claim": "factory verification",
+        "value": {
+          "unit_tests": "148 passed",
+          "portfolio_audit": "passed",
+          "lifecycle_contract": "passed",
+          "human_action_queue": "passed",
+          "apple_distribution": "passed",
+          "automation": "passed",
+          "ecosystem": "passed",
+          "control_plane": "passed"
+        }
+      },
+      "customer_zero_bundle": {
+        "kind": "EVIDENCE",
+        "source": ".factory/automation/evidence-bundle.json",
+        "claim": "Customer Zero category",
+        "value": {
+          "status": "VERIFIED",
+          "evidence": [
+            ".factory/customer-zero.json",
+            ".factory/automation/release-criteria.json"
+          ]
+        }
+      }
+    },
+    "experiment": {
+      "protocol": {
+        "kind": "EVIDENCE",
+        "source": ".factory/experiments/education/protocol.md",
+        "claim": "human-run evidence protocol",
+        "value": "Proof requires consented external observation"
+      },
+      "order": {
+        "kind": "EVIDENCE",
+        "source": ".factory/experiments/education/experiment-order.md",
+        "claim": "recommended first experiment",
+        "value": "PROOF_TILES"
+      }
+    },
+    "conflicts": [
+      {
+        "topic": "Product A lifecycle",
+        "claims": [
+          {
+            "source": ".factory/portfolio.yaml",
+            "value": "shelved"
+          },
+          {
+            "source": ".factory/customer-zero.json",
+            "value": "active product direction"
+          },
+          {
+            "source": ".factory/artifacts/reports/apple-distribution/release-board-2026-09-19.json",
+            "value": "SHELVED"
+          }
+        ],
+        "status": "BLOCKED_UNRESOLVED_SOURCE_CONFLICT"
+      }
+    ]
+  },
+  "lenses": {
+    "CEO": {
+      "question": "Which option concentrates founder attention on the highest-value learning?",
+      "distinct_contribution": "Choose one reversible learning lane and do not reopen portfolio expansion.",
+      "claims": [
+        {
+          "kind": "RECOMMENDATION",
+          "text": "Authorize at most one bounded Proof Tiles observation before considering another product or factory expansion.",
+          "evidence": [
+            "portfolio.working",
+            "customer.external_validation",
+            "experiment.order"
+          ]
+        }
+      ]
+    },
+    "CFO": {
+      "question": "What financial exposure is justified before demand evidence exists?",
+      "distinct_contribution": "Set zero unapproved external spend and prohibit product investment until an observed payment signal exists.",
+      "claims": [
+        {
+          "kind": "RECOMMENDATION",
+          "text": "Keep external spend at zero unless separately approved and record the participant's actual payment signal.",
+          "evidence": [
+            "economics.revenue",
+            "economics.operating_cost",
+            "customer.education_payment"
+          ]
+        }
+      ]
+    },
+    "CPO": {
+      "question": "What observation would most reduce product uncertainty?",
+      "distinct_contribution": "Measure independent transfer, adult rescue, 48-hour retention, and an actual payment signal rather than stated interest.",
+      "claims": [
+        {
+          "kind": "RECOMMENDATION",
+          "text": "Use the existing Proof Tiles protocol and ingest only admissible external observations.",
+          "evidence": [
+            "customer.education_external_validation",
+            "experiment.protocol",
+            "experiment.order"
+          ]
+        }
+      ]
+    },
+    "CTO": {
+      "question": "What is the least technical implementation that can answer the question?",
+      "distinct_contribution": "Use paper or a local static artifact; build no product, service, integration, scheduler, or council infrastructure.",
+      "claims": [
+        {
+          "kind": "RECOMMENDATION",
+          "text": "Do not write product code for this decision.",
+          "evidence": [
+            "factory.verification",
+            "experiment.order"
+          ]
+        }
+      ]
+    },
+    "COO": {
+      "question": "How will the decision-to-evidence cycle be bounded and observed?",
+      "distinct_contribution": "Track elapsed founder time and stop after the first admissible result or protocol blocker.",
+      "claims": [
+        {
+          "kind": "RECOMMENDATION",
+          "text": "Record decision time, experiment time, result state, and blocker before any follow-on lane.",
+          "evidence": [
+            "portfolio.ready_for_review",
+            "experiment.protocol"
+          ]
+        }
+      ]
+    }
+  },
+  "disagreement": {
+    "material": false,
+    "status": "NO_MATERIAL_DISAGREEMENT",
+    "summary": "All lenses support one bounded observation; their contributions define different constraints rather than competing recommendations."
+  },
+  "synthesis": {
+    "kind": "RECOMMENDATION",
+    "option": "RUN_PROOF_TILES",
+    "text": "If the founder authorizes human participation, run one Proof Tiles observation under the existing protocol and stop before product work or a second experiment.",
+    "changed_by_lenses": {
+      "CFO": "added zero-spend ceiling and actual payment signal",
+      "CPO": "specified behavioral and retention observations",
+      "CTO": "prohibited product implementation",
+      "COO": "added elapsed-time and first-result stop boundary"
+    },
+    "founder_authority_required": true
+  },
+  "tracking": {
+    "founder_decision": "NOT_RECORDED",
+    "decision_rationale": "NOT_RECORDED",
+    "decided_at": "NOT_RECORDED",
+    "action_taken": "NOT_RECORDED",
+    "actual_outcome": "NOT_RECORDED",
+    "outcome_recorded_at": "NOT_RECORDED",
+    "effectiveness": {
+      "minutes_to_read": "NOT_RECORDED",
+      "affected_decision": "NOT_RECORDED",
+      "caught_missed_fact": "NOT_RECORDED",
+      "prevented_work": "NOT_RECORDED",
+      "reduced_cognitive_load": "NOT_RECORDED",
+      "created_cognitive_load": "NOT_RECORDED",
+      "redundant_sections": "NOT_RECORDED"
+    }
+  },
+  "continuation_gate": "Evaluate three real founder decisions. Retire the council framing if none changes or accelerates a decision, prevents unjustified work, or reduces decision time."
+}

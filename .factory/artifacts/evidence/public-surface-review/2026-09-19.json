@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "surface": "Edoworks and Foculoom public factory surfaces",
+  "reviewed_at": "2026-09-19",
+  "evidence": {
+    "sources": [
+      "https://edoworks.com/",
+      "https://edoworks.com/portfolio/",
+      "https://edoworks.com/rung/",
+      "https://foculoom.com/",
+      "https://github.com/edoworks/rung",
+      "https://github.com/edoworks/artifacts",
+      "https://github.com/edoworks/asc-client",
+      "https://github.com/edoworks/factory-constitution",
+      "https://github.com/edoworks/rung/releases/tag/v0.3.2",
+      "https://pypi.org/project/rung-audit/"
+    ],
+    "deterministic_preflight": {
+      "passing_pages": [
+        "https://edoworks.com/",
+        "https://edoworks.com/portfolio/",
+        "https://edoworks.com/rung/",
+        "https://foculoom.com/"
+      ],
+      "blocked_pages": [
+        {
+          "url": "https://rung.edoworks.com/",
+          "reason": "HTTP 530"
+        }
+      ],
+      "passing_release": "edoworks/rung v0.3.2",
+      "passing_package": "rung-audit 0.3.2",
+      "blocked_repository_metadata": [
+        {
+          "repo": "edoworks/artifacts",
+          "reason": "GitHub API reports no detected repository license"
+        },
+        {
+          "repo": "edoworks/asc-client",
+          "reason": "GitHub API reports no detected repository license"
+        },
+        {
+          "repo": "edoworks/factory-constitution",
+          "reason": "GitHub API reports no detected repository license"
+        }
+      ]
+    },
+    "local_authority": [
+      "docs/public-surface-review/remediation-2026-09-15.md",
+      "docs/ci/rung-public-origin-context-2026-09-14.md",
+      ".factory/portfolio.yaml",
+      ".factory/artifacts/public-sources.json"
+    ]
+  },
+  "challenge": {
+    "hardest_counterclaim": "The public factory may be intentionally evidence-led and not yet commercial; a broken legacy hostname may not matter if the canonical Edoworks page works.",
+    "resolution": "The counterclaim is valid for product readiness but not for public trust. The live Foculoom homepage still sends visitors to the broken hostname, so the defect remains audience-visible and owner action is required.",
+    "unknowns": [
+      "No public evidence establishes paid Rung demand, repeat use, or revenue.",
+      "The owner-controlled status of the deprecated hostname and GitHub repository license metadata is not observable from this local review.",
+      "No external publication or redirect authorization was provided in this session."
+    ]
+  },
+  "findings": [
+    {
+      "severity": "P1",
+      "persona": "Portfolio and Lifecycle Curator",
+      "url_or_path": "https://foculoom.com/ -> https://rung.edoworks.com/",
+      "quoted_text_or_selector": "Rung link on the live Foculoom homepage",
+      "problem": "The advertised Rung destination returns HTTP 530 while the canonical Edoworks Rung page is healthy.",
+      "evidence": "Deterministic preflight on 2026-09-19; docs/ci/rung-public-origin-context-2026-09-14.md.",
+      "audience_consequence": "A prospective user can encounter a dead product path before reaching the working release surface.",
+      "minimal_recommended_change": "Owner-authorized change: replace the live link with https://edoworks.com/rung/ or install and verify a 301 redirect.",
+      "confidence": "high",
+      "follow_up_issue": "Owner-controlled external publication/lifecycle action; no local issue mutation performed."
+    },
+    {
+      "severity": "P1",
+      "persona": "Claims and Evidence Auditor",
+      "url_or_path": "GitHub repository metadata",
+      "quoted_text_or_selector": "GitHub API license metadata",
+      "problem": "Three public repositories used in the artifact migration remain publicly visible but have no detected repository license in GitHub metadata.",
+      "evidence": "Deterministic preflight on 2026-09-19; .factory/artifacts/public-sources.json marks the standalone surfaces deprecated and canonical artifacts released elsewhere.",
+      "audience_consequence": "Users may not know whether to consume the old repository or the canonical artifact, and automated license discovery fails.",
+      "minimal_recommended_change": "Owner-authorized lifecycle decision: ensure each deprecated repository has an explicit pointer/deprecation state and consistent license metadata, or preserve it as-is with a documented reason.",
+      "confidence": "high",
+      "follow_up_issue": "External repository metadata and lifecycle action; not executed."
+    },
+    {
+      "severity": "P2",
+      "persona": "Plainspoken Audience Advocate",
+      "url_or_path": "https://edoworks.com/",
+      "quoted_text_or_selector": "Intent -> verified software; evidence at every handoff",
+      "problem": "The factory proposition is clear to engineers but does not identify one immediate customer job or outcome.",
+      "evidence": "Live homepage review and docs/public-surface-review/initial-audit-2026-09-15.md.",
+      "audience_consequence": "Visitors can understand the operating philosophy without understanding what to use or buy.",
+      "minimal_recommended_change": "After owner approval, add one concrete Rung audience sentence and one action path; keep the factory process as supporting proof.",
+      "confidence": "high",
+      "follow_up_issue": "Copy/publication decision; not executed."
+    }
+  ],
+  "concrete_actions": [
+    {
+      "owner": "human",
+      "action": "Fix or deliberately retire the live rung.edoworks.com path.",
+      "verification": "Run public-surface-preflight against the old and canonical URLs and preserve the redirect/status evidence.",
+      "authority_required": "publishing/deployment and DNS/redirect authority"
+    },
+    {
+      "owner": "human",
+      "action": "Reconcile public GitHub repository lifecycle and license metadata with public-sources.json.",
+      "verification": "Re-run repository metadata preflight and confirm canonical artifact links.",
+      "authority_required": "external repository settings/publication authority"
+    },
+    {
+      "owner": "human",
+      "action": "Run one bounded Rung customer outcome test before adding factory or product surface area.",
+      "verification": "Record a real audit completion, repeat use, payment, referral, or explicit rejection reason.",
+      "authority_required": "founder decision; no autonomous release implied"
+    }
+  ],
+  "local_source_correction": {
+    "repository": "/Users/hello/foculoom/web/foculoom.github.io",
+    "file": "index.html",
+    "change": "Added a direct link from the Products card to https://edoworks.com/rung/.",
+    "verification": [
+      "git diff --check passed",
+      "canonical URL present in source",
+      "commit 1fb9f2c pushed to feature/public-rung-link"
+    ],
+    "publication_state": "FEATURE_BRANCH_PUSHED; PR creation and deployment remain blocked by policy/owner workflow"
+  },
+  "implementation_prompt": "Implement the smallest owner-approved public-surface correction: remove the broken Rung destination from the live Foculoom path or install a verified redirect, then rerun the deterministic preflight and publish the evidence receipt; do not build new product or factory machinery.",
+  "decision": "BLOCKED_EXTERNAL",
+  "recommendation": "Make Rung the only active public product wedge and complete one public-surface reconciliation pass before any new product or factory expansion.",
+  "authority_boundary": "This record recommends and verifies; it does not authorize external publication, DNS, redirects, repository settings, releases, or issue mutations."
+}
