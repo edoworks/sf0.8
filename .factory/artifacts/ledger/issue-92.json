@@ -19,7 +19,11 @@
     "scripts/validate-primitive-discovery.py",
     "scripts/validate-primitive-learning.py",
     "scripts/validate-primitive-reach.py",
-    "scripts/validate-recovery.py"
+    "scripts/validate-recovery.py",
+    ".agents/skills/bounded-work/SKILL.md",
+    ".agents/skills/curiosity-audit/SKILL.md",
+    ".agents/skills/focusreset/SKILL.md",
+    ".agents/skills/prose-editing/SKILL.md"
   ],
   "reuse": {
     "searched": 2,
