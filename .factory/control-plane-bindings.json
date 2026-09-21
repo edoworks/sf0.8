@@ -60,6 +60,11 @@
       "number": 83,
       "url": "https://github.com/edoworks/sf0.8/pull/83",
       "repo": "edoworks/sf0.8"
+    },
+    "subject-locked evidence research": {
+      "number": 88,
+      "url": "https://github.com/edoworks/sf0.8/issues/88",
+      "repo": "edoworks/sf0.8"
     }
   },
   "policy": "Material work without a factory binding is blocked; callers cannot select an arbitrary issue."
