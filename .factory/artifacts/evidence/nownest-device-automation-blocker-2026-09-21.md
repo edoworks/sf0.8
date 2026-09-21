@@ -2,7 +2,7 @@
 
 Date: 2026-09-21
 Subject: NowNest G8 physical-device automation
-Status: BLOCKED, not passed
+Status: AUTOMATED VALIDATION COMPLETE; HUMAN/TESTFLIGHT CHECKS OPEN
 
 ## Observed evidence
 
@@ -41,7 +41,8 @@ Status: BLOCKED, not passed
 - Current revision clean aggregate verification: iPad simulator passed 6 UI and 6 unit tests in `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_13-53-25--0700.xcresult`.
 - Current revision clean aggregate verification: physical iPad passed 6 UI and 6 unit tests in `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_13-54-56--0700.xcresult`.
 - Current revision clean aggregate verification: physical iPhone passed 6 UI and 6 unit tests in `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_13-56-33--0700.xcresult`.
-- G8 remains open until iPad device automation and human visual checks are complete.
+- Current revision clean aggregate verification: iPhone simulator passed 6 UI and 6 unit tests in `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_14-03-59--0700.xcresult`.
+- Automated G8 coverage is complete. G8 remains open for human visual review and validation of the TestFlight build; the current source revision has not been uploaded as a new TestFlight build.
 
 ## Recurrence guard
 
