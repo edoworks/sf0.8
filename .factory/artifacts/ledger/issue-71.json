@@ -1,0 +1,73 @@
+{
+  "issue": 71,
+  "capability": "external reach and verified primitive use evidence",
+  "change_units": 5,
+  "changed_paths": [
+    ".github/workflows/checks.yml",
+    "scripts/primitive_discovery.py",
+    "scripts/validate-primitive-reach.py"
+  ],
+  "reuse": {
+    "searched": 4,
+    "compatible": 2,
+    "reason": "Extend the primitive inventory and learning evidence contract; do not add telemetry or a publication system.",
+    "discovery": {
+      "capability": "external reach and verified primitive use evidence",
+      "decision": "EXTEND_EXISTING",
+      "matches": ["capability-primitive-inventory", "primitive-learning-feedback", "evidence-frontier"],
+      "specialization_reason": "Existing learning ingestion distinguishes evidence levels but does not distinguish download reach from consented external execution."
+    },
+    "candidates": [
+      {
+        "id": "capability-primitive-inventory",
+        "source": ".factory/capability-primitive-inventory.json",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "evidence-inventory",
+        "revision": "working-tree",
+        "license": "internal",
+        "security": "local metadata only",
+        "disposition": "ADAPT",
+        "reason": "Keep reach signals and verified-use evidence in the canonical primitive inventory.",
+        "immutable_ref": false
+      },
+      {
+        "id": "primitive-learning-feedback",
+        "source": "scripts/validate-primitive-learning.py",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "evidence-gate",
+        "revision": "working-tree",
+        "license": "internal",
+        "security": "local dry-run evidence application",
+        "disposition": "ADAPT",
+        "reason": "Reuse explicit result validation and fail-closed evidence updates.",
+        "immutable_ref": false
+      },
+      {
+        "id": "evidence-frontier",
+        "source": "scripts/evidence_frontier.py",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "evidence-gate",
+        "revision": "working-tree",
+        "license": "internal",
+        "security": "external human and consent boundary",
+        "disposition": "LEARN_FROM",
+        "reason": "Preserve the existing prohibition on synthetic or unconsented external evidence.",
+        "immutable_ref": false
+      },
+      {
+        "id": "agent-skills-specification",
+        "source": "https://agentskills.io/specification",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "open-specification",
+        "revision": "retrieved-2026-09-19",
+        "license": "Apache-2.0 / CC-BY-4.0 documentation",
+        "security": "format reference only; not executed",
+        "disposition": "LEARN_FROM",
+        "reason": "Use explicit artifact identity and progressive disclosure principles without installing or publishing a skill.",
+        "immutable_ref": true
+      }
+    ]
+  },
+  "contribution": {"classification": "internal-reusable"},
+  "shareability": {"disposition": "REUSE_CANDIDATE", "evidence": "The contract is consumed by its validator and tests; no download or external-use market claim is made."}
+}

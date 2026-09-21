@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "review_id": "apple-intelligence-factory-learning-2026-09-19",
+  "generated_at": "2026-09-19",
+  "authority": {
+    "founder_is_final_authority": true,
+    "operational_authority": "OBSERVE_ANALYZE_CHALLENGE_RECOMMEND_LEARN",
+    "external_action": "HUMAN_ONLY"
+  },
+  "decision": {
+    "question": "Should the factory adopt Apple's structured-contextual-intelligence pattern as a bounded learning standard for its Apple products?",
+    "owner": "FOUNDER",
+    "options": [
+      {"id": "ADOPT_HEURISTIC", "label": "Adopt the pattern as a documentation and evaluation heuristic", "reversible": true},
+      {"id": "DO_NOTHING", "label": "Keep Apple Intelligence findings as reference only", "reversible": true},
+      {"id": "BUILD_AI_LAYER", "label": "Build a general factory or product AI layer", "reversible": false}
+    ],
+    "recommended_option": "ADOPT_HEURISTIC"
+  },
+  "execution_contract": {
+    "founder_time_ceiling_minutes": 90,
+    "external_spend_ceiling_usd": 0,
+    "success_threshold": "The factory has one reusable capability card, one product-mapped hypothesis, and deterministic adversarial fixtures without product or service implementation.",
+    "stop_rule": "Stop if the work requires product implementation, cloud spend, external publication, unresolved privacy interpretation, or a new factory service."
+  },
+  "evidence": {
+    "primary_source_count": 7,
+    "primary_sources": [
+      "https://support.apple.com/en-us/121115",
+      "https://www.apple.com/apple-intelligence/",
+      "https://developer.apple.com/apple-intelligence/",
+      "https://developer.apple.com/documentation/appintents.md",
+      "https://developer.apple.com/documentation/appintents/apple-intelligence-and-siri-ai.md",
+      "https://developer.apple.com/documentation/foundationmodels.md",
+      "https://developer.apple.com/documentation/foundationmodels/adding-intelligent-app-features-with-generative-models.md"
+    ],
+    "known_facts": [
+      "Apple documents App Intents as the bridge to system discovery and actions.",
+      "Apple documents Foundation Models for structured output, tool calling, multimodal input, and availability checks.",
+      "Apple documents first-party features across communication, browsing, photos, scheduling, accessibility, and Siri.",
+      "Apple documents device, language, region, storage, and usage-limit constraints."
+    ],
+    "unknowns": [
+      "Customer retention, conversion, payment, and repeat-use impact of Apple's features.",
+      "Private first-party model quality thresholds and ranking logic.",
+      "Factory-specific unit economics and device coverage until measured."
+    ]
+  },
+  "lenses": {
+    "CEO": "Adopt only the user-journey pattern: find, summarize, organize, draft, or execute the next useful step.",
+    "CFO": "Keep the learning increment local and zero-spend; Apple platform usage limits and actual unit economics remain unknown.",
+    "CPO": "Require a measurable improvement in completion, trust, or repeat use; feature presence is not value evidence.",
+    "CTO": "Require typed schemas, availability checks, deterministic validation, tool boundaries, and explicit authorization before side effects.",
+    "COO": "Use one capability card and a small fixture set; defer new services until repeated friction justifies them."
+  },
+  "synthesis": {
+    "kind": "RECOMMENDATION",
+    "text": "Adopt Apple's structured-contextual-intelligence pattern as a factory heuristic, then validate it with one bounded Vorynce journey map; do not build a general AI layer.",
+    "founder_authority_required": true
+  },
+  "next_learning_items": [
+    "Capability card for entities, actions, model task, output, availability, fallback, confirmation, and evidence.",
+    "Vorynce spoken-thought journey map using structured extraction and App Intent candidates.",
+    "Deterministic adversarial fixtures for ambiguity, malformed output, unavailable models, privacy-sensitive content, and confirmation-required actions."
+  ],
+  "status": "PENDING_HUMAN"
+}

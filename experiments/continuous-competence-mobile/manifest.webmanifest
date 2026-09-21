@@ -1,0 +1,10 @@
+{
+  "name": "Competence Check",
+  "short_name": "Competence",
+  "start_url": "./?mode=intervention",
+  "display": "standalone",
+  "background_color": "#f5f2ea",
+  "theme_color": "#17211f",
+  "description": "A local experiment for independent software-engineering competence checks.",
+  "icons": []
+}

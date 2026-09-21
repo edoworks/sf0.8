@@ -1,0 +1,61 @@
+{
+  "issue": 70,
+  "capability": "primitive learning feedback ingestion",
+  "change_units": 5,
+  "changed_paths": [
+    ".github/workflows/checks.yml",
+    "scripts/primitive_discovery.py",
+    "scripts/validate-primitive-learning.py"
+  ],
+  "reuse": {
+    "searched": 3,
+    "compatible": 2,
+    "reason": "Extend the primitive inventory and existing evidence-frontier semantics; do not create a telemetry, billing, or second opportunity system.",
+    "discovery": {
+      "capability": "primitive learning feedback ingestion",
+      "decision": "EXTEND_EXISTING",
+      "matches": ["capability-primitive-inventory", "evidence-frontier", "tool-opportunity-ledger"],
+      "specialization_reason": "The existing records define evidence boundaries but do not provide a local explicit-result ingestion path that updates linked opportunity evidence."
+    },
+    "candidates": [
+      {
+        "id": "capability-primitive-inventory",
+        "source": ".factory/capability-primitive-inventory.json",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "evidence-inventory",
+        "revision": "working-tree",
+        "license": "internal",
+        "security": "local metadata only",
+        "disposition": "ADAPT",
+        "reason": "Use the existing inventory as the canonical primitive source.",
+        "immutable_ref": false
+      },
+      {
+        "id": "evidence-frontier",
+        "source": "scripts/evidence_frontier.py",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "evidence-gate",
+        "revision": "working-tree",
+        "license": "internal",
+        "security": "consent and external-human boundary",
+        "disposition": "ADAPT",
+        "reason": "Preserve external-human and synthetic-evidence rejection semantics.",
+        "immutable_ref": false
+      },
+      {
+        "id": "agent-skills-specification",
+        "source": "https://agentskills.io/specification",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "open-specification",
+        "revision": "retrieved-2026-09-19",
+        "license": "Apache-2.0 / CC-BY-4.0 documentation",
+        "security": "format reference only; not executed",
+        "disposition": "LEARN_FROM",
+        "reason": "Retain explicit artifact and progressive-disclosure principles without installing or publishing anything.",
+        "immutable_ref": true
+      }
+    ]
+  },
+  "contribution": {"classification": "internal-reusable"},
+  "shareability": {"disposition": "REUSE_CANDIDATE", "evidence": "The ingestion command is consumed by its validator and tests; no external demand or public packaging is claimed."}
+}

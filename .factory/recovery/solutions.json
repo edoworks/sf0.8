@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "bounded, provenance-backed operational recovery solutions",
+  "solutions": [
+    {
+      "id": "foculoom-reviewed-pr-workflow",
+      "problem_class": "governance_restriction",
+      "symptoms": ["direct push rejected", "PR required", "feature branch exists", "gh pr create"],
+      "aliases": ["pull request creation", "github PR", "review workflow", "branch policy"],
+      "source_project": "foculoom-project",
+      "implementation_location": "/Users/hello/foculoom/infra/foculoom-project/.github/workflows/asc-release-detector.yml",
+      "mechanism": "idempotent feature-branch push followed by gh pr create with a generated body file",
+      "validation_evidence": [
+        "/Users/hello/foculoom/infra/foculoom-project/.github/workflows/asc-release-detector.yml",
+        "/Users/hello/foculoom/edoworks-skills/ship-issue/SKILL.md",
+        "/Users/hello/foculoom/edoworks-skills/new-website/SKILL.md"
+      ],
+      "required_permissions": ["repository push", "pull-request creation"],
+      "trust_boundary": "owner-authorized GitHub mutation; repository review remains required",
+      "human_authorization_required": true,
+      "compatibility": {
+        "current_rung_incident": "compatible_mechanism_authority_unavailable",
+        "requires_feature_branch": true,
+        "requires_external_write": true,
+        "requires_review": true
+      },
+      "known_failure_modes": ["expired workflow token", "stale repository target", "host policy denies gh pr create"],
+      "successful_uses": ["foculoom-project release-post workflow pattern"],
+      "last_validated": "2026-09-19",
+      "reuse_scope": "reference_and_adapt_only",
+      "disposition": "ADAPT",
+      "authority_state": "UNAVAILABLE_IN_CURRENT_TOOL_POLICY"
+    },
+    {
+      "id": "sf08-public-surface-preflight",
+      "problem_class": "external_service_problem",
+      "symptoms": ["public URL unhealthy", "canonical page healthy", "HTTP 530"],
+      "aliases": ["live HTTP check", "canonical routing", "public link audit"],
+      "source_project": "sf0.8",
+      "implementation_location": "/Users/hello/sf0.8/scripts/public-surface-preflight.py",
+      "mechanism": "read-only HTTP, canonical-link, GitHub metadata, release, and package preflight",
+      "validation_evidence": ["/Users/hello/sf0.8/tests/test_public_surface_preflight.py"],
+      "required_permissions": ["public read access"],
+      "trust_boundary": "read-only external observation",
+      "human_authorization_required": false,
+      "compatibility": {"current_rung_incident": "directly_compatible"},
+      "known_failure_modes": ["third-party service unavailable", "ambiguous private endpoint"],
+      "successful_uses": ["2026-09-19 public surface audit"],
+      "last_validated": "2026-09-19",
+      "reuse_scope": "current_factory_and_authorized_factories",
+      "disposition": "ADOPT",
+      "authority_state": "AVAILABLE"
+    }
+  ],
+  "outcomes": [
+    {
+      "objective_id": "rung-public-surface-2026-09-19",
+      "solution_id": "foculoom-reviewed-pr-workflow",
+      "outcome": "DISCOVERED_AUTHORITY_UNAVAILABLE",
+      "observed_at": "2026-09-19",
+      "evidence": [
+        ".factory/artifacts/evidence/public-surface-review/2026-09-19.json",
+        ".factory/artifacts/evidence/public-surface-review/2026-09-19-direct-push-5whys.md",
+        "docs/research/pr-review-unblock-2026-09-19.md"
+      ],
+      "failure_mode": "OpenCode tool policy denied gh pr create for the target repository.",
+      "resumable": true,
+      "avoidable_human_escalation": true,
+      "next_state": "HUMAN_AUTHORIZATION_REQUIRED"
+    }
+  ],
+  "metrics": {
+    "avoidable_human_escalations": 1,
+    "correct_human_authorizations": 0,
+    "recovery_attempts": 0
+  },
+  "policy": {
+    "rank_proven_compatible_before_build_new": true,
+    "never_execute_solution_records": true,
+    "failed_candidates_remain_searchable": true,
+    "max_attempts_per_objective": 3
+  }
+}

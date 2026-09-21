@@ -1,0 +1,42 @@
+[
+  {
+    "name": "compatible-capability",
+    "change_units": 8,
+    "searched": 1,
+    "compatible": 1,
+    "matches": ["existing-local-validator"],
+    "decision": "REUSE",
+    "reason": "The existing validator covers the requested capability.",
+    "classification": "internal-reusable"
+  },
+  {
+    "name": "documented-new-build",
+    "change_units": 9,
+    "searched": 2,
+    "compatible": 0,
+    "matches": [],
+    "decision": "BUILD_NEW",
+    "reason": "No candidate supports the required offline format.",
+    "classification": "public-reusable"
+  },
+  {
+    "name": "insufficient-discovery",
+    "change_units": 17,
+    "searched": 1,
+    "compatible": 0,
+    "matches": [],
+    "decision": "BLOCKED",
+    "reason": "Discovery is below the required minimum.",
+    "classification": "product-specific"
+  },
+  {
+    "name": "missing-new-build-reason",
+    "change_units": 1,
+    "searched": 1,
+    "compatible": 0,
+    "matches": [],
+    "decision": "BLOCKED",
+    "reason": "A new build cannot be justified by an empty explanation.",
+    "classification": "upstream-candidate"
+  }
+]

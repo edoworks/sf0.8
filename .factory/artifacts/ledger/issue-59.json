@@ -1,0 +1,44 @@
+{
+  "issue": 59,
+  "capability": "evidence-driven executive review",
+  "change_units": 10,
+  "changed_paths": [
+    ".agents/skills/executive-council/SKILL.md",
+    ".factory/control-plane-bindings.json",
+    ".factory/artifacts/evidence/cold-agent/executive-decision-brief-task.json",
+    ".factory/artifacts/evidence/executive-council-effectiveness-plan.md",
+    ".factory/artifacts/evidence/executive-council-effectiveness-5whys.md",
+    ".factory/artifacts/executive-council/2026-09-19-decision-brief.json",
+    ".factory/artifacts/executive-council/2026-09-19-decision-brief.md",
+    ".factory/artifacts/ledger/issue-59.json",
+    ".github/workflows/checks.yml",
+    "scripts/executive_council.py",
+    "tests/test_executive_council.py"
+  ],
+  "reuse": {
+    "searched": 3,
+    "compatible": 1,
+    "reason": "Extend the existing local evidence-driven review and its outcome contract rather than add persona agents or external orchestration.",
+    "discovery": {
+      "capability": "decision-brief",
+      "decision": "EXTEND_EXISTING",
+      "matches": ["executive-council", "review-contract", "customer-zero", "human-action-queue"],
+      "specialization_reason": "The correction binds one decision to evidence, authority, thresholds, and later outcomes."
+    },
+    "candidates": [
+      {
+        "id": "foculoom-executive-council-mvp",
+        "source": ".agents/skills/executive-council/SKILL.md and scripts/executive_council.py",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "skill",
+        "revision": "1ce5b99f3d816493e63040591f5eebbd7a3b4c80",
+        "license": "Foculoom internal",
+        "security": "local evidence and deterministic scripts only",
+        "disposition": "ADAPT",
+        "reason": "Preserve authority and conflict detection while correcting the unproven decision and outcome loop."
+      }
+    ]
+  },
+  "contribution": {"classification": "internal-reusable"},
+  "shareability": {"disposition": "REUSE_CANDIDATE", "evidence": "Decision usefulness and second-consumer evidence remain unproven."}
+}
