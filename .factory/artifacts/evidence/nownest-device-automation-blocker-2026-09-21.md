@@ -35,6 +35,9 @@ Status: BLOCKED, not passed
 - iPad Air physical device (iPadOS 26.7): automated NowNest UI suite passed 5/5 with screenshot attachments. Result bundle: `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_13-11-18--0700.xcresult`.
 - Persistence UI test passed on the iPhone simulator and physical iPad: a parked idea was saved, the app was terminated and relaunched, and the same `PARKED` idea was found in Review. Physical iPad result bundle: `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_13-27-24--0700.xcresult`.
 - Full iPad simulator verification passed 6 UI tests and 6 unit tests, including persistence relaunch and retained visual checkpoints. Result bundle: `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_13-25-55--0700.xcresult`.
+- Physical iPhone current-revision persistence journey passed in isolation with retained screenshots. Result bundle: `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_13-43-40--0700.xcresult`.
+- Physical iPhone current-revision deletion journey passed in isolation with retained screenshots. Result bundle: `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_13-45-38--0700.xcresult`.
+- One aggregate physical iPhone run had an intermittent single-test failure while the other 5 UI tests and all 6 unit tests passed; individual retries passed. The aggregate run is not represented as a clean suite.
 - G8 remains open until iPad device automation and human visual checks are complete.
 
 ## Recurrence guard
