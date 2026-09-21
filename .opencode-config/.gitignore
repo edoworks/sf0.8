@@ -1,0 +1,15 @@
+# Generated catalog and benchmark data — regenerate with model-routing/update.mjs
+model-routing/catalog.json
+model-routing/candidates.json
+model-routing/benchmarks.json
+model-routing/history-audit.json
+model-routing/approved.json
+
+# Stale update locks
+model-routing/bac-*.update.lock/
+
+# OS artifacts
+.DS_Store
+
+# Secrets — never commit
+factory-secrets/

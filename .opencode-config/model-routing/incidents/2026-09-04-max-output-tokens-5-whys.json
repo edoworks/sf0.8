@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-05T00:30:00Z",
+  "event": "Every OpenAI cloud dispatch from opencode failed with Bad Request: {\"detail\":\"Unsupported parameter: max_output_tokens\"} starting 2026-09-04T22:01Z, after the cost-router chat.params hook began setting output.maxOutputTokens on every request.",
+  "why_chain": [
+    "Requests failed because opencode's OpenAI OAuth path sends chat completions to the ChatGPT Codex backend (https://chatgpt.com/backend-api/codex/responses), a FastAPI service that rejects the wire parameter max_output_tokens for gpt-5.6-* models.",
+    "The Responses/Codex request builder in opencode 1.18.19 includes max_output_tokens in the request body whenever maxOutputTokens is set ($.maxOutputTokens||this.config.maxTokens||8192), so every request carried the rejected parameter.",
+    "The cost-router plugin's chat.params hook (added 2026-09-04T21:36Z) set output.maxOutputTokens = min(existing, decision.max_output_tokens) on every dispatch to enforce the usage-policy output_limits (2048/4096/8192), which converted a previously-tolerated default into an always-present parameter.",
+    "Before the hook, opencode core still computed a maxOutputTokens internally (min(model limit, 32000) via its own cap function), and the backend accepted those requests (524 openai successes on 2026-09-04 before 21:36Z; zero max_output_tokens rejections in the prior 30 days), so the parameter reached the wire then too but the backend only began enforcing its rejection for the gpt-5.6 family after ~2026-09-04T22:01Z; the hook made every request fail deterministically instead of conditionally.",
+    "No pre-dispatch compatibility check existed between the plugin's wire-level parameter choices and the backend's accepted-parameter set, so a backend-side contract change or a plugin override could break every OpenAI request without any circuit or fallback catching it at dispatch time."
+  ],
+  "root_cause": "The cost-router plugin enforced its output-token budget by setting maxOutputTokens on the OpenAI chat params, but the ChatGPT Codex OAuth backend rejects the max_output_tokens wire parameter for gpt-5.6 models, so every OpenAI dispatch after the hook landed returned Bad Request.",
+  "contributing_factors": [
+    "The output_limits budget was already enforced at reservation time (assertDispatchAllowed computes projected charges from the tier output limit), so setting maxOutputTokens on the wire added redundant enforcement, not new protection.",
+    "opencode 1.18.19's Responses path unconditionally includes max_output_tokens once maxOutputTokens is set, with no 400-retry fallback (it only retries token-auth errors), so a rejected parameter fails every request in the session.",
+    "The error body {\"detail\":...} is FastAPI-style from the Codex backend rather than OpenAI's standard {\"error\":{...}} shape, which initially obscured which service rejected the request."
+  ],
+  "immediate_correction": "Stop setting maxOutputTokens in the chat.params hook for the openai provider (the Codex backend rejects the derived wire parameter); keep the existing reservation-time budget enforcement, which already bounds projected output cost before dispatch.",
+  "root_cause_correction": "The plugin enforces output budgets only through its dispatch-time reservation (assertDispatchAllowed + reserveDispatch), never by mutating provider wire parameters; provider-specific request shaping is left to opencode core, which knows each provider's accepted parameter set.",
+  "mechanical_recurrence_guard": "The usage-ledger test suite gains a regression test asserting that reserveDispatch/assertDispatchAllowed decisions carry no wire-parameter mutation contract, and cost-router's chat.params hook is restricted to providers whose backends accept the parameter (currently none, so the hook only performs tier-coherence and reservation). A comment in the plugin plus this 5-Whys record the Codex rejection so a future session does not re-add the parameter.",
+  "verification": "The existing reservation path still rejects over-budget dispatches (usage-ledger tests 43/43 pass, cost-router plugin tests 3/3 pass); after removing the wire-parameter set, a live opencode dispatch to openai/gpt-5.6-luna succeeded (2026-09-05T00:13:06Z, response \"OPENAI_WIRE_FIXED\"), the reservation ledger metered the request (rolling 24h used 141.04 of 200 soft cap), and the provider state remains available/allowed.",
+  "evidence": {
+    "first_failure": "2026-09-04T22:01:27Z (gpt-5.6-luna, APIError, error.data.message in opencode.db)",
+    "plugin_edit_at": "2026-09-04T21:36:15Z (cost-router.mjs mtime 1788557775)",
+    "openai_successes_before_edit_on_sep4": 524,
+    "openai_successes_after_edit": 0,
+    "max_output_tokens_rejections_before_edit_all_time": 0,
+    "codex_endpoint": "https://chatgpt.com/backend-api/codex/responses (opencode 1.18.19 binary strings)",
+    "request_builder": "doGenerateWithResponsesApi: max_output_tokens:$.maxOutputTokens||config.maxTokens||8192 (binary strings line 128000)"
+  }
+}
