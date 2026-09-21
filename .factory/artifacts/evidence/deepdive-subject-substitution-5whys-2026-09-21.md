@@ -11,6 +11,8 @@ not carry enough subject context into the delegated task.
 
 - The deep-dive command required audience, jurisdiction, decision, cutoff,
   sources, and stopping rules, but did not require an immutable subject lock.
+- The command did not explicitly interpolate `$ARGUMENTS`, so argument transport
+  was implicit rather than part of the tested command contract.
 - The incorrect report explicitly scoped itself to `meow-capture` even though
   the active blocker was FocusGate's occupied App Store name.
 - The repository contains prominent meow-capture identity requirements, making
@@ -42,8 +44,8 @@ not carry enough subject context into the delegated task.
   against the FocusGate product promise; record `NowNest` only as a provisional,
   uncleared candidate.
 - Root-cause correction: require every deep-dive to quote the authoritative
-  subject before searching and forbid substitution from nearby repository or
-  conversation context.
+  request through `$ARGUMENTS`, quote its subject before searching, and forbid
+  substitution from nearby repository or conversation context.
 - Recurrence guard: contract tests require the command to contain a subject lock,
   adjacent-subject exclusion, ambiguity stop, and final subject-consistency
   check.

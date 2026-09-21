@@ -5,6 +5,12 @@ agent: general
 
 Apply `evidence-research` in deep-dive mode.
 
+Authoritative research request (preserve verbatim):
+
+```text
+$ARGUMENTS
+```
+
 Before any search, create a **subject lock** by quoting the exact product,
 repository, claim, event, or decision named in the user's request. The subject
 lock is authoritative for the entire report. Do not replace it with an adjacent

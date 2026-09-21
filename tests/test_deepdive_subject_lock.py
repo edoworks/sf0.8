@@ -14,6 +14,8 @@ class DeepDiveSubjectLockTests(unittest.TestCase):
         normalized = re.sub(r"\s+", " ", text).lower()
 
         for phrase in (
+            "$arguments",
+            "authoritative research request (preserve verbatim)",
             "subject lock",
             "do not replace it with an adjacent product",
             "clarifying question",
