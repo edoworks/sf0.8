@@ -1,0 +1,28 @@
+{
+  "issue": 100,
+  "capability": "neuroinclusive UX and product art direction skills",
+  "change_units": 2,
+  "changed_paths": [
+    ".agents/skills/neuroinclusive-ux/SKILL.md",
+    ".agents/skills/product-art-direction/SKILL.md"
+  ],
+  "reuse": {
+    "searched": 1,
+    "compatible": 0,
+    "reason": "No existing skill covers cognitive-accessibility hypotheses or product visual-language briefs; both are new capabilities derived from NowNest calm-expressive UX research.",
+    "discovery": {
+      "capability": "neuroinclusive UX and product art direction skills",
+      "decision": "BUILD_NEW",
+      "matches": [],
+      "specialization_reason": "Combine W3C cognitive accessibility guidance, Apple platform accessibility, and peer-reviewed gamification evidence limits into reusable design and testing skills."
+    },
+    "candidates": []
+  },
+  "contribution": {
+    "classification": "internal-reusable"
+  },
+  "shareability": {
+    "disposition": "REUSE_CANDIDATE",
+    "evidence": "Both skills are derived from bounded research and a durable PRD; broader effectiveness remains product-specific until tested across products."
+  }
+}

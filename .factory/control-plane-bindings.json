@@ -70,6 +70,11 @@
       "number": 92,
       "url": "https://github.com/edoworks/sf0.8/pull/92",
       "repo": "edoworks/sf0.8"
+    },
+    "neuroinclusive UX and product art direction skills": {
+      "number": 100,
+      "url": "https://github.com/edoworks/sf0.8/issues/100",
+      "repo": "edoworks/sf0.8"
     }
   },
   "policy": "Material work without a factory binding is blocked; callers cannot select an arbitrary issue."
