@@ -16,7 +16,19 @@
       "matches": [],
       "specialization_reason": "Combine W3C cognitive accessibility guidance, Apple platform accessibility, and peer-reviewed gamification evidence limits into reusable design and testing skills."
     },
-    "candidates": []
+    "candidates": [
+      {
+        "id": "w3c-coga-usable",
+        "source": "https://www.w3.org/TR/coga-usable/",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "standards-guidance",
+        "revision": "retrieved-2026-09-21",
+        "license": "W3C document license",
+        "security": "Static documentation inspected as untrusted data; no code installed or executed",
+        "disposition": "LEARN_FROM",
+        "reason": "Use W3C cognitive accessibility guidance as design rationale for the neuroinclusive-ux skill; not installed or executed."
+      }
+    ]
   },
   "contribution": {
     "classification": "internal-reusable"
