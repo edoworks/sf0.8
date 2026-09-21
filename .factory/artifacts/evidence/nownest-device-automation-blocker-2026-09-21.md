@@ -16,14 +16,14 @@ Status: AUTOMATED VALIDATION COMPLETE; HUMAN/TESTFLIGHT CHECKS OPEN
 ## 5-Whys
 
 1. **Why did automated physical UX testing not complete?** XCTest timed out while enabling automation mode on the iPhone, and the iPad could not mount developer disk image services.
-2. **Why could XCTest not enable automation?** The connected devices run 26.7 while the installed Xcode is 26.6 and lacks the matching device-support payload.
-3. **Why was the mismatch discovered only during the test run?** The release procedure checked simulator evidence and device pairing, but did not require a device-support compatibility preflight before launching XCUITest.
+2. **Why could XCTest not enable automation?** The iPhone was locked during the first attempt, and the iPad initially reported developer disk image services unavailable. A later run with the same Xcode version passed, so an Xcode-version mismatch was not established as the cause.
+3. **Why were those conditions discovered only during the test run?** The release procedure checked simulator evidence and device pairing, but did not require lock-state and developer-service readiness preflight before launching XCUITest.
 4. **Why was that preflight absent?** Physical-device validation was treated as a human-only handoff, conflating human authority for TestFlight/release actions with the ability to automate repeatable device traversal.
 5. **Why did that process model persist?** The lane documented the evidence boundary but did not encode the available `devicectl`/XCUITest path as a required post-simulator step with a machine-readable compatibility gate.
 
 ## Correction
 
-- Immediate: do not mark G8 passed. Install/use Xcode with iOS/iPadOS 26.7 device support, then rerun the NowNest UI tests on both paired devices.
+- Immediate: unlock the target device, verify developer services are available, and rerun the NowNest UI tests on both paired devices.
 - Root-cause correction: make physical-device automation a standard post-simulator lane; require a preflight that verifies connected device OS support, Developer Mode, developer disk image services, and a successful XCUITest smoke run. Keep human visual/UX observation and release authorization separate.
 
 ## Retry results
@@ -42,6 +42,7 @@ Status: AUTOMATED VALIDATION COMPLETE; HUMAN/TESTFLIGHT CHECKS OPEN
 - Current revision clean aggregate verification: physical iPad passed 6 UI and 6 unit tests in `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_13-54-56--0700.xcresult`.
 - Current revision clean aggregate verification: physical iPhone passed 6 UI and 6 unit tests in `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_13-56-33--0700.xcresult`.
 - Current revision clean aggregate verification: iPhone simulator passed 6 UI and 6 unit tests in `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_14-03-59--0700.xcresult`.
+- Durable revision-bound summaries for the final clean four-destination matrix are committed in `nownest-validation-summary-2026-09-21.json`.
 - Automated G8 coverage is complete. G8 remains open for human visual review and validation of the TestFlight build; the current source revision has not been uploaded as a new TestFlight build.
 
 ## Recurrence guard
