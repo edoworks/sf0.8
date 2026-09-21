@@ -1,0 +1,39 @@
+{
+  "issue": 88,
+  "capability": "subject-locked evidence research",
+  "change_units": 4,
+  "changed_paths": [
+    ".agents/skills/evidence-research/SKILL.md"
+  ],
+  "reuse": {
+    "searched": 1,
+    "compatible": 0,
+    "reason": "No external research workflow inspected provided a repository-specific subject lock plus a fail-closed adjacent-product consistency guard.",
+    "discovery": {
+      "capability": "subject-locked evidence research",
+      "decision": "EXTEND_EXISTING",
+      "matches": ["evidence-research"],
+      "specialization_reason": "Extend the existing local evidence-research contract with exact OpenCode command argument transport and a recurrence test."
+    },
+    "candidates": [
+      {
+        "id": "opencode-custom-command-arguments",
+        "source": "https://opencode.ai/docs/commands/#arguments",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "platform-documentation",
+        "revision": "retrieved-2026-09-21",
+        "license": "Documentation reference only",
+        "security": "Static documentation inspected as untrusted data; no code installed or executed",
+        "disposition": "LEARN_FROM",
+        "reason": "Use the documented $ARGUMENTS transport contract while retaining the repository-specific research safety workflow."
+      }
+    ]
+  },
+  "contribution": {
+    "classification": "internal-reusable"
+  },
+  "shareability": {
+    "disposition": "REUSE_CANDIDATE",
+    "evidence": "The command-backed workflow is reusable internally; broader effectiveness remains limited to prompt-contract tests and observed incidents."
+  }
+}
