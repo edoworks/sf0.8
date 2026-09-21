@@ -1,0 +1,70 @@
+{
+  "subject": "NowNest current-revision automated validation",
+  "captured_at": "2026-09-21",
+  "repository": "edoworks/nownest",
+  "tested_commit": "8d6f3b5",
+  "xcode": "26.6 (17F113)",
+  "macos_build_environment": "26.6.2",
+  "command_template": "xcodebuild test -project NowNest.xcodeproj -scheme NowNest -destination <destination> -only-testing:NowNestTests -only-testing:NowNestUITests",
+  "results": [
+    {
+      "destination": "iPhone 17 Pro simulator",
+      "platform": "iOS Simulator",
+      "os_version": "26.5",
+      "os_build": "23F77",
+      "result": "Passed",
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "destination": "iPad Pro 11-inch (M4) simulator",
+      "platform": "iOS Simulator",
+      "os_version": "26.5",
+      "os_build": "23F77",
+      "result": "Passed",
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "destination": "iPhone 16 Pro Max",
+      "platform": "iOS",
+      "os_version": "26.7",
+      "os_build": "23H24",
+      "result": "Passed",
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "destination": "iPad Air (4th generation)",
+      "platform": "iOS",
+      "os_version": "26.7",
+      "os_build": "23H24",
+      "result": "Passed",
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "coverage": {
+    "unit_tests_per_destination": 6,
+    "ui_tests_per_destination": 6,
+    "ui_journeys": [
+      "NOW visible at launch",
+      "capture returns to unchanged NOW",
+      "parked idea survives app relaunch",
+      "review shows the parked idea",
+      "explicit NOW edit saves",
+      "confirmed deletion removes the selected idea"
+    ],
+    "retained_ui_attachments": true
+  },
+  "remaining": [
+    "human visual review on physical iPhone and iPad",
+    "validation of the TestFlight build",
+    "G9 recovery test"
+  ],
+  "source": "Summaries extracted with xcresulttool immediately after the final clean runs; transient xcresult bundle locations are documented in the companion Markdown evidence."
+}
