@@ -31,6 +31,7 @@ Status: BLOCKED, not passed
 - iPhone 16 Pro Max (iOS 26.7): automated NowNest UI suite passed 5/5 after moving the confirmation assertion before the other post-capture waits. Result bundle: `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_12-37-22--0700.xcresult`.
 - iPad Air (iPadOS 26.7): blocked before test execution because `The developer disk image could not be mounted on this device`.
 - iPad Pro simulator (iOS 26.5): automated NowNest UI suite passed 5/5. Result bundle: `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_12-45-33--0700.xcresult`.
+- The UI suite now retains screenshot attachments for launch, capture confirmation, parked-idea review, NOW edit, and deletion. The updated iPad simulator run passed 5/5 at `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_12-51-34--0700.xcresult`.
 - G8 remains open until iPad device automation and human visual checks are complete.
 
 ## Recurrence guard
