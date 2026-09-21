@@ -61,18 +61,18 @@ class PermissionPolicyFixtureTests(unittest.TestCase):
         self.assertEqual(resolve(rules, command.replace("edoworks/sf0.8", "other/repo")), "deny")
         self.assertEqual(resolve(rules, "gh pr create --title test --repo edoworks/sf0.8"), "deny")
 
-    def test_focusgate_pr_review_path_is_repo_scoped(self):
+    def test_nownest_pr_review_path_is_repo_scoped(self):
         rules = self.fixture["rules"]
         commands = (
-            "gh pr create --repo edoworks/focusgate --base main --head feature/focusgate-v0 --draft",
-            "gh pr view 1 --repo edoworks/focusgate --json state",
-            "gh pr checks 1 --repo edoworks/focusgate --watch",
-            "gh pr ready 1 --repo edoworks/focusgate",
+            "gh pr create --repo edoworks/nownest --base main --head feature/nownest-v0 --draft",
+            "gh pr view 1 --repo edoworks/nownest --json state",
+            "gh pr checks 1 --repo edoworks/nownest --watch",
+            "gh pr ready 1 --repo edoworks/nownest",
         )
         for command in commands:
             with self.subTest(command=command):
                 self.assertEqual(resolve(rules, command), "allow")
-                self.assertEqual(resolve(rules, command.replace("edoworks/focusgate", "other/focusgate")), "deny")
+                self.assertEqual(resolve(rules, command.replace("edoworks/nownest", "other/nownest")), "deny")
 
     def test_owner_org_integration_path_is_allowed_without_broad_push_permission(self):
         rules = self.fixture["rules"]
