@@ -38,6 +38,9 @@ Status: BLOCKED, not passed
 - Physical iPhone current-revision persistence journey passed in isolation with retained screenshots. Result bundle: `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_13-43-40--0700.xcresult`.
 - Physical iPhone current-revision deletion journey passed in isolation with retained screenshots. Result bundle: `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_13-45-38--0700.xcresult`.
 - One aggregate physical iPhone run had an intermittent single-test failure while the other 5 UI tests and all 6 unit tests passed; individual retries passed. The aggregate run is not represented as a clean suite.
+- Current revision clean aggregate verification: iPad simulator passed 6 UI and 6 unit tests in `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_13-53-25--0700.xcresult`.
+- Current revision clean aggregate verification: physical iPad passed 6 UI and 6 unit tests in `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_13-54-56--0700.xcresult`.
+- Current revision clean aggregate verification: physical iPhone passed 6 UI and 6 unit tests in `/Users/hello/Library/Developer/Xcode/DerivedData/NowNest-gxffueviazfdkjchxiijuosucvwp/Logs/Test/Test-NowNest-2026.09.21_13-56-33--0700.xcresult`.
 - G8 remains open until iPad device automation and human visual checks are complete.
 
 ## Recurrence guard
