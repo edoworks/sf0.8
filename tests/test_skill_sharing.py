@@ -13,7 +13,7 @@ class SkillSharingTests(unittest.TestCase):
     def test_canonical_inventory_covers_declared_skill_roots(self):
         inventory = json.loads((ROOT / ".factory/artifacts/skill-sharing-inventory.json").read_text())
         self.assertEqual(validate_inventory(inventory, ROOT), [])
-        self.assertEqual({item["id"] for item in recommendations(inventory)}, {"bounded-work", "curiosity-audit", "evidence-research", "focusreset", "prose-editing", "macos-screenshot"})
+        self.assertEqual({item["id"] for item in recommendations(inventory)}, {"bounded-work", "curiosity-audit", "evidence-research", "focusreset", "prose-editing", "macos-screenshot", "neuroinclusive-ux", "product-art-direction"})
 
     def test_new_skill_cannot_be_silent(self):
         with tempfile.TemporaryDirectory() as directory:
