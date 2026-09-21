@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-15T18:00:00Z",
+  "event": "Routine sf0.8 restart and audit work ran in a parent build session on openai/gpt-5.6-luna instead of the local routine route.",
+  "why_chain": [
+    "The parent session used cloud gpt-5.6-luna because it was started as the build agent.",
+    "It was started as build because the /continue-sf08 command hardcoded agent: build.",
+    "The command conflated baseline discovery and implementation in one continuation entrypoint.",
+    "The cost-router classified task text but only rejected routine work on complex routes; standard build/general routes remained allowed.",
+    "The routing tests explicitly documented the absence of a routine admission gate, and run evidence did not surface provider/model identity in the factory ledger."
+  ],
+  "root_cause": "Continuation command selection and routing validation allowed routine work to enter a standard cloud parent session.",
+  "immediate_correction": "Make continuation and predecessor recovery commands local explore sessions, add an explicit build command, and reject routine-class prompts on standard or complex agents.",
+  "root_cause_correction": "Routine classification is now an admission rule, and routine cloud startup fallback is disabled so local capacity failure fails closed.",
+  "mechanical_recurrence_guard": "Routing tests reject build plus status/verify text, classify operational words as deterministic, and config routing skips cloud startup fallback for routine tiers.",
+  "verification": "Run npm test in ~/.config/opencode, validate configuration with opencode --version, and inspect session logs for local ollama routing on /continue-sf08."
+}
