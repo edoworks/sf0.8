@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "issue": 75,
+  "fixture_id": "owner-supplied-real-meow-2026-09-20",
+  "source_basename": "Audio_09_18_2026_10_02_09.mp3",
+  "source_location": "owner-local-desktop",
+  "source_consent": "owner-selected-fresh-recording-for-private-local-replay",
+  "sha256": "0a9072c0c23010198d718200072cac5bf52dea68e29c1d5cf0a3b4be46595b73",
+  "environment": {
+    "platform": "macOS",
+    "os": "Version 26.6.2 (Build 25G83)",
+    "runner": "audio-replay 0.1",
+    "classifier": "Apple Sound Analysis .version1"
+  },
+  "audio_metadata": {
+    "sample_rate": 44100,
+    "frame_count": 1828224
+  },
+  "observations": [
+    {"label": "cat_meow", "confidence": 0.9268345236778259},
+    {"label": "cat", "confidence": 0.8768863081932068}
+  ],
+  "decision": "TARGET",
+  "status": "PASS",
+  "device_claim": "HOST_REPLAY_ONLY",
+  "raw_audio_retained_in_repository": false,
+  "report_validated": true,
+  "limitations": [
+    "Does not prove iPhone or iPad microphone behavior.",
+    "Does not prove automatic event-window capture on a physical device.",
+    "Does not prove playback, deletion, or family-facing app behavior."
+  ]
+}

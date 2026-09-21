@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "capability": "bounded organizational recovery and objective completion",
+  "change_units": 8,
+  "changed_paths": [
+    "scripts/recovery.py",
+    "scripts/objective_state.py",
+    "scripts/objective_notification.py",
+    "scripts/recover-objective.py",
+    "scripts/notify-objective.py",
+    "scripts/validate-recovery.py",
+    ".github/workflows/checks.yml"
+  ],
+  "reuse": {
+    "searched": 3,
+    "compatible": 2,
+    "reason": "Adapted the existing sf0.8 public-surface preflight and the proven Foculoom reviewed-PR workflow pattern; no new external dependency or permission was added.",
+    "discovery": {
+      "capability": "pull request recovery, governed external operations, and objective completion",
+      "decision": "EXTEND_EXISTING",
+      "matches": ["sf08-public-surface-preflight", "foculoom-reviewed-pr-workflow"]
+    },
+    "candidates": [
+      {
+        "id": "sf08-public-surface-preflight",
+        "source": ".factory/recovery/solutions.json",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "factory-recovery-capability",
+        "revision": "working-tree-2026-09-19",
+        "license": "Foculoom internal governance",
+        "security": "read-only metadata discovery",
+        "disposition": "ADAPT",
+        "reason": "Directly compatible public observation and canonical routing checks."
+      },
+      {
+        "id": "foculoom-reviewed-pr-workflow",
+        "source": "/Users/hello/foculoom/infra/foculoom-project/.github/workflows/asc-release-detector.yml",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "reviewed-PR workflow pattern",
+        "revision": "working-tree-2026-09-19",
+        "license": "Foculoom internal process reference",
+        "security": "owner-authorized external mutation; no bypass",
+        "disposition": "ADAPT",
+        "reason": "Proven branch, idempotency, PR-body, and review handoff pattern; current authority remains unavailable."
+      },
+      {
+        "id": "github-cli-pr-review-documentation",
+        "source": "https://cli.github.com/manual/gh_pr_create",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "platform documentation",
+        "revision": "retrieved-2026-09-19",
+        "license": "GitHub documentation terms",
+        "security": "documentation only; no installation or execution",
+        "disposition": "LEARN_FROM",
+        "reason": "Confirms the native PR operation and its argument contract without granting execution authority."
+      }
+    ]
+  },
+  "contribution": {
+    "classification": "internal-reusable"
+  },
+  "shareability": {
+    "disposition": "INTERNAL_SHARED",
+    "evidence": "Current sf0.8 recovery and objective workflows consume the capability; sibling Foculoom workflows provide a second organizational consumer.",
+    "reuse_analysis": "Keep operational references and metadata-only retrieval separate from executable credentials or commands."
+  }
+}

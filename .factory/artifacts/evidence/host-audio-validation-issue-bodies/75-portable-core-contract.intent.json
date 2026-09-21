@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "repo": "edoworks/sf0.8",
+  "title": "Integrate portable audio core with Mac replay",
+  "body_file": "75-portable-core-contract.md",
+  "body_sha256": "f9d78f896f67b0eeb72215574052f6150b4280bcbd7b5ca12abc9f8dd8f9c4a2",
+  "labels": ["enhancement"],
+  "classification": "enhancement",
+  "priority": "P1",
+  "dependencies": [
+    "Issue #74 complete",
+    "Owner-approved local-only audio fixtures"
+  ],
+  "authority_constraints": [
+    "No ambient listening",
+    "No private audio in Git, CI, logs, issue comments, or durable evidence",
+    "Host replay is not physical-device evidence"
+  ],
+  "source_provenance": [
+    "docs/decisions/2026-09-20-meow-capture-product-contract.md",
+    "docs/host-audio-validation.md",
+    ".factory/artifacts/evidence/host-audio-validation-e2e-map.md"
+  ],
+  "duplicate_review": [
+    "Reviewed issues #73, #74, #76, #77, #78, #79, and #80; no duplicate."
+  ],
+  "reprioritization_review": [
+    "Retained P1 because this is the active dependency for the selected capability."
+  ]
+}

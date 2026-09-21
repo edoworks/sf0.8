@@ -6,3 +6,8 @@ product-a/
 __pycache__/
 *.pyc
 temp/
+.build/
+*.xcodeproj/UserData/
+*.xcodeproj/xcuserdata/
+DerivedData/
+.swiftpm/
