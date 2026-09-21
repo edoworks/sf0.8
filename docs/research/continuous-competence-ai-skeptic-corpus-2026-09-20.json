@@ -1,0 +1,164 @@
+{
+  "corpus_id": "continuous-competence-ai-skeptic-v1",
+  "status": "RESEARCH_ARTIFACT_NOT_RUN",
+  "scope": "adult software-engineer falsification experiment",
+  "instruction": "Judge whether the AI output is correct. Accept correct output and reject incorrect output. Do not assume every output contains an error.",
+  "items": [
+    {
+      "id": "off-by-one-incorrect",
+      "defect_family": "off_by_one",
+      "contains_error": true,
+      "prompt": "Return the length of the longest consecutive run in a list.",
+      "ai_output": "for i in range(1, len(values) - 1): inspect(values[i])",
+      "ground_truth": "The final index is not inspected; the exclusive stop must be len(values).",
+      "expected_decision": "REJECT",
+      "verification_basis": "Trace [7, 7] and a run ending at the final item."
+    },
+    {
+      "id": "off-by-one-correct",
+      "defect_family": "off_by_one",
+      "contains_error": false,
+      "prompt": "Return the last valid index of a non-empty array.",
+      "ai_output": "last = len(values) - 1",
+      "ground_truth": "Array indices are zero-based, so the final valid index is length minus one.",
+      "expected_decision": "ACCEPT",
+      "verification_basis": "Check arrays of length one and length three."
+    },
+    {
+      "id": "complexity-incorrect",
+      "defect_family": "complexity_analysis",
+      "contains_error": true,
+      "prompt": "A single pass over n values keeps two counters and performs constant-time work per value.",
+      "ai_output": "The algorithm is O(n log n) because it updates the maximum inside the loop.",
+      "ground_truth": "The maximum update is constant time; one pass is O(n) time and O(1) auxiliary space.",
+      "expected_decision": "REJECT",
+      "verification_basis": "Count loop iterations and distinguish constant work from logarithmic work."
+    },
+    {
+      "id": "complexity-correct",
+      "defect_family": "complexity_analysis",
+      "contains_error": false,
+      "prompt": "A balanced binary search halves the remaining candidate interval each iteration.",
+      "ai_output": "The search takes O(log n) time and O(1) auxiliary space when implemented iteratively.",
+      "ground_truth": "The stated bounds match the iterative balanced-search assumptions.",
+      "expected_decision": "ACCEPT",
+      "verification_basis": "State the sorted-input and balanced-partition assumptions."
+    },
+    {
+      "id": "race-condition-incorrect",
+      "defect_family": "race_condition",
+      "contains_error": true,
+      "prompt": "Two workers increment the same shared counter.",
+      "ai_output": "The increment is safe because reading and writing an integer are each atomic.",
+      "ground_truth": "Read-modify-write is not one atomic operation; increments can be lost without synchronization or an atomic increment.",
+      "expected_decision": "REJECT",
+      "verification_basis": "Interleave two reads before either write and observe the lost update."
+    },
+    {
+      "id": "missing-edge-incorrect",
+      "defect_family": "missing_edge_case",
+      "contains_error": true,
+      "prompt": "Parse a transaction amount from an external record.",
+      "ai_output": "Call toInt() and let malformed or missing values fail; upstream data should already be valid.",
+      "ground_truth": "The boundary must define missing, malformed, range, and currency behavior rather than assuming upstream validity.",
+      "expected_decision": "REJECT",
+      "verification_basis": "Test missing, malformed, negative, overflow, and unsupported-currency inputs."
+    },
+    {
+      "id": "hallucinated-api-incorrect",
+      "defect_family": "hallucinated_api",
+      "contains_error": true,
+      "prompt": "Parse a JSON response using Python requests.",
+      "ai_output": "payload = requests.get_json(response)",
+      "ground_truth": "The requests library exposes response.json(); requests.get_json(response) is not the documented API.",
+      "expected_decision": "REJECT",
+      "verification_basis": "Check the official library API documentation and a minimal isolated call."
+    },
+    {
+      "id": "security-correct",
+      "defect_family": "security",
+      "contains_error": false,
+      "prompt": "How should a service use a cloud credential in production?",
+      "ai_output": "Inject a short-lived, least-privilege credential at runtime, keep it out of source and logs, and rotate it when exposure is suspected.",
+      "ground_truth": "The output states the expected secret-management controls.",
+      "expected_decision": "ACCEPT",
+      "verification_basis": "Check source, artifact, log, scope, lifetime, and rotation controls."
+    },
+    {
+      "id": "database-consistency-incorrect",
+      "defect_family": "database_consistency",
+      "contains_error": true,
+      "prompt": "Debit a ledger and write its audit event.",
+      "ai_output": "Write the ledger first and the audit row second; if the audit write fails, retry only that row.",
+      "ground_truth": "Independent writes can expose an unaudited debit; use one transaction where possible or an explicit outbox/idempotent reconciliation design.",
+      "expected_decision": "REJECT",
+      "verification_basis": "Inject failure between writes and inspect the observable state and recovery path."
+    },
+    {
+      "id": "invalid-assumption-incorrect",
+      "defect_family": "invalid_assumption",
+      "contains_error": true,
+      "prompt": "A stream consumer checkpoints after processing a payment event.",
+      "ai_output": "The checkpoint guarantees the payment will never be applied twice.",
+      "ground_truth": "A crash between the business write and checkpoint can cause replay; downstream effects must be idempotent.",
+      "expected_decision": "REJECT",
+      "verification_basis": "Crash at each boundary and replay the same event ID."
+    },
+    {
+      "id": "subtle-explanation-correct",
+      "defect_family": "explanation_quality",
+      "contains_error": false,
+      "prompt": "Explain why a test can pass while the implementation is still wrong.",
+      "ai_output": "A test only establishes the cases and oracle it exercises. If the cases omit a boundary or the oracle encodes the same assumption as the implementation, the test can pass while the broader contract is false.",
+      "ground_truth": "The explanation correctly distinguishes tested evidence from the full behavioral contract.",
+      "expected_decision": "ACCEPT",
+      "verification_basis": "Construct a shared-fault oracle and an untested boundary case."
+    },
+    {
+      "id": "race-condition-correct",
+      "defect_family": "race_condition",
+      "contains_error": false,
+      "prompt": "Two workers update a shared counter.",
+      "ai_output": "Use an atomic increment or a lock whose scope covers the read-modify-write operation.",
+      "ground_truth": "The output names synchronization that protects the complete update operation.",
+      "expected_decision": "ACCEPT",
+      "verification_basis": "Inspect the synchronization scope and run an interleaving stress test."
+    },
+    {
+      "id": "hallucinated-api-correct",
+      "defect_family": "hallucinated_api",
+      "contains_error": false,
+      "prompt": "Parse a JSON response using Python requests.",
+      "ai_output": "response = requests.get(url); payload = response.json()",
+      "ground_truth": "The response object exposes the documented json() method.",
+      "expected_decision": "ACCEPT",
+      "verification_basis": "Check the official API documentation and a minimal isolated call."
+    },
+    {
+      "id": "missing-edge-correct",
+      "defect_family": "missing_edge_case",
+      "contains_error": false,
+      "prompt": "A parser accepts external transaction records.",
+      "ai_output": "Reject malformed, missing, out-of-range, and unsupported-currency values with stable diagnostics; test each boundary explicitly.",
+      "ground_truth": "The output defines defensive input handling and testable boundary behavior.",
+      "expected_decision": "ACCEPT",
+      "verification_basis": "Review the validation contract and execute representative boundary cases."
+    }
+  ],
+  "scoring": {
+    "accept_correct": "1 when a correct output is accepted",
+    "reject_incorrect": "1 when an incorrect output is rejected",
+    "false_positive": "incorrectly reject a correct output",
+    "false_negative": "incorrectly accept an incorrect output",
+    "required_recorded_metrics": ["decision", "confidence", "decision_time_seconds", "reason", "verification_step", "correction_quality"]
+  },
+  "verification_status": "Ground truth is authored from explicit code, API, concurrency, security, and consistency invariants; independent review is required before participant exposure."
+  ,"source_plan": [
+    {"scope": "off_by_one and complexity_analysis", "source_type": "language and algorithm documentation", "source": "https://docs.python.org/3/library/functions.html#range", "retrieved": "2026-09-20"},
+    {"scope": "hallucinated_api", "source_type": "primary library documentation", "source": "https://requests.readthedocs.io/en/latest/api/", "retrieved": "2026-09-20"},
+    {"scope": "race_condition", "source_type": "language/runtime concurrency documentation", "source": "https://docs.oracle.com/javase/tutorial/essential/concurrency/", "retrieved": "2026-09-20"},
+    {"scope": "security", "source_type": "primary security guidance", "source": "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html", "retrieved": "2026-09-20"},
+    {"scope": "database_consistency", "source_type": "primary database documentation", "source": "https://www.postgresql.org/docs/current/tutorial-transactions.html", "retrieved": "2026-09-20"},
+    {"scope": "invalid_assumption", "source_type": "primary streaming documentation", "source": "https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html#fault-tolerance-semantics", "retrieved": "2026-09-20"}
+  ]
+}

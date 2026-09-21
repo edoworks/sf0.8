@@ -1,0 +1,268 @@
+{
+  "experiment_id": "continuous-competence-mobile-v1",
+  "topic": "Scala debugging, complexity, and test cases",
+  "version": 1,
+  "task": {
+    "prompt": "A function should return the length of the longest consecutive run in a list. Identify the smallest repair and explain its time complexity.",
+    "language": "scala",
+    "code": "def longestRun(values: List[Int]): Int = {\n  if (values.isEmpty) return 0\n\n  var best = 1\n  var current = 1\n  for (i <- 1 until values.length - 1) {\n    if (values(i) == values(i - 1)) current += 1\n    else current = 1\n    best = math.max(best, current)\n  }\n  best\n}",
+    "examples": [
+      {"input": "[1, 1, 2, 2, 2]", "expected": "3"},
+      {"input": "[7, 7]", "expected": "2"},
+      {"input": "[3, 4, 5]", "expected": "1"}
+    ],
+    "test_cases": [
+      {"input": [1, 1, 2, 2, 2], "expected": 3},
+      {"input": [7, 7], "expected": 2},
+      {"input": [3, 4, 5], "expected": 1},
+      {"input": [], "expected": 0}
+    ],
+    "defect": "The range stops before the final item, so a run ending at the final item is not fully inspected.",
+    "repair": "Change range(1, len(values) - 1) to range(1, len(values)).",
+    "complexity": "O(n) time and O(1) auxiliary space.",
+    "hints": [
+      "Trace the loop bounds for an input whose answer depends on the final item.",
+      "Compare the last index the loop visits with the last valid index in the list.",
+      "Try [7, 7] by hand: does the loop ever compare the second item?"
+    ],
+    "explanation": "The loop starts at index 1 so each item can be compared with the item before it. Python's range excludes its stop value, so len(values) - 1 prevents the loop from visiting the final index. Using len(values) as the stop value visits every index from 1 through the final one. The loop still visits each item once and stores only counters, so the cost is O(n) time and O(1) auxiliary space."
+  },
+  "question_bank": [
+    {
+      "id": "spark-late-events",
+      "title": "Spark: late financial events",
+      "domain": "Apache Spark Structured Streaming",
+      "prompt": "A Spark job aggregates card transactions by five-minute window. Events can arrive 20 minutes late, and the output must not count a transaction twice. What design choices make the result correct?",
+      "language": "scala",
+      "code": "transactions\n  .withWatermark(\"eventTime\", \"20 minutes\")\n  .groupBy(window($\"eventTime\", \"5 minutes\"), $\"accountId\")\n  .agg(sum($\"amount\"))",
+      "examples": [
+        {"input": "event at 10:02 arrives at 10:03", "expected": "included in the 10:00 window"},
+        {"input": "event at 10:02 arrives at 10:25", "expected": "may be dropped after the watermark"}
+      ],
+      "test_cases": [
+        {"input": "duplicate eventId appears twice", "expected": "one contribution", "observed": "one contribution"},
+        {"input": "event arrives 10 minutes late", "expected": "included before 20-minute watermark", "observed": "included before 20-minute watermark"},
+        {"input": "event arrives after watermark", "expected": "late-data policy is explicit", "observed": "late-data policy is explicit"},
+        {"input": "checkpoint is restored", "expected": "state resumes without replay double-count", "observed": "state resumes without replay double-count"}
+      ],
+      "defect": "A watermark alone does not deduplicate business events or define behavior after the watermark. The design needs a stable event ID, checkpointed state, and an explicit late-data policy.",
+      "repair": "Deduplicate by eventId within the supported state horizon, use a durable checkpoint, define output mode and late-data handling, and reconcile events that arrive after the watermark.",
+      "complexity": "Per-event state and shuffle cost depend on key cardinality and watermark horizon; correctness depends on state retention and replay semantics.",
+      "hints": [
+        "Separate event time, processing time, and the time at which state may be evicted.",
+        "Ask what uniquely identifies a financial transaction across retries.",
+        "A checkpoint helps recovery, but it is not the same thing as business-level deduplication."
+      ],
+      "explanation": "Watermarks bound state; they do not magically make delivery exactly once. A financial pipeline needs an idempotency key such as eventId, durable checkpointing, and a written policy for events outside the watermark. Validate the policy with replay and late-arrival cases rather than relying on a happy-path aggregate.",
+      "reference": "Apache Spark Structured Streaming programming guide"
+    },
+    {
+      "id": "synapse-distribution-skew",
+      "title": "Synapse: distribution and skew",
+      "domain": "Azure Synapse Analytics",
+      "prompt": "A fact table query joins transactions to accounts, but one enterprise account owns 40% of the rows and the query is slow. What should you inspect before changing the schema?",
+      "language": "sql",
+      "code": "SELECT a.segment, SUM(t.amount)\nFROM fact_transactions t\nJOIN dim_account a ON t.account_id = a.account_id\nGROUP BY a.segment;",
+      "examples": [
+        {"input": "one account owns 40% of rows", "expected": "distribution skew is a hypothesis"},
+        {"input": "statistics are stale", "expected": "refresh statistics before judging the plan"}
+      ],
+      "test_cases": [
+        {"input": "row counts by distribution", "expected": "inspect skew before redesign", "observed": "inspect skew before redesign"},
+        {"input": "actual versus estimated rows", "expected": "check statistics", "observed": "check statistics"},
+        {"input": "large shuffle in query plan", "expected": "inspect join and distribution choices", "observed": "inspect join and distribution choices"},
+        {"input": "small dimension table", "expected": "consider replication where appropriate", "observed": "consider replication where appropriate"}
+      ],
+      "defect": "Treating a slow join as a generic indexing problem can miss distributed-system causes: skew, data movement, stale statistics, or an unsuitable distribution strategy.",
+      "repair": "Measure per-distribution row counts, review the actual plan and statistics, then choose hash, round-robin, or replicated distribution based on workload evidence.",
+      "complexity": "The useful question is data movement and parallel balance, not only the logical O(n) join cost.",
+      "hints": [
+        "Find out whether work is balanced across distributions.",
+        "Compare estimated rows with actual rows and inspect data movement.",
+        "A schema change is a last step after measuring the physical plan."
+      ],
+      "explanation": "MPP performance is often dominated by movement and imbalance. A common account key can create hotspots, while stale statistics can cause a bad plan even with a reasonable distribution. Measure first, then choose a distribution strategy that matches joins, cardinality, and workload shape.",
+      "reference": "Microsoft Learn: Azure Synapse dedicated SQL pool best practices"
+    },
+    {
+      "id": "event-hubs-ordering",
+      "title": "Event Hubs: ordering and replay",
+      "domain": "Azure Event Hubs",
+      "prompt": "A payments consumer must preserve order for events belonging to one account while scaling across many accounts. What keying and checkpoint decisions matter?",
+      "language": "scala",
+      "code": "producer.send(EventData(payload), partitionKey = accountId)\nconsumer.checkpoint after durable processing",
+      "examples": [
+        {"input": "events for account A", "expected": "same partition key"},
+        {"input": "consumer crashes after writing", "expected": "replay must be idempotent"}
+      ],
+      "test_cases": [
+        {"input": "same accountId", "expected": "stable partition key", "observed": "stable partition key"},
+        {"input": "consumer restarts", "expected": "resume from checkpoint and tolerate replay", "observed": "resume from checkpoint and tolerate replay"},
+        {"input": "two unrelated accounts", "expected": "can scale across partitions", "observed": "can scale across partitions"},
+        {"input": "partition count changes", "expected": "ordering assumptions are revisited", "observed": "ordering assumptions are revisited"}
+      ],
+      "defect": "Assuming a global event order or exactly-once business effect from a consumer checkpoint is unsafe. Ordering is scoped, and crashes can cause replay.",
+      "repair": "Partition by the entity whose order matters, checkpoint only after durable processing, and make downstream writes idempotent with event IDs.",
+      "complexity": "Throughput scales by partition and consumer parallelism, while ordering is preserved only within the chosen partition scope.",
+      "hints": [
+        "State the entity whose events must be ordered.",
+        "Ask what happens if the process dies between the write and checkpoint.",
+        "Separate transport ordering from exactly-once business effects."
+      ],
+      "explanation": "Event Hubs gives an ordering boundary around partitions, not a global transaction across your database. A stable partition key preserves per-account order; checkpoint placement and idempotent writes make replay safe after failure.",
+      "reference": "Microsoft Learn: Azure Event Hubs features and terminology"
+    },
+    {
+      "id": "adls-small-files",
+      "title": "ADLS Gen2: file layout and atomicity",
+      "domain": "Azure Data Lake Storage Gen2",
+      "prompt": "A daily transaction lake has millions of tiny JSON files and downstream Spark jobs spend most of their time listing and opening files. What is the safer remediation?",
+      "language": "scala",
+      "code": "abfss://raw@account.dfs.core.windows.net/transactions/\n  year=2026/month=09/day=20/hour=10/",
+      "examples": [
+        {"input": "millions of tiny files", "expected": "compact into appropriately sized columnar files"},
+        {"input": "consumer reads while compaction runs", "expected": "publish through a safe commit boundary"}
+      ],
+      "test_cases": [
+        {"input": "file count per partition", "expected": "measure small-file pressure", "observed": "measure small-file pressure"},
+        {"input": "read schema", "expected": "prefer columnar format for analytical scans", "observed": "prefer columnar format for analytical scans"},
+        {"input": "compaction failure", "expected": "do not expose partial output", "observed": "do not expose partial output"},
+        {"input": "reprocessing the same day", "expected": "idempotent output path or manifest", "observed": "idempotent output path or manifest"}
+      ],
+      "defect": "Simply increasing executor count does not solve a metadata and file-open bottleneck, and in-place compaction can expose partial results.",
+      "repair": "Use bounded partitioning and appropriately sized Parquet/Delta output, publish through a staging-to-committed boundary, and make reruns idempotent.",
+      "complexity": "The dominant cost is often file and metadata overhead; layout determines scan efficiency and operational recovery cost.",
+      "hints": [
+        "Measure files per partition and bytes per file before tuning compute.",
+        "Separate raw immutable ingestion from curated analytical layout.",
+        "Readers need a consistent committed view while writers compact or retry."
+      ],
+      "explanation": "A lake layout is part of the algorithm. Tiny files amplify listing, scheduling, and open costs. Compacting into columnar files helps scans, but the output must be published atomically enough for readers and reruns to avoid partial or duplicate data.",
+      "reference": "Microsoft Learn: Azure Data Lake Storage Gen2 best practices"
+    },
+    {
+      "id": "financial-reconciliation",
+      "title": "Financial transactions: reconciliation",
+      "domain": "Financial data processing",
+      "prompt": "The ledger, payment processor, and event stream disagree after a retry storm. Design a reconciliation check that detects missing, duplicate, and out-of-order transactions without silently changing the ledger.",
+      "language": "sql",
+      "code": "SELECT event_id, COUNT(*)\nFROM settlement_events\nGROUP BY event_id\nHAVING COUNT(*) <> 1;",
+      "examples": [
+        {"input": "same event_id twice", "expected": "duplicate exception"},
+        {"input": "ledger total differs from processor total", "expected": "reconciliation exception"}
+      ],
+      "test_cases": [
+        {"input": "missing event", "expected": "exception with source and time window", "observed": "exception with source and time window"},
+        {"input": "duplicate event", "expected": "duplicate exception without auto-debit", "observed": "duplicate exception without auto-debit"},
+        {"input": "amount mismatch", "expected": "immutable evidence and review queue", "observed": "immutable evidence and review queue"},
+        {"input": "late event", "expected": "backfill policy with audit trail", "observed": "backfill policy with audit trail"}
+      ],
+      "defect": "Using a cleanup job that mutates the ledger to make totals match can destroy evidence and hide the original delivery or mapping defect.",
+      "repair": "Reconcile immutable event IDs, counts, amounts, ordering metadata, and time windows; emit auditable exceptions and apply approved compensating entries only through the ledger workflow.",
+      "complexity": "Reconciliation is a bounded join and aggregation by source, event ID, and time window; operational correctness depends on auditability and idempotency.",
+      "hints": [
+        "Define the identity and source of truth for each transaction.",
+        "Compare counts and sums, not just one total.",
+        "An exception queue preserves evidence; silent repair does not."
+      ],
+      "explanation": "Financial correctness is more than matching a final sum. Reconciliation should detect missing, duplicate, mismatched, and late records with immutable evidence. Corrections belong in an auditable ledger process, not an opaque cleanup query.",
+      "reference": "Federal Reserve: sound practices for operational resilience and auditability"
+    },
+    {
+      "id": "testing-boundaries",
+      "title": "Testing: protect the behavior",
+      "domain": "Software engineering practice",
+      "prompt": "A parser passes happy-path tests but has caused production failures at empty input, malformed records, and schema changes. What test strategy should you add?",
+      "language": "language-agnostic",
+      "code": "parse(input) -> result\nparse(empty) -> ?\nparse(malformed) -> ?\nparse(new-schema) -> ?",
+      "examples": [
+        {"input": "empty input", "expected": "explicit contract"},
+        {"input": "malformed record", "expected": "safe failure and useful diagnostic"}
+      ],
+      "test_cases": [
+        {"input": "boundary values", "expected": "covered by contract tests", "observed": "covered by contract tests"},
+        {"input": "malformed input", "expected": "safe failure", "observed": "safe failure"},
+        {"input": "regression", "expected": "reproduced before fix", "observed": "reproduced before fix"},
+        {"input": "integration seam", "expected": "verified without duplicating internals", "observed": "verified without duplicating internals"}
+      ],
+      "defect": "Happy-path tests do not protect boundary behavior, failure contracts, or integration assumptions.",
+      "repair": "Define the behavior first, add boundary and failure cases, reproduce regressions, and keep tests focused on observable contracts.",
+      "complexity": "Test value is about risk and contract coverage, not raw test count.",
+      "hints": ["List inputs that are empty, maximal, malformed, or repeated.", "Write the expected failure behavior before the assertion.", "A regression test should fail for the old defect and pass for the fix."],
+      "explanation": "Good tests make important behavior executable: normal cases, boundaries, failures, and integration seams. They should tell a future engineer what must remain true without coupling every assertion to implementation details.",
+      "reference": "Google Engineering Practices: testing"
+    },
+    {
+      "id": "observability-contract",
+      "title": "Observability: make failure diagnosable",
+      "domain": "Software engineering practice",
+      "prompt": "A transaction pipeline reports only 'job failed'. What telemetry would let an engineer distinguish bad input, dependency failure, lag, and a code regression without logging sensitive data?",
+      "language": "language-agnostic",
+      "code": "request -> validate -> enrich -> write\n          ?         ?          ?",
+      "examples": [
+        {"input": "dependency timeout", "expected": "bounded retry and diagnostic signal"},
+        {"input": "sensitive account data", "expected": "redacted correlation context"}
+      ],
+      "test_cases": [
+        {"input": "correlation ID", "expected": "propagated across stages", "observed": "propagated across stages"},
+        {"input": "latency and error rate", "expected": "measured by stage", "observed": "measured by stage"},
+        {"input": "queue lag", "expected": "alertable signal", "observed": "alertable signal"},
+        {"input": "personal data", "expected": "redacted from logs", "observed": "redacted from logs"}
+      ],
+      "defect": "A generic failure message prevents diagnosis, while unbounded payload logging can create a privacy and security incident.",
+      "repair": "Instrument stage-level latency, errors, lag, and correlation IDs with bounded, redacted context and actionable alerts.",
+      "complexity": "Telemetry should reduce mean time to diagnose without becoming an unbounded data pipeline of its own.",
+      "hints": ["Name the hypotheses an on-call engineer needs to distinguish.", "Prefer stable identifiers over raw transaction payloads.", "A metric, log, and trace answer different questions."],
+      "explanation": "Observability is a diagnostic contract. Capture enough structured context to connect stages and distinguish failure classes, but deliberately exclude secrets and sensitive payloads.",
+      "reference": "OpenTelemetry documentation: signals and semantic conventions"
+    },
+    {
+      "id": "secret-handling",
+      "title": "Security: keep secrets out of code",
+      "domain": "Software engineering practice",
+      "prompt": "A developer proposes committing a cloud connection string to simplify local testing. What safer workflow preserves developer speed without making the secret part of the artifact?",
+      "language": "language-agnostic",
+      "code": "const connectionString = \"...secret...\"\nclient.connect(connectionString)",
+      "examples": [
+        {"input": "local development", "expected": "managed or injected secret"},
+        {"input": "secret exposed in history", "expected": "revoke and rotate, then remove access"}
+      ],
+      "test_cases": [
+        {"input": "repository scan", "expected": "blocks high-confidence secret", "observed": "blocks high-confidence secret"},
+        {"input": "local config", "expected": "ignored and documented", "observed": "ignored and documented"},
+        {"input": "credential leak", "expected": "revoked and rotated", "observed": "revoked and rotated"},
+        {"input": "least privilege", "expected": "narrow scope", "observed": "narrow scope"}
+      ],
+      "defect": "A secret in source control persists in history and expands the blast radius of every clone and artifact.",
+      "repair": "Inject short-lived, least-privilege credentials through an approved local or deployment secret store and scan before merge.",
+      "complexity": "Security controls reduce expected incident cost; convenience is not a reason to widen credential lifetime or scope.",
+      "hints": ["Assume repository history and build artifacts are copied.", "Separate configuration from credentials.", "A leaked credential is an incident requiring rotation, not only deletion."],
+      "explanation": "Secure development makes the safe path convenient: inject credentials at runtime, minimize scope and lifetime, scan before merge, and rotate immediately if exposure occurs.",
+      "reference": "OWASP Secrets Management Cheat Sheet"
+    },
+    {
+      "id": "api-compatibility",
+      "title": "API design: change without surprise",
+      "domain": "Software engineering practice",
+      "prompt": "You need to add a required field to an API consumed by multiple teams. How do you evolve the contract without breaking clients that have not deployed yet?",
+      "language": "language-agnostic",
+      "code": "v1 response: { id, amount }\nproposed:   { id, amount, currency! }",
+      "examples": [
+        {"input": "old client reads new response", "expected": "compatible additive change"},
+        {"input": "new requirement", "expected": "versioned or negotiated migration"}
+      ],
+      "test_cases": [
+        {"input": "old client + new server", "expected": "contract test passes", "observed": "contract test passes"},
+        {"input": "new client + old server", "expected": "defined fallback", "observed": "defined fallback"},
+        {"input": "invalid field", "expected": "stable error contract", "observed": "stable error contract"},
+        {"input": "deprecation", "expected": "announced and measurable", "observed": "announced and measurable"}
+      ],
+      "defect": "Making a new field mandatory for every existing client couples independent deployments and creates an avoidable breaking change.",
+      "repair": "Use an additive compatible change, a default or negotiation, contract tests, telemetry for adoption, and a documented deprecation path.",
+      "complexity": "Compatibility cost is an organizational and operational dependency problem, not only a type-system problem.",
+      "hints": ["Consider both old-client/new-server and new-client/old-server combinations.", "Define the migration and rollback path before changing the contract.", "Measure who still depends on the old behavior."],
+      "explanation": "Good API evolution respects independently deployed consumers. Additive changes, explicit versioning or negotiation, contract tests, and measured deprecation reduce surprise while preserving a path to stronger invariants.",
+      "reference": "Microsoft REST API Guidelines"
+    }
+  ]
+}

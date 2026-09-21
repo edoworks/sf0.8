@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "allowlisted local organizational recovery knowledge",
+  "sources": [
+    {
+      "id": "sf08-current",
+      "root": "/Users/hello/sf0.8",
+      "allowed_paths": [
+        ".factory/artifacts/evidence/",
+        "docs/research/",
+        "scripts/",
+        "tests/"
+      ],
+      "trust": "FOCULOOM_CURRENT_FACTORY"
+    },
+    {
+      "id": "edoworks-skills",
+      "root": "/Users/hello/foculoom/edoworks-skills",
+      "allowed_paths": ["ship-issue/", "new-website/", "game-proto/"],
+      "trust": "FOCULOOM_SHARED_SKILLS"
+    },
+    {
+      "id": "foculoom-project",
+      "root": "/Users/hello/foculoom/infra/foculoom-project",
+      "allowed_paths": [
+        ".github/workflows/",
+        "agents/",
+        "scripts/"
+      ],
+      "trust": "FOCULOOM_INFRA_REFERENCE"
+    }
+  ],
+  "excluded_patterns": [
+    "**/.env*",
+    "**/*secret*",
+    "**/*credential*",
+    "**/node_modules/**",
+    "**/.git/**",
+    "**/.archived/**"
+  ],
+  "policy": {
+    "metadata_only": true,
+    "execute_discovered_commands": false,
+    "install_dependencies": false,
+    "authority_is_not_inferred": true
+  }
+}

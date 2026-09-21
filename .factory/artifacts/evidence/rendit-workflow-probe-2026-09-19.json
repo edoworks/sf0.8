@@ -1,0 +1,37 @@
+{
+  "evidence_id": "rendit-workflow-probe-2026-09-19",
+  "issue": 67,
+  "status": "BLOCKED_DEPENDENCY",
+  "source_revision": "b00549fcab43e9d3d1ee9ec3a0222ffb446807a5",
+  "source_checkout": "isolated detached worktree",
+  "source_worktree_before_probe": "dirty; untouched",
+  "workflow": "recipe validation plus deterministic render preflight",
+  "commands": [
+    "make validate",
+    "python3 -m pytest -q tests/test_determinism.py tests/test_provenance.py tests/test_no_network.py tests/test_no_ai.py tests/test_validate.py",
+    "scripts/rendit-render.sh recipes/social-static-square-001.yaml"
+  ],
+  "results": {
+    "recipe_validation": "PASS: 59 files",
+    "selected_tests": "PASS: 44 tests",
+    "determinism_and_safety": "PASS: deterministic, provenance structure, no-network, and no-AI gates",
+    "render": "NOT_RUN: pinned resvg binary unavailable",
+    "second_consumer": "ABSENT_FROM_THIS_PROBE"
+  },
+  "warnings": [
+    "Determinism tests used the documented geometric fallback because AI provider credentials were absent; no network or credential use occurred.",
+    "Actual PNG rendering and byte-hash comparison were not claimed."
+  ],
+  "known": [
+    "Clean pinned source validation is reproducible in an isolated worktree.",
+    "The workflow contract can be exercised without installing dependencies."
+  ],
+  "unknown": [
+    "Rendered output byte identity with the pinned resvg binary",
+    "A genuine second Rendit consumer",
+    "External demand, economic value, and licensing completeness"
+  ],
+  "next_validation": "Human-authorize or provide the already pinned resvg binary, then rerun the exact render command twice and compare PNG/meta/hash outputs.",
+  "stop_condition": "Keep Rendit internal and do not package if resvg cannot be supplied without new dependency installation, provenance fails, or no second consumer appears.",
+  "publication_authorized": false
+}
