@@ -1,0 +1,65 @@
+{
+  "evidence_id": "rendit-workflow-probe-completion-2026-09-19",
+  "issue": 67,
+  "status": "INTERNAL_PROBE_COMPLETE",
+  "source_revision": "b00549fcab43e9d3d1ee9ec3a0222ffb446807a5",
+  "source_checkout": "isolated detached worktree",
+  "source_worktree_before_probe": "dirty; untouched",
+  "renderer": {
+    "version": "0.47.0",
+    "platform": "macos-aarch64",
+    "sha256": "7824e2e3accc2a7d306443d80f117ed0cef14147970d69b33e753390a38fcd9a",
+    "lockfile": "tools/renderer.lock",
+    "dependency_installation": false
+  },
+  "workflow": "validate and render recipes/social-static-square-001.yaml twice",
+  "results": {
+    "recipe_validation": "PASS",
+    "selected_tests": "PASS: 44 tests",
+    "render_run_a": "PASS",
+    "render_run_b": "PASS",
+    "png_sha256_run_a": "06fa270f88b163a830c42e03cb2af85bce78cd0f0f3f40516a326c9fd3c413e6",
+    "png_sha256_run_b": "06fa270f88b163a830c42e03cb2af85bce78cd0f0f3f40516a326c9fd3c413e6",
+    "png_bytes_equal": true,
+    "sha_sidecars_equal": true,
+    "provenance_equal_without_render_timestamp": true,
+    "second_consumer": "CONFIRMED_INTERNAL"
+  },
+  "consumers": [
+    {
+      "project": "foculoom/tools/rendit",
+      "evidence": "canonical runtime and recipe workflow"
+    },
+    {
+      "project": "foculoom/games/gem-cascade",
+      "evidence": "assets-registry/provenance/gem-ruby.json identifies tool rendit"
+    },
+    {
+      "project": "foculoom/games/endless-runner-template",
+      "evidence": "assets-registry/provenance/player-run-sheet.json identifies tool rendit"
+    },
+    {
+      "project": "foculoom/products/docketloom-rebuild",
+      "evidence": "docs/asset-manifest.json identifies a rendit-generated recipe"
+    }
+  ],
+  "known": [
+    "Clean pinned validation and deterministic rendering succeeded.",
+    "Multiple Foculoom projects preserve Rendit provenance records.",
+    "No dependency installation was required because the exact locked binary already existed locally."
+  ],
+  "unknown": [
+    "External users and external economic value",
+    "Repeat use outside the existing Foculoom portfolio",
+    "Whether a workflow-level skill creates pull toward the integrated runtime",
+    "Complete asset and dependency licensing suitability for public sharing"
+  ],
+  "setup_cost": {
+    "engineering_minutes": "UNKNOWN",
+    "monetary_usd": 0,
+    "api_or_infrastructure_usd": 0
+  },
+  "next_validation": "Keep Rendit internal; if a public opportunity is considered, gather independent external problem and economic evidence before packaging.",
+  "stop_condition": "Do not split or publish if external evidence, licensing review, or a clearly independent workflow contract is absent.",
+  "publication_authorized": false
+}

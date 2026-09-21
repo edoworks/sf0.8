@@ -1,0 +1,53 @@
+{
+  "evidence_id": "tool-opportunity-ci-status-recurrence-2026-09-19",
+  "candidate_id": "shovel:ci-status-evidence",
+  "status": "INTERNAL_SECOND_CONSUMER_CONFIRMED",
+  "observed_at": "2026-09-19",
+  "problem": "An aborted CI watch can be mistaken for a completed, successful, or failed result without terminal evidence.",
+  "consumers": [
+    {
+      "repository": "edoworks/sf0.8",
+      "path": "scripts/ci-status.sh",
+      "source_revision": "working-tree-source",
+      "role": "factory CI evidence gate"
+    },
+    {
+      "repository": "edoworks/product-a",
+      "path": "scripts/ci-status.sh",
+      "source_revision": "6ecb35d",
+      "role": "product CI evidence gate",
+      "read_only_evidence": true
+    }
+  ],
+  "comparison": {
+    "canonical_product_a_hash": "36b5cbb9253b3bb87e4d340a0b6556010eb5cf33127f738d6ecfaaa256d708dd",
+    "runner_product_a_hash": "36b5cbb9253b3bb87e4d340a0b6556010eb5cf33127f738d6ecfaaa256d708dd",
+    "sf08_hash": "8d4fab287f624be287cd84e3c34ab953f04815f30ad5ffe3d166aee80b13f1e8",
+    "same_implementation_across_product_a_checkouts": true,
+    "same_hash_as_sf08": false
+  },
+  "known": [
+    "The recurrence guard was independently committed in Product A.",
+    "Both workflows persist terminal CI evidence before making a CI claim."
+  ],
+  "unknown": [
+    "External recurrence",
+    "Economic value outside Foculoom",
+    "Whether the implementations should converge without violating repository-specific policy"
+  ],
+  "cost": {
+    "engineering_minutes": "UNKNOWN",
+    "monetary_usd": "UNKNOWN",
+    "api_or_infrastructure_usd": "UNKNOWN"
+  },
+  "next_validation": "Compare repository-specific requirements and test contracts before extracting an internal shared capability.",
+  "stop_condition": "Stop if the common behavior is incidental, convergence would weaken repository boundaries, or maintenance cost exceeds saved verification effort.",
+  "sources": [
+    "docs/v0.1-retrospective.md",
+    "scripts/ci-status.sh",
+    "edoworks/product-a canonical checkout: scripts/ci-status.sh",
+    "edoworks/product-a commit 6ecb35d"
+  ],
+  "external_validation": "ABSENT",
+  "publication_authorized": false
+}

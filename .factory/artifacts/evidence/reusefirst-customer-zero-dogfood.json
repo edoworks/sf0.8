@@ -1,0 +1,15 @@
+{
+  "artifact": "reusefirst",
+  "consumers": [
+    {"change_units": 8, "compatible": 1, "consumer": "factory", "decision": "REUSE", "required_search": 1, "searched": 1},
+    {"change_units": 8, "compatible": 1, "consumer": "product-a", "decision": "REUSE", "required_search": 1, "searched": 1},
+    {"change_units": 8, "compatible": 1, "consumer": "vorynce", "decision": "REUSE", "required_search": 1, "searched": 1},
+    {"change_units": 8, "compatible": 1, "consumer": "intent-compiler-modeled", "decision": "REUSE", "required_search": 1, "searched": 1}
+  ],
+  "contract": "public reuse_gate.py",
+  "negative_case": {"decision": "BLOCKED", "expected": "BLOCKED"},
+  "revision": "30e588b4dc0d869da9b58a01d91c22d6f4931361",
+  "source_url": "https://raw.githubusercontent.com/edoworks/artifacts/30e588b4dc0d869da9b58a01d91c22d6f4931361/artifacts/reusefirst/reuse_gate.py",
+  "status": "VERIFIED",
+  "verified_at": "2026-09-20"
+}

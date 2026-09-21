@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "objective_id": "rung-public-surface-2026-09-19",
+  "objective": "Publish the canonical Rung link through the governed Foculoom website workflow and verify the live public route.",
+  "external": true,
+  "task_execution_complete": true,
+  "state": "HUMAN_AUTHORIZATION_REQUIRED",
+  "required_stages": [
+    "IMPLEMENTATION",
+    "LOCAL_VALIDATION",
+    "BRANCH_PUSH",
+    "PR",
+    "REQUIRED_REVIEW",
+    "MERGE",
+    "DEPLOYMENT",
+    "LIVE_HTTP_CHECK",
+    "CANONICAL_ROUTING"
+  ],
+  "stage_evidence": {
+    "IMPLEMENTATION": {"status": "VERIFIED", "evidence": ["foculoom/foculoom.github.io:index.html", "1fb9f2c"]},
+    "LOCAL_VALIDATION": {"status": "VERIFIED", "evidence": ["git diff --check", "sf0.8 public-surface tests"]},
+    "BRANCH_PUSH": {"status": "VERIFIED", "evidence": ["origin/feature/public-rung-link", "1fb9f2c"]},
+    "PR": {"status": "UNVERIFIED", "evidence": ["gh pr create denied by active tool policy"]},
+    "REQUIRED_REVIEW": {"status": "UNVERIFIED", "evidence": []},
+    "MERGE": {"status": "UNVERIFIED", "evidence": []},
+    "DEPLOYMENT": {"status": "UNVERIFIED", "evidence": []},
+    "LIVE_HTTP_CHECK": {"status": "BLOCKED", "evidence": ["https://rung.edoworks.com/ returned HTTP 530"]},
+    "CANONICAL_ROUTING": {"status": "UNVERIFIED", "evidence": []}
+  },
+  "blocker": {
+    "class": "governance_restriction",
+    "operation": "gh pr create --repo foculoom/foculoom.github.io",
+    "minimum_authority": "governed PR creation permission for the target repository or owner-created PR",
+    "continuation": "Resume at PR creation, then verify review, merge, deployment, live HTTP, and canonical routing."
+  },
+  "recovery": {
+    "sources_searched": [
+      ".factory/recovery/solutions.json",
+      "docs/research/pr-review-unblock-2026-09-19.md",
+      "/Users/hello/foculoom/edoworks-skills/ship-issue/SKILL.md",
+      "/Users/hello/foculoom/infra/foculoom-project/.github/workflows/asc-release-detector.yml"
+    ],
+    "selected_solution": "foculoom-reviewed-pr-workflow",
+    "attempts": 1,
+    "attempt_bound": 3,
+    "execution_allowed": false,
+    "reason": "knowledge exists; current authority is unavailable"
+  }
+}

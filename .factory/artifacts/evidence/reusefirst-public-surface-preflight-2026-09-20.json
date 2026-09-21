@@ -1,0 +1,26 @@
+{
+  "evidence_id": "reusefirst-public-surface-preflight-2026-09-20",
+  "status": "BLOCKED_METADATA",
+  "scope": "read-only public-surface inspection",
+  "artifact": "reusefirst",
+  "release": {
+    "repository": "edoworks/artifacts",
+    "tag": "reusefirst/v1.2.1",
+    "draft": false,
+    "prerelease": false,
+    "status": "PASS",
+    "url": "https://github.com/edoworks/artifacts/releases/tag/reusefirst/v1.2.1"
+  },
+  "repository": {
+    "visibility": "public",
+    "archived": false,
+    "status": "BLOCKED",
+    "errors": ["repository has no detected license"],
+    "root_license_probe": {"url": "https://raw.githubusercontent.com/edoworks/artifacts/main/LICENSE", "status": "NOT_FOUND"},
+    "url": "https://github.com/edoworks/artifacts"
+  },
+  "artifact_license": {"path": "artifacts/reusefirst/LICENSE", "status": "PRESENT", "spdx": "Apache-2.0"},
+  "interpretation": "The immutable release is present and stable and the artifact contains an Apache-2.0 license, but repository-level license metadata is unresolved. This does not authorize a broader collection publication or a claim of external use.",
+  "next_human_decision": "Add or configure root license metadata in edoworks/artifacts through the owner-authorized external repository path, then rerun the public-surface preflight.",
+  "external_action_performed": false
+}

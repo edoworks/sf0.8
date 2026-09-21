@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "artifact": "reusefirst",
+      "repository": "https://github.com/edoworks/artifacts",
+      "path": "artifacts/reusefirst",
+      "version": "1.2.1",
+      "release_tag": "reusefirst/v1.2.1",
+      "source_revision": "30e588b4dc0d869da9b58a01d91c22d6f4931361",
+      "local_duplicate_policy": "deprecated_pointer_only",
+      "release_url": "https://github.com/edoworks/artifacts/releases/tag/reusefirst/v1.2.1"
+    }
+  ],
+  "migration_targets": [
+    {
+      "artifact": "constitution",
+      "repository": "https://github.com/edoworks/artifacts",
+      "path": "artifacts/constitution",
+      "naming_rule": "artifact directory and release tag use constitution",
+      "source_repository": "https://github.com/edoworks/factory-constitution",
+      "source_revision": "737761e4c1c70edb866a7af4a35d839022d127d9",
+      "canonical_revision": "5b0817594e9f0ad7fa5fb1588f22c755cf70f71b",
+      "deprecated_revision": "20170526eb66a0ddc3f8fa7b4dde844879d72f05",
+      "planned_release_tag": "constitution/v1.0.0",
+      "publication_state": "RELEASED",
+      "release_url": "https://github.com/edoworks/artifacts/releases/tag/constitution/v1.0.0"
+    },
+    {
+      "artifact": "asc",
+      "repository": "https://github.com/edoworks/artifacts",
+      "path": "artifacts/asc",
+      "naming_rule": "artifact directory and release tag use asc",
+      "source_repository": "https://github.com/edoworks/asc-client",
+      "source_revision": "4508bf9c0991163b3baa2997f796e46c4c27d6b2",
+      "canonical_revision": "5b0817594e9f0ad7fa5fb1588f22c755cf70f71b",
+      "deprecated_revision": "44ab54fbe015938a55794ce0111ba3a00ee3a25a",
+      "planned_release_tag": "asc/v1.0.0",
+      "publication_state": "RELEASED",
+      "release_url": "https://github.com/edoworks/artifacts/releases/tag/asc/v1.0.0"
+    }
+  ]
+}
