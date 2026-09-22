@@ -31,9 +31,12 @@ prompts or re-derive the routing procedure.
    Prices must be comparable via `provider-pricing.json`; unknown-price
    models never auto-promote.
 4. Promote through the pipeline, never by hand-editing live routes:
-   `npm --prefix ~/.config/opencode run models:promote`. Only `routine` and
-   `standard` auto-promote; `complex`, `vision`, and `trust_boundary` require
-   explicit owner approval recorded in `approved.json` with a `basis`.
+   `npm --prefix ~/.config/opencode run models:promote`. `routine`,
+   `standard`, and `vision` auto-promote; `complex` and `trust_boundary`
+   require explicit owner approval recorded in `approved.json` with a
+   `basis`. Vision auto-invocation is scoped to screenshot-only assertion
+   inputs per owner approval 2026-09-21; release, upload, submission, and
+   external-write authority remain separately gated.
 5. Verify: `npm --prefix ~/.config/opencode run models:status` shows the new
    route qualified; run `npm --prefix ~/.config/opencode test`, and a
    cost-router hook smoke test when routes or fallbacks changed.
