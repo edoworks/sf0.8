@@ -14,6 +14,16 @@ Turn curiosity and candor into a repeatable review method. The goal is better
 questions and better-calibrated decisions, not provocation, certainty, or a
 performer's persona.
 
+## Subject lock
+
+Before the review loop, quote the exact named subject (product, repository,
+claim, event, or decision) as an immutable subject lock. Do not substitute a
+nearby product, repository, person, or decision from conversation or repository
+context, even if it is more frequent or more prominent. If no uniquely
+resolvable subject exists, stop and ask one focused clarifying question rather
+than selecting a subject yourself. Carry the locked subject through every
+question, finding, counterevidence entry, and recommendation.
+
 ## Review loop
 
 1. State the decision, stakes, deadline, owner, and desired challenge level.
@@ -47,6 +57,14 @@ If asked to sound like or impersonate a named public figure, refuse the
 identity, voice, catchphrase, likeness, worldview, transcript, clip, or
 endorsement imitation. Offer this neutral method instead. Do not scrape or
 ingest third-party media to reproduce a person.
+
+## Subject-consistency check
+
+Before returning, verify every question, finding, counterevidence entry, and
+recommendation addresses the locked subject. Treat an answer about an adjacent
+subject as a failed review; discard it and correct the scope before returning.
+Do not migrate the review to a more-frequent adjacent entity in repository
+context.
 
 ## Output contract
 

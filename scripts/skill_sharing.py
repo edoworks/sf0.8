@@ -75,6 +75,33 @@ def validate_inventory(inventory: dict[str, Any], root: Path) -> list[str]:
     return errors
 
 
+def validate_subject_anchoring(inventory: dict[str, Any], root: Path) -> list[str]:
+    """Advisory skills that return findings or recommendations must pin their subject.
+
+    A skill whose SKILL.md contains an ``Output contract`` section is treated as
+    advisory. Such a skill must declare both an immutable ``subject lock`` and a
+    closing ``subject-consistency`` check so the review cannot drift to an
+    adjacent, more-frequent entity in repository context.
+    """
+    errors: list[str] = []
+    for declared in inventory.get("roots", []):
+        source_root = Path(str(declared.get("path", "")))
+        if not source_root.is_absolute():
+            source_root = root / source_root
+        if not source_root.is_dir():
+            continue
+        for skill_file in source_root.glob("*/SKILL.md"):
+            text = skill_file.read_text(encoding="utf-8")
+            if "Output contract" not in text:
+                continue
+            skill_id = f"{declared['id']}/{skill_file.parent.name}"
+            if "subject lock" not in text.lower():
+                errors.append(f"{skill_id}: advisory skill must declare an immutable subject lock")
+            if "subject-consistency" not in text.lower():
+                errors.append(f"{skill_id}: advisory skill must declare a closing subject-consistency check")
+    return errors
+
+
 def recommendations(inventory: dict[str, Any]) -> list[dict[str, Any]]:
     """Return only used skills recommended for human shareability review."""
     return [record for record in inventory.get("records", []) if record.get("used") is True and record.get("recommendation") == "SHAREABILITY_REVIEW"]
