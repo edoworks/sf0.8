@@ -182,13 +182,101 @@ Stop or re-scope if:
 | License or trademark decision | Human only |
 | Customer engagement | Human only |
 
+## Evidence Contracts And Cutover Guards
+
+Each gate below defines its evidence artifact, owner, validation command, fail
+condition, and cross-system synchronization requirement. A gate is not closed
+until its validation command passes and its evidence artifact is committed.
+
+### Release Distribution Contract
+
+- **Evidence:** a release receipt recording tag, artifact URL, digest,
+  prerelease flag, immutability flag, and README install-path verification.
+- **Owner:** founder (release publication is human-authorized).
+- **Validation:** a CI release-contract test resolves the documented download
+  URL, verifies the artifact and digest, checks prerelease/immutability state,
+  and rejects any release whose README path is unavailable or whose declared
+  artifact does not match the release record.
+- **Fail condition:** the documented URL returns 404, the artifact digest does
+  not match, or the release is marked prerelease when a stable release is
+  required for cutover.
+- **Synchronization:** README, release record, and CI test must all agree on
+  the exact artifact URL and digest.
+
+### Apple Acceptance Receipt
+
+- **Evidence:** a receipt recording app bundle ID, version, build number,
+  Apple processing status, submission date, review disposition, and acceptance
+  date. Distinguishes archive, processed build, submitted version, and
+  accepted version.
+- **Owner:** founder (submission is human-authorized).
+- **Validation:** the cutover guard verifies the receipt is committed and its
+  acceptance status is confirmed. TestFlight or simulator evidence does not
+  satisfy this gate.
+- **Fail condition:** no acceptance receipt exists, or the receipt records a
+  status short of Apple acceptance.
+- **Synchronization:** factory issue #10 (and #14 for Reference App 2) must be
+  closed with the receipt attached before predecessor freeze can proceed.
+
+### Qualification Ledger
+
+- **Evidence:** a version-pinned ledger recording daily receipts for the
+  qualification period: date, change description, unattended success flag,
+  manual repair flag, failure classification, operator identity, denominator,
+  and cumulative success rate.
+- **Owner:** founder (qualification execution is owner-authorized).
+- **Validation:** the promotion guard verifies the ledger covers at least 10
+  consecutive weekday changes, cumulative unattended success rate >= 95%, at
+  least one second-operator run, and a complete failure taxonomy.
+- **Fail condition:** the ledger is missing, incomplete, below threshold, or
+  lacks independent-operator evidence.
+- **Synchronization:** factory issue #11 must be closed with the ledger
+  attached before v0.2.0 promotion or predecessor freeze.
+
+### Obligation Disposition Manifest
+
+- **Evidence:** a versioned manifest covering all predecessor repositories
+  (sf0.8, product-a, sf0.7, sf0.5) listing every open issue with: repository,
+  issue number, classification (migrated, completed, superseded, rejected,
+  duplicate, retained-evidence), successor link, reason, and review date.
+- **Owner:** founder (disposition is owner-reviewed, not automated).
+- **Validation:** the cutover guard compares the manifest against live open
+  issues and fails if any issue lacks a valid disposition, reason, successor,
+  or retained-evidence reference.
+- **Fail condition:** any open predecessor issue is not in the manifest, or any
+  manifest entry lacks a required field.
+- **Synchronization:** factory issue #16 must be closed with the manifest
+  attached before predecessor freeze.
+
+### Cutover Lifecycle Transaction
+
+Predecessor freeze is a guarded atomic transaction, not a checklist item. The
+following must all pass before sf0.8 is declared frozen:
+
+1. Release distribution contract validated.
+2. Apple acceptance receipts for both reference apps validated.
+3. Qualification ledger validated.
+4. Obligation disposition manifest validated.
+5. Recovery rehearsal evidence validated.
+6. Owner authorization recorded.
+7. Successor notices published in sf0.8 README and repository description.
+8. `portfolio.yaml` updated to name `edoworks/factory` as the active factory.
+9. Continuation command updated to reflect cutover completion.
+10. Factory issues #10, #11, #15, and #16 verified closed via the
+    issue-closeout guard.
+
+The cutover guard must reject freeze if any step is missing, incomplete, or
+contradicted by another system's state.
+
 ## Predecessor Disposition
 
 sf0.8 is frozen and superseded — not archived — until the new factory proves:
 
-1. Two Apple-accepted reference apps
-2. Recovery from factory failure rehearsed
-3. Every open sf0.8 issue dispositioned with successor links
-4. All obligations tracked to a successor
+1. Two Apple-accepted reference apps (Apple Acceptance Receipt validated)
+2. Recovery from factory failure rehearsed (recovery evidence committed)
+3. Every open sf0.8 issue dispositioned with successor links (Obligation
+   Disposition Manifest validated)
+4. All obligations tracked to a successor (manifest covers all predecessor
+   repositories)
 
 Only then are sf0.8 and predecessors archived (read-only, never deleted).
