@@ -3,12 +3,12 @@ description: Resume NowNest release qualification and sf0.8 evidence work
 agent: explore
 ---
 
-## Current State (2026-09-21)
+## Current State (2026-09-22)
 
 **NowNest** is Reference App 1. The old FocusGate identity is deprecated.
 
 - Repository: `edoworks/nownest`; local checkout: `/Users/hello/FocusGate`
-- Branch/revision: `main` at `7f8ec23`, clean and pushed
+- Branch/revision: `main` at `5895c37`, clean and pushed
 - Bundle ID: `com.foculoom.nownest`; Team ID: `H8MJMBTFVP`
 - Universal iPhone/iPad app, Swift 6, local SwiftData, no network/accounts/
   analytics/notifications/background work
@@ -42,33 +42,31 @@ Two reusable skills created and merged in sf0.8 PR #99:
 
 - Current revision passed 6 UI and 6 unit tests on iPhone 17 Pro simulator,
   iPad Pro 11-inch simulator, physical iPhone 16 Pro Max, and physical iPad Air.
-- Automated G8 coverage is complete. Do not mark G8 passed until human visual
-  review and TestFlight-build validation are recorded.
-- Evidence: `/Users/hello/sf0.8/.factory/artifacts/evidence/nownest-device-automation-blocker-2026-09-21.md`
-  and `nownest-validation-summary-2026-09-21.json`.
+- G8 human visual review and TestFlight validation passed for revision
+  `8d6f3b5`; evidence is `/Users/hello/sf0.8/.factory/artifacts/evidence/nownest-g8-visual-testflight-2026-09-21.json`.
+- G9 recovery remains authorization-gated.
 
 ## Remaining Gates
 
-1. Human visual review on physical iPhone and iPad.
-2. Validate the installed TestFlight build on both devices.
-3. Record G8 only after those checks pass.
-4. Run G9 recovery: deliberate break/restore and delete/reinstall behavior.
-5. Prepare App Store metadata. Do not submit without explicit human authority.
-6. G10 App Store submission and G11 Apple acceptance remain human/Apple gated.
+1. Run G9 recovery only after explicit authorization for destructive simulator
+   behavior.
+2. Review the integrated App Store metadata draft without submitting to App Review.
+3. Chunk D human comparison and physical accessibility checks remain owner-gated.
+4. G10 App Store submission and G11 Apple acceptance remain human/Apple gated.
 
 ## Immediate Next Steps
 
-1. Start Chunk A (factory #29): prototype visual system infrastructure.
-2. Ask the owner to perform/confirm human visual and TestFlight checks for G8.
-3. After G8 evidence is complete, run G9 recovery and prepare metadata.
+1. Preserve the G8 evidence and do not upload a new build without explicit authority.
+2. Use the issue closeout guard for every tracked chunk before reporting completion.
+3. Continue only in the next authorized G9, metadata, or Chunk D lane.
 
 ## Repository State
 
-- `/Users/hello/FocusGate`: clean `main` at `7f8ec23` (PRD merged via PR #1).
-- `/Users/hello/sf0.8`: `main` at `2e6ea16` (skills merged, permission rename
-  merged). Clean working tree except unrelated untracked factory artifacts.
-- `/Users/hello/factory`: `main` at `0070c742`; issues #28-#33 track the
-  redesign; #10 tracks the full release ladder.
+- `/Users/hello/FocusGate`: clean `main` at `5895c37` with metadata draft evidence.
+- `/Users/hello/sf0.8`: `main` at `96c11a1` with the closeout guard and skill
+  update merged; unrelated pre-existing factory artifacts remain dirty.
+- `/Users/hello/factory`: `main` at `fa90f1f` with the queue audit and closeout
+  5-Whys merged; existing issue cleanup remains maintainer-reviewed.
 - `/Users/hello/sf0.8/product-a`: pre-existing dirty checkout; do not modify.
 - Stash `stash@{0}` on `feature/control-plane-checkpoint` remains parked.
 
@@ -80,6 +78,8 @@ Two reusable skills created and merged in sf0.8 PR #99:
 - No App Store submission, publication, archive, or visibility change without
   explicit human authorization
 - Issue mutations are interactive `ask` operations; prohibited in `--auto` mode
+- Issue closeout guard: `node ~/.config/opencode/scripts/issue-closeout.mjs
+  verify --repo REPO --issues NUMBER[,NUMBER...]`; require `CLOSED`.
 - Trivial tasks must use `explore` (local granite), not `general` (OpenAI Luna)
 
 ## Continuation Contract
@@ -97,11 +97,10 @@ Two reusable skills created and merged in sf0.8 PR #99:
 
 1. Check `git status --short --branch` in `/Users/hello/FocusGate`,
    `/Users/hello/sf0.8`, and `/Users/hello/factory`.
-2. Confirm `/Users/hello/FocusGate` is on `main` with the PRD merged.
+2. Confirm `/Users/hello/FocusGate` is on `main` at `5895c37` or later.
 3. Read `docs/calm-expressive-ux-prd.md` in `/Users/hello/FocusGate` for the
    full implementation handoff.
-4. Check factory issues #28-#33 for current chunk status.
-5. Ask the owner to perform/confirm the human visual and TestFlight checks; do
-   not repeat already-passing automation unless the source or environment changed.
-6. After G8 evidence is complete, run G9 recovery and prepare metadata without
-   submitting to App Review.
+4. Check factory issues #28-#36 and #10-#18; completed candidates require
+   maintainer review, not inferred closure.
+5. Run the closeout guard for every new tracked chunk before declaring it done.
+6. G9, Chunk D, and G10/G11 remain human-gated.
