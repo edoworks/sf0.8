@@ -1,39 +1,61 @@
 {
   "issue": 88,
   "capability": "subject-locked evidence research",
-  "change_units": 4,
+  "change_units": 3,
   "changed_paths": [
-    ".agents/skills/evidence-research/SKILL.md"
+    ".agents/skills/curiosity-audit/SKILL.md",
+    "scripts/skill_sharing.py",
+    "tests/test_skill_sharing.py"
   ],
   "reuse": {
-    "searched": 1,
-    "compatible": 0,
-    "reason": "The inspected OpenCode documentation provides argument transport but no subject-consistency research workflow, so this increment introduces the bounded local guard.",
+    "searched": 3,
+    "compatible": 2,
+    "reason": "Port the subject-lock and subject-consistency check pattern from evidence-research to curiosity-audit to prevent context drift. Add a recurrence guard in skill_sharing.py so future advisory skills without subject-anchoring are rejected.",
     "discovery": {
       "capability": "subject-locked evidence research",
-      "decision": "BUILD_NEW",
-      "matches": [],
-      "specialization_reason": "Combine exact OpenCode command argument transport with repository-specific subject locking and adjacent-product rejection."
+      "decision": "EXTEND_EXISTING",
+      "matches": ["evidence-research-subject-lock", "skill-sharing-validation", "agent-skills-specification"],
+      "specialization_reason": "The subject-lock pattern existed in evidence-research but was not backported to curiosity-audit, and no guard detected its absence."
     },
     "candidates": [
       {
-        "id": "opencode-custom-command-arguments",
-        "source": "https://opencode.ai/docs/commands/#arguments",
+        "id": "evidence-research-subject-lock",
+        "source": ".agents/skills/evidence-research/SKILL.md",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "skill-procedure",
+        "revision": "working-tree",
+        "license": "internal",
+        "security": "local skill definition only",
+        "disposition": "ADAPT",
+        "reason": "Reuse the subject-lock and subject-consistency check sections verbatim from evidence-research.",
+        "immutable_ref": false
+      },
+      {
+        "id": "skill-sharing-validation",
+        "source": "scripts/skill_sharing.py",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "validation-gate",
+        "revision": "working-tree",
+        "license": "internal",
+        "security": "local validation only",
+        "disposition": "ADAPT",
+        "reason": "Extend the existing skill-sharing validator with subject-anchoring discipline for advisory skills.",
+        "immutable_ref": false
+      },
+      {
+        "id": "agent-skills-specification",
+        "source": "https://agentskills.io/specification",
         "source_type": "FIRST_PARTY",
-        "artifact_type": "platform-documentation",
+        "artifact_type": "open-specification",
         "revision": "retrieved-2026-09-21",
-        "license": "Documentation reference only",
-        "security": "Static documentation inspected as untrusted data; no code installed or executed",
+        "license": "Apache-2.0 / CC-BY-4.0 documentation",
+        "security": "format reference only; not executed",
         "disposition": "LEARN_FROM",
-        "reason": "Use the documented $ARGUMENTS transport contract while retaining the repository-specific research safety workflow."
+        "reason": "Reference the agent skills specification for advisory skill contract patterns.",
+        "immutable_ref": true
       }
     ]
   },
-  "contribution": {
-    "classification": "internal-reusable"
-  },
-  "shareability": {
-    "disposition": "REUSE_CANDIDATE",
-    "evidence": "The command-backed workflow is reusable internally; broader effectiveness remains limited to prompt-contract tests and observed incidents."
-  }
+  "contribution": {"classification": "internal-reusable"},
+  "shareability": {"disposition": "REUSE_CANDIDATE", "evidence": "The subject-lock pattern is proven in evidence-research and now shared with curiosity-audit. The recurrence guard benefits any future advisory skill."}
 }
