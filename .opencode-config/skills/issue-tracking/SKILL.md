@@ -26,6 +26,30 @@ issues, sessions hold pointers.
    Narrate in-session by issue title; keep ids/URLs inside links.
 4. Close the issue only after implementation and verification are complete.
 
+### Closeout gate
+
+An evidence file, merged pull request, or passing test suite does not close a
+tracking issue. Before reporting a chunk complete:
+
+1. Resolve the canonical tracking issue number from the evidence and confirm
+   that the implementation and its stated verification passed.
+2. In an interactive, human-authorized session, run the separate identity
+   check and then close the exact issue with repository-first syntax:
+   `gh issue close --repo REPO NUMBER`.
+3. Run the read-only closeout guard:
+   `node ~/.config/opencode/scripts/issue-closeout.mjs verify --repo REPO --issues NUMBER[,NUMBER...]`.
+4. Require the guard to print `CLOSED` for every issue. An `OPEN` result,
+   mutation denial, missing issue, or unknown state keeps the work in progress
+   and must be reported as a blocker or follow-up; do not claim completion from
+   code or evidence state alone.
+5. In auto mode, do not mutate issues. Record the verified work and leave an
+   explicit issue-closure follow-up rather than silently carrying an open issue
+   into the next session.
+
+For a parent/child map, close only the verified child issue in the current
+chunk. Keep the parent open until its own acceptance criteria pass. Do not
+retroactively close old issues from inferred evidence without maintainer review.
+
 ### Planner/writer handoff
 
 Planning and writing are separate roles. The planning model owns completeness;
@@ -116,5 +140,7 @@ or infer omitted content.
 - If the repository has no GitHub remote, use its available task-tracking
   mechanism; never fabricate issues.
 - Never close an issue before its stated verification passes.
+- Never report a tracked chunk complete until the closeout guard confirms the
+  canonical issue is `CLOSED`.
 - Never add issue-number literals to global permission rules. Canonical issue
   identity belongs in the repository binding, not the shell policy.
