@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-08-21T00:00:00Z",
+  "updated_at": "2026-09-21T23:30:00Z",
   "objective": [
     "meet the task tier quality threshold",
     "minimize marginal monetary cost",
@@ -15,7 +15,8 @@
   "allow_routine_cloud_fallback": false,
   "auto_promotion_tiers": [
     "routine",
-    "standard"
+    "standard",
+    "vision"
   ],
   "manual_global_routes": [
     "small",
@@ -26,7 +27,6 @@
   ],
   "approval_required_tiers": [
     "complex",
-    "vision",
     "trust_boundary"
   ],
   "deterministic_tasks": [
