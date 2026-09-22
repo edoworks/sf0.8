@@ -40,10 +40,10 @@ inputs to that decision.
 - The committed validation summary reports 12 passing tests on each of four
   iPhone/iPad simulator and physical-device destinations, while retaining UI
   attachments ([P3], primary local evidence, retrieved 2026-09-21).
-- The G8 record reports owner visual confirmation on physical iPhone and iPad,
-  deterministic visual tests, and a local vision-model review; it also records
-  that post-G8 Chunk A changes require fresh validation ([P4], primary local
-  evidence, retrieved 2026-09-21).
+- The tracked physical-validation evidence reports automated G8 coverage,
+  retained UI screenshots, and separate human visual observations as a required
+  gate; it also records that human/TestFlight checks remain distinct from
+  automation ([P4], primary local evidence, retrieved 2026-09-21).
 - The repository already has `neuroinclusive-ux`, `product-art-direction`,
   `macos-screenshot`, and `vision-verification` capabilities relevant to
   NowNest ([P5], primary local skill records, retrieved 2026-09-21).
@@ -84,9 +84,10 @@ inputs to that decision.
 visual design safeguards, but it is not yet proven broadly accessible to visual
 users. HIGH confidence for the first clause; MEDIUM confidence for the second.**
 The product contract and existing evidence cover clear visual hierarchy,
-Dynamic Type, contrast intent, state redundancy, and human visual review. They
-do not establish that the current post-Chunk-A revision passes the complete
-Apple visual settings and physical VoiceOver matrix.
+Dynamic Type, contrast intent, state redundancy, and automated visual
+checkpoints. They do not establish that the current post-Chunk-A revision
+passes the complete Apple visual settings, human visual, and physical VoiceOver
+matrix.
 
 **Reuse and update, do not create or install a new skill. HIGH confidence.**
 The repository already contains the relevant design, capture, and visual-review
@@ -102,15 +103,15 @@ the physical-device VoiceOver requirement explicit. The existing
 **Evidence.** The product is explicitly structured around seeing the current
 NOW context, making a visible capture, confirming the parked idea, and returning
 to NOW ([P1], primary product source, retrieved 2026-09-21). The PRD makes the
-next action, return prompt, state redundancy, and physical light/dark review
-human-verifiable requirements ([P2], primary product source, retrieved
+The next action, return prompt, state redundancy, and physical light/dark review
+are human-verifiable requirements ([P2], primary product source, retrieved
 2026-09-21).
 
-**Counterevidence.** A product contract and owner review do not demonstrate
+**Counterevidence.** A product contract and automated checkpoints do not demonstrate
 that people with low vision, color-vision differences, or reliance on VoiceOver
-can complete the loop. The G8 record is tied to commit `8d6f3b5` and explicitly
-says later Chunk A changes need a fresh validation cycle ([P4], primary local
-evidence, retrieved 2026-09-21).
+can complete the loop. The tracked physical-validation evidence keeps human
+visual observations separate from automated coverage and says the human gate
+remains open ([P4], primary local evidence, retrieved 2026-09-21).
 
 **Implication.** Describe NowNest as visually clear by design intent and current
 tested evidence, not as universally visually accessible. The next proof step is
@@ -183,10 +184,11 @@ maintenance.
 
 ## Conflicts And Unknowns
 
-- The G8 artifact says `PASSED`, while also limiting that result to the reviewed
-  commit and requiring fresh validation after Chunk A changes ([P4], primary
-  local evidence, retrieved 2026-09-21). These are compatible only if G8 is
-  treated as revision-bound, not as a permanent product-wide claim.
+- The tracked physical-validation evidence says automated G8 coverage is
+  complete while human visual observations and TestFlight validation remain
+  open ([P4], primary local evidence, retrieved 2026-09-21). A separate
+  untracked worktree artifact reports a later owner-confirmed visual pass, but
+  it is not part of this report's durable evidence and is not relied on here.
 - Automated tests and retained screenshots establish implementation and visual
   checkpoints, not broad user success or assistive-technology usability
   ([P3], [P4], primary local evidence, retrieved 2026-09-21).
@@ -228,8 +230,9 @@ maintenance.
   https://raw.githubusercontent.com/edoworks/nownest/main/docs/calm-expressive-ux-prd.md
 - [P3] Local NowNest automated validation summary, retrieved 2026-09-21:
   `.factory/artifacts/evidence/nownest-validation-summary-2026-09-21.json`
-- [P4] Local NowNest G8 visual/TestFlight evidence, retrieved 2026-09-21:
-  `.factory/artifacts/evidence/nownest-g8-visual-testflight-2026-09-21.json`
+- [P4] Local NowNest physical UI automation and G8 evidence, retrieved
+  2026-09-21:
+  `.factory/artifacts/evidence/nownest-device-automation-blocker-2026-09-21.md`
 - [P5] Local skill records, retrieved 2026-09-21:
   `.agents/skills/neuroinclusive-ux/SKILL.md`,
   `.agents/skills/product-art-direction/SKILL.md`,
