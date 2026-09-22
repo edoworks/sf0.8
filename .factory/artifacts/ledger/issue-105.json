@@ -32,7 +32,7 @@
         "revision": "retrieved-2026-09-21",
         "license": "Not adopted; external license and maintenance boundary not reviewed for installation",
         "security": "Static documentation inspected as untrusted data; no code installed or executed",
-        "disposition": "LEAD_ONLY",
+        "disposition": "LEARN_FROM",
         "reason": "Generic interface and flow auditing could supplement review but does not establish native iOS visual-accessibility coverage."
       }
     ]
