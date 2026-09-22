@@ -103,6 +103,40 @@ Produce a mode-by-mode table with device, variant, pass/fail, evidence path:
 | Reduce Motion | No movement; immediate state replacement |
 | Light/dark appearance | No clipping, illegible pairings, or lost boundaries |
 
+## Visual-user qualification for Apple platforms
+
+For an iPhone or iPad product whose acceptance criterion includes visual-user
+support, qualify the main tasks on every supported form factor. Test each
+setting separately, then record the device, OS, setting, task result, and
+evidence path:
+
+- Bold Text
+- Larger Text, including the largest supported accessibility sizes
+- Button Shapes
+- On/Off Labels
+- Reduce Transparency
+- Increase Contrast
+- Differentiate Without Color
+- Color Filters, including at least one red/green filter
+- Reduce Motion
+- Dim Flashing Lights when motion or flashing content exists
+
+Test VoiceOver on physical devices, not only simulators. Confirm that task
+content precedes decorative identity, the primary action has a clear accessible
+label, and the complete capture-to-resume loop can be completed. Retained
+screenshots can support visual review, but screenshots and unit/UI tests do not
+prove assistive-technology usability or real-user success.
+
+Use Apple's visual-accessibility and accessibility-testing guidance as the
+platform source of truth:
+
+- [Apple Accessibility: Vision](https://developer.apple.com/documentation/accessibility/vision)
+- [Apple: Performing accessibility testing for your app](https://developer.apple.com/documentation/accessibility/performing-accessibility-testing-for-your-app)
+
+Do not call a product visually accessible because one appearance, one device,
+or one owner review passed. Record unsupported settings and remaining physical
+device or participant evidence as unknowns.
+
 ## Skill boundaries
 
 - This skill produces hypotheses, prototypes, scripts, metrics, and
