@@ -14,7 +14,7 @@
     "reason": "Existing local skills cover visual design, screenshot capture, and visual review; public candidates were generic UX or web-focused and did not add native iOS visual-accessibility qualification.",
     "discovery": {
       "capability": "Apple-platform visual-user qualification for NowNest",
-      "decision": "UPDATE_EXISTING",
+      "decision": "EXTEND_EXISTING",
       "matches": [
         "neuroinclusive-ux",
         "product-art-direction",
@@ -27,7 +27,8 @@
       {
         "id": "uxuiprinciples-agent-skills",
         "source": "https://github.com/uxuiprinciples/agent-skills",
-        "source_type": "EXTERNAL_PUBLIC",
+        "source_type": "SOURCE_REPOSITORY",
+        "artifact_type": "agent-skill",
         "revision": "retrieved-2026-09-21",
         "license": "Not adopted; external license and maintenance boundary not reviewed for installation",
         "security": "Static documentation inspected as untrusted data; no code installed or executed",
