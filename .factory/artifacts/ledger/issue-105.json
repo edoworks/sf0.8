@@ -1,0 +1,46 @@
+{
+  "issue": 105,
+  "capability": "NowNest visual-user support and skills research",
+  "change_units": 3,
+  "changed_paths": [
+    ".agents/skills/neuroinclusive-ux/SKILL.md",
+    ".factory/artifacts/skill-sharing-inventory.json",
+    ".factory/artifacts/evidence/nownest-visual-user-skills-deep-dive-2026-09-21.md"
+  ],
+  "source_revision": "c7d8dd6",
+  "reuse": {
+    "searched": 1,
+    "compatible": 0,
+    "reason": "Existing local skills cover visual design, screenshot capture, and visual review; public candidates were generic UX or web-focused and did not add native iOS visual-accessibility qualification.",
+    "discovery": {
+      "capability": "Apple-platform visual-user qualification for NowNest",
+      "decision": "UPDATE_EXISTING",
+      "matches": [
+        "neuroinclusive-ux",
+        "product-art-direction",
+        "macos-screenshot",
+        "vision-verification"
+      ],
+      "specialization_reason": "Extend the existing neuroinclusive workflow with Apple's visual settings matrix and physical-device VoiceOver boundary rather than duplicating overlapping skills."
+    },
+    "candidates": [
+      {
+        "id": "uxuiprinciples-agent-skills",
+        "source": "https://github.com/uxuiprinciples/agent-skills",
+        "source_type": "EXTERNAL_PUBLIC",
+        "revision": "retrieved-2026-09-21",
+        "license": "Not adopted; external license and maintenance boundary not reviewed for installation",
+        "security": "Static documentation inspected as untrusted data; no code installed or executed",
+        "disposition": "LEAD_ONLY",
+        "reason": "Generic interface and flow auditing could supplement review but does not establish native iOS visual-accessibility coverage."
+      }
+    ]
+  },
+  "contribution": {
+    "classification": "internal-reusable"
+  },
+  "shareability": {
+    "disposition": "REUSE_CANDIDATE",
+    "evidence": ".factory/artifacts/evidence/nownest-visual-user-skills-deep-dive-2026-09-21.md; publication remains human-gated"
+  }
+}
