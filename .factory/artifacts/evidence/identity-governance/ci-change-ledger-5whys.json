@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "trigger": "Pull request policy CI blocked seven reusable or privileged changed paths as unclaimed.",
+  "whys": [
+    {"why": 1, "answer": "The pull request changed scripts and the CI workflow without adding issue-bound reuse ledgers for those paths.", "evidence": "GitHub Actions run 35934705004 changed-path ecosystem gate"},
+    {"why": 2, "answer": "Local verification ran the ecosystem registry validator but did not run the event-range changed-path validator against origin/main and HEAD.", "evidence": "Local verification command history and scripts/validate-ci-change.py"},
+    {"why": 3, "answer": "The implementation checklist treated control-plane bindings as sufficient and missed the separate changed-path ownership contract.", "evidence": ".factory/control-plane-bindings.json and scripts/ecosystem_gates.py"}
+  ],
+  "stop_reason": "Evidence does not establish a deeper tooling defect; the CI gate correctly detected the omission.",
+  "immediate_correction": "Add one validated reuse ledger for each bound issue and claim every gated path exactly once.",
+  "root_cause_correction": "Run validate-ci-change.py over the complete target-branch range before opening or updating a pull request that changes gated paths.",
+  "recurrence_guard": "The complete-event changed-path CI gate remains required, and the corrected range is validated locally before repush."
+}

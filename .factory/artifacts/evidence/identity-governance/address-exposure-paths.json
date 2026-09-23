@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "value_storage": "PROHIBITED",
+  "current_worktree_paths": [
+    {"source": "foculoomllc company documentation", "path": "docs/business/full-business-plan.md", "finding_count": 1},
+    {"source": "foculoomllc company documentation", "path": "docs/ops/compliance-checklist.md", "finding_count": 2}
+  ],
+  "stale_reference_review_paths": [
+    "AGENTS.md",
+    "docs/business/business-plan-input-checklist.md",
+    "docs/finance/funding-readiness-checklist.md",
+    "docs/ops/pending-items.md",
+    "docs/ops/founder-input/founder-input-master-tracker.csv",
+    "docs/ops/founder-input/operations-and-compliance-workbook.md"
+  ],
+  "additional_scope": [
+    {"scope": "repository history", "status": "REMEDIATION_STRATEGY_REQUIRED"},
+    {"scope": "local archived copies", "status": "REMEDIATION_STRATEGY_REQUIRED"},
+    {"scope": "external government and municipal records", "status": "HUMAN_REVIEW_REQUIRED"}
+  ]
+}

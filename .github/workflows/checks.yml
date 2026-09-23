@@ -59,6 +59,14 @@ jobs:
         run: python3 scripts/validate-education-evidence.py .factory/artifacts/evidence/education-opportunity-discovery.json
       - name: Automation-first release evidence contract
         run: python3 scripts/validate-automation.py
+      - name: Canonical identity registry validation
+        run: python3 scripts/validate-identity-registry.py
+      - name: Public identity scanner passing fixture
+        run: >-
+          python3 scripts/validate-public-identity.py --mode release
+          --subject-identity product:skiplet
+          --observations tests/fixtures/public-identity/pass/observations.json
+          tests/fixtures/public-identity/pass/public.md
       - name: Apple distribution capability and preflight contract
         run: python3 scripts/validate-apple-distribution.py --validate
       - name: Changed-path ecosystem gate

@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "entity_types": [
     "company",
     "product",
@@ -12,9 +12,18 @@
     "package_component",
     "historical_product",
     "experiment",
-    "reusable_artifact"
+    "reusable_artifact",
+    "legal_entity",
+    "brand",
+    "trademark_application",
+    "contact_point",
+    "address_policy"
   ],
-  "durable_identifiers": ["entity_id", "bundle_id", "app_store_id", "repository_id", "domain", "path"],
-  "relations": ["owned_by", "implemented_by", "located_at", "distributed_as", "released_as", "published_at", "contains", "historical_successor_of", "consumes", "supports"],
-  "policy": "names are descriptive only; identity resolution prefers durable identifiers and provenance"
+  "durable_identifiers": ["entity_id", "bundle_id", "app_store_id", "repository_id", "domain", "serial_number", "state_entity_number", "path"],
+  "relations": ["owned_by", "implemented_by", "located_at", "distributed_as", "released_as", "published_at", "contains", "historical_successor_of", "consumes", "supports", "identifies", "governed_by"],
+  "identity_states": ["ESTABLISHED", "ADOPTED", "PROVISIONAL", "CLEARANCE_REQUIRED", "HISTORICAL", "RETIRED"],
+  "trademark_states": ["INTERNAL", "PROVISIONAL", "CLEARANCE_REQUIRED", "CLEARED", "FILED", "REGISTERED", "LEGAL_REVIEW_REQUIRED", "ABANDONED", "RETIRED"],
+  "domain_classifications": ["CORE", "DEFENSIVE", "PRODUCT", "DO_NOT_USE_AS_BRAND", "REVIEW", "RETIRE_CANDIDATE", "CANDIDATE", "EXPERIMENT"],
+  "address_categories": ["PUBLIC_CONTACT", "PUBLIC_MAILING_ADDRESS", "REGISTERED_AGENT", "LEGAL_ENTITY_ADDRESS", "PRIVATE_DOMICILE"],
+  "policy": "names are descriptive only; identity resolution prefers durable identifiers and provenance; portfolio.yaml remains lifecycle authority"
 }

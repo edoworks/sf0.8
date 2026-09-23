@@ -22,8 +22,8 @@ class PortfolioResolutionTests(unittest.TestCase):
 
     def test_apple_products_are_enumerated_from_canonical_portfolio(self):
         products = MODULE.enumerate_apple_products()
-        self.assertEqual({product["id"] for product in products}, {"product-a", "vorynce"})
-        self.assertEqual(products[1]["repository"], "foculoom/vorynce")
+        self.assertEqual({product["id"] for product in products}, {"nownest", "product-a", "vorynce"})
+        self.assertEqual(next(product for product in products if product["id"] == "vorynce")["repository"], "foculoom/vorynce")
 
     def test_historical_products_are_discoverable_without_active_authority(self):
         products = MODULE.enumerate_historical_products()

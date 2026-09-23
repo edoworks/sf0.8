@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-23",
+  "registration_claimed": false,
+  "records": [
+    {"mark": "FOCULOOM", "serial_number": "99673253", "state": "LEGAL_REVIEW_REQUIRED", "application_status": "LIVE/PENDING", "goods_summary": "Downloadable mobile operating system software", "next_action": "SEPARATE_USPTO_REVIEW"},
+    {"mark": "SKIPLET", "serial_number": "99731845", "state": "FILED", "application_status": "LIVE/PENDING", "goods_summary": "Downloadable game and computer/video game software", "next_action": "SEPARATE_USPTO_REVIEW"},
+    {"mark": "VEILSORT", "serial_number": "99769769", "state": "LEGAL_REVIEW_REQUIRED", "application_status": "LIVE/PENDING", "goods_summary": "Downloadable desktop publishing software", "next_action": "SEPARATE_USPTO_REVIEW"}
+  ],
+  "review_dimensions": ["owner", "correspondence", "domicile handling", "goods", "basis", "status", "deadlines", "specimen", "statement of use"]
+}

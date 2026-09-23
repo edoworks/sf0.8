@@ -1,0 +1,51 @@
+{
+  "issue": 131,
+  "capability": "public identity scanner and Apple identity preflight",
+  "change_units": 16,
+  "changed_paths": [
+    ".github/workflows/checks.yml",
+    "scripts/public_identity.py",
+    "scripts/validate-apple-distribution.py",
+    "scripts/validate-public-identity.py"
+  ],
+  "reuse": {
+    "searched": 2,
+    "compatible": 1,
+    "reason": "Extend the existing Apple distribution preflight and CI workflow with one reusable sanitized scanner.",
+    "discovery": {
+      "capability": "public identity release validation",
+      "decision": "EXTEND_EXISTING",
+      "matches": ["sf08-apple-preflight", "apple-review-guidelines"],
+      "specialization_reason": "The existing preflight did not bind trademark, owner, seller, address privacy, and public-claim evidence to an exact release candidate."
+    },
+    "candidates": [
+      {
+        "id": "sf08-apple-preflight",
+        "source": "scripts/validate-apple-distribution.py",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "release-preflight-validator",
+        "revision": "892a7979314cd2736f75f6484bb70944b6191b38",
+        "license": "internal",
+        "security": "local non-submitting validation",
+        "disposition": "ADAPT",
+        "reason": "Add identity governance to the existing fail-closed Apple readiness decision."
+      },
+      {
+        "id": "apple-review-guidelines",
+        "source": "https://developer.apple.com/app-store/review/guidelines/",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "platform-policy-documentation",
+        "revision": "retrieved-2026-09-23",
+        "license": "Apple developer documentation terms",
+        "security": "documentation only; not executed",
+        "disposition": "LEARN_FROM",
+        "reason": "Anchor truthful metadata and public identity checks to the platform's first-party review guidance."
+      }
+    ]
+  },
+  "contribution": {"classification": "internal-reusable"},
+  "shareability": {
+    "disposition": "INTERNAL_SHARED",
+    "evidence": "The sanitized scanner and evidence-binding pattern are reusable, but current identity facts and release manifests are private governance data."
+  }
+}

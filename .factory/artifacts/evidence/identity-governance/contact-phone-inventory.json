@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "canonical_public_emails": ["hello@foculoom.com", "support@foculoom.com", "billing@foculoom.com"],
+  "approved_public_phone_count": 0,
+  "phone_values_stored": false,
+  "observations": [
+    {"source": "canonical registry", "result": "THREE_CANONICAL_EMAILS"},
+    {"source": "foculoom.com generated search assets", "result": "EMAIL_LIKE_TOKENS_REQUIRE_CLASSIFICATION"},
+    {"source": "Veilsort sample and test fixtures", "result": "FICTIONAL_PHONE_TOKENS_ONLY"},
+    {"source": "company documentation", "result": "BUSINESS_LINE_REFERENCED_BUT_NO_CANONICAL_PUBLIC_NUMBER_FOUND"}
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "surfaces": [
+    {
+      "identity": "product:nownest",
+      "path": "owner-conflict.md",
+      "owner": "Fixture Other Corp",
+      "seller": "Fixture Different Corp"
+    }
+  ]
+}

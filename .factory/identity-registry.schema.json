@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edoworks.com/schemas/identity-registry.schema.json",
+  "title": "Edoworks canonical identity registry",
+  "type": "object",
+  "required": ["schema_version", "as_of", "authority", "legal_entity", "contacts", "address_policies", "identities", "trademarks", "domains"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "as_of": {"type": "string", "format": "date"},
+    "authority": {"type": "object", "required": ["lifecycle", "identity_governance", "policy", "no_sunk_cost_invariant"]},
+    "legal_entity": {
+      "allOf": [{"$ref": "#/$defs/record"}, {"$ref": "#/$defs/no_address_values"}],
+      "required": ["legal_name", "jurisdiction", "state_entity_number", "formed_on", "industry", "registered_agent_name"]
+    },
+    "contacts": {"type": "array", "minItems": 3, "items": {"allOf": [{"$ref": "#/$defs/record"}, {"$ref": "#/$defs/no_address_values"}], "required": ["email", "purpose"]}},
+    "address_policies": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "allOf": [{"$ref": "#/$defs/record"}, {"$ref": "#/$defs/no_address_values"}],
+        "required": ["category"],
+        "properties": {"category": {"enum": ["PUBLIC_CONTACT", "PUBLIC_MAILING_ADDRESS", "REGISTERED_AGENT", "LEGAL_ENTITY_ADDRESS", "PRIVATE_DOMICILE"]}}
+      }
+    },
+    "identities": {
+      "type": "array",
+      "items": {
+        "allOf": [{"$ref": "#/$defs/record"}, {"$ref": "#/$defs/no_address_values"}],
+        "required": ["name", "identity_state", "lifecycle", "trademark_state", "adoption_allowed", "owner_entity_id"],
+        "properties": {
+          "identity_state": {"enum": ["ESTABLISHED", "ADOPTED", "PROVISIONAL", "CLEARANCE_REQUIRED", "HISTORICAL", "RETIRED"]},
+          "trademark_state": {"$ref": "#/$defs/trademark_state"},
+          "adoption_allowed": {"type": "boolean"}
+        }
+      }
+    },
+    "trademarks": {
+      "type": "array",
+      "items": {
+        "allOf": [{"$ref": "#/$defs/record"}, {"$ref": "#/$defs/no_address_values_except_state"}],
+        "required": ["mark", "serial_number", "owner_name", "state", "goods", "registration_claimed"],
+        "properties": {"state": {"$ref": "#/$defs/trademark_state"}, "registration_claimed": {"type": "boolean"}}
+      }
+    },
+    "domains": {
+      "type": "array",
+      "items": {
+        "allOf": [{"$ref": "#/$defs/record"}, {"$ref": "#/$defs/no_address_values"}],
+        "required": ["domain", "classification", "adoption_allowed"],
+        "properties": {
+          "classification": {"enum": ["CORE", "DEFENSIVE", "PRODUCT", "CANDIDATE", "EXPERIMENT", "DO_NOT_USE_AS_BRAND", "REVIEW", "RETIRE_CANDIDATE"]},
+          "adoption_allowed": {"type": "boolean"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "record": {
+      "type": "object",
+      "required": ["entity_type", "entity_id", "provenance"],
+      "properties": {
+        "entity_type": {"type": "string", "minLength": 1},
+        "entity_id": {"type": "string", "minLength": 1},
+        "provenance": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "trademark_state": {"enum": ["INTERNAL", "PROVISIONAL", "CLEARANCE_REQUIRED", "CLEARED", "FILED", "REGISTERED", "LEGAL_REVIEW_REQUIRED", "ABANDONED", "RETIRED"]},
+    "no_address_values": {
+      "propertyNames": {"not": {"pattern": "^(address|street|street_address|city|postal_code|zip|region|state|mailing_address|residential_address|locality|province|address_line.*|.*_address)$"}},
+      "not": {
+        "anyOf": [
+          {"required": ["address"]}, {"required": ["street"]}, {"required": ["street_address"]},
+          {"required": ["city"]}, {"required": ["postal_code"]}, {"required": ["zip"]},
+          {"required": ["region"]}, {"required": ["state"]}
+        ]
+      }
+    },
+    "no_address_values_except_state": {
+      "propertyNames": {"not": {"pattern": "^(address|street|street_address|city|postal_code|zip|region|mailing_address|residential_address|locality|province|address_line.*|.*_address)$"}}
+    }
+  }
+}

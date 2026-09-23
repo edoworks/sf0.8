@@ -1,0 +1,93 @@
+{
+  "id": "nownest",
+  "repository": "https://github.com/edoworks/nownest.git",
+  "platform": "iOS/iPadOS",
+  "app_type": "offline focus and interruption-capture utility",
+  "factory_support_state": "PARTIAL",
+  "software_production_ready": false,
+  "default_blocking_issue": 131,
+  "lifecycle": "validating",
+  "release_state": "uploaded_processing",
+  "build": {
+    "project": "NowNest.xcodeproj",
+    "scheme": "NowNest",
+    "bundle_id": "com.foculoom.nownest"
+  },
+  "identity": {
+    "registry_ref": "product:nownest",
+    "internal_codename": "FocusGate",
+    "public_name": "NowNest",
+    "identity_state": "PROVISIONAL",
+    "trademark_state": "PROVISIONAL",
+    "authorized": false,
+    "blocking_issue": 131,
+    "product_purpose": "Protect the current next action while parking a new idea locally, then return to now.",
+    "customer_zero_alignment": true,
+    "authorization_evidence": ["provisional identity evidence; public adoption not authorized"]
+  },
+  "legal": {
+    "owner_name": "Foculoom LLC",
+    "seller_name": "Foculoom LLC",
+    "approved_owner_names": ["Foculoom LLC"],
+    "approved_seller_names": ["Foculoom LLC"]
+  },
+  "public_surface": {
+    "registered_symbol": false,
+    "application_described_as_registration": false,
+    "private_or_stale_address_exposed": false,
+    "privacy_support_terms_consistent": true
+  },
+  "canonical_claims": {
+    "lifecycle": "validating",
+    "platform": "iOS/iPadOS",
+    "trademark_state": "PROVISIONAL",
+    "function": "offline focus and interruption-capture utility",
+    "features": ["local NOW context", "local parked ideas"],
+    "privacy": "offline; no account, analytics, network, notifications, or cloud backup"
+  },
+  "observed_claims": {
+    "lifecycle": "validating",
+    "platform": "iOS/iPadOS",
+    "trademark_state": "PROVISIONAL",
+    "function": "offline focus and interruption-capture utility",
+    "features": ["local NOW context", "local parked ideas"],
+    "privacy": "offline; no account, analytics, network, notifications, or cloud backup"
+  },
+  "discoverability": {"reviewed": false},
+  "metadata": {
+    "name": "NowNest",
+    "subtitle": "Park ideas. Return to now.",
+    "description": "An offline-first place to keep the current next action visible, park an interruption locally, and return to now.",
+    "keywords": "focus,ideas,tasks,distraction,productivity,planning",
+    "category": "Productivity",
+    "copyright": "2026 Foculoom LLC",
+    "support_url": "https://edoworks.com/nownest/support/",
+    "privacy_url": "https://edoworks.com/nownest/privacy/",
+    "terms_url": "https://edoworks.com/nownest/terms/"
+  },
+  "privacy": {"accessed_data": [], "collected_data": [], "declared_data": []},
+  "age_rating": {"complete": true},
+  "screenshots": {"valid": false, "reviewer_validated": false},
+  "review_information": {"complete": true},
+  "purchases": {"applicable": false, "configured": false},
+  "export_compliance": {"decided": true},
+  "universal_device_families": true,
+  "human_authorized": false,
+  "evidence": {
+    "archive": null,
+    "archive_development_signed": false,
+    "uploaded": true,
+    "processed_build": false,
+    "external_testflight": false,
+    "customer_zero": true,
+    "accessibility": true,
+    "orientation_matrix": true,
+    "external_upload_recorded": true,
+    "source_evidence": ["repository project declares iPhone and iPad device families", "sanitized upload record reports processing, not acceptance; exact archive evidence is not committed here"]
+  },
+  "submission": {
+    "performed": false,
+    "can_submit": false,
+    "apple_accepted": false
+  }
+}

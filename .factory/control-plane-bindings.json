@@ -81,6 +81,21 @@
       "url": "https://github.com/edoworks/sf0.8/issues/105",
       "repo": "edoworks/sf0.8"
     },
+    "canonical identity, trademark, domain, and address governance": {
+      "number": 130,
+      "url": "https://github.com/edoworks/sf0.8/issues/130",
+      "repo": "edoworks/sf0.8"
+    },
+    "public identity scanner and Apple identity preflight": {
+      "number": 131,
+      "url": "https://github.com/edoworks/sf0.8/issues/131",
+      "repo": "edoworks/sf0.8"
+    },
+    "redacted identity governance audit and human action register": {
+      "number": 132,
+      "url": "https://github.com/edoworks/sf0.8/issues/132",
+      "repo": "edoworks/sf0.8"
+    },
     "evidence-integrity qualification and cutover consistency": {
       "number": 49,
       "url": "https://github.com/edoworks/factory/issues/49",

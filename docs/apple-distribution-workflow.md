@@ -23,6 +23,46 @@ adversarial reviewer quality. Public identity is independent from technical
 bundle identity. An unresolved internal codename, placeholder, or unauthorized
 public name blocks `APP_REVIEW_READY`.
 
+Each governed product also binds `identity.registry_ref` to
+`.factory/identity-registry.json` and records approved legal-owner and App Store
+seller names. Preflight blocks internal identities requested for publication,
+provisional or uncleared identities, false registration claims, owner/seller
+conflicts, private or stale address exposure, inconsistent privacy/support/terms
+surfaces, and structured lifecycle, pricing, platform, feature, function,
+privacy, or trademark contradictions. `can_submit` remains unconditionally
+false.
+
+## Public identity scanner
+
+Audit one or more checked-out public surfaces without emitting matched text:
+
+```text
+python3 scripts/validate-public-identity.py --mode audit public-root
+python3 scripts/validate-public-identity.py --mode release \
+  --subject-identity product:canonical-id \
+  --observations sanitized-observations.json public-root
+```
+
+`--private-pattern-file` accepts an external, access-controlled newline list.
+Patterns and matched snippets are never included in output; findings contain
+only code, severity/classification, relative path, line, canonical identity,
+and a redacted identifier. The scanner skips dependency, VCS, build, and cache
+trees. Release mode requires a canonical subject and exits nonzero unless the
+result is a clean `PASS`. Apple preflight accepts only a current release-mode
+report for the same identity with nonempty scan scope, exact paths matching
+`public_surface.identity_scan_paths`, and an evaluation digest matching
+`public_surface.identity_scan_digest`. The digest binds the registry,
+observations, private-pattern hashes, overrides, roots, and all scoped file
+bytes. Missing or unreadable text inputs block release.
+
+Overrides are JSON records under `overrides` with `id`, `code`,
+`authorization_reference`, `rationale`, `expires_on`, and `scope`. Only
+documented eligible codes can be overridden. Private-address matches,
+unauthorized registered-symbol use, application-as-registration claims, and
+owner/seller conflicts are hard blockers and cannot be overridden. Expired,
+unknown, incomplete, duplicate, or unmatched overrides are rejected and
+audited.
+
 ## Draft preparation
 
 The factory can emit a local App Store Connect preparation draft:
