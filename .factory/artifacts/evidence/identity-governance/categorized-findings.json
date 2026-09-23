@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-23",
+  "legal_conclusion": "NONE",
+  "categories": {
+    "AUTO_FIX_SAFE": [
+      {"id": "public-claim-wording", "finding": "Repository documentation contains trademark-state wording that does not match the conservative canonical registry.", "scope": ["foculoomllc company documentation"], "guard": "Rerun the public identity scanner after edits."},
+      {"id": "generated-search-assets", "finding": "Generated Pagefind assets contain email-like tokens that are not verified public contacts.", "scope": ["foculoom.com generated search assets"], "guard": "Classify or exclude generated third-party assets without suppressing real source findings."}
+    ],
+    "HUMAN_REVIEW": [
+      {"id": "ca-record-verification", "finding": "Current external entity facts require owner verification."},
+      {"id": "beverly-hills-disposition", "finding": "Whether to amend or close the observed business record is unresolved."},
+      {"id": "dba-fbn-scope", "finding": "Jurisdiction, name, use, and amend/renew/abandon posture are unresolved."},
+      {"id": "contact-phone-review", "finding": "Canonical emails are recorded; no public phone value is approved in the registry."},
+      {"id": "product-name-review", "finding": "Vorynce, Docketloom, and Rung require name review before further adoption."},
+      {"id": "veilsort-public-state", "finding": "Veilsort lifecycle, pricing, platform, and network-language claims disagree across source and public surfaces."},
+      {"id": "skiplet-public-state", "finding": "Skiplet lifecycle, bundle, platform, catalog, and CloudKit/network claims require reconciliation."},
+      {"id": "docketloom-public-state", "finding": "Docketloom lifecycle, pricing, export, StoreKit, and quantified legal/product claims require review."},
+      {"id": "vorynce-public-state", "finding": "Vorynce lifecycle, pricing, platform, trademark, and retrospective claims require review."},
+      {"id": "nownest-public-state", "finding": "NowNest remains provisional and uploaded/processing; terms and availability wording require reconciliation."},
+      {"id": "rung-public-state", "finding": "Rung lifecycle and commercial-strategy claims require reconciliation."}
+    ],
+    "LEGAL_REVIEW": [
+      {"id": "foculoom-application", "finding": "FOCULOOM remains LEGAL_REVIEW_REQUIRED; no registration claim is made."},
+      {"id": "skiplet-application", "finding": "SKIPLET remains FILED; filing does not establish registration or clearance."},
+      {"id": "veilsort-application", "finding": "VEILSORT remains LEGAL_REVIEW_REQUIRED; no registration claim is made."},
+      {"id": "edoworks-clearance", "finding": "EDOWORKS remains CLEARANCE_REQUIRED and is not ready for unrestricted brand adoption."}
+      ,{"id": "skiplet-compliance-claims", "finding": "Skiplet COPPA/KOSA and zero-risk wording requires legal review against the incomplete assessment record."}
+      ,{"id": "docketloom-legal-claims", "finding": "Docketloom confidentiality, breach-prevention, legal, data-sovereignty, and quantified-savings claims require legal review."}
+      ,{"id": "cross-product-privacy", "finding": "StoreKit, CloudKit, Tally, hosting logs, Cloudflare processing, MetricKit, model downloads, and support retention require policy review where applicable."}
+    ],
+    "EXTERNAL_RECORD_CHANGE": [
+      {"id": "government-records", "finding": "Any California, Beverly Hills, or DBA/FBN amendment, renewal, abandonment, or closure is external and human-authorized."},
+      {"id": "uspto-records", "finding": "Any USPTO owner, correspondence, domicile, goods, basis, status, deadline, specimen, or statement-of-use change requires separate authorized review."}
+    ]
+  }
+}

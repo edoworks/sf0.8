@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-23",
+  "subject": "docs/identity-governance-audit-2026-09-23.md",
+  "renderer": "pandoc standalone HTML with temporary responsive review CSS",
+  "browser": "Google Chrome via Playwright",
+  "screenshots": [
+    {"name": "identity-audit-desktop-light-final2.png", "viewport": "1440x900", "color_scheme": "light", "storage": "temporary review artifact"},
+    {"name": "identity-audit-mobile-dark-final4.png", "viewport": "390x844", "color_scheme": "dark", "storage": "temporary review artifact"}
+  ],
+  "deterministic_checks": {
+    "desktop_light": {"main_title_count": 1, "horizontal_overflow": false, "empty_table_cells": 0, "body_font_px": 16, "result": "PASS"},
+    "mobile_dark": {"main_title_count": 1, "horizontal_overflow": false, "empty_table_cells": 0, "unlabeled_table_cells": 0, "body_font_px": 15, "result": "PASS"}
+  },
+  "vision_model_verification": {
+    "model": "ollama/qwen3.5:4b",
+    "result": "PARTIAL",
+    "passed": ["single title", "section presence", "contrast", "professional audit impression", "no observed clipping in final mobile capture"],
+    "uncertain_or_failed": ["full-page table reading order at extreme downscale", "mobile spacing assessment at extreme downscale"],
+    "disposition": "Deterministic DOM checks and direct screenshot inspection found no overflow, overlap, missing labels, or empty cells. Vision uncertainty is retained rather than converted to a pass."
+  },
+  "release_authority": "NONE"
+}

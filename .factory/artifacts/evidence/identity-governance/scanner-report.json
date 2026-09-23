@@ -1,0 +1,517 @@
+{
+  "blocker_count": 56,
+  "finding_count": 56,
+  "findings": [
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "trademark:99673253",
+      "line": 17,
+      "path": ".specify/asset-provenance.md",
+      "redacted_identifier": "sha256:fbf6cd7473b4",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "trademark:99673253",
+      "line": 15,
+      "path": "AGENTS.md",
+      "redacted_identifier": "sha256:fbf6cd7473b4",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "trademark:99673253",
+      "line": 1,
+      "path": "README.md",
+      "redacted_identifier": "sha256:c7266bb5525a",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "trademark:99673253",
+      "line": 15,
+      "path": "README.md",
+      "redacted_identifier": "sha256:fbf6cd7473b4",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "LIFECYCLE_CONTRADICTION",
+      "identity": "product:docketloom",
+      "line": 1,
+      "path": "docketloom/site",
+      "redacted_identifier": "sha256:209cb254b8c0",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "PRIVACY_CONTRADICTION",
+      "identity": "product:docketloom",
+      "line": 1,
+      "path": "docketloom/site",
+      "redacted_identifier": "sha256:fbb1a2ed26ae",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "FEATURES_CONTRADICTION",
+      "identity": "product:docketloom",
+      "line": 1,
+      "path": "docketloom/source-site",
+      "redacted_identifier": "sha256:1ba1fb388765",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "PRICING_CONTRADICTION",
+      "identity": "product:docketloom",
+      "line": 1,
+      "path": "docketloom/source-site",
+      "redacted_identifier": "sha256:38e87b813d5b",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "trademark:99673253",
+      "line": 15,
+      "path": "docs/business/executive-summary.md",
+      "redacted_identifier": "sha256:fbf6cd7473b4",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "trademark:99673253",
+      "line": 21,
+      "path": "docs/business/full-business-plan.md",
+      "redacted_identifier": "sha256:fbf6cd7473b4",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "PUBLIC_STREET_ADDRESS_UNAPPROVED",
+      "identity": "UNKNOWN",
+      "line": 23,
+      "path": "docs/business/full-business-plan.md",
+      "redacted_identifier": "sha256:dce165f01d1f",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "trademark:99673253",
+      "line": 34,
+      "path": "docs/finance/funding-readiness-checklist.md",
+      "redacted_identifier": "sha256:fbf6cd7473b4",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "trademark:99673253",
+      "line": 36,
+      "path": "docs/finance/funding-readiness-checklist.md",
+      "redacted_identifier": "sha256:ad29ce9195cb",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "trademark:99673253",
+      "line": 10,
+      "path": "docs/legal-ip/ip-asset-register.md",
+      "redacted_identifier": "sha256:c7266bb5525a",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "trademark:99673253",
+      "line": 16,
+      "path": "docs/legal-ip/ip-asset-register.md",
+      "redacted_identifier": "sha256:fbf6cd7473b4",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "trademark:99769769",
+      "line": 24,
+      "path": "docs/legal-ip/ip-asset-register.md",
+      "redacted_identifier": "sha256:fbf6cd7473b4",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "product:vorynce",
+      "line": 28,
+      "path": "docs/legal-ip/ip-asset-register.md",
+      "redacted_identifier": "sha256:fbf6cd7473b4",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "brand:edoworks",
+      "line": 29,
+      "path": "docs/legal-ip/ip-asset-register.md",
+      "redacted_identifier": "sha256:fbf6cd7473b4",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "APPLICATION_DESCRIBED_AS_REGISTERED",
+      "identity": "trademark:99673253",
+      "line": 30,
+      "path": "docs/legal-ip/ip-asset-register.md",
+      "redacted_identifier": "sha256:9b04fcf42321",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "trademark:99673253",
+      "line": 30,
+      "path": "docs/legal-ip/ip-asset-register.md",
+      "redacted_identifier": "sha256:ad29ce9195cb",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "product:vorynce",
+      "line": 65,
+      "path": "docs/legal-ip/ip-asset-register.md",
+      "redacted_identifier": "sha256:fbf6cd7473b4",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "brand:edoworks",
+      "line": 66,
+      "path": "docs/legal-ip/ip-asset-register.md",
+      "redacted_identifier": "sha256:fbf6cd7473b4",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "trademark:99673253",
+      "line": 124,
+      "path": "docs/legal-ip/ip-asset-register.md",
+      "redacted_identifier": "sha256:c7266bb5525a",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "product:vorynce",
+      "line": 135,
+      "path": "docs/legal-ip/ip-asset-register.md",
+      "redacted_identifier": "sha256:fbf6cd7473b4",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "brand:edoworks",
+      "line": 136,
+      "path": "docs/legal-ip/ip-asset-register.md",
+      "redacted_identifier": "sha256:fbf6cd7473b4",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "trademark:99673253",
+      "line": 10,
+      "path": "docs/legal-ip/trademark-domain-summary.md",
+      "redacted_identifier": "sha256:c7266bb5525a",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "trademark:99673253",
+      "line": 16,
+      "path": "docs/legal-ip/trademark-domain-summary.md",
+      "redacted_identifier": "sha256:fbf6cd7473b4",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "APPLICATION_DESCRIBED_AS_REGISTERED",
+      "identity": "trademark:99673253",
+      "line": 17,
+      "path": "docs/legal-ip/trademark-domain-summary.md",
+      "redacted_identifier": "sha256:9b04fcf42321",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "trademark:99673253",
+      "line": 17,
+      "path": "docs/legal-ip/trademark-domain-summary.md",
+      "redacted_identifier": "sha256:ad29ce9195cb",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "PUBLIC_STREET_ADDRESS_UNAPPROVED",
+      "identity": "UNKNOWN",
+      "line": 31,
+      "path": "docs/ops/compliance-checklist.md",
+      "redacted_identifier": "sha256:dce165f01d1f",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "PUBLIC_STREET_ADDRESS_UNAPPROVED",
+      "identity": "UNKNOWN",
+      "line": 32,
+      "path": "docs/ops/compliance-checklist.md",
+      "redacted_identifier": "sha256:dce165f01d1f",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "trademark:99673253",
+      "line": 10,
+      "path": "docs/ops/founder-input/operations-and-compliance-workbook.md",
+      "redacted_identifier": "sha256:fbf6cd7473b4",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "trademark:99673253",
+      "line": 15,
+      "path": "docs/ops/founder-input/operations-and-compliance-workbook.md",
+      "redacted_identifier": "sha256:fbf6cd7473b4",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "LIFECYCLE_CONTRADICTION",
+      "identity": "product:nownest",
+      "line": 1,
+      "path": "edoworks/nownest",
+      "redacted_identifier": "sha256:d7f4e3cb34f7",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "product:nownest",
+      "line": 1,
+      "path": "edoworks/nownest/terms",
+      "redacted_identifier": "sha256:5580e93e70b1",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "PRIVATE_ADDRESS_PATTERN",
+      "identity": "UNKNOWN",
+      "line": 23,
+      "path": "foculoomllc/docs/business/full-business-plan.md",
+      "redacted_identifier": "sha256:23759997b3c5",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "product:veilsort",
+      "line": 24,
+      "path": "foculoomllc/docs/legal-ip/ip-asset-register.md",
+      "redacted_identifier": "sha256:fbf6cd7473b4",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "product:vorynce",
+      "line": 28,
+      "path": "foculoomllc/docs/legal-ip/ip-asset-register.md",
+      "redacted_identifier": "sha256:fbf6cd7473b4",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "brand:edoworks",
+      "line": 29,
+      "path": "foculoomllc/docs/legal-ip/ip-asset-register.md",
+      "redacted_identifier": "sha256:fbf6cd7473b4",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "APPLICATION_DESCRIBED_AS_REGISTERED",
+      "identity": "brand:foculoom",
+      "line": 30,
+      "path": "foculoomllc/docs/legal-ip/ip-asset-register.md",
+      "redacted_identifier": "sha256:e83c70f942e7",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "brand:foculoom",
+      "line": 30,
+      "path": "foculoomllc/docs/legal-ip/ip-asset-register.md",
+      "redacted_identifier": "sha256:fbf6cd7473b4",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "PRIVATE_ADDRESS_PATTERN",
+      "identity": "UNKNOWN",
+      "line": 31,
+      "path": "foculoomllc/docs/ops/compliance-checklist.md",
+      "redacted_identifier": "sha256:23759997b3c5",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "PRIVATE_ADDRESS_PATTERN",
+      "identity": "UNKNOWN",
+      "line": 32,
+      "path": "foculoomllc/docs/ops/compliance-checklist.md",
+      "redacted_identifier": "sha256:23759997b3c5",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "LIFECYCLE_CONTRADICTION",
+      "identity": "product:rung",
+      "line": 1,
+      "path": "rung/source-site",
+      "redacted_identifier": "sha256:e6e6593f32d5",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "PRICING_CONTRADICTION",
+      "identity": "product:rung",
+      "line": 1,
+      "path": "rung/source-site",
+      "redacted_identifier": "sha256:e94976ecf64e",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "PRIVACY_CONTRADICTION",
+      "identity": "product:skiplet",
+      "line": 1,
+      "path": "skiplet/privacy",
+      "redacted_identifier": "sha256:fbac0869ab34",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "LIFECYCLE_CONTRADICTION",
+      "identity": "product:skiplet",
+      "line": 1,
+      "path": "skiplet/source-site",
+      "redacted_identifier": "sha256:85562cd5e897",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "PLATFORM_CONTRADICTION",
+      "identity": "product:skiplet",
+      "line": 1,
+      "path": "skiplet/source-site",
+      "redacted_identifier": "sha256:887b26abd753",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "LIFECYCLE_CONTRADICTION",
+      "identity": "product:veilsort",
+      "line": 1,
+      "path": "veilsort/site",
+      "redacted_identifier": "sha256:9850535dd6fb",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "PLATFORM_CONTRADICTION",
+      "identity": "product:veilsort",
+      "line": 1,
+      "path": "veilsort/site",
+      "redacted_identifier": "sha256:c3da5936136e",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "PRICING_CONTRADICTION",
+      "identity": "product:veilsort",
+      "line": 1,
+      "path": "veilsort/site",
+      "redacted_identifier": "sha256:cc88a6165400",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "PRIVACY_CONTRADICTION",
+      "identity": "product:veilsort",
+      "line": 1,
+      "path": "veilsort/site",
+      "redacted_identifier": "sha256:92db4bb0590b",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "LIFECYCLE_CONTRADICTION",
+      "identity": "product:vorynce",
+      "line": 1,
+      "path": "vorynce/site",
+      "redacted_identifier": "sha256:99a479958b6b",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "PLATFORM_CONTRADICTION",
+      "identity": "product:vorynce",
+      "line": 1,
+      "path": "vorynce/source-site",
+      "redacted_identifier": "sha256:da754bff1aed",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "PRICING_CONTRADICTION",
+      "identity": "product:vorynce",
+      "line": 1,
+      "path": "vorynce/source-site",
+      "redacted_identifier": "sha256:65f9ab1fa74a",
+      "severity": "BLOCKER"
+    },
+    {
+      "classification": "BLOCKER",
+      "code": "TRADEMARK_STATE_CLAIM",
+      "identity": "product:vorynce",
+      "line": 1,
+      "path": "vorynce/terms",
+      "redacted_identifier": "sha256:5580e93e70b1",
+      "severity": "BLOCKER"
+    }
+  ],
+  "mode": "audit",
+  "override_audit": [],
+  "override_errors": [],
+  "scanned_files": 74,
+  "schema_version": 1,
+  "status": "BLOCKED",
+  "warning_count": 0
+}

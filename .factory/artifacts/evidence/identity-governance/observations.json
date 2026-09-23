@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "surfaces": [
+    {"path": "foculoomllc/docs/legal-ip/ip-asset-register.md", "line": 30, "identity": "brand:foculoom", "trademark_state": "FILED", "application_described_as_registration": true},
+    {"path": "foculoomllc/docs/legal-ip/ip-asset-register.md", "line": 24, "identity": "product:veilsort", "trademark_state": "FILED"},
+    {"path": "foculoomllc/docs/legal-ip/ip-asset-register.md", "line": 29, "identity": "brand:edoworks", "trademark_state": "FILED"},
+    {"path": "foculoomllc/docs/legal-ip/ip-asset-register.md", "line": 28, "identity": "product:vorynce", "trademark_state": "FILED"},
+    {"path": "foculoomllc/docs/business/full-business-plan.md", "line": 23, "identity": "legal-entity:foculoom-llc", "private_address_exposed": true},
+    {"path": "foculoomllc/docs/ops/compliance-checklist.md", "line": 31, "identity": "legal-entity:foculoom-llc", "private_address_exposed": true},
+    {"path": "foculoomllc/docs/ops/compliance-checklist.md", "line": 32, "identity": "legal-entity:foculoom-llc", "stale_address_exposed": true},
+    {"path": "edoworks/nownest/support", "line": 1, "identity": "product:nownest", "contact_email": "hello@foculoom.com", "owner": "Foculoom LLC", "seller": "Foculoom LLC", "trademark_state": "PROVISIONAL"},
+    {"path": "edoworks/nownest/terms", "line": 1, "identity": "product:nownest", "trademark_state": "ESTABLISHED"},
+    {"path": "vorynce/terms", "line": 1, "identity": "product:vorynce", "trademark_state": "ESTABLISHED"}
+  ],
+  "comparisons": [
+    {"path": "edoworks/nownest", "line": 1, "identity": "product:nownest", "field": "lifecycle", "expected": "validating", "observed": "validating"},
+    {"path": "edoworks/nownest", "line": 1, "identity": "product:nownest", "field": "platform", "expected": "iOS/iPadOS", "observed": "iOS/iPadOS"},
+    {"path": "edoworks/nownest", "line": 1, "identity": "product:nownest", "field": "privacy", "expected": "offline-no-account", "observed": "offline-no-account"},
+    {"path": "veilsort/site", "line": 1, "identity": "product:veilsort", "field": "lifecycle", "expected": "dormant/removed", "observed": "TestFlight and App Store available claims"},
+    {"path": "veilsort/site", "line": 1, "identity": "product:veilsort", "field": "pricing", "expected": "current source uses monthly/yearly products", "observed": "lifetime purchase"},
+    {"path": "veilsort/site", "line": 1, "identity": "product:veilsort", "field": "platform", "expected": "requires canonical decision", "observed": "iPhone, iPad, iPhone-only, and macOS claims differ"},
+    {"path": "veilsort/site", "line": 1, "identity": "product:veilsort", "field": "privacy", "expected": "StoreKit traffic disclosed", "observed": "no network calls of any kind"},
+    {"path": "skiplet/source-site", "line": 1, "identity": "product:skiplet", "field": "lifecycle", "expected": "dormant/removed", "observed": "rebuilt, coming soon, not in TestFlight"},
+    {"path": "skiplet/source-site", "line": 1, "identity": "product:skiplet", "field": "platform", "expected": "canonical bundle and platforms require decision", "observed": "different bundle identifier and macOS export"},
+    {"path": "skiplet/privacy", "line": 1, "identity": "product:skiplet", "field": "privacy", "expected": "network and CloudKit behavior reconciled", "observed": "no network requests plus optional CloudKit"},
+    {"path": "docketloom/site", "line": 1, "identity": "product:docketloom", "field": "lifecycle", "expected": "dormant/TestFlight-valid", "observed": "in review, coming soon, and pre-review claims"},
+    {"path": "docketloom/source-site", "line": 1, "identity": "product:docketloom", "field": "pricing", "expected": "monthly/yearly product code", "observed": "pricing unannounced and no subscription required"},
+    {"path": "docketloom/source-site", "line": 1, "identity": "product:docketloom", "field": "features", "expected": "implemented features only", "observed": "portable export/backup claim not verified in source"},
+    {"path": "docketloom/site", "line": 1, "identity": "product:docketloom", "field": "privacy", "expected": "StoreKit traffic disclosed", "observed": "zero-network wording"},
+    {"path": "vorynce/site", "line": 1, "identity": "product:vorynce", "field": "lifecycle", "expected": "dormant/previously released", "observed": "in review, TestFlight, pre-review, and previously live claims"},
+    {"path": "vorynce/source-site", "line": 1, "identity": "product:vorynce", "field": "pricing", "expected": "monthly/yearly IAP source", "observed": "no IAP or subscriptions"},
+    {"path": "vorynce/source-site", "line": 1, "identity": "product:vorynce", "field": "platform", "expected": "current source requirements", "observed": "iOS version and iPad/macOS claims differ"},
+    {"path": "edoworks/nownest", "line": 1, "identity": "product:nownest", "field": "lifecycle", "expected": "uploaded/processing, not accepted", "observed": "public availability is not explicit"},
+    {"path": "rung/source-site", "line": 1, "identity": "product:rung", "field": "lifecycle", "expected": "active/degraded", "observed": "former and unsupported"},
+    {"path": "rung/source-site", "line": 1, "identity": "product:rung", "field": "pricing", "expected": "commercial strategy unresolved", "observed": "planned paid report and sponsorship links"}
+  ]
+}

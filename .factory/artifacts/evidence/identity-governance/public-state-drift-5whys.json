@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "trigger": "Repository and public-surface documentation contains trademark and identity-state wording that differs from the conservative canonical registry.",
+  "whys": [
+    {"why": 1, "answer": "Several documents and public surfaces encode status prose independently.", "evidence": "scanner-report.json finding paths"},
+    {"why": 2, "answer": "The documents predate a single validated identity registry and reusable scanner.", "evidence": ".factory/identity-registry.json and issue 131 controls"},
+    {"why": 3, "answer": "Apple preflight previously evaluated manifest identity without consuming public-surface findings.", "evidence": "scripts/validate-apple-distribution.py now accepts a sanitized scanner report"}
+  ],
+  "stop_reason": "Evidence does not establish that every mismatch was public at the same time or that any statement was intentionally misleading.",
+  "immediate_correction": "Classify each mismatch and block registration or clearance claims that exceed the registry.",
+  "root_cause_correction": "Generate claims from canonical state where practical and require scanner plus Apple identity preflight before release.",
+  "recurrence_guard": "CI validates the registry, scanner fixture, and Apple preflight; tests cover false registration and contradiction fixtures."
+}

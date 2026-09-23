@@ -24,6 +24,7 @@ def main() -> int:
     parser.add_argument("--private-pattern-file", type=Path)
     parser.add_argument("--observations", type=Path)
     parser.add_argument("--overrides", type=Path)
+    parser.add_argument("--output", type=Path)
     parser.add_argument("--mode", choices=("audit", "release"), default="audit")
     args = parser.parse_args()
     try:
@@ -39,7 +40,10 @@ def main() -> int:
     except (OSError, UnicodeDecodeError, json.JSONDecodeError, TypeError, ValueError):
         print(json.dumps({"schema_version": 1, "mode": args.mode, "status": "ERROR", "error": "scanner input is invalid"}, sort_keys=True))
         return 2
-    print(json.dumps(report, indent=2, sort_keys=True))
+    rendered = json.dumps(report, indent=2, sort_keys=True) + "\n"
+    if args.output:
+        args.output.write_text(rendered, encoding="utf-8")
+    print(rendered, end="")
     if report["override_errors"]:
         return 2
     if args.mode == "release" and report["status"] != "PASS":

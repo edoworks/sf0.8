@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "product": "nownest",
+  "can_submit": false,
+  "apple_acceptance_claimed": false,
+  "current_state": "UPLOADED_PROCESSING_NOT_ACCEPTED",
+  "blockers": [
+    {"code": "PUBLIC_IDENTITY_UNRESOLVED", "required_truth": "Owner-authorized public identity is recorded after clearance."},
+    {"code": "IDENTITY_CLEARANCE_UNRESOLVED", "required_truth": "PROVISIONAL identity and trademark posture are resolved in the canonical registry."},
+    {"code": "SCREENSHOTS_INVALID", "required_truth": "Current-build device-correct screenshots pass validation."},
+    {"code": "PUBLIC_IDENTITY_SCANNER_BLOCKED", "required_truth": "Relevant public and legal/support surfaces have no hard scanner findings."},
+    {"code": "PUBLIC_PRODUCT_TRUTH_UNRECONCILED", "required_truth": "Website and app agree on lifecycle, pricing, supported platforms, available functionality, privacy, and trademark state."},
+    {"code": "LIVE_SELLER_IDENTITY_UNVERIFIED", "required_truth": "The live App Store seller/developer identity is verified against the approved Foculoom LLC record."},
+    {"code": "APPLE_PROCESSING_UNCONFIRMED", "required_truth": "The uploaded build has a separately verified processed state."},
+    {"code": "HUMAN_SUBMISSION_AUTHORITY_REQUIRED", "required_truth": "A human separately authorizes submission after all preflight gates pass."}
+  ]
+}

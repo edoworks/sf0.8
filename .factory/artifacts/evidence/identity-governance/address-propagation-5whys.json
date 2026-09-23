@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "trigger": "The sanitized scanner found three address occurrences across two company-documentation paths.",
+  "whys": [
+    {"why": 1, "answer": "An address value was copied into more than one operational and planning document.", "evidence": "address-exposure-paths.json"},
+    {"why": 2, "answer": "Those documents did not distinguish public mailing, legal-entity, registered-agent, and private-domicile categories.", "evidence": ".factory/identity-registry.json address policies"},
+    {"why": 3, "answer": "No repository scanner blocked address-like values when the documents were authored.", "evidence": "The reusable scanner and CI gate were introduced by issue 131."}
+  ],
+  "stop_reason": "Evidence does not establish who introduced each occurrence or whether every historical copy remains reachable.",
+  "immediate_correction": "Keep values out of audit evidence and identify exposure paths only.",
+  "root_cause_correction": "Use classified external secure records and prohibit private-domicile values in repositories.",
+  "recurrence_guard": "Public identity scanner release gate plus identity-governance sanitization tests"
+}
