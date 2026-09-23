@@ -1,0 +1,16 @@
+{
+  "ledger_version": "1.0.0",
+  "factory_release": "v0.1.0-rc3",
+  "started": "2026-09-22",
+  "owner": "hellofoculoom",
+  "operator": "hellofoculoom",
+  "target": {
+    "weekday_changes": 10,
+    "unattended_success_rate": 0.95,
+    "second_operator_run": true,
+    "failure_taxonomy": true
+  },
+  "daily_receipts": [],
+  "status": "in_progress",
+  "notes": "Ledger started 2026-09-22. First entry will be the G9 recovery fix increment. Must accumulate 10 consecutive weekday changes with >=95% unattended success rate before v0.2.0 promotion or predecessor freeze."
+}
