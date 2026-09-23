@@ -24,11 +24,11 @@ Both branches passed local validators, six regression tests each,
 
 GitHub rejects a normal merge of Foculoom PR #184 because the base-branch policy
 prohibits it. All visible required checks pass and the independent approval is
-recorded, but GitHub still reports an empty computed review decision and a
-`BLOCKED` merge state. Normal merge, squash, and rebase paths have all been
-tested. The owner enabled repository auto-merge on 2026-09-23, and PR #184 has
-an active auto-merge request for the current head, but it remains blocked with
-no pending required check.
+recorded. GitHub computes the review decision as `APPROVED` but the merge state
+as `BLOCKED`. Normal merge, squash, and rebase paths have all been tested. The
+owner enabled repository auto-merge on 2026-09-23, and PR #184 has an active
+auto-merge request for the current head, but it remains blocked with no pending
+required check.
 
 Owner inspection established the effective policy conflict:
 
@@ -70,14 +70,27 @@ bypass, followed by PR #184 merge and deployed-URL verification.
 
 The immediate correction is to leave PR #184 queued and the public source
 undeployed. The root-cause correction requires a reviewed permanent policy or
-merge-automation design, not a one-off bypass. The mechanical recurrence guard
-is a disposable protected-PR preflight that proves normal mergeability before a
-publication increment depends on it.
+merge-automation design, not a one-off bypass. A disposable protected-PR
+preflight that proves normal mergeability before a publication increment depends
+on it is proposed but not yet implemented or verified.
 
-During diagnosis, `supportfoculoom` was briefly added to the owner bypass team.
-That violated the reviewer-only authority boundary and was immediately corrected;
-the team is again sole-member. Future reviewer eligibility changes must modify
-repository review access only, never owner ref-writer membership.
+## Reviewer-team authority incident
+
+1. `supportfoculoom` was briefly added to the owner bypass team during diagnosis.
+2. The reviewer needed repository Write access for its approval to count, and
+   reviewer eligibility was mistakenly conflated with ref-writer eligibility.
+3. The bypass-team settings page was open during diagnosis, and the proposed
+   correction was not checked against the reviewer-only authority rule before
+   the membership change.
+4. No continuation test required that the reviewer remain outside the owner
+   bypass team, so the unsafe proposal was not mechanically rejected.
+5. Evidence does not establish a deeper cause; further inference stops here.
+
+The immediate correction removed `supportfoculoom`; `Owner Ref Writers` is again
+sole-member. The root-cause correction separates repository review access from
+owner bypass membership. The mechanical recurrence guard is an explicit
+continuation-contract assertion that `supportfoculoom` remains outside `Owner Ref
+Writers`; the assertion is covered by `tests.test_continuation_contract`.
 
 ## Continuation validation analysis
 
