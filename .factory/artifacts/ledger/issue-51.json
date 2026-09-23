@@ -1,0 +1,50 @@
+{
+  "issue": 51,
+  "capability": "exclusive GitHub bypass actor validation",
+  "change_units": 12,
+  "changed_paths": [
+    ".factory/github-identity-policy.json",
+    "scripts/validate-github-identity.py",
+    "tests/test_github_identity.py"
+  ],
+  "reuse": {
+    "searched": 2,
+    "compatible": 1,
+    "reason": "Extend the existing fail-closed GitHub identity snapshot validator instead of creating a parallel trust-boundary checker.",
+    "discovery": {
+      "capability": "exclusive bypass-actor validation",
+      "decision": "EXTEND_EXISTING",
+      "matches": ["github-identity-validator", "github-ruleset-documentation"],
+      "specialization_reason": "The existing validator checked login suffixes but not exact bypass membership; this increment adds only the missing exclusivity invariant."
+    },
+    "candidates": [
+      {
+        "id": "github-identity-validator",
+        "source": "scripts/validate-github-identity.py",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "identity-policy-validator",
+        "revision": "a76822282e9574a1eed7c97525db2b8db5492ec6",
+        "license": "internal",
+        "security": "local deterministic snapshot validation",
+        "disposition": "ADAPT",
+        "reason": "Reuse the canonical fail-closed identity validator and snapshot interface."
+      },
+      {
+        "id": "github-ruleset-bypass-documentation",
+        "source": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository#granting-bypass-permissions-for-your-branch-or-tag-ruleset",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "platform-documentation",
+        "revision": "retrieved-2026-09-23",
+        "license": "GitHub documentation terms",
+        "security": "documentation only; not executed",
+        "disposition": "LEARN_FROM",
+        "reason": "Confirm that ruleset bypass actors are explicit roles, teams, or apps before encoding exact membership."
+      }
+    ]
+  },
+  "contribution": {"classification": "internal-reusable"},
+  "shareability": {
+    "disposition": "INTERNAL_SHARED",
+    "evidence": "The validator is already the canonical local gate for Edoworks and Foculoom identity snapshots; the exact bypass invariant remains organization-specific."
+  }
+}
