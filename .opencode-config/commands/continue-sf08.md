@@ -1,106 +1,86 @@
 ---
-description: Resume NowNest release qualification and sf0.8 evidence work
+description: Resume NowNest evidence-integrity and release qualification work
 agent: explore
 ---
 
 ## Current State (2026-09-22)
 
-**NowNest** is Reference App 1. The old FocusGate identity is deprecated.
+NowNest is Reference App 1 (`edoworks/nownest`, local checkout
+`/Users/hello/FocusGate`). `edoworks/factory` is the designated successor to
+sf0.8, but cutover is not ready.
 
-- Repository: `edoworks/nownest`; local checkout: `/Users/hello/FocusGate`
-- Branch/revision: `main` at `5895c37`, clean and pushed
-- Bundle ID: `com.foculoom.nownest`; Team ID: `H8MJMBTFVP`
-- Universal iPhone/iPad app, Swift 6, local SwiftData, no network/accounts/
-  analytics/notifications/background work
-- Factory release ladder G1-G7 passed; Apple processed the uploaded TestFlight
-  build as `VALID` (delivery UUID `ede273f5-a56b-4513-aa21-389b012066e8`)
+- Factory PRD evidence-integrity contracts merged in sf0.8 PR #117 at
+  `f722b62`.
+- NowNest qualification-contract amendments merged in NowNest PR #24 at
+  `a055cfc`.
+- Factory map #42 owns the correction program. Child #43 is complete; #44-#47
+  remain open.
+- Existing gate issues remain #10 (Apple acceptance), #11 (30-day
+  qualification), #15 (predecessor freeze), and #28/#32 (UX map and owner-only
+  treatment selection).
+- Qualification ledger remains entry 1/10 and still requires a 30-calendar-day
+  observation window, ten consecutive weekday changes, >=95% unattended
+  success, and a second operator.
 
-## Calm Expressive UX Redesign
+## Material Findings
 
-The durable PRD is merged to `edoworks/nownest` `main` (commit `7f8ec23`,
-PR #1). It lives at `docs/calm-expressive-ux-prd.md` and is available to a
-fresh `git clone`. The permission config allows `edoworks/nownest` PR
-operations (merged in sf0.8 PR #98).
+- Quiet Mode currently permits decorative transition motion that its PRD now
+  forbids; the existing UI test does not directly assert Sophie/motion absence.
+- The required six-journey x three-variant x two-device matrix is incomplete.
+- Prior accessibility evidence includes unsupported PASS claims and must be
+  superseded by mode-specific receipts.
+- `scripts/activate-testflight.py` can exit successfully without proving beta
+  state or group membership and claims tester notification it does not perform.
+- Build 3 has no durable tester-feedback record. Record
+  `NO_DURABLE_FEEDBACK` unless authenticated sanitized evidence is recovered.
+- The App Store Connect encryption screenshot is platform feedback, not tester
+  feedback. The local `ITSAppUsesNonExemptEncryption=false` edit in the dirty
+  `/Users/hello/FocusGate` main checkout has not been committed or uploaded and
+  cannot change build 3.
+- Prior long UI runs ended as `COMMAND_TIMEOUT_PROGRESSING`, not confirmed
+  hangs.
 
-Factory tracking issues in `edoworks/factory`:
+## Next Work
 
-- #28: redesign map (parent)
-- #29: Chunk A — prototype visual system
-- #30: Chunk B — Home, Capture, success, and Quiet Mode treatments
-- #33: Chunk C — Review and accessibility qualification (no archive)
-- #32: Chunk D — human comparison and treatment selection (owner-only)
-- #31: superseded and closed
+1. Start factory issue #47: enforce timeout, tracked-evidence, continuation,
+   control-plane, and qualification-ledger consistency.
+2. Then issue #44: repair Quiet Mode and complete the 36-cell UI matrix.
+3. Then issue #45: requalify accessibility with direct evidence.
+4. Then issue #46: harden TestFlight activation and implement the typed Apple
+   lifecycle/feedback receipt.
+5. Do not create or upload a replacement build until #44-#46 prerequisites pass
+   and explicit owner authorization is recorded.
 
-Two reusable skills created and merged in sf0.8 PR #99:
+## Authority Boundaries
 
-- `neuroinclusive-ux`: cognitive-accessibility hypotheses, comparison
-  protocols, accessibility checklists, and participant/consent rules.
-- `product-art-direction`: visual-language briefs, semantic token rules,
-  mascot contracts, and anti-generic design reviews.
-
-## Current Validation
-
-- Current revision passed 6 UI and 6 unit tests on iPhone 17 Pro simulator,
-  iPad Pro 11-inch simulator, physical iPhone 16 Pro Max, and physical iPad Air.
-- G8 human visual review and TestFlight validation passed for revision
-  `8d6f3b5`; evidence is `/Users/hello/sf0.8/.factory/artifacts/evidence/nownest-g8-visual-testflight-2026-09-21.json`.
-- G9 recovery remains authorization-gated.
-
-## Remaining Gates
-
-1. Run G9 recovery only after explicit authorization for destructive simulator
-   behavior.
-2. Review the integrated App Store metadata draft without submitting to App Review.
-3. Chunk D human comparison and physical accessibility checks remain owner-gated.
-4. G10 App Store submission and G11 Apple acceptance remain human/Apple gated.
-
-## Immediate Next Steps
-
-1. Preserve the G8 evidence and do not upload a new build without explicit authority.
-2. Use the issue closeout guard for every tracked chunk before reporting completion.
-3. Continue only in the next authorized G9, metadata, or Chunk D lane.
-
-## Repository State
-
-- `/Users/hello/FocusGate`: clean `main` at `5895c37` with metadata draft evidence.
-- `/Users/hello/sf0.8`: `main` at `96c11a1` with the closeout guard and skill
-  update merged; unrelated pre-existing factory artifacts remain dirty.
-- `/Users/hello/factory`: `main` at `fa90f1f` with the queue audit and closeout
-  5-Whys merged; existing issue cleanup remains maintainer-reviewed.
-- `/Users/hello/sf0.8/product-a`: pre-existing dirty checkout; do not modify.
-- Stash `stash@{0}` on `feature/control-plane-checkpoint` remains parked.
-
-## Governance Boundaries
-
-- Owner write gate: `gh api user --jq .login == hellofoculoom`
-- Permission policy: `~/.config/opencode/opencode.jsonc`
-- Portable fixture: `tests/permission_policy_fixture.json`
-- No App Store submission, publication, archive, or visibility change without
-  explicit human authorization
-- Issue mutations are interactive `ask` operations; prohibited in `--auto` mode
-- Issue closeout guard: `node ~/.config/opencode/scripts/issue-closeout.mjs
-  verify --repo REPO --issues NUMBER[,NUMBER...]`; require `CLOSED`.
-- Trivial tasks must use `explore` (local granite), not `general` (OpenAI Luna)
-
-## Continuation Contract
-
-- Do not stop merely because one requested step is blocked. Continue with independent, authorized local implementation.
-- Before ending a turn, check for the next eligible lane.
-- Preserve human-authority boundaries for security, privacy, destructive actions,
-  external-publication/release, and budget decisions.
-- Run a read-only scope preflight before using external checkouts:
-  `git worktree list --porcelain`; record `working_root` and `source_of_truth`;
-  identify detached or prunable worktrees. Do not silently discard, clean, prune, or
-  ignore a dirty or stale path.
+- No credential use, archive, upload, App Review submission, release,
+  publication, repository visibility change, or destructive action without
+  explicit human authorization.
+- Before every owner GitHub write, require
+  `gh api user --jq .login == hellofoculoom`.
+- Issue mutations are prohibited in `--auto` mode.
+- Do not freeze or archive sf0.8 until all cutover contracts pass and issues
+  #10, #11, #15, and #16 are verified closed.
 
 ## Restart Sequence
 
-1. Check `git status --short --branch` in `/Users/hello/FocusGate`,
-   `/Users/hello/sf0.8`, and `/Users/hello/factory`.
-2. Confirm `/Users/hello/FocusGate` is on `main` at `5895c37` or later.
-3. Read `docs/calm-expressive-ux-prd.md` in `/Users/hello/FocusGate` for the
-   full implementation handoff.
-4. Check factory issues #28-#36 and #10-#18; completed candidates require
-   maintainer review, not inferred closure.
-5. Run the closeout guard for every new tracked chunk before declaring it done.
-6. G9, Chunk D, and G10/G11 remain human-gated.
+1. Read factory map #42 and child #47.
+2. Check `git status --short --branch` in `/Users/hello/sf0.8`,
+   `/Users/hello/FocusGate`, and `/Users/hello/factory`; preserve existing dirty
+   work and use isolated worktrees.
+3. Read `docs/PRD-edoworks-factory.md` Evidence Contracts And Cutover Guards.
+4. Read NowNest `docs/calm-expressive-ux-prd.md` sections 9-11 and 14.
+5. Treat external feedback and release state as build-bound evidence; do not
+   infer later states or positive feedback from absence.
+
+## Continuation Contract
+
+- Do not stop merely because one requested step is blocked.
+- Continue with independent, authorized local implementation.
+- Before ending a turn, check for the next eligible lane.
+- Preserve human-authority boundaries for security, privacy, destructive
+  actions, external-publication/release, and budget decisions.
+- Before using external checkouts, run a read-only scope preflight with
+  `git worktree list --porcelain`; record `working_root` and `source_of_truth`
+  and identify detached or prunable worktrees. Do not silently discard; do not
+  clean, prune, or ignore a dirty or stale path.
