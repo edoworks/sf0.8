@@ -12,22 +12,24 @@ This is a visibility aid. `.factory/continuation-state.json` and
 - Active increment: issue #51, website state-claim corrections.
 - Issue #50 is integrated and closed. Public inventory is freshness-bounded;
   inaccessible private completeness remains `UNKNOWN`.
-- Corrected Edoworks and Foculoom website sources are committed and pushed to
-  feature branches, with local claim tests and desktop/mobile render evidence.
+- Corrected Edoworks website source is merged and deployed. Corrected Foculoom
+  source is committed, pushed, independently approved, and blocked by an
+  unidentified `master` branch requirement.
 
 ## Next
 
-- Create, review, and merge website pull requests when the current tool policy
-  permits those repository-specific PR writes.
-- Verify deployed URLs against merged revisions, then close issue #51.
+- Inspect and satisfy the effective Foculoom `master` branch requirement without
+  policy bypass, then merge PR #184 normally.
+- Verify deployed Foculoom URLs against the merged revision, then close issue
+  #51.
 - Continue to repository metadata and release claims (#52), then final
   cross-surface review (#53).
 
 ## Blocked
 
-- Current tool policy permits feature-branch pushes but not PR creation for
-  `edoworks/edoworks.github.io` or `foculoom/foculoom.github.io`; website source
-  is not yet integrated or deployed.
+- Foculoom PR #184 is mergeable, green, and approved at `00a9458`, but normal
+  merge, squash, and rebase remain blocked by an effective branch requirement
+  that permitted read interfaces do not expose. Auto-merge is disabled.
 - Private predecessor issue inventories remain unauthenticated and `UNKNOWN`;
   issue #16 remains effectively `BLOCKED`.
 - Apple credentials, upload, submission, and physical-device validation remain
