@@ -14,6 +14,8 @@ Status: `BLOCKED`
   contact scope, complete sitemap, Pages guard, and regression tests. PR #184 is
   open and mergeable, has a successful Pages build check, and was independently
   approved by `supportfoculoom` against the current head.
+- The sf0.8 evidence and continuation checkpoint merged in PR #124 at
+  `96c3f31` after its policy check and independent rubberduck review passed.
 
 Both branches passed local validators, six regression tests each,
 `git diff --check`, independent review, and desktop/mobile rendered review.
@@ -23,9 +25,11 @@ Both branches passed local validators, six regression tests each,
 GitHub rejects a normal merge of Foculoom PR #184 because the base-branch policy
 prohibits it. All visible required checks pass and the independent approval is
 recorded, but GitHub still reports an empty computed review decision and a
-`BLOCKED` merge state. Normal merge, squash, rebase, and auto-merge paths have
-all been tested; auto-merge is disabled. The exact live rule is not exposed by
-the permitted read interfaces. The head commit is unsigned, but whether commit
+`BLOCKED` merge state. Normal merge, squash, and rebase paths have all been
+tested. The owner enabled repository auto-merge on 2026-09-23, and PR #184 now
+has an active auto-merge request for the current head, but it remains blocked
+with no pending required check. The exact live rule is not exposed by the
+permitted read interfaces. The head commit is unsigned, but whether commit
 signing is the blocking rule remains an unconfirmed hypothesis. Using `--admin`,
 changing repository rules, or rewriting the approved head without explicit
 authorization would bypass or invalidate the current review boundary.
@@ -48,10 +52,11 @@ fetched and matched to the corrected source.
    using administrator bypass would substitute speculation for the repository's
    trust-boundary control.
 
-The independent-review correction is complete. The immediate next correction is
-an owner inspection of the live `master` branch rule, followed by satisfying the
-identified requirement without `--admin`. The recurrence guard is to preflight
-and record effective branch requirements before opening future publication PRs.
+The independent-review and auto-merge enablement corrections are complete. The
+immediate next correction is to capture the exact unmet requirement from the PR
+merge box, followed by satisfying it without `--admin`. The recurrence guard is
+to preflight and record effective branch requirements before opening future
+publication PRs.
 The exact blocking rule remains `UNKNOWN`; unsigned-commit enforcement is only
 a hypothesis supported by the local commit lacking a signature.
 
