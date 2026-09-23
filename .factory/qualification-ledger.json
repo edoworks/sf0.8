@@ -10,7 +10,37 @@
     "second_operator_run": true,
     "failure_taxonomy": true
   },
-  "daily_receipts": [],
+  "daily_receipts": [
+    {
+      "date": "2026-09-22",
+      "weekday": "Monday",
+      "change_description": "G9 recovery fix: NowNest NowNestApp.swift createRecoverableModelContainer catches corrupted SwiftData store, deletes it, and retries with fresh store. Factory v0.1.0-rc3 published with strengthened release-contract test. Obligation disposition manifest completed. 6 factory issues closed.",
+      "unattended_success": true,
+      "manual_repair_required": false,
+      "failure_classification": null,
+      "operator_identity": "hellofoculoom",
+      "denominator": 1,
+      "cumulative_success_rate": 1.0,
+      "verification": {
+        "sf0.8_tests": "253/253 passed",
+        "factory_tests": "7/7 passed",
+        "nownest_unit_tests": "32/32 passed",
+        "g9_recovery_test": "PASS (corrupted store recovery verified on simulator)",
+        "git_diff_check": "clean",
+        "continuation_command_test": "1/1 passed"
+      },
+      "prs_merged": [
+        "edoworks/factory#40 (release-contract test)",
+        "edoworks/factory#41 (v0.1.0-rc3 release)",
+        "edoworks/sf0.8#109 (cutover evidence contracts)",
+        "edoworks/sf0.8#110 (obligation manifest)",
+        "edoworks/sf0.8#111 (permission allowlist)",
+        "edoworks/sf0.8#112 (G9 evidence + ledger)",
+        "edoworks/nownest#15 (G9 recovery fix)"
+      ],
+      "issues_closed": ["edoworks/factory#29", "#30", "#33", "#34", "#35", "#36"]
+    }
+  ],
   "status": "in_progress",
-  "notes": "Ledger started 2026-09-22. First entry will be the G9 recovery fix increment. Must accumulate 10 consecutive weekday changes with >=95% unattended success rate before v0.2.0 promotion or predecessor freeze."
+  "notes": "Ledger started 2026-09-22. Entry 1 of 10 completed. Must accumulate 10 consecutive weekday changes with >=95% unattended success rate before v0.2.0 promotion or predecessor freeze. Second-operator run still required."
 }

@@ -195,19 +195,20 @@
       ]
     },
     "edoworks/product-a": {
-      "status": "blocked",
-      "reason": "Permission policy does not allow issue queries for edoworks/product-a. Requires allowlist update or out-of-session query before manifest can be completed.",
-      "open_issue_count": "unknown"
+      "status": "inventoried",
+      "open_issue_count": 0,
+      "reason": "Queried 2026-09-22. No open issues found. Repository has zero open obligations to dispositions.",
+      "issues": []
     },
     "edoworks/sf0.7": {
-      "status": "blocked",
-      "reason": "Permission policy does not allow issue queries for edoworks/sf0.7. Requires allowlist update or out-of-session query.",
-      "open_issue_count": "unknown"
+      "status": "non-existent",
+      "reason": "Queried 2026-09-22. GitHub returned 'Could not resolve to a Repository with the name edoworks/sf0.7'. Repository does not exist or is private and inaccessible. No obligations to dispositions.",
+      "open_issue_count": 0
     },
     "edoworks/sf0.5": {
-      "status": "blocked",
-      "reason": "Permission policy does not allow issue queries for edoworks/sf0.5. Requires allowlist update or out-of-session query.",
-      "open_issue_count": "unknown"
+      "status": "non-existent",
+      "reason": "Queried 2026-09-22. GitHub returned 'Could not resolve to a Repository with the name edoworks/sf0.5'. Repository does not exist or is private and inaccessible. No obligations to dispositions.",
+      "open_issue_count": 0
     },
     "edoworks/factory": {
       "status": " inventoried",
@@ -224,13 +225,13 @@
         {"number": 17, "classification": "owner-gated", "title": "Archive predecessor repositories after recovery proof"},
         {"number": 18, "classification": "owner-gated", "title": "Productization gate: assess paid pilot readiness"},
         {"number": 28, "classification": "active", "title": "NowNest calm expressive UX redesign map"},
-        {"number": 29, "classification": "completion-candidate", "title": "Build NowNest prototype visual system"},
-        {"number": 30, "classification": "completion-candidate", "title": "Apply expressive and Sophie capture treatments"},
+        {"number": 29, "classification": "completed", "title": "Build NowNest prototype visual system"},
+        {"number": 30, "classification": "completed", "title": "Apply expressive and Sophie capture treatments"},
         {"number": 32, "classification": "owner-gated", "title": "Run human comparison and select NowNest treatment"},
-        {"number": 33, "classification": "completion-candidate", "title": "Complete NowNest review and accessibility qualification without archive"},
-        {"number": 34, "classification": "completion-candidate", "title": "Chunk B1: Home + Capture treatments (expressive + sophie)"},
-        {"number": 35, "classification": "completion-candidate", "title": "Chunk B2: Quiet Mode + reduced-motion behavior"},
-        {"number": 36, "classification": "completion-candidate", "title": "Chunk B3: UI test extension + screenshot retention for all variants"}
+        {"number": 33, "classification": "completed", "title": "Complete NowNest review and accessibility qualification without archive"},
+        {"number": 34, "classification": "completed", "title": "Chunk B1: Home + Capture treatments (expressive + sophie)"},
+        {"number": 35, "classification": "completed", "title": "Chunk B2: Quiet Mode + reduced-motion behavior"},
+        {"number": 36, "classification": "completed", "title": "Chunk B3: UI test extension + screenshot retention for all variants"}
       ]
     }
   },
@@ -242,7 +243,9 @@
     "retained-evidence": 6,
     "rejected": 0,
     "duplicate": 0,
-    "blocked_repos": ["edoworks/product-a", "edoworks/sf0.7", "edoworks/sf0.5"],
-    "completion_blocker": "Three predecessor repositories could not be queried due to permission policy restrictions. The manifest covers edoworks/sf0.8 (23 issues) and edoworks/factory (17 issues). An allowlist update is needed to complete the manifest for product-a, sf0.7, and sf0.5."
+    "blocked_repos": [],
+    "completion_blocker": null,
+    "manifest_complete": true,
+    "predecessor_repos_checked": ["edoworks/sf0.8 (23 open issues classified)", "edoworks/product-a (0 open issues)", "edoworks/sf0.7 (non-existent)", "edoworks/sf0.5 (non-existent)"]
   }
 }
