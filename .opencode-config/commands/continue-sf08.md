@@ -15,20 +15,22 @@ agent: explore
   still blocks merge, squash, and rebase.
 - The owner enabled repository auto-merge, and PR #184 has an active auto-merge
   request for the current head. It remains blocked with no pending required
-  check. The exact effective rule is not exposed by permitted read interfaces.
-  The head is unsigned, but signing enforcement is only an unconfirmed
-  hypothesis.
+  check.
+- The exact conflict is confirmed: the organization-wide `Restrict updates`
+  rule requires explicit bypass, while this lane prohibits `--admin` or web
+  bypass. Review, required check, owner-team membership, and repository binding
+  are all satisfied. Normal merge remains impossible under the current policy.
 - Updated blocker evidence is in
   `.factory/artifacts/evidence/issue-51-source-status.md`.
 
 ## Next Work
 
-1. Capture the exact unmet requirement from the Foculoom PR #184 merge box or a
-   narrowly permitted authenticated read. Do not infer it from the unsigned head
-   alone.
-2. Satisfy that requirement without weakening policy or invalidating the current
-   approval. Confirm `gh api user --jq .login` is exactly `hellofoculoom`, merge
-   PR #184 normally without `--admin`, and verify the merged target.
+1. Design and review a permanent policy or merge-automation change that preserves
+   owner-only ref mutation while allowing ordinary reviewed PR merges without
+   explicit bypass. Do not weaken policy temporarily for PR #184.
+2. After that design is approved and implemented, confirm
+   `gh api user --jq .login` is exactly `hellofoculoom`, merge PR #184 normally
+   without `--admin`, and verify the merged target.
 3. Fetch deployed Foculoom URLs until Pages propagation completes and verify
    the claims and links match merged source.
 4. Finalize and integrate the sf0.8 issue #51 evidence, close issue #51, and
@@ -38,6 +40,8 @@ agent: explore
 
 - Preserve the recorded `supportfoculoom` approval; any head rewrite requires a
   fresh independent review.
+- Keep `supportfoculoom` outside `Owner Ref Writers`; reviewer access must not
+  grant owner ref-mutation authority.
 - Before every owner GitHub write, require
   `gh api user --jq .login == hellofoculoom`.
 - Reviewer identities may review or comment only and must be asserted before

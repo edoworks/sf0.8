@@ -26,39 +26,58 @@ GitHub rejects a normal merge of Foculoom PR #184 because the base-branch policy
 prohibits it. All visible required checks pass and the independent approval is
 recorded, but GitHub still reports an empty computed review decision and a
 `BLOCKED` merge state. Normal merge, squash, and rebase paths have all been
-tested. The owner enabled repository auto-merge on 2026-09-23, and PR #184 now
-has an active auto-merge request for the current head, but it remains blocked
-with no pending required check. The exact live rule is not exposed by the
-permitted read interfaces. The head commit is unsigned, but whether commit
-signing is the blocking rule remains an unconfirmed hypothesis. Using `--admin`,
-changing repository rules, or rewriting the approved head without explicit
-authorization would bypass or invalidate the current review boundary.
+tested. The owner enabled repository auto-merge on 2026-09-23, and PR #184 has
+an active auto-merge request for the current head, but it remains blocked with
+no pending required check.
 
-Issue #51 remains open until the exact base-branch requirement is identified and
-satisfied without bypass, PR #184 merges normally, and the deployed URLs are
-fetched and matched to the corrected source.
+Owner inspection established the effective policy conflict:
+
+- Repository protection requires the `build` check and disallows bypass; the
+  check passes and the head is current.
+- GitHub requires an approving reviewer with repository Write access.
+  `supportfoculoom` was granted Write access, and GitHub now computes the current
+  head's review decision as `APPROVED`.
+- The organization ruleset `hellofoculoom-only branch mutations` targets every
+  repository and branch and enables `Restrict updates`.
+- Its sole bypass actor is the `Owner Ref Writers` team. The team again contains
+  only `hellofoculoom`, now has explicit Write access to this repository, and
+  retains its original `Always allow` mode.
+- After membership, repository binding, review eligibility, checks, and
+  auto-merge were all satisfied, GitHub still required an explicit bypass
+  operation to update `master`. Both `Always allow` and a bounded test of `For
+  pull requests only` produced the same blocked normal-merge result.
+
+The PR cannot merge through the required normal path while `Restrict updates`
+is active. `--admin`, a web bypass, and temporary policy weakening remain
+prohibited.
+
+Issue #51 remains open pending an approved permanent policy design that supports
+owner-only ref mutation and ordinary reviewed PR merging without explicit
+bypass, followed by PR #184 merge and deployed-URL verification.
 
 ## Blocker analysis
 
 1. The Foculoom source is not deployed because PR #184 cannot merge normally.
-2. GitHub reports that the base-branch policy prohibits the merge.
-3. The PR is mergeable, its visible required build check passes, and an eligible
-   organization member approved the current head, but GitHub still computes the
-   merge state as `BLOCKED`.
-4. The permitted PR interfaces expose the outcome but not the exact live branch
-   rule; authenticated protection and ruleset API reads are outside the current
-   tool policy.
-5. Without the exact rule, changing policy, rewriting the approved head, or
-   using administrator bypass would substitute speculation for the repository's
-   trust-boundary control.
+2. GitHub reports `Cannot update this protected ref` because the organization
+   ruleset restricts updates to bypass actors.
+3. The owner is the sole configured bypass actor, but GitHub's normal and
+   auto-merge paths do not invoke the explicit bypass required by that rule.
+4. Explicit bypass is prohibited because it can skip the review and check
+   boundary, even though this PR independently satisfies both.
+5. The conflicting policies were not detected before publication because the
+   preflight checked identities, permissions, review, and checks separately but
+   did not exercise a representative protected normal merge.
 
-The independent-review and auto-merge enablement corrections are complete. The
-immediate next correction is to capture the exact unmet requirement from the PR
-merge box, followed by satisfying it without `--admin`. The recurrence guard is
-to preflight and record effective branch requirements before opening future
-publication PRs.
-The exact blocking rule remains `UNKNOWN`; unsigned-commit enforcement is only
-a hypothesis supported by the local commit lacking a signature.
+The immediate correction is to leave PR #184 queued and the public source
+undeployed. The root-cause correction requires a reviewed permanent policy or
+merge-automation design, not a one-off bypass. The mechanical recurrence guard
+is a disposable protected-PR preflight that proves normal mergeability before a
+publication increment depends on it.
+
+During diagnosis, `supportfoculoom` was briefly added to the owner bypass team.
+That violated the reviewer-only authority boundary and was immediately corrected;
+the team is again sole-member. Future reviewer eligibility changes must modify
+repository review access only, never owner ref-writer membership.
 
 ## Continuation validation analysis
 

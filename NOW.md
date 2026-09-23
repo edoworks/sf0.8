@@ -28,9 +28,9 @@ This is a visibility aid. `.factory/continuation-state.json` and
 ## Blocked
 
 - Foculoom PR #184 is mergeable, green, and approved at `00a9458`, but normal
-  merge, squash, and rebase remain blocked by an effective branch requirement
-  that permitted read interfaces do not expose. Auto-merge is enabled and
-  queued on the current head, but no required check is pending.
+  merge, squash, and rebase remain blocked by the organization-wide `Restrict
+  updates` rule. Auto-merge is enabled and queued, but normal merge requires an
+  explicit bypass prohibited by this lane. A permanent policy design is needed.
 - Private predecessor issue inventories remain unauthenticated and `UNKNOWN`;
   issue #16 remains effectively `BLOCKED`.
 - Apple credentials, upload, submission, and physical-device validation remain
