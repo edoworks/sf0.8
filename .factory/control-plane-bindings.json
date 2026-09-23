@@ -90,6 +90,11 @@
       "number": 50,
       "url": "https://github.com/edoworks/factory/issues/50",
       "repo": "edoworks/factory"
+    },
+    "exclusive GitHub bypass actor validation": {
+      "number": 51,
+      "url": "https://github.com/edoworks/factory/issues/51",
+      "repo": "edoworks/factory"
     }
   },
   "policy": "Material work without a factory binding is blocked; callers cannot select an arbitrary issue."

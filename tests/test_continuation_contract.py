@@ -29,6 +29,7 @@ class ContinuationContractTests(unittest.TestCase):
             "destructive",
             "external-publication/release",
             "budget",
+            "Keep `supportfoculoom` outside `Owner Ref Writers`",
         ):
             self.assertIn(phrase, self.text)
 

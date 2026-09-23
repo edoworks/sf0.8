@@ -28,7 +28,11 @@ def allowed_login(login: Any, policy: dict[str, Any]) -> bool:
 
 def snapshot_errors(snapshot: dict[str, Any], policy: dict[str, Any]) -> list[str]:
     errors: list[str] = []
-    if snapshot.get("organization") != policy.get("organization"):
+    organizations = [policy.get("organization")]
+    additional = policy.get("additional_organizations", [])
+    if isinstance(additional, list):
+        organizations.extend(additional)
+    if snapshot.get("organization") not in organizations:
         errors.append("snapshot organization does not match policy")
     for field in ("members", "collaborators", "reviewers", "bypass_actors"):
         values = snapshot.get(field, [])
@@ -38,6 +42,15 @@ def snapshot_errors(snapshot: dict[str, Any], policy: dict[str, Any]) -> list[st
         for login in values:
             if not allowed_login(login, policy):
                 errors.append(f"unauthorized login in {field}: {login!r}")
+    expected_bypass = policy.get("exclusive_bypass_actors")
+    actual_bypass = snapshot.get("bypass_actors")
+    if isinstance(expected_bypass, list) and isinstance(actual_bypass, list):
+        expected = {str(login).casefold() for login in expected_bypass}
+        actual = {str(login).casefold() for login in actual_bypass}
+        if actual != expected:
+            errors.append(
+                "bypass_actors must exactly match exclusive_bypass_actors"
+            )
     return errors
 
 

@@ -34,10 +34,24 @@ class GithubIdentityTests(unittest.TestCase):
             "members": ["hellofoculoom"],
             "collaborators": ["hellofoculoom"],
             "reviewers": ["external-user"],
-            "bypass_actors": [],
+            "bypass_actors": ["hellofoculoom"],
         }
         errors = MODULE.snapshot_errors(snapshot, self.policy)
         self.assertEqual(errors, ["unauthorized login in reviewers: 'external-user'"])
+
+    def test_snapshot_rejects_reviewer_as_bypass_actor(self):
+        snapshot = {
+            "organization": "foculoom",
+            "members": ["hellofoculoom", "supportfoculoom"],
+            "collaborators": ["hellofoculoom", "supportfoculoom"],
+            "reviewers": ["supportfoculoom"],
+            "bypass_actors": ["hellofoculoom", "supportfoculoom"],
+        }
+        errors = MODULE.snapshot_errors(snapshot, self.policy)
+        self.assertEqual(
+            errors,
+            ["bypass_actors must exactly match exclusive_bypass_actors"],
+        )
 
 
 if __name__ == "__main__":
