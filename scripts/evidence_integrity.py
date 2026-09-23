@@ -20,7 +20,9 @@ VERIFICATION_OUTCOMES = {
     "INCOMPLETE_NO_RESULT",
 }
 CONTROL_PLANE_STATUSES = {"PROVEN", "UNPROVEN", "BLOCKED"}
-GATE_STATUSES = {"OPEN", "CLOSED", "BLOCKED"}
+GATE_STATES = {"OPEN", "CLOSED"}
+EVIDENCE_STATES = {"VALID", "INVALID", "INCOMPLETE", "NOT_REQUIRED"}
+EFFECTIVE_STATES = {"OPEN", "CLOSED", "BLOCKED"}
 
 
 def _timestamp(value: Any, field: str, errors: list[str]) -> datetime | None:
@@ -248,6 +250,65 @@ def validate_continuation_state(state: dict[str, Any], text: str) -> list[str]:
     return errors
 
 
+def validate_remote_snapshot(
+    snapshot: dict[str, Any],
+    gates: dict[str, Any],
+    *,
+    now: datetime | None = None,
+) -> list[str]:
+    errors: list[str] = []
+    if snapshot.get("schema_version") != 1:
+        errors.append("remote snapshot must use schema version 1")
+    captured = _timestamp(snapshot.get("captured_at"), "remote_snapshot.captured_at", errors)
+    max_age = snapshot.get("max_age_hours")
+    if not isinstance(max_age, int) or max_age <= 0:
+        errors.append("remote snapshot max_age_hours must be a positive integer")
+    elif captured:
+        current = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
+        age = (current - captured).total_seconds() / 3600
+        if age < -1:
+            errors.append("remote snapshot timestamp is in the future")
+        if age > max_age:
+            errors.append("remote snapshot is stale")
+    issues = snapshot.get("issues")
+    if not isinstance(issues, list):
+        return errors + ["remote snapshot issues must be a list"]
+    remote: dict[str, Any] = {}
+    for index, issue in enumerate(issues):
+        if not isinstance(issue, dict):
+            errors.append(f"remote snapshot issue[{index}] must be an object")
+            continue
+        key = f"{issue.get('repo')}#{issue.get('number')}"
+        if key in remote:
+            errors.append(f"duplicate remote issue: {key}")
+        remote[key] = issue.get("state")
+        if issue.get("state") not in GATE_STATES:
+            errors.append(f"remote issue has invalid state: {key}")
+    for identifier, gate in gates.items():
+        if not isinstance(gate, dict):
+            errors.append(f"gate {identifier} must be an object")
+            continue
+        key = f"{gate.get('repo')}#{gate.get('number')}"
+        if remote.get(key) != gate.get("remote_state"):
+            errors.append(f"gate remote state drift: {key}")
+        if gate.get("evidence_state") not in EVIDENCE_STATES:
+            errors.append(f"gate {identifier} has invalid evidence state")
+        if gate.get("effective_state") not in EFFECTIVE_STATES:
+            errors.append(f"gate {identifier} has invalid effective state")
+        if gate.get("effective_state") == "CLOSED" and (
+            gate.get("remote_state") != "CLOSED"
+            or gate.get("evidence_state") not in {"VALID", "NOT_REQUIRED"}
+        ):
+            errors.append(f"gate {identifier} cannot close without remote closure and valid evidence")
+        if (
+            gate.get("remote_state") == "CLOSED"
+            and gate.get("evidence_state") == "INVALID"
+            and gate.get("effective_state") != "BLOCKED"
+        ):
+            errors.append(f"gate {identifier} with invalid closure evidence must be BLOCKED")
+    return errors
+
+
 def validate_reconciliation(
     state: dict[str, Any],
     requirements: dict[str, Any],
@@ -290,10 +351,10 @@ def validate_reconciliation(
     if not isinstance(gates, dict):
         errors.append("gate status must be an object")
         gates = {}
-    for issue, status in gates.items():
-        if status not in GATE_STATUSES:
-            errors.append(f"gate {issue} has invalid status")
+    for issue, gate in gates.items():
+        if not isinstance(gate, dict):
+            errors.append(f"gate {issue} must be an object")
     active_issue = str(state.get("continuation", {}).get("active_increment_issue", ""))
-    if gates.get(active_issue) != "OPEN":
+    if gates.get(active_issue, {}).get("effective_state") != "OPEN":
         errors.append("active increment gate must remain OPEN until its closeout is verified")
     return errors

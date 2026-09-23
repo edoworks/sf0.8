@@ -13,8 +13,11 @@ sf0.8, but cutover is not ready.
   `f722b62`.
 - NowNest qualification-contract amendments merged in NowNest PR #24 at
   `a055cfc`.
-- Factory map #42 owns the correction program. Child #43 is complete; #44-#47
-  remain open.
+- Factory map #42 owns the NowNest correction program. Child #43 is complete;
+  #44-#47 remain open. Cross-surface reconciliation is tracked by map #48.
+- Canonical status: `IN_PROGRESS`
+- Canonical active map issue: `#48`
+- Canonical active increment issue: `#49`
 - Existing gate issues remain #10 (Apple acceptance), #11 (30-day
   qualification), #15 (predecessor freeze), and #28/#32 (UX map and owner-only
   treatment selection).
@@ -37,18 +40,23 @@ sf0.8, but cutover is not ready.
   feedback. The local `ITSAppUsesNonExemptEncryption=false` edit in the dirty
   `/Users/hello/FocusGate` main checkout has not been committed or uploaded and
   cannot change build 3.
-- Prior long UI runs ended as `COMMAND_TIMEOUT_PROGRESSING`, not confirmed
-  hangs.
+- Prior long UI runs were described as `COMMAND_TIMEOUT_PROGRESSING`, but no
+  compliant durable timeout receipt exists; retain the classification as
+  `UNKNOWN` until receipt evidence is recovered.
 
 ## Next Work
 
-1. Start factory issue #47: enforce timeout, tracked-evidence, continuation,
-   control-plane, and qualification-ledger consistency.
-2. Then issue #44: repair Quiet Mode and complete the 36-cell UI matrix.
-3. Then issue #45: requalify accessibility with direct evidence.
-4. Then issue #46: harden TestFlight activation and implement the typed Apple
+1. Complete factory issue #49: close the semantic gaps in the first #47 guard.
+2. Then issue #50: repair repository inventory and predecessor obligations.
+3. Then issue #51: correct active website state claims.
+4. Then issue #52: reconcile repository metadata and release claims.
+5. Then issue #53: run the final cross-surface rubberduck and closeout.
+6. Independently resume issue #44: repair Quiet Mode and complete the 36-cell
+   UI matrix.
+7. Then issue #45: requalify accessibility with direct evidence.
+8. Then issue #46: harden TestFlight activation and implement the typed Apple
    lifecycle/feedback receipt.
-5. Do not create or upload a replacement build until #44-#46 prerequisites pass
+9. Do not create or upload a replacement build until #44-#46 prerequisites pass
    and explicit owner authorization is recorded.
 
 ## Authority Boundaries

@@ -260,6 +260,14 @@ validator lands under the implementation issue.
   cannot close a gate.
 - Conflicting lifecycle, control-plane, queue, ledger, evidence, or continuation
   records fail closed until reconciled against the canonical receipt.
+- `.factory/continuation-state.json` is the canonical portable continuation
+  record. Human-readable continuation commands are projections and CI validates
+  the checked-in projection rather than machine-local configuration.
+- Evidence revisions resolve through Git object lookup. A path being tracked in
+  the current worktree does not prove it existed at the cited revision.
+- Remote issue and repository state is consumed through a timestamped snapshot
+  with a declared maximum age. A remotely closed issue and valid closure
+  evidence are separate conditions; either can block effective completion.
 
 ### Verification Outcome Contract
 
@@ -274,6 +282,9 @@ threshold showing the same active test and no output, result-bundle, or process
 progress. Receipts record start time, last-progress time, current test,
 completed count, exit status, threshold, process samples, and result-bundle
 path. Retries are bounded and preserve the first attempt's evidence.
+Every durable timeout-classification receipt under
+`.factory/artifacts/evidence/verification-receipts/` is validated by CI. In the
+absence of a compliant receipt, historical timeout prose remains `UNKNOWN`.
 
 ### Integrated Completion Contract
 

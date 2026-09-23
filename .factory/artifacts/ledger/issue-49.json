@@ -1,0 +1,49 @@
+{
+  "issue": 49,
+  "capability": "evidence-integrity qualification and cutover consistency",
+  "change_units": 9,
+  "changed_paths": [
+    "scripts/evidence_integrity.py",
+    "scripts/validate-evidence-integrity.py"
+  ],
+  "reuse": {
+    "searched": 2,
+    "compatible": 1,
+    "reason": "Correct the existing issue #47 validator instead of adding another integrity system.",
+    "discovery": {
+      "capability": "evidence-integrity qualification and cutover consistency",
+      "decision": "EXTEND_EXISTING",
+      "matches": ["issue-47-evidence-integrity-guard"],
+      "specialization_reason": "The production entrypoint must invoke the already-defined semantic checks."
+    },
+    "candidates": [
+      {
+        "id": "issue-47-integrity-validator",
+        "source": "scripts/evidence_integrity.py",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "deterministic validator",
+        "revision": "051b96d8a4a834465c9876ac0daca4e0ff6ebee0",
+        "license": "internal",
+        "security": "local fail-closed state validation",
+        "disposition": "ADAPT",
+        "reason": "Preserve the existing contract and close its entrypoint gaps."
+      },
+      {
+        "id": "git-cat-file",
+        "source": "https://git-scm.com/docs/git-cat-file",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "version-control documentation",
+        "revision": "retrieved-2026-09-23",
+        "license": "documentation reference",
+        "security": "read-only object existence checks",
+        "disposition": "LEARN_FROM",
+        "reason": "Verify evidence paths at exact Git revisions."
+      }
+    ]
+  },
+  "contribution": {"classification": "internal-reusable"},
+  "shareability": {
+    "disposition": "REUSE_CANDIDATE",
+    "evidence": "Used by sf0.8 CI; no independent second consumer is claimed."
+  }
+}

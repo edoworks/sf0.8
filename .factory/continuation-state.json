@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "status": "IN_PROGRESS",
-  "subject": "NowNest release evidence integrity and qualification",
-  "active_map_issue": 42,
-  "active_increment_issue": 47,
+  "subject": "Organization repository and public-state reconciliation",
+  "active_map_issue": 48,
+  "active_increment_issue": 49,
   "source_of_truth": ".factory/continuation-state.json",
-  "next_increments": [44, 45, 46],
+  "next_increments": [50, 51, 52, 53],
   "blocked_external_actions": ["Apple credentials", "upload", "submission", "physical-device validation"]
 }
