@@ -48,7 +48,7 @@ repos:
 
   - id: foculoom/vorynce
     visibility: private
-    lifecycle: active
+    lifecycle: dormant
     disposition: simplify
     source_of_truth: https://github.com/foculoom/vorynce.git
     default_branch: master
@@ -60,7 +60,7 @@ repos:
     visibility: private
     lifecycle: deprecated
     disposition: keep_read_only
-    successor_of: edoworks/sf0.8
+    predecessor_of: edoworks/sf0.8
     purpose: predecessor factory runtime; Cat Whispers history, evidence trail, and historical queue
     working_root: /Users/hello/sf0.7
     read_only: true
@@ -77,7 +77,7 @@ repos:
     visibility: private
     lifecycle: frozen_legacy
     disposition: keep_read_only
-    successor_of: foculoom/sf0.7
+    predecessor_of: foculoom/sf0.7
     purpose: legacy factory and product evidence archive
     working_root: /Users/hello/sf0.5
     read_only: true
@@ -87,8 +87,8 @@ repos:
 surfaces:
   - id: edoworks/factory-constitution
     type: public_template
-    lifecycle: active
-    disposition: keep
+    lifecycle: deprecated
+    disposition: keep_read_only
     source_of_truth: https://github.com/edoworks/factory-constitution
     purpose: public thin-factory constitution, skills, and 5-Whys templates
   - id: edoworks/edoworks.github.io
@@ -97,6 +97,36 @@ surfaces:
     disposition: keep
     source_of_truth: https://github.com/edoworks/edoworks.github.io
     purpose: Edoworks portfolio, release notes, and engineering case studies
+  - id: edoworks/factory
+    type: public_factory_successor
+    lifecycle: active
+    disposition: keep
+    source_of_truth: https://github.com/edoworks/factory
+    purpose: public Apple-app successor under qualification
+  - id: edoworks/nownest
+    type: public_reference_app_source
+    lifecycle: validating
+    disposition: keep
+    source_of_truth: https://github.com/edoworks/nownest
+    purpose: Reference App 1 source; not yet Apple-accepted
+  - id: edoworks/artifacts
+    type: public_artifact_collection
+    lifecycle: active
+    disposition: keep
+    source_of_truth: https://github.com/edoworks/artifacts
+    purpose: versioned reusable factory artifacts
+  - id: edoworks/asc-client
+    type: public_deprecated_source
+    lifecycle: deprecated
+    disposition: keep_read_only
+    source_of_truth: https://github.com/edoworks/asc-client
+    purpose: deprecated App Store Connect client source
+  - id: edoworks/trycycle
+    type: public_research_dependency
+    lifecycle: upstream_tracked
+    disposition: keep
+    source_of_truth: https://github.com/edoworks/trycycle
+    purpose: upstream research dependency; not an Edoworks product
   - id: rung.edoworks.com
     type: public_web_surface
     lifecycle: active
@@ -134,6 +164,24 @@ surfaces:
     disposition: keep_internal
     source_of_truth: /Users/hello/flocal
     purpose: local factory benchmark and control-plane experiment
+  - id: foculoom/rung-plugin
+    type: public_retirement_record
+    lifecycle: archived
+    disposition: keep_read_only
+    source_of_truth: https://github.com/foculoom/rung-plugin
+    purpose: archived retirement record for the former Rung plugin
+  - id: foculoom/edglex.com
+    type: public_historical_source
+    lifecycle: archived
+    disposition: keep_read_only
+    source_of_truth: https://github.com/foculoom/edglex.com
+    purpose: archived source for a retired public site
+  - id: foculoom/noraze.com
+    type: public_historical_source
+    lifecycle: archived
+    disposition: keep_read_only
+    source_of_truth: https://github.com/foculoom/noraze.com
+    purpose: archived source for a retired public site
 
 inventory_notes:
   - scope includes sf0.8, its known predecessors, and reviewed local public/internal surfaces
@@ -146,14 +194,14 @@ apple_products:
     repository: edoworks/product-a
     source_of_truth: https://github.com/edoworks/product-a.git
     platform: iOS/iPadOS
-    lifecycle: active
+    lifecycle: shelved
     release_state: never_released
     bundle_id: com.foculoom.ProductA
   - id: vorynce
     repository: foculoom/vorynce
     source_of_truth: https://github.com/foculoom/vorynce.git
     platform: iOS
-    lifecycle: active
+    lifecycle: dormant
     release_state: previously_released
     bundle_id: com.foculoom.vorynce
 

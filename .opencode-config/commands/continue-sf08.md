@@ -17,7 +17,7 @@ sf0.8, but cutover is not ready.
   #44-#47 remain open. Cross-surface reconciliation is tracked by map #48.
 - Canonical status: `IN_PROGRESS`
 - Canonical active map issue: `#48`
-- Canonical active increment issue: `#49`
+- Canonical active increment issue: `#50`
 - Existing gate issues remain #10 (Apple acceptance), #11 (30-day
   qualification), #15 (predecessor freeze), and #28/#32 (UX map and owner-only
   treatment selection).
@@ -46,17 +46,16 @@ sf0.8, but cutover is not ready.
 
 ## Next Work
 
-1. Complete factory issue #49: close the semantic gaps in the first #47 guard.
-2. Then issue #50: repair repository inventory and predecessor obligations.
-3. Then issue #51: correct active website state claims.
-4. Then issue #52: reconcile repository metadata and release claims.
-5. Then issue #53: run the final cross-surface rubberduck and closeout.
-6. Independently resume issue #44: repair Quiet Mode and complete the 36-cell
+1. Complete factory issue #50: repair repository inventory and predecessor obligations.
+2. Then issue #51: correct active website state claims.
+3. Then issue #52: reconcile repository metadata and release claims.
+4. Then issue #53: run the final cross-surface rubberduck and closeout.
+5. Independently resume issue #44: repair Quiet Mode and complete the 36-cell
    UI matrix.
-7. Then issue #45: requalify accessibility with direct evidence.
-8. Then issue #46: harden TestFlight activation and implement the typed Apple
+6. Then issue #45: requalify accessibility with direct evidence.
+7. Then issue #46: harden TestFlight activation and implement the typed Apple
    lifecycle/feedback receipt.
-9. Do not create or upload a replacement build until #44-#46 prerequisites pass
+8. Do not create or upload a replacement build until #44-#46 prerequisites pass
    and explicit owner authorization is recorded.
 
 ## Authority Boundaries

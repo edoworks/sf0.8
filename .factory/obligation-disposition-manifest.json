@@ -1,12 +1,15 @@
 {
   "manifest_version": "1.0.0",
   "created": "2026-09-22",
+  "captured_at": "2026-09-22T22:00:00Z",
+  "max_age_hours": 168,
   "owner": "hellofoculoom",
   "purpose": "Predecessor obligation disposition manifest for edoworks/factory cutover gate #16. Every open issue across predecessor repositories must be classified with a successor link before predecessor freeze.",
   "repositories": {
     "edoworks/sf0.8": {
-      "status": " inventoried",
+      "status": "inventoried",
       "open_issue_count": 23,
+      "inventory_record_count": 23,
       "issues": [
         {
           "number": 30,
@@ -197,22 +200,26 @@
     "edoworks/product-a": {
       "status": "inventoried",
       "open_issue_count": 0,
+      "inventory_record_count": 0,
       "reason": "Queried 2026-09-22. No open issues found. Repository has zero open obligations to dispositions.",
       "issues": []
     },
-    "edoworks/sf0.7": {
-      "status": "non-existent",
-      "reason": "Queried 2026-09-22. GitHub returned 'Could not resolve to a Repository with the name edoworks/sf0.7'. Repository does not exist or is private and inaccessible. No obligations to dispositions.",
-      "open_issue_count": 0
+    "foculoom/sf0.7": {
+      "status": "remote_inventory_blocked",
+      "reason": "The canonical predecessor is foculoom/sf0.7. Its local queue is deprecated_read_only, but authenticated remote issue enumeration is not available under the current tool policy. Open obligations are UNKNOWN, not zero.",
+      "open_issue_count": null,
+      "local_evidence": "/Users/hello/sf0.7/factory/queue.json"
     },
-    "edoworks/sf0.5": {
-      "status": "non-existent",
-      "reason": "Queried 2026-09-22. GitHub returned 'Could not resolve to a Repository with the name edoworks/sf0.5'. Repository does not exist or is private and inaccessible. No obligations to dispositions.",
-      "open_issue_count": 0
+    "foculoom/sf0.5": {
+      "status": "remote_inventory_blocked",
+      "reason": "The canonical predecessor is foculoom/sf0.5. Its local queue is frozen legacy evidence, but authenticated remote issue enumeration is not available under the current tool policy. Open obligations are UNKNOWN, not zero.",
+      "open_issue_count": null,
+      "local_evidence": "/Users/hello/sf0.5/factory/queue.json"
     },
     "edoworks/factory": {
-      "status": " inventoried",
-      "open_issue_count": 17,
+      "status": "inventoried",
+      "open_issue_count": null,
+      "inventory_record_count": 17,
       "note": "Factory issues are the successor tracker, not predecessor obligations. They are listed here for completeness; disposition is tracked by the factory issue queue itself.",
       "issues": [
         {"number": 10, "classification": "active", "title": "Reference App 1: Apple submission and acceptance"},
@@ -221,7 +228,7 @@
         {"number": 13, "classification": "future", "title": "Build Reference App 2 (meow-capture) using factory v0.2.0"},
         {"number": 14, "classification": "owner-gated", "title": "Reference App 2: Apple submission and acceptance"},
         {"number": 15, "classification": "owner-gated", "title": "Freeze sf0.8 and publish successor notices"},
-        {"number": 16, "classification": "active", "title": "Disposition all open sf0.8 issues with successor links"},
+        {"number": 16, "classification": "closed-invalid-evidence", "title": "Disposition all open sf0.8 issues with successor links"},
         {"number": 17, "classification": "owner-gated", "title": "Archive predecessor repositories after recovery proof"},
         {"number": 18, "classification": "owner-gated", "title": "Productization gate: assess paid pilot readiness"},
         {"number": 28, "classification": "active", "title": "NowNest calm expressive UX redesign map"},
@@ -237,15 +244,15 @@
   },
   "summary": {
     "total_inventoried": 23,
-    "migrated": 5,
+    "migrated": 6,
     "completed": 1,
     "superseded": 9,
-    "retained-evidence": 6,
+    "retained-evidence": 7,
     "rejected": 0,
     "duplicate": 0,
-    "blocked_repos": [],
-    "completion_blocker": null,
-    "manifest_complete": true,
-    "predecessor_repos_checked": ["edoworks/sf0.8 (23 open issues classified)", "edoworks/product-a (0 open issues)", "edoworks/sf0.7 (non-existent)", "edoworks/sf0.5 (non-existent)"]
+    "blocked_repos": ["foculoom/sf0.7", "foculoom/sf0.5"],
+    "completion_blocker": "Authenticated remote issue inventory is unavailable for the two private Foculoom predecessors.",
+    "manifest_complete": false,
+    "predecessor_repos_checked": ["edoworks/sf0.8 (23 issues classified at snapshot)", "edoworks/product-a (0 open issues at snapshot)", "foculoom/sf0.7 (local queue inspected; remote UNKNOWN)", "foculoom/sf0.5 (local queue inspected; remote UNKNOWN)"]
   }
 }

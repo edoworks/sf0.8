@@ -31,6 +31,8 @@ jobs:
           echo "policy files present"
       - name: Successor lifecycle guard
         run: python3 scripts/validate-lifecycle.py
+      - name: Repository inventory boundary guard
+        run: python3 scripts/validate-repository-inventory.py
       - name: Lifecycle contract validation
         run: python3 scripts/validate-lifecycle-contract.py
       - name: Bounded lane selection

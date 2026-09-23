@@ -117,6 +117,11 @@ class AppleDistributionTests(unittest.TestCase):
         products = [MODULE.load(path) for path in sorted((ROOT / ".factory/apple-distribution/products").glob("*.json"))]
         self.assertEqual([], MODULE.validate_product_inventory(products))
 
+    def test_shelved_product_manifest_is_canonical_but_not_required(self):
+        product = MODULE.load(ROOT / ".factory/apple-distribution/products/product-a.json")
+        self.assertEqual([], MODULE.validate_product_inventory([product]))
+        self.assertFalse(any("product-a" in error for error in MODULE.validate_product_inventory([])))
+
     def test_archive_plan_fails_closed_without_project_inputs(self):
         product = MODULE.load(ROOT / ".factory/apple-distribution/products/product-a.json")
         plan = MODULE.archive_plan(product)
