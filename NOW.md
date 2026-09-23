@@ -9,29 +9,21 @@ This is a visibility aid. `.factory/continuation-state.json` and
 
 - Active map: issue #48, organization repository and public-state
   reconciliation.
-- Active increment: issue #51, website state-claim corrections.
+- Active increment: issue #51, verified website closeout pending tracker closure.
 - Issue #50 is integrated and closed. Public inventory is freshness-bounded;
   inaccessible private completeness remains `UNKNOWN`.
-- Corrected Edoworks website source is merged and deployed. Corrected Foculoom
-  source is committed, pushed, independently approved, and blocked by the
-  organization-wide `Restrict updates` rule.
+- Issue #51 website corrections are merged and deployed on both Edoworks and
+  Foculoom; live claims, links, policy pages, and sitemaps match merged source.
 
 ## Next
 
-- Design and review a permanent policy or merge-automation change that preserves
-  owner-only ref mutation and permits ordinary reviewed PR merging without
-  explicit bypass, then merge PR #184 normally.
-- Verify deployed Foculoom URLs against the merged revision, then close issue
-  #51.
-- Continue to repository metadata and release claims (#52), then final
-  cross-surface review (#53).
+- Merge the verified issue #51 evidence checkpoint, close its tracker, refresh
+  the remote-state snapshot, and advance continuation to issue #52.
+- Then reconcile repository metadata and release claims under issue #52 before
+  final cross-surface review under issue #53.
 
 ## Blocked
 
-- Foculoom PR #184 is mergeable, green, and approved at `00a9458`, but normal
-  merge, squash, and rebase remain blocked by the organization-wide `Restrict
-  updates` rule. Auto-merge is enabled and queued, but normal merge requires an
-  explicit bypass prohibited by this lane. A permanent policy design is needed.
 - Private predecessor issue inventories remain unauthenticated and `UNKNOWN`;
   issue #16 remains effectively `BLOCKED`.
 - Apple credentials, upload, submission, and physical-device validation remain

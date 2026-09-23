@@ -1,7 +1,7 @@
 # Issue #51 source status
 
 Date: 2026-09-23
-Status: `BLOCKED`
+Status: `VERIFIED_PENDING_TRACKER_CLOSE`
 
 ## Integration status
 
@@ -11,24 +11,27 @@ Status: `BLOCKED`
   merged as `ec74a6`; the deployed pages and sitemap match the corrected source.
 - `foculoom/foculoom.github.io` branch `feature/public-state-51`, commit
   `00a9458`: verified Rung destination, explicit commercial status, privacy
-  contact scope, complete sitemap, Pages guard, and regression tests. PR #184 is
-  open and mergeable, has a successful Pages build check, and was independently
-  approved by `supportfoculoom` against the current head.
-- The sf0.8 evidence and continuation checkpoint merged in PR #124 at
-  `96c3f31` after its policy check and independent rubberduck review passed.
+  contact scope, complete sitemap, Pages guard, and regression tests. PR #184
+  was independently approved by `supportfoculoom` against the current head and
+  merged normally as `f4e0bc9` without administrator bypass.
+- The post-merge Pages workflow `35844799276` passed its validator, six
+  regression tests, artifact assembly, and deployment jobs at `f4e0bc9`.
+- Live `foculoom.com` home, privacy, terms, and sitemap responses match merged
+  source. The Rung link resolves to the verified Edoworks project page; the paid
+  report remains explicitly planned and unlaunched; contact-message processing
+  and all three active sitemap URLs are present.
+- The sf0.8 evidence, continuation, and recurrence-guard checkpoints through PR
+  #126 merged at `c2d28a4` after policy checks and independent review passed.
 
 Both branches passed local validators, six regression tests each,
 `git diff --check`, independent review, and desktop/mobile rendered review.
 
-## Blocker
+## Resolved policy conflict
 
-GitHub rejects a normal merge of Foculoom PR #184 because the base-branch policy
-prohibits it. All visible required checks pass and the independent approval is
-recorded. GitHub computes the review decision as `APPROVED` but the merge state
-as `BLOCKED`. Normal merge, squash, and rebase paths have all been tested. The
-owner enabled repository auto-merge on 2026-09-23, and PR #184 has an active
-auto-merge request for the current head, but it remains blocked with no pending
-required check.
+GitHub initially rejected a normal merge of Foculoom PR #184 although its
+required check and independent approval passed. Normal merge, squash, rebase,
+and auto-merge paths all remained blocked until the overlapping policy design
+was corrected.
 
 Owner inspection established the effective policy conflict:
 
@@ -37,8 +40,8 @@ Owner inspection established the effective policy conflict:
 - GitHub requires an approving reviewer with repository Write access.
   `supportfoculoom` was granted Write access, and GitHub now computes the current
   head's review decision as `APPROVED`.
-- The organization ruleset `hellofoculoom-only branch mutations` targets every
-  repository and branch and enables `Restrict updates`.
+- The organization ruleset `hellofoculoom-only branch mutations` targeted every
+  repository and branch and enabled `Restrict updates`.
 - Its sole bypass actor is the `Owner Ref Writers` team. The team again contains
   only `hellofoculoom`, now has explicit Write access to this repository, and
   retains its original `Always allow` mode.
@@ -47,18 +50,19 @@ Owner inspection established the effective policy conflict:
   operation to update `master`. Both `Always allow` and a bounded test of `For
   pull requests only` produced the same blocked normal-merge result.
 
-The PR cannot merge through the required normal path while `Restrict updates`
-is active. `--admin`, a web bypass, and temporary policy weakening remain
-prohibited.
-
-Issue #51 remains open pending an approved permanent policy design that supports
-owner-only ref mutation and ordinary reviewed PR merging without explicit
-bypass, followed by PR #184 merge and deployed-URL verification.
+The permanent replacement was applied without a protection gap: repository
+branch-protection rules for `master` and `*` restrict pushes to `Owner Ref
+Writers`; `master` retains its required current `build` check and no-bypass
+setting; the organization branch ruleset includes `*` but excludes only
+`foculoom.github.io`; the separate organization tag ruleset is unchanged. This
+preserves owner-only branch and tag mutation while allowing ordinary reviewed
+owner merges. GitHub then reported PR #184 `CLEAN`, and the normal non-admin
+merge succeeded.
 
 ## Blocker analysis
 
-1. The Foculoom source is not deployed because PR #184 cannot merge normally.
-2. GitHub reports `Cannot update this protected ref` because the organization
+1. The Foculoom source could not deploy because PR #184 could not merge normally.
+2. GitHub reported `Cannot update this protected ref` because the organization
    ruleset restricts updates to bypass actors.
 3. The owner is the sole configured bypass actor, but GitHub's normal and
    auto-merge paths do not invoke the explicit bypass required by that rule.
@@ -68,11 +72,12 @@ bypass, followed by PR #184 merge and deployed-URL verification.
    preflight checked identities, permissions, review, and checks separately but
    did not exercise a representative protected normal merge.
 
-The immediate correction is to leave PR #184 queued and the public source
-undeployed. The root-cause correction requires a reviewed permanent policy or
-merge-automation design, not a one-off bypass. A disposable protected-PR
-preflight that proves normal mergeability before a publication increment depends
-on it is proposed but not yet implemented or verified.
+The immediate correction left PR #184 queued and the public source undeployed
+until a permanent replacement was ready. The root-cause correction replaced the
+conflicting organization update rule for this repository with owner-only
+repository branch protections. A disposable protected-PR preflight that proves
+normal mergeability before a publication increment depends on it remains
+proposed but not yet implemented or verified.
 
 ## Reviewer-team authority incident
 
