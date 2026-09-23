@@ -1,8 +1,8 @@
 # Identity Governance Audit
 
-Date: 2026-09-23  
+Date: 2026-09-23
 Scope: redacted read-only review of canonical factory records and relevant local
-public/legal/product surfaces  
+public/legal/product surfaces
 Legal conclusion: none
 
 This report records operational inconsistencies and review requirements. It does

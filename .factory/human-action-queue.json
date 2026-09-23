@@ -305,6 +305,24 @@
       "information_gain": "HIGH",
       "reversibility": "LOW",
       "urgency": "HIGH"
+    },
+    {
+      "id": "identity-product-public-state-reconciliation",
+      "action": "Set canonical lifecycle, availability, pricing, platform, feature, privacy, and trademark truth for Veilsort, Skiplet, Docketloom, Vorynce, NowNest, and Rung",
+      "why_human_required": "The observed surfaces disagree and the factory cannot infer which commercial and release claims are currently intended.",
+      "blocked_work": "Public copy reconciliation and future App Store readiness for affected products",
+      "priority": 18,
+      "estimated_human_minutes": 60,
+      "required_input_or_decision": "For each product, select the current supported truth and identify any legal or external record review required before copy changes.",
+      "evidence_to_collect": ["lifecycle", "availability", "pricing", "platforms", "implemented features", "privacy behavior", "trademark wording", "source-of-truth date"],
+      "resume_condition": "Each affected product has one dated canonical state and separately tracked external/legal actions.",
+      "can_expire": true,
+      "expiry_condition": "Product behavior, pricing, distribution state, or public surfaces change.",
+      "related": {"issue": 132, "product": "cross-product public state", "experiment": null},
+      "blocking_impact": "HIGH",
+      "information_gain": "MEDIUM",
+      "reversibility": "HIGH",
+      "urgency": "MEDIUM"
     }
   ]
 }

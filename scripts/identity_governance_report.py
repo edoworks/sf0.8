@@ -35,7 +35,7 @@ def build_matrix(registry: dict[str, Any]) -> dict[str, Any]:
         "kind": "LEGAL_ENTITY",
         "id": legal["entity_id"],
         "display_name": legal["legal_name"],
-        "role": "LEGAL_ENTITY_IP_OWNER_SELLER",
+        "role": "LEGAL_ENTITY_CONTRACTING_PARTY",
         "lifecycle": "active",
         "state": "EXTERNAL_VERIFICATION_REQUIRED",
         "trademark_state": "NOT_APPLICABLE",

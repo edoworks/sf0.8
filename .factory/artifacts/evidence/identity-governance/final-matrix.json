@@ -11,7 +11,7 @@
       "recommendation": "VERIFY_CA_SOS_RECORD",
       "release_blocker": "LIVE_EXTERNAL_RECORDS_UNVERIFIED",
       "required_action": "VERIFY_CA_SOS_AND_APP_STORE_SELLER",
-      "role": "LEGAL_ENTITY_IP_OWNER_SELLER",
+      "role": "LEGAL_ENTITY_CONTRACTING_PARTY",
       "state": "EXTERNAL_VERIFICATION_REQUIRED",
       "trademark_state": "NOT_APPLICABLE"
     },
@@ -86,15 +86,15 @@
       "trademark_state": "CLEARANCE_REQUIRED"
     },
     {
-      "adoption_allowed": true,
+      "adoption_allowed": false,
       "display_name": "Skiplet",
       "domain": "getskiplet.com",
       "id": "product:skiplet",
       "kind": "PRODUCT",
       "lifecycle": "dormant",
-      "recommendation": "MAINTAIN_WITH_CLAIM_LIMITS",
-      "release_blocker": "NONE",
-      "required_action": "PRESERVE_CURRENT_LIMITS",
+      "recommendation": "HOLD_PENDING_REVIEW",
+      "release_blocker": "IDENTITY_OR_TRADEMARK_REVIEW_REQUIRED",
+      "required_action": "COMPLETE_REVIEW_BEFORE_ADOPTION_OR_RELEASE",
       "role": "PRODUCT",
       "state": "ADOPTED",
       "trademark_state": "FILED"

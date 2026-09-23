@@ -42,6 +42,11 @@ class PublicIdentityTests(unittest.TestCase):
         report = self.scan_text("No registered trademark found for NowNest.")
         self.assertNotIn("APPLICATION_DESCRIBED_AS_REGISTERED", {item["code"] for item in report["findings"]})
 
+    def test_negative_claim_for_one_mark_does_not_suppress_another_mark(self):
+        report = self.scan_text("FOCULOOM is not a registered trademark; SKIPLET is a registered trademark.")
+        findings = [item for item in report["findings"] if item["code"] == "APPLICATION_DESCRIBED_AS_REGISTERED"]
+        self.assertTrue(any(item["identity"] == "trademark:99731845" for item in findings))
+
     def test_canonical_name_registered_symbol_covers_unfiled_identity(self):
         report = self.scan_text("EDOWORKS\u00ae")
         self.assertIn("UNAUTHORIZED_REGISTERED_SYMBOL", {item["code"] for item in report["findings"]})
@@ -71,6 +76,11 @@ class PublicIdentityTests(unittest.TestCase):
         observations = {"surfaces": [{"identity": "product:nownest", "owner": agent, "seller": agent}]}
         report = self.scan_text("", observations=observations)
         self.assertTrue({"OWNER_CONFLICT", "SELLER_CONFLICT"} <= {item["code"] for item in report["findings"]})
+
+    def test_applicant_owner_is_not_globally_approved_for_products(self):
+        applicant = next(item["owner_name"] for item in self.registry["trademarks"] if item["mark"] == "FOCULOOM")
+        report = self.scan_text(f"NowNest owner: {applicant}")
+        self.assertIn("OWNER_CONFLICT", {item["code"] for item in report["findings"]})
 
     def test_noncanonical_contact_is_warning_not_pass(self):
         report = self.scan_text("Email other@example.com or call 415-555-1212.")

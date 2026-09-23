@@ -1,6 +1,6 @@
 {
-  "blocker_count": 56,
-  "finding_count": 56,
+  "blocker_count": 50,
+  "finding_count": 50,
   "findings": [
     {
       "classification": "BLOCKER",
@@ -148,24 +148,6 @@
     },
     {
       "classification": "BLOCKER",
-      "code": "TRADEMARK_STATE_CLAIM",
-      "identity": "product:vorynce",
-      "line": 28,
-      "path": "docs/legal-ip/ip-asset-register.md",
-      "redacted_identifier": "sha256:fbf6cd7473b4",
-      "severity": "BLOCKER"
-    },
-    {
-      "classification": "BLOCKER",
-      "code": "TRADEMARK_STATE_CLAIM",
-      "identity": "brand:edoworks",
-      "line": 29,
-      "path": "docs/legal-ip/ip-asset-register.md",
-      "redacted_identifier": "sha256:fbf6cd7473b4",
-      "severity": "BLOCKER"
-    },
-    {
-      "classification": "BLOCKER",
       "code": "APPLICATION_DESCRIBED_AS_REGISTERED",
       "identity": "trademark:99673253",
       "line": 30,
@@ -185,46 +167,10 @@
     {
       "classification": "BLOCKER",
       "code": "TRADEMARK_STATE_CLAIM",
-      "identity": "product:vorynce",
-      "line": 65,
-      "path": "docs/legal-ip/ip-asset-register.md",
-      "redacted_identifier": "sha256:fbf6cd7473b4",
-      "severity": "BLOCKER"
-    },
-    {
-      "classification": "BLOCKER",
-      "code": "TRADEMARK_STATE_CLAIM",
-      "identity": "brand:edoworks",
-      "line": 66,
-      "path": "docs/legal-ip/ip-asset-register.md",
-      "redacted_identifier": "sha256:fbf6cd7473b4",
-      "severity": "BLOCKER"
-    },
-    {
-      "classification": "BLOCKER",
-      "code": "TRADEMARK_STATE_CLAIM",
       "identity": "trademark:99673253",
       "line": 124,
       "path": "docs/legal-ip/ip-asset-register.md",
       "redacted_identifier": "sha256:c7266bb5525a",
-      "severity": "BLOCKER"
-    },
-    {
-      "classification": "BLOCKER",
-      "code": "TRADEMARK_STATE_CLAIM",
-      "identity": "product:vorynce",
-      "line": 135,
-      "path": "docs/legal-ip/ip-asset-register.md",
-      "redacted_identifier": "sha256:fbf6cd7473b4",
-      "severity": "BLOCKER"
-    },
-    {
-      "classification": "BLOCKER",
-      "code": "TRADEMARK_STATE_CLAIM",
-      "identity": "brand:edoworks",
-      "line": 136,
-      "path": "docs/legal-ip/ip-asset-register.md",
-      "redacted_identifier": "sha256:fbf6cd7473b4",
       "severity": "BLOCKER"
     },
     {

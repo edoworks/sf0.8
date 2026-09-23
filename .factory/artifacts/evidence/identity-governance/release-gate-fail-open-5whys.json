@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "trigger": "Independent final review found that blocker-classified findings, missing registry/scanner inputs, and blocked product preflight could still produce a successful readiness or CLI result.",
+  "whys": [
+    {"why": 1, "answer": "Readiness counted only findings whose type was BLOCKER, although some reviewer findings carried another type with BLOCKER classification.", "evidence": "scripts/validate-apple-distribution.py finding contract"},
+    {"why": 2, "answer": "Identity registry and scanner reports were optional parameters, so absence was interpreted as no governance finding.", "evidence": "review_identity_governance input handling before correction"},
+    {"why": 3, "answer": "The product CLI returned failure only for malformed or unlinked findings, not for a product that was correctly found unready.", "evidence": "validate-apple-distribution.py CLI return contract before correction"},
+    {"why": 4, "answer": "Tests proved individual finding generation but did not assert the complete release decision and process exit status for all blocking classifications and missing evidence.", "evidence": "Independent review findings and new recurrence tests"}
+  ],
+  "stop_reason": "Evidence does not establish a deeper cause or any actual submission that relied on the fail-open result.",
+  "immediate_correction": "Treat BLOCKER type or classification as blocking, require registry and scanner evidence for public candidates, and return nonzero for unready product preflight.",
+  "root_cause_correction": "Test release decisions and CLI outcomes end-to-end rather than treating finding-generation tests as gate proof.",
+  "recurrence_guard": "Apple distribution tests now cover blocker classification, missing registry binding, missing scanner report, and blocked CLI exit status."
+}

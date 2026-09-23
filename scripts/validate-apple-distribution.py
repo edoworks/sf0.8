@@ -192,6 +192,9 @@ def review_identity_governance(
     identity = product.get("identity", {})
     reference = identity.get("registry_ref")
     if not reference:
+        if identity.get("public_name") or product.get("metadata"):
+            issue = identity.get("blocking_issue") or product.get("default_blocking_issue")
+            return [finding("BLOCKER", "IDENTITY_REGISTRY_BINDING_MISSING", "Public identity is not bound to the canonical registry", "Every public Apple candidate must consume canonical identity governance.", ["identity.registry_ref is absent"], "The manifest references a canonical registry identity.", "Add and validate the registry binding before release review.", issue, "SEMANTIC", "BLOCKER")]
         return []
     canonical = next((item for item in identity_registry.get("identities", []) if item.get("entity_id") == reference), None)
     issue = identity.get("blocking_issue") or product.get("default_blocking_issue")
@@ -203,6 +206,8 @@ def review_identity_governance(
     trademark_state = canonical.get("trademark_state")
     public_surface = product.get("public_surface", {})
     legal = product.get("legal", {})
+    if public_identity_report is None:
+        findings.append(finding("BLOCKER", "PUBLIC_IDENTITY_REPORT_MISSING", "Release-mode public identity report is missing", "A public Apple candidate must pass the reusable public-surface identity scanner.", ["public_identity_report is absent"], "A current release-mode scanner report records PASS.", "Run the public identity scanner against candidate surfaces and bind the sanitized report.", issue, "SEMANTIC", "BLOCKER"))
     if (state == "INTERNAL" or trademark_state == "INTERNAL") and (identity.get("public_name") or product.get("metadata")):
         findings.append(finding("BLOCKER", "INTERNAL_IDENTITY_PUBLIC_REQUEST", "Internal identity requested for public distribution", "INTERNAL identities cannot be published.", [f"identity={reference}"], "A separately governed public identity is selected.", "Resolve identity governance before public distribution.", issue, "SEMANTIC", "BLOCKER"))
     if state in {"PROVISIONAL", "CLEARANCE_REQUIRED"} or trademark_state in {"PROVISIONAL", "CLEARANCE_REQUIRED", "LEGAL_REVIEW_REQUIRED"}:
@@ -309,10 +314,10 @@ def preflight(product: dict[str, Any], registry: dict[str, Any], identity_regist
         findings.append(finding("EVIDENCE_GAP", "EXPORT_COMPLIANCE_UNDECIDED", "Export compliance decision is missing", "Encryption/export questions must be answered accurately before submission.", ["product manifest: export_compliance.decided is false"], "The encryption inventory and applicable export answers are reviewed and recorded.", "Complete the current export-compliance questionnaire and retain required documentation.", issue))
     unlinked = [item["code"] for item in findings if item["type"] == "BLOCKER" and not item.get("linked_issue")]
     invalid_types = [item["code"] for item in findings if item["type"] not in FINDING_TYPES or item.get("classification") not in FINDING_CLASSIFICATIONS]
-    blocker = any(item["type"] == "BLOCKER" for item in findings)
+    blocker = any(item.get("type") == "BLOCKER" or item.get("classification") == "BLOCKER" for item in findings)
     evidence_gap = any(item["type"] == "EVIDENCE_GAP" for item in findings)
     app_review_ready = not blocker and not evidence_gap and bool(evidence.get("archive"))
-    blockers = [item for item in findings if item["type"] == "BLOCKER"]
+    blockers = [item for item in findings if item.get("type") == "BLOCKER" or item.get("classification") == "BLOCKER"]
     evidence_gaps = [item for item in findings if item["type"] == "EVIDENCE_GAP"]
     states = {
         "build_ready": bool(product.get("software_production_ready")),
@@ -500,7 +505,7 @@ def main() -> int:
             target = REPORTS / f"{args.product}-archive-plan.json"
             target.write_text(json.dumps(archive_plan(load(product_path)), indent=2, sort_keys=True) + "\n", encoding="utf-8")
             print(target)
-        if report["unlinked_blockers"] or report["invalid_finding_types"]:
+        if report["unlinked_blockers"] or report["invalid_finding_types"] or not report["states"]["app_review_ready"]:
             return 1
     return 0
 

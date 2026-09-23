@@ -1,6 +1,8 @@
 import importlib.util
 import copy
 import json
+import subprocess
+import sys
 import unittest
 from pathlib import Path
 
@@ -144,7 +146,11 @@ class AppleDistributionTests(unittest.TestCase):
             "id": "complete-fixture", "platform": "iOS", "app_type": "offline app",
             "factory_support_state": "SUPPORTED_UNVERIFIED", "default_blocking_issue": 35,
             "software_production_ready": True,
-            "identity": {"internal_codename": "Complete Fixture", "public_name": "present", "authorized": True, "blocking_issue": 35, "customer_zero_alignment": True},
+            "identity": {"registry_ref": "product:complete-fixture", "internal_codename": "Complete Fixture", "public_name": "present", "identity_state": "ESTABLISHED", "trademark_state": "CLEARED", "authorized": True, "blocking_issue": 35, "customer_zero_alignment": True},
+            "legal": {"owner_name": "Foculoom LLC", "seller_name": "Foculoom LLC", "approved_owner_names": ["Foculoom LLC"], "approved_seller_names": ["Foculoom LLC"]},
+            "public_surface": {"registered_symbol": False, "application_described_as_registration": False, "private_or_stale_address_exposed": False, "privacy_support_terms_consistent": True},
+            "canonical_claims": {"lifecycle": "active", "trademark_state": "CLEARED"},
+            "observed_claims": {"lifecycle": "active", "trademark_state": "CLEARED"},
             "discoverability": {"reviewed": True},
             "metadata": {field: "present" for field in ("name", "subtitle", "description", "keywords", "category", "copyright", "support_url", "privacy_url")},
             "privacy": {"collected_data": [], "declared_data": []},
@@ -154,10 +160,37 @@ class AppleDistributionTests(unittest.TestCase):
             "evidence": {"archive": "release.xcarchive", "processed_build": True, "external_testflight": True, "customer_zero": True, "accessibility": True},
             "human_authorized": False,
         }
-        report = MODULE.preflight(product, self.registry)
+        identity_registry = copy.deepcopy(self.identity_registry)
+        identity_registry["identities"].append({
+            "entity_id": "product:complete-fixture", "name": "present", "identity_state": "ESTABLISHED",
+            "trademark_state": "CLEARED", "lifecycle": "active",
+        })
+        report = MODULE.preflight(product, self.registry, identity_registry, {"status": "PASS", "findings": []})
         self.assertTrue(report["states"]["app_review_ready"])
         self.assertFalse(report["states"]["human_authorized"])
         self.assertEqual([], report["findings"])
+
+        product["screenshots"]["reviewer_validated"] = False
+        blocked = MODULE.preflight(product, self.registry, identity_registry, {"status": "PASS", "findings": []})
+        self.assertIn("SCREENSHOTS_NOT_REVIEWER_VALIDATED", {item["code"] for item in blocked["findings"]})
+        self.assertFalse(blocked["states"]["app_review_ready"])
+
+    def test_public_candidate_requires_registry_binding_and_scanner_report(self):
+        product = self.nownest_fixture()
+        product["identity"].pop("registry_ref")
+        codes = {item["code"] for item in MODULE.review_identity_governance(product, self.identity_registry, {"status": "PASS", "findings": []})}
+        self.assertIn("IDENTITY_REGISTRY_BINDING_MISSING", codes)
+        product = self.nownest_fixture()
+        codes = {item["code"] for item in MODULE.review_identity_governance(product, self.identity_registry)}
+        self.assertIn("PUBLIC_IDENTITY_REPORT_MISSING", codes)
+
+    def test_product_cli_exits_nonzero_when_preflight_is_blocked(self):
+        result = subprocess.run(
+            [sys.executable, "scripts/validate-apple-distribution.py", "--product", "nownest"],
+            cwd=ROOT, capture_output=True, text=True,
+        )
+        self.assertEqual(1, result.returncode)
+        self.assertIn("PUBLIC_IDENTITY_REPORT_MISSING", result.stdout)
 
     def test_vorynce_historical_rejection_fixture_is_detected(self):
         fixture = MODULE.load(ROOT / ".factory/artifacts/portfolio-archaeology/fixtures/vorynce-rejection.json")

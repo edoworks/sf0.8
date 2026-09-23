@@ -38,7 +38,7 @@ class IdentityGovernanceAuditTests(unittest.TestCase):
             "identity-uspto-skiplet-review", "identity-uspto-veilsort-review",
             "identity-edoworks-clearance", "identity-vorynce-name-review",
             "identity-docketloom-name-review", "identity-rung-name-review",
-            "identity-private-address-remediation",
+            "identity-private-address-remediation", "identity-product-public-state-reconciliation",
         }
         self.assertEqual([], validate_queue(self.queue))
         self.assertTrue(expected <= {item["id"] for item in self.queue["actions"]})
@@ -89,7 +89,7 @@ class IdentityGovernanceAuditTests(unittest.TestCase):
             self.assertNotIn(phrase, text.casefold())
 
     def test_root_cause_records_name_mechanical_guards(self):
-        for name in ("address-propagation-5whys.json", "public-state-drift-5whys.json"):
+        for name in ("address-propagation-5whys.json", "public-state-drift-5whys.json", "release-gate-fail-open-5whys.json"):
             record = json.loads((EVIDENCE / name).read_text())
             self.assertTrue(record["stop_reason"])
             self.assertIn("scanner", record["recurrence_guard"].casefold())

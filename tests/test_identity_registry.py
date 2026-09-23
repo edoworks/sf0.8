@@ -85,6 +85,13 @@ class IdentityRegistryTests(unittest.TestCase):
             {item["email"] for item in self.registry["contacts"]},
         )
 
+    def test_skiplet_preserves_existing_use_without_inferring_clearance(self):
+        skiplet = next(item for item in self.registry["identities"] if item["entity_id"] == "product:skiplet")
+        self.assertEqual("ADOPTED", skiplet["identity_state"])
+        self.assertEqual("FILED", skiplet["trademark_state"])
+        self.assertEqual("PRESERVE", skiplet["existing_use_disposition"])
+        self.assertFalse(skiplet["adoption_allowed"])
+
     def test_every_supplied_domain_is_present(self):
         supplied = {
             "edoworks.com", "foculoom.com", "foculoom.net", "foculoom.org",

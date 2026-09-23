@@ -41,8 +41,8 @@ STREET_RE = re.compile(
 )
 EMAIL_RE = re.compile(r"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b", re.IGNORECASE)
 PHONE_RE = re.compile(r"(?<!\w)(?:\+?1[ .-]?)?\(?\d{3}\)?[ .-]\d{3}[ .-]\d{4}(?!\w)")
-OWNER_RE = re.compile(r"[\"']?(?:owner|legal_owner|owner_name)[\"']?\s*[:=]\s*[\"']([^\"'\n,}]+)", re.IGNORECASE)
-SELLER_RE = re.compile(r"[\"']?(?:seller|seller_name|developer_name)[\"']?\s*[:=]\s*[\"']([^\"'\n,}]+)", re.IGNORECASE)
+OWNER_RE = re.compile(r"[\"']?(?:owner|legal_owner|owner_name)[\"']?\s*[:=]\s*[\"']?([^\"'\n,}]+)", re.IGNORECASE)
+SELLER_RE = re.compile(r"[\"']?(?:seller|seller_name|developer_name)[\"']?\s*[:=]\s*[\"']?([^\"'\n,}]+)", re.IGNORECASE)
 
 
 def _token(value: str) -> str:
@@ -105,9 +105,8 @@ def _text_findings(
     governed_names = dict(identities)
     governed_names.update(marks)
     canonical_emails = {str(item.get("email", "")).casefold() for item in registry.get("contacts", [])}
-    approved_owners = {registry.get("legal_entity", {}).get("legal_name")}
-    approved_owners |= {item.get("owner_name") for item in registry.get("trademarks", [])}
-    approved_owners.discard(None)
+    legal_owner = registry.get("legal_entity", {}).get("legal_name")
+    mark_owners = {item.get("entity_id"): item.get("owner_name") for item in registry.get("trademarks", [])}
     for number, line in enumerate(text.splitlines(), 1):
         identity = _identity_for_line(line, identities, marks)
         folded = line.casefold()
@@ -116,7 +115,10 @@ def _text_findings(
             if name and re.search(rf"\b{re.escape(name)}\s*\u00ae", folded, re.IGNORECASE) and expected_state != "REGISTERED":
                 findings.append(_finding("UNAUTHORIZED_REGISTERED_SYMBOL", "BLOCKER", path, number, str(governed["entity_id"]), name))
             registration_claim = bool(re.search(rf"\b{re.escape(name)}\b.{{0,50}}\b(?:is\s+registered|registered\s+trademark|trademark\s+registration)\b", folded, re.IGNORECASE))
-            negative = bool(re.search(r"\b(?:no|not|isn't|is not|never)\s+(?:a\s+)?registered\b", folded, re.IGNORECASE))
+            negative = bool(
+                re.search(rf"\b{re.escape(name)}\b.{{0,30}}\b(?:not|isn't|is not|never)\s+(?:a\s+)?registered\b", folded, re.IGNORECASE)
+                or re.search(rf"\bno\s+registered\s+trademark\b.{{0,30}}\b{re.escape(name)}\b", folded, re.IGNORECASE)
+            )
             if registration_claim and not negative and expected_state != "REGISTERED":
                 findings.append(_finding("APPLICATION_DESCRIBED_AS_REGISTERED", "BLOCKER", path, number, str(governed["entity_id"]), name))
             state_match = re.search(
@@ -124,7 +126,11 @@ def _text_findings(
                 line,
                 re.IGNORECASE,
             )
-            if state_match and not negative and state_match.group(1).upper() != expected_state:
+            state_negated = bool(
+                state_match
+                and re.search(r"\b(?:no|not|never)\s+(?:a\s+)?$", line[max(0, state_match.start(1) - 16):state_match.start(1)], re.IGNORECASE)
+            )
+            if state_match and not negative and not state_negated and state_match.group(1).upper() != expected_state:
                 findings.append(_finding("TRADEMARK_STATE_CLAIM", "BLOCKER", path, number, str(governed["entity_id"]), state_match.group(1).upper()))
         for pattern in private_patterns:
             if pattern and pattern.casefold() in folded:
@@ -137,8 +143,10 @@ def _text_findings(
         for match in PHONE_RE.finditer(line):
             findings.append(_finding("NONCANONICAL_PUBLIC_PHONE", "WARNING", path, number, identity, match.group(0)))
         owner = OWNER_RE.search(line)
-        if owner and owner.group(1).strip() not in approved_owners:
-            findings.append(_finding("OWNER_CONFLICT", "BLOCKER", path, number, identity, owner.group(1).strip()))
+        if owner:
+            approved_owners = {legal_owner, mark_owners.get(identity)} - {None}
+            if owner.group(1).strip() not in approved_owners:
+                findings.append(_finding("OWNER_CONFLICT", "BLOCKER", path, number, identity, owner.group(1).strip()))
         seller = SELLER_RE.search(line)
         if seller and seller.group(1).strip() not in approved_owners:
             findings.append(_finding("SELLER_CONFLICT", "BLOCKER", path, number, identity, seller.group(1).strip()))
