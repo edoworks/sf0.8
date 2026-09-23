@@ -16,6 +16,8 @@ from evidence_integrity import (
     validate_evidence_references,
     validate_qualification_ledger,
     validate_reconciliation,
+    validate_remote_snapshot,
+    validate_timeout_receipt,
 )
 
 
@@ -28,26 +30,61 @@ def tracked_paths(root: Path) -> list[str]:
     return [item for item in result.stdout.decode("utf-8").split("\0") if item]
 
 
+def evidence_at_revision(root: Path, references: list[dict]) -> list[str]:
+    errors: list[str] = []
+    for index, reference in enumerate(references):
+        revision = str(reference.get("revision", ""))
+        path = str(reference.get("path", ""))
+        result = subprocess.run(
+            ["git", "cat-file", "-e", f"{revision}:{path}"],
+            cwd=root,
+            capture_output=True,
+            check=False,
+        )
+        if result.returncode != 0:
+            errors.append(f"evidence_references[{index}]: evidence is absent at revision {revision}: {path}")
+    return errors
+
+
 def load(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def validate(root: Path, state_path: Path, ledger_path: Path, continuation_path: Path) -> list[str]:
+def validate(
+    root: Path,
+    state_path: Path,
+    ledger_path: Path,
+    continuation_path: Path,
+    canonical_continuation_path: Path,
+    remote_snapshot_path: Path,
+) -> list[str]:
     state = load(state_path)
     requirements = load(root / ".factory/control-plane-requirements.json")
     queue = load(root / ".factory/human-action-queue.json")
     lifecycle = load(root / ".factory/lifecycle-contract.json")
     ledger = load(ledger_path)
+    canonical_continuation = load(canonical_continuation_path)
+    snapshot = load(remote_snapshot_path)
     errors = validate_qualification_ledger(ledger)
-    errors.extend(validate_continuation_state(state["continuation"], continuation_path.read_text(encoding="utf-8")))
+    expected_continuation = str(canonical_continuation_path.relative_to(root))
+    if state.get("continuation_path") != expected_continuation:
+        errors.append("integrity state does not reference the canonical continuation record")
+    errors.extend(validate_continuation_state(canonical_continuation, continuation_path.read_text(encoding="utf-8")))
+    reconciled_state = dict(state)
+    reconciled_state["continuation"] = canonical_continuation
     errors.extend(validate_reconciliation(
-        state,
+        reconciled_state,
         requirements,
         queue,
         lifecycle,
         (root / ".factory/portfolio.yaml").read_text(encoding="utf-8"),
     ))
-    errors.extend(validate_evidence_references(state.get("evidence_references", []), root, tracked_paths(root)))
+    references = state.get("evidence_references", [])
+    errors.extend(validate_evidence_references(references, root, tracked_paths(root)))
+    errors.extend(evidence_at_revision(root, references))
+    errors.extend(validate_remote_snapshot(snapshot, state.get("gates", {})))
+    for path in sorted((root / ".factory/artifacts/evidence/verification-receipts").glob("*.json")):
+        errors.extend(f"{path.relative_to(root)}: {error}" for error in validate_timeout_receipt(load(path)))
     return errors
 
 
@@ -55,10 +92,19 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--state", type=Path, default=ROOT / ".factory/artifacts/evidence/integrity-state.json")
     parser.add_argument("--ledger", type=Path, default=ROOT / ".factory/qualification-ledger.json")
-    parser.add_argument("--continuation", type=Path, default=Path.home() / ".config/opencode/commands/continue-sf08.md")
+    parser.add_argument("--continuation", type=Path, default=ROOT / ".opencode-config/commands/continue-sf08.md")
+    parser.add_argument("--canonical-continuation", type=Path, default=ROOT / ".factory/continuation-state.json")
+    parser.add_argument("--remote-snapshot", type=Path, default=ROOT / ".factory/remote-state-snapshot.json")
     args = parser.parse_args()
     try:
-        errors = validate(ROOT, args.state, args.ledger, args.continuation)
+        errors = validate(
+            ROOT,
+            args.state,
+            args.ledger,
+            args.continuation,
+            args.canonical_continuation,
+            args.remote_snapshot,
+        )
     except (OSError, RuntimeError, KeyError, json.JSONDecodeError) as error:
         errors = [str(error)]
     if errors:

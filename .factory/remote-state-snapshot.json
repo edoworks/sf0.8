@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-09-23T05:51:57Z",
+  "max_age_hours": 168,
+  "source": "GitHub issue API readback",
+  "issues": [
+    {"repo": "edoworks/factory", "number": 10, "state": "OPEN"},
+    {"repo": "edoworks/factory", "number": 11, "state": "OPEN"},
+    {"repo": "edoworks/factory", "number": 15, "state": "OPEN"},
+    {"repo": "edoworks/factory", "number": 16, "state": "CLOSED"},
+    {"repo": "edoworks/factory", "number": 42, "state": "OPEN"},
+    {"repo": "edoworks/factory", "number": 47, "state": "OPEN"},
+    {"repo": "edoworks/factory", "number": 48, "state": "OPEN"},
+    {"repo": "edoworks/factory", "number": 49, "state": "OPEN"},
+    {"repo": "edoworks/factory", "number": 50, "state": "OPEN"},
+    {"repo": "edoworks/factory", "number": 51, "state": "OPEN"},
+    {"repo": "edoworks/factory", "number": 52, "state": "OPEN"},
+    {"repo": "edoworks/factory", "number": 53, "state": "OPEN"}
+  ]
+}

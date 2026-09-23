@@ -1,4 +1,5 @@
 import importlib.util
+from datetime import datetime, timezone
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
@@ -9,6 +10,12 @@ SPEC = importlib.util.spec_from_file_location("evidence_integrity", ROOT / "scri
 MODULE = importlib.util.module_from_spec(SPEC)
 assert SPEC.loader is not None
 SPEC.loader.exec_module(MODULE)
+ENTRY_SPEC = importlib.util.spec_from_file_location(
+    "validate_evidence_integrity", ROOT / "scripts/validate-evidence-integrity.py"
+)
+ENTRY = importlib.util.module_from_spec(ENTRY_SPEC)
+assert ENTRY_SPEC.loader is not None
+ENTRY_SPEC.loader.exec_module(ENTRY)
 
 
 def timeout_receipt(**overrides):
@@ -76,6 +83,12 @@ class EvidenceIntegrityTests(unittest.TestCase):
             )
             self.assertTrue(any("full commit id" in error for error in errors))
 
+    def test_evidence_must_exist_at_cited_revision(self):
+        errors = ENTRY.evidence_at_revision(
+            ROOT, [{"path": "missing-evidence.json", "revision": "HEAD"}]
+        )
+        self.assertTrue(any("absent at revision" in error for error in errors))
+
     def test_continuation_drift_is_rejected(self):
         state = {
             "status": "IN_PROGRESS",
@@ -104,6 +117,42 @@ class EvidenceIntegrityTests(unittest.TestCase):
             }],
         }
         self.assertTrue(any("weekday" in error for error in MODULE.validate_qualification_ledger(ledger)))
+
+    def test_stale_remote_snapshot_is_rejected(self):
+        snapshot = {
+            "schema_version": 1,
+            "captured_at": "2026-09-20T00:00:00Z",
+            "max_age_hours": 24,
+            "issues": [{"repo": "edoworks/factory", "number": 49, "state": "OPEN"}],
+        }
+        gates = {
+            "49": {
+                "repo": "edoworks/factory", "number": 49, "remote_state": "OPEN",
+                "evidence_state": "INCOMPLETE", "effective_state": "OPEN",
+            }
+        }
+        errors = MODULE.validate_remote_snapshot(
+            snapshot, gates, now=datetime(2026, 9, 23, tzinfo=timezone.utc)
+        )
+        self.assertIn("remote snapshot is stale", errors)
+
+    def test_invalid_closed_gate_is_blocked(self):
+        snapshot = {
+            "schema_version": 1,
+            "captured_at": "2026-09-23T00:00:00Z",
+            "max_age_hours": 24,
+            "issues": [{"repo": "edoworks/factory", "number": 16, "state": "CLOSED"}],
+        }
+        gates = {
+            "16": {
+                "repo": "edoworks/factory", "number": 16, "remote_state": "CLOSED",
+                "evidence_state": "INVALID", "effective_state": "CLOSED",
+            }
+        }
+        errors = MODULE.validate_remote_snapshot(
+            snapshot, gates, now=datetime(2026, 9, 23, 1, tzinfo=timezone.utc)
+        )
+        self.assertTrue(any("must be BLOCKED" in error for error in errors))
 
 
 if __name__ == "__main__":
