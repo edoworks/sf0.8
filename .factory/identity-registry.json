@@ -1,0 +1,78 @@
+{
+  "$schema": "identity-registry.schema.json",
+  "schema_version": 1,
+  "as_of": "2026-09-23",
+  "authority": {
+    "lifecycle": ".factory/portfolio.yaml",
+    "identity_governance": ".factory/identity-registry.json",
+    "policy": "The portfolio is lifecycle authority. This registry governs names, ownership, trademark posture, domains, contacts, and address handling without granting legal clearance.",
+    "no_sunk_cost_invariant": "Prior filing, registration, development, publication, or domain spend never establishes clearance and never justifies further spend or adoption."
+  },
+  "legal_entity": {
+    "entity_type": "legal_entity",
+    "entity_id": "legal-entity:foculoom-llc",
+    "legal_name": "Foculoom LLC",
+    "jurisdiction": "California",
+    "state_entity_number": "20260100384",
+    "formed_on": "2026-02-26",
+    "industry": {"sic": "7372", "sic_label": "Prepackaged Software", "naics": "513210", "naics_label": "Software Publishers"},
+    "registered_agent_name": "Northwest Registered Agent, Inc.",
+    "provenance": ["owner-provided facts 2026-09-23"]
+  },
+  "contacts": [
+    {"entity_type": "contact_point", "entity_id": "contact:hello", "email": "hello@foculoom.com", "purpose": "general and product contact", "provenance": ["owner-provided facts 2026-09-23", "edoworks/nownest public support surface"]},
+    {"entity_type": "contact_point", "entity_id": "contact:support", "email": "support@foculoom.com", "purpose": "support and privacy contact", "provenance": ["owner-provided facts 2026-09-23", "foculoom.com public privacy surface"]},
+    {"entity_type": "contact_point", "entity_id": "contact:billing", "email": "billing@foculoom.com", "purpose": "billing contact", "provenance": ["owner-provided facts 2026-09-23"]}
+  ],
+  "address_policies": [
+    {"entity_type": "address_policy", "entity_id": "address-policy:public-contact", "category": "PUBLIC_CONTACT", "publication": "canonical contacts only", "provenance": ["issue 130"]},
+    {"entity_type": "address_policy", "entity_id": "address-policy:public-mailing", "category": "PUBLIC_MAILING_ADDRESS", "publication": "only after owner verification and publication approval", "provenance": ["issue 130"]},
+    {"entity_type": "address_policy", "entity_id": "address-policy:registered-agent", "category": "REGISTERED_AGENT", "publication": "agent name only; location remains in the official or secure record", "agent_name": "Northwest Registered Agent, Inc.", "provenance": ["owner-provided facts 2026-09-23"]},
+    {"entity_type": "address_policy", "entity_id": "address-policy:legal-entity", "category": "LEGAL_ENTITY_ADDRESS", "publication": "external official record only; do not copy into repository", "provenance": ["issue 130"]},
+    {"entity_type": "address_policy", "entity_id": "address-policy:private-domicile", "category": "PRIVATE_DOMICILE", "storage": "EXTERNAL_SECURE_RECORD", "public": false, "repository_allowed": false, "provenance": ["issue 130"]}
+  ],
+  "identities": [
+    {"entity_type": "brand", "entity_id": "brand:foculoom", "name": "FOCULOOM", "identity_state": "ESTABLISHED", "lifecycle": "active", "trademark_state": "LEGAL_REVIEW_REQUIRED", "adoption_allowed": false, "owner_entity_id": "legal-entity:foculoom-llc", "provenance": ["owner-provided facts 2026-09-23"]},
+    {"entity_type": "brand", "entity_id": "brand:edoworks", "name": "EDOWORKS", "identity_state": "CLEARANCE_REQUIRED", "lifecycle": "active", "trademark_state": "CLEARANCE_REQUIRED", "adoption_allowed": false, "owner_entity_id": "legal-entity:foculoom-llc", "provenance": [".factory/portfolio.yaml"]},
+    {"entity_type": "product", "entity_id": "product:skiplet", "name": "Skiplet", "identity_state": "ADOPTED", "lifecycle": "dormant", "trademark_state": "FILED", "adoption_allowed": true, "owner_entity_id": "legal-entity:foculoom-llc", "canonical_domain": "getskiplet.com", "alternate_domains": ["playskiplet.com"], "public_claims_allowed": ["trademark application filed", "owned by Foculoom LLC"], "portfolio_ref": {"section": "historical_products", "id": "skiplet"}, "provenance": [".factory/portfolio.yaml", "USPTO serial 99731845"]},
+    {"entity_type": "product", "entity_id": "product:veilsort", "name": "Veilsort", "identity_state": "ADOPTED", "lifecycle": "dormant", "trademark_state": "LEGAL_REVIEW_REQUIRED", "adoption_allowed": false, "owner_entity_id": "legal-entity:foculoom-llc", "canonical_domain": "veilsort.com", "alternate_domains": [], "public_claims_allowed": ["owned by Foculoom LLC"], "portfolio_ref": {"section": "historical_products", "id": "veilsort"}, "provenance": [".factory/portfolio.yaml", "USPTO serial 99769769"]},
+    {"entity_type": "product", "entity_id": "product:nownest", "name": "NowNest", "identity_state": "PROVISIONAL", "lifecycle": "validating", "trademark_state": "PROVISIONAL", "adoption_allowed": false, "owner_entity_id": "legal-entity:foculoom-llc", "canonical_domain": null, "alternate_domains": [], "public_claims_allowed": ["provisional product name", "owned by Foculoom LLC"], "portfolio_ref": {"section": "surfaces", "id": "edoworks/nownest"}, "provenance": [".factory/portfolio.yaml"]},
+    {"entity_type": "product", "entity_id": "product:vorynce", "name": "Vorynce", "identity_state": "CLEARANCE_REQUIRED", "lifecycle": "dormant", "trademark_state": "CLEARANCE_REQUIRED", "adoption_allowed": false, "owner_entity_id": "legal-entity:foculoom-llc", "portfolio_ref": {"section": "apple_products", "id": "vorynce"}, "provenance": [".factory/portfolio.yaml"]},
+    {"entity_type": "product", "entity_id": "product:docketloom", "name": "Docketloom", "identity_state": "HISTORICAL", "lifecycle": "dormant", "trademark_state": "CLEARANCE_REQUIRED", "adoption_allowed": false, "owner_entity_id": "legal-entity:foculoom-llc", "portfolio_ref": {"section": "historical_products", "id": "docketloom"}, "provenance": [".factory/portfolio.yaml"]},
+    {"entity_type": "product", "entity_id": "product:rung", "name": "Rung", "identity_state": "CLEARANCE_REQUIRED", "lifecycle": "active", "trademark_state": "CLEARANCE_REQUIRED", "rename_review": true, "adoption_allowed": false, "owner_entity_id": "legal-entity:foculoom-llc", "portfolio_ref": {"section": "surfaces", "id": "edoworks/rung"}, "provenance": [".factory/portfolio.yaml"]}
+  ],
+  "trademarks": [
+    {"entity_type": "trademark_application", "entity_id": "trademark:99673253", "mark": "FOCULOOM", "serial_number": "99673253", "owner_name": "Movotosa Ojiru", "state": "LEGAL_REVIEW_REQUIRED", "application_status": "LIVE/PENDING", "international_class": "009", "goods": "Downloadable mobile operating system software", "registration_claimed": false, "provenance": ["owner-provided facts 2026-09-23", "USPTO application record"]},
+    {"entity_type": "trademark_application", "entity_id": "trademark:99731845", "mark": "SKIPLET", "serial_number": "99731845", "owner_name": "Foculoom LLC", "state": "FILED", "application_status": "LIVE/PENDING", "international_class": "009", "goods": "Downloadable game software; video game programs; computer game programs", "registration_claimed": false, "provenance": ["owner-provided facts 2026-09-23", "USPTO application record"]},
+    {"entity_type": "trademark_application", "entity_id": "trademark:99769769", "mark": "VEILSORT", "serial_number": "99769769", "owner_name": "Foculoom LLC", "state": "LEGAL_REVIEW_REQUIRED", "application_status": "LIVE/PENDING", "international_class": "009", "goods": "Downloadable desktop publishing software", "registration_claimed": false, "provenance": ["owner-provided facts 2026-09-23", "USPTO application record"]}
+  ],
+  "domains": [
+    {"entity_type": "website_domain", "entity_id": "domain:edoworks.com", "domain": "edoworks.com", "classification": "CORE", "adoption_allowed": true, "provenance": ["owner-provided facts 2026-09-23"]},
+    {"entity_type": "website_domain", "entity_id": "domain:foculoom.com", "domain": "foculoom.com", "classification": "CORE", "adoption_allowed": true, "provenance": ["owner-provided facts 2026-09-23"]},
+    {"entity_type": "website_domain", "entity_id": "domain:foculoom.net", "domain": "foculoom.net", "classification": "DEFENSIVE", "adoption_allowed": false, "provenance": ["owner-provided facts 2026-09-23"]},
+    {"entity_type": "website_domain", "entity_id": "domain:foculoom.org", "domain": "foculoom.org", "classification": "DEFENSIVE", "adoption_allowed": false, "provenance": ["owner-provided facts 2026-09-23"]},
+    {"entity_type": "website_domain", "entity_id": "domain:playskiplet.com", "domain": "playskiplet.com", "classification": "DEFENSIVE", "adoption_allowed": false, "provenance": ["owner-provided facts 2026-09-23"]},
+    {"entity_type": "website_domain", "entity_id": "domain:getskiplet.com", "domain": "getskiplet.com", "classification": "PRODUCT", "adoption_allowed": true, "provenance": ["owner-provided facts 2026-09-23"]},
+    {"entity_type": "website_domain", "entity_id": "domain:veilsort.com", "domain": "veilsort.com", "classification": "PRODUCT", "adoption_allowed": false, "provenance": ["owner-provided facts 2026-09-23"]},
+    {"entity_type": "website_domain", "entity_id": "domain:docketloom.com", "domain": "docketloom.com", "classification": "PRODUCT", "adoption_allowed": false, "provenance": ["owner-provided facts 2026-09-23"]},
+    {"entity_type": "website_domain", "entity_id": "domain:vorynce.com", "domain": "vorynce.com", "classification": "PRODUCT", "adoption_allowed": false, "provenance": ["owner-provided facts 2026-09-23"]},
+    {"entity_type": "website_domain", "entity_id": "domain:kanyee.com", "domain": "kanyee.com", "classification": "DO_NOT_USE_AS_BRAND", "adoption_allowed": false, "provenance": ["owner-provided facts 2026-09-23", "portfolio archaeology inventory"]},
+    {"entity_type": "website_domain", "entity_id": "domain:taylerr.com", "domain": "taylerr.com", "classification": "DO_NOT_USE_AS_BRAND", "adoption_allowed": false, "provenance": ["owner-provided facts 2026-09-23", "portfolio archaeology inventory"]},
+    {"entity_type": "website_domain", "entity_id": "domain:weekndd.com", "domain": "weekndd.com", "classification": "DO_NOT_USE_AS_BRAND", "adoption_allowed": false, "provenance": ["owner-provided facts 2026-09-23", "portfolio archaeology inventory"]},
+    {"entity_type": "website_domain", "entity_id": "domain:zendayaa.com", "domain": "zendayaa.com", "classification": "DO_NOT_USE_AS_BRAND", "adoption_allowed": false, "provenance": ["owner-provided facts 2026-09-23", "portfolio archaeology inventory"]},
+    {"entity_type": "website_domain", "entity_id": "domain:rihanno.com", "domain": "rihanno.com", "classification": "DO_NOT_USE_AS_BRAND", "adoption_allowed": false, "provenance": ["owner-provided facts 2026-09-23", "portfolio archaeology inventory"]},
+    {"entity_type": "website_domain", "entity_id": "domain:dojaaa.com", "domain": "dojaaa.com", "classification": "DO_NOT_USE_AS_BRAND", "adoption_allowed": false, "provenance": ["owner-provided facts 2026-09-23", "portfolio archaeology inventory"]},
+    {"entity_type": "website_domain", "entity_id": "domain:blooplo.com", "domain": "blooplo.com", "classification": "REVIEW", "adoption_allowed": false, "provenance": ["owner-provided facts 2026-09-23"]},
+    {"entity_type": "website_domain", "entity_id": "domain:legalexception.com", "domain": "legalexception.com", "classification": "RETIRE_CANDIDATE", "adoption_allowed": false, "provenance": ["owner-provided facts 2026-09-23", ".factory/portfolio.yaml"]},
+    {"entity_type": "website_domain", "entity_id": "domain:lawgaps.com", "domain": "lawgaps.com", "classification": "RETIRE_CANDIDATE", "adoption_allowed": false, "provenance": ["owner-provided facts 2026-09-23", ".factory/portfolio.yaml"]},
+    {"entity_type": "website_domain", "entity_id": "domain:findmyloophole.com", "domain": "findmyloophole.com", "classification": "RETIRE_CANDIDATE", "adoption_allowed": false, "provenance": ["owner-provided facts 2026-09-23", ".factory/portfolio.yaml"]},
+    {"entity_type": "website_domain", "entity_id": "domain:edglex.com", "domain": "edglex.com", "classification": "RETIRE_CANDIDATE", "adoption_allowed": false, "provenance": ["owner-provided facts 2026-09-23", ".factory/portfolio.yaml"]},
+    {"entity_type": "website_domain", "entity_id": "domain:noraze.com", "domain": "noraze.com", "classification": "RETIRE_CANDIDATE", "adoption_allowed": false, "provenance": ["owner-provided facts 2026-09-23", ".factory/portfolio.yaml"]},
+    {"entity_type": "website_domain", "entity_id": "domain:diffrek.com", "domain": "diffrek.com", "classification": "CANDIDATE", "adoption_allowed": false, "provenance": ["owner-provided facts 2026-09-23", "portfolio archaeology inventory"]},
+    {"entity_type": "website_domain", "entity_id": "domain:drawtobloom.com", "domain": "drawtobloom.com", "classification": "EXPERIMENT", "adoption_allowed": false, "provenance": ["owner-provided facts 2026-09-23", "portfolio archaeology inventory"]},
+    {"entity_type": "website_domain", "entity_id": "domain:emtosa.com", "domain": "emtosa.com", "classification": "CANDIDATE", "adoption_allowed": false, "provenance": ["owner-provided facts 2026-09-23", "portfolio archaeology inventory"]},
+    {"entity_type": "website_domain", "entity_id": "domain:jumpyloo.com", "domain": "jumpyloo.com", "classification": "PRODUCT", "adoption_allowed": false, "provenance": ["owner-provided facts 2026-09-23", ".factory/portfolio.yaml"]},
+    {"entity_type": "website_domain", "entity_id": "domain:reliatra.com", "domain": "reliatra.com", "classification": "CANDIDATE", "adoption_allowed": false, "provenance": ["owner-provided facts 2026-09-23", "portfolio archaeology inventory"]},
+    {"entity_type": "website_domain", "entity_id": "domain:skiplet.com", "domain": "skiplet.com", "classification": "CANDIDATE", "adoption_allowed": false, "provenance": ["owner-provided facts 2026-09-23", "portfolio archaeology inventory"]}
+  ]
+}

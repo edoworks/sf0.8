@@ -55,6 +55,15 @@ and are explicitly out of scope.
 Every failure must have a machine-readable classification and a documented
 recovery path. If the factory cannot recover, it must fail safely and report.
 
+### Identity Governance Law
+
+The canonical identity registry governs legal identity, brands, product names,
+trademark posture, domains, contacts, and address handling while the portfolio
+remains lifecycle authority. Unresolved clearance blocks adoption. Domain
+ownership, prior use, filing, development, publication, or other sunk cost does
+not establish clearance or authorize additional trademark or domain spend.
+Private domicile values are prohibited from repository records.
+
 ## Paved Road
 
 The factory's public API is one opinionated journey:
@@ -75,6 +84,7 @@ release evidence → human-authorized Apple submission
 ### What the Factory Includes
 
 - Apple distribution capability registry and validator
+- Canonical identity registry and portfolio-consistency validator
 - Privacy manifest template (`PrivacyInfo.xcprivacy`)
 - Release-criteria schema and evidence generator
 - Recovery knowledge boundary and failure classifier
@@ -180,6 +190,7 @@ Stop or re-scope if:
 | App Store submission | Human only |
 | Repository visibility change | Human only |
 | License or trademark decision | Human only |
+| Trademark or domain spend/transaction | Human only |
 | Customer engagement | Human only |
 
 ## Evidence Contracts And Cutover Guards
