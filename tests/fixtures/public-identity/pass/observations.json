@@ -1,0 +1,16 @@
+{
+  "surfaces": [
+    {
+      "path": "public.md",
+      "line": 1,
+      "identity": "product:skiplet",
+      "owner": "Foculoom LLC",
+      "seller": "Foculoom LLC",
+      "trademark_state": "FILED",
+      "contact_email": "support@foculoom.com"
+    }
+  ],
+  "comparisons": [
+    {"path": "public.md", "line": 1, "identity": "product:skiplet", "field": "lifecycle", "expected": "dormant", "observed": "dormant"}
+  ]
+}

@@ -1,4 +1,5 @@
 import importlib.util
+import copy
 import json
 import unittest
 from pathlib import Path
@@ -14,6 +15,7 @@ class AppleDistributionTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.registry = MODULE.load(ROOT / ".factory/apple-distribution/capabilities.json")
+        cls.identity_registry = MODULE.load(ROOT / ".factory/identity-registry.json")
 
     def test_registry_is_complete(self):
         self.assertEqual([], MODULE.validate_registry(self.registry))
@@ -92,6 +94,15 @@ class AppleDistributionTests(unittest.TestCase):
         self.assertNotIn("PRIVACY_CONTRADICTION", codes)
         self.assertIn("PURCHASE_CONFIGURATION_MISSING", codes)
 
+    def test_public_identity_warning_blocks_app_review(self):
+        product = MODULE.load(ROOT / ".factory/apple-distribution/products/vorynce.json")
+        report = MODULE.preflight(product, self.registry, MODULE.load(ROOT / ".factory/identity-registry.json"), {
+            "status": "WARN",
+            "findings": [{"code": "NONCANONICAL_PUBLIC_EMAIL", "classification": "WARNING"}],
+        })
+        self.assertIn("PUBLIC_IDENTITY_REPORT_NOT_PASSING", {item["code"] for item in report["findings"]})
+        self.assertFalse(report["states"]["app_review_ready"])
+
     def test_missing_review_information_is_detected(self):
         product = {"id": "fixture", "platform": "iOS", "app_type": "app", "factory_support_state": "SUPPORTED_UNVERIFIED", "default_blocking_issue": 35, "metadata": {}, "privacy": {"collected_data": [], "declared_data": []}, "age_rating": {"complete": True}, "screenshots": {"valid": True}, "review_information": {"complete": False}, "purchases": {"applicable": False}, "export_compliance": {"decided": True}, "evidence": {"archive": "archive.xcarchive", "customer_zero": True, "accessibility": True}}
         report = MODULE.preflight(product, self.registry)
@@ -155,6 +166,86 @@ class AppleDistributionTests(unittest.TestCase):
         self.assertTrue(fixture["historical_evidence_only"])
         self.assertIn("ORIENTATION_MATRIX_MISSING", codes)
         self.assertIn("PURCHASE_DISCLOSURE_EVIDENCE_MISSING", codes)
+
+    def test_nownest_is_truthful_non_submitting_and_identity_blocked(self):
+        product = MODULE.load(ROOT / ".factory/apple-distribution/products/nownest.json")
+        report = MODULE.preflight(product, self.registry, self.identity_registry)
+        self.assertEqual("com.foculoom.nownest", product["build"]["bundle_id"])
+        self.assertEqual("iOS/iPadOS", product["platform"])
+        self.assertEqual("uploaded_processing", product["release_state"])
+        self.assertFalse(product["submission"]["performed"])
+        self.assertFalse(product["submission"]["apple_accepted"])
+        self.assertIn("IDENTITY_CLEARANCE_UNRESOLVED", {item["code"] for item in report["findings"]})
+        self.assertFalse(report["states"]["app_review_ready"])
+        self.assertFalse(MODULE.can_submit(report, explicit_human_authorization=True))
+        serialized = json.dumps(product)
+        self.assertNotIn("/Users/", serialized)
+        self.assertNotIn("api_key", serialized.casefold())
+
+    def test_vorynce_binds_registry_and_approved_owner_seller(self):
+        product = MODULE.load(ROOT / ".factory/apple-distribution/products/vorynce.json")
+        self.assertEqual("product:vorynce", product["identity"]["registry_ref"])
+        self.assertIn(product["legal"]["owner_name"], product["legal"]["approved_owner_names"])
+        self.assertIn(product["legal"]["seller_name"], product["legal"]["approved_seller_names"])
+
+    def nownest_fixture(self):
+        return MODULE.load(ROOT / ".factory/apple-distribution/products/nownest.json")
+
+    def governance_codes(self, product, registry=None, public_report=None):
+        return {
+            item["code"] for item in MODULE.review_identity_governance(
+                product, registry or self.identity_registry, public_report
+            )
+        }
+
+    def test_internal_identity_public_request_is_blocked(self):
+        registry = copy.deepcopy(self.identity_registry)
+        next(item for item in registry["identities"] if item["entity_id"] == "product:nownest")["trademark_state"] = "INTERNAL"
+        self.assertIn("INTERNAL_IDENTITY_PUBLIC_REQUEST", self.governance_codes(self.nownest_fixture(), registry))
+
+    def test_registered_symbol_and_registration_claim_are_blocked(self):
+        product = self.nownest_fixture()
+        product["public_surface"]["registered_symbol"] = True
+        product["public_surface"]["application_described_as_registration"] = True
+        codes = self.governance_codes(product)
+        self.assertTrue({"UNAUTHORIZED_REGISTERED_SYMBOL", "APPLICATION_DESCRIBED_AS_REGISTERED"} <= codes)
+
+    def test_private_address_report_is_blocked(self):
+        report = {"findings": [{"code": "PRIVATE_ADDRESS_PATTERN"}]}
+        self.assertIn("PRIVATE_ADDRESS_EXPOSURE", self.governance_codes(self.nownest_fixture(), public_report=report))
+
+    def test_legal_owner_and_seller_conflicts_are_blocked(self):
+        product = self.nownest_fixture()
+        product["legal"]["owner_name"] = "Other Corp"
+        product["legal"]["seller_name"] = "Different Corp"
+        codes = self.governance_codes(product)
+        self.assertTrue({"LEGAL_OWNER_CONFLICT", "APP_STORE_SELLER_CONFLICT"} <= codes)
+
+    def test_privacy_support_terms_contradiction_is_blocked(self):
+        product = self.nownest_fixture()
+        product["public_surface"]["privacy_support_terms_consistent"] = False
+        self.assertIn("PRIVACY_SUPPORT_TERMS_CONTRADICTION", self.governance_codes(product))
+
+    def test_structured_product_truth_contradictions_are_blocked(self):
+        product = self.nownest_fixture()
+        product["canonical_claims"]["pricing"] = "canonical-price"
+        product["observed_claims"]["pricing"] = "contradictory-price"
+        for field in product["observed_claims"]:
+            if field != "pricing":
+                product["observed_claims"][field] = "contradiction"
+        codes = self.governance_codes(product)
+        expected = {
+            "LIFECYCLE_CONTRADICTION", "PRICING_CONTRADICTION", "PLATFORM_CONTRADICTION",
+            "FEATURES_CONTRADICTION", "PRIVACY_CONTRADICTION", "FUNCTION_CONTRADICTION",
+            "TRADEMARK_STATE_CONTRADICTION",
+        }
+        self.assertTrue(expected <= codes)
+
+    def test_provisional_identity_cannot_be_claimed_established(self):
+        product = self.nownest_fixture()
+        product["identity"]["authorized"] = True
+        product["identity"]["identity_state"] = "ESTABLISHED"
+        self.assertIn("PROVISIONAL_AS_ESTABLISHED", self.governance_codes(product))
 
 
 if __name__ == "__main__":

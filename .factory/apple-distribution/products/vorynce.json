@@ -8,12 +8,27 @@
   "software_production_ready": false,
   "default_blocking_issue": 44,
   "identity": {
+    "registry_ref": "product:vorynce",
+    "identity_state": "CLEARANCE_REQUIRED",
+    "trademark_state": "CLEARANCE_REQUIRED",
     "internal_codename": "Vorynce",
     "public_name": "Vorynce",
     "authorized": true,
     "product_purpose": "An on-device voice capture and organization app that turns spoken thoughts into trustworthy next actions or journal entries.",
     "customer_zero_alignment": true,
     "authorization_evidence": ["canonical product manifest name", "foculoom/vorynce repository identity"]
+  },
+  "legal": {
+    "owner_name": "Foculoom LLC",
+    "seller_name": "Foculoom LLC",
+    "approved_owner_names": ["Foculoom LLC"],
+    "approved_seller_names": ["Foculoom LLC"]
+  },
+  "public_surface": {
+    "registered_symbol": false,
+    "application_described_as_registration": false,
+    "private_or_stale_address_exposed": false,
+    "privacy_support_terms_consistent": false
   },
   "discoverability": {"reviewed": false},
   "metadata": {

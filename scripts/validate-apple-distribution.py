@@ -17,6 +17,7 @@ from evidence_strength import evidence_levels as normalized_evidence_levels
 
 
 REGISTRY = ROOT / ".factory/apple-distribution/capabilities.json"
+IDENTITY_REGISTRY = ROOT / ".factory/identity-registry.json"
 PRODUCTS = ROOT / ".factory/apple-distribution/products"
 REPORTS = ROOT / ".factory/artifacts/reports/apple-distribution"
 STATES = {"SUPPORTED_VERIFIED", "SUPPORTED_UNVERIFIED", "PARTIAL", "UNSUPPORTED", "NOT_APPLICABLE"}
@@ -183,7 +184,90 @@ def review_screenshots(product: dict[str, Any]) -> list[dict[str, Any]]:
     return []
 
 
-def preflight(product: dict[str, Any], registry: dict[str, Any]) -> dict[str, Any]:
+def review_identity_governance(
+    product: dict[str, Any],
+    identity_registry: dict[str, Any],
+    public_identity_report: dict[str, Any] | None = None,
+) -> list[dict[str, Any]]:
+    identity = product.get("identity", {})
+    reference = identity.get("registry_ref")
+    if not reference:
+        return []
+    canonical = next((item for item in identity_registry.get("identities", []) if item.get("entity_id") == reference), None)
+    issue = identity.get("blocking_issue") or product.get("default_blocking_issue")
+    if canonical is None:
+        return [finding("BLOCKER", "IDENTITY_REGISTRY_REFERENCE_UNKNOWN", "Identity registry reference is unknown", "Apple metadata must bind to a canonical identity record.", [f"registry_ref={reference}"], "The manifest references a canonical identity.", "Correct the registry reference.", issue, "SEMANTIC", "BLOCKER")]
+
+    findings: list[dict[str, Any]] = []
+    state = canonical.get("identity_state")
+    trademark_state = canonical.get("trademark_state")
+    public_surface = product.get("public_surface", {})
+    legal = product.get("legal", {})
+    if (state == "INTERNAL" or trademark_state == "INTERNAL") and (identity.get("public_name") or product.get("metadata")):
+        findings.append(finding("BLOCKER", "INTERNAL_IDENTITY_PUBLIC_REQUEST", "Internal identity requested for public distribution", "INTERNAL identities cannot be published.", [f"identity={reference}"], "A separately governed public identity is selected.", "Resolve identity governance before public distribution.", issue, "SEMANTIC", "BLOCKER"))
+    if state in {"PROVISIONAL", "CLEARANCE_REQUIRED"} or trademark_state in {"PROVISIONAL", "CLEARANCE_REQUIRED", "LEGAL_REVIEW_REQUIRED"}:
+        findings.append(finding("BLOCKER", "IDENTITY_CLEARANCE_UNRESOLVED", "Required identity clearance is unresolved", "Public Apple distribution requires resolved identity and trademark posture.", [f"identity_state={state}", f"trademark_state={trademark_state}"], "Required clearance is recorded in the canonical registry.", "Complete owner/legal review and update canonical evidence.", issue, "SEMANTIC", "BLOCKER"))
+    if state == "PROVISIONAL" and (identity.get("authorized") or identity.get("identity_state") == "ESTABLISHED"):
+        findings.append(finding("BLOCKER", "PROVISIONAL_AS_ESTABLISHED", "Provisional identity is represented as established", "Provisional identity cannot be treated as adopted or established.", [f"identity={reference}"], "Manifest and registry both retain provisional status until clearance.", "Correct the manifest or complete clearance.", issue, "SEMANTIC", "BLOCKER"))
+    if public_surface.get("registered_symbol") and trademark_state != "REGISTERED":
+        findings.append(finding("BLOCKER", "UNAUTHORIZED_REGISTERED_SYMBOL", "Registered symbol used without REGISTERED state", "The registered symbol requires verified registration.", [f"trademark_state={trademark_state}"], "The symbol is removed or verified registration is recorded.", "Scan and correct public metadata.", issue, "SEMANTIC", "BLOCKER"))
+    if public_surface.get("application_described_as_registration") and trademark_state != "REGISTERED":
+        findings.append(finding("BLOCKER", "APPLICATION_DESCRIBED_AS_REGISTERED", "Trademark application is described as a registration", "A pending application must not be represented as registered.", [f"trademark_state={trademark_state}"], "Application language is accurate.", "Correct public and store metadata.", issue, "SEMANTIC", "BLOCKER"))
+    if public_surface.get("private_or_stale_address_exposed"):
+        findings.append(finding("BLOCKER", "PRIVATE_ADDRESS_EXPOSURE", "Private or stale address exposure is reported", "Private domicile and stale address values cannot ship on public surfaces.", ["sanitized exposure report=true"], "All public surfaces use approved address classifications.", "Run the scanner after remediation.", issue, "SEMANTIC", "BLOCKER"))
+    if public_surface.get("privacy_support_terms_consistent") is False:
+        findings.append(finding("BLOCKER", "PRIVACY_SUPPORT_TERMS_CONTRADICTION", "Privacy, support, and terms surfaces are not reconciled", "Public legal/support surfaces must agree with store metadata and product behavior.", ["surface consistency=false"], "All canonical URLs and claims agree.", "Reconcile the public surfaces and metadata.", issue, "SEMANTIC", "BLOCKER"))
+
+    approved_owners = set(legal.get("approved_owner_names", []))
+    approved_sellers = set(legal.get("approved_seller_names", []))
+    registry_owner = identity_registry.get("legal_entity", {}).get("legal_name")
+    if legal.get("owner_name") and (legal.get("owner_name") != registry_owner or legal.get("owner_name") not in approved_owners):
+        findings.append(finding("BLOCKER", "LEGAL_OWNER_CONFLICT", "Legal owner conflicts with approved identity ownership", "The distribution owner must be explicitly approved.", ["owner mismatch in sanitized manifest"], "Owner matches an approved registry-bound value.", "Correct or authorize the owner record.", issue, "SEMANTIC", "BLOCKER"))
+    if legal.get("seller_name") and (legal.get("seller_name") != registry_owner or legal.get("seller_name") not in approved_sellers):
+        findings.append(finding("BLOCKER", "APP_STORE_SELLER_CONFLICT", "App Store seller conflicts with approved seller identity", "The seller identity must be explicitly approved.", ["seller mismatch in sanitized manifest"], "Seller matches an approved registry-bound value.", "Correct or authorize the seller record.", issue, "SEMANTIC", "BLOCKER"))
+
+    canonical_claims = product.get("canonical_claims", {})
+    observed_claims = product.get("observed_claims", {})
+    claim_codes = {
+        "lifecycle": "LIFECYCLE_CONTRADICTION", "pricing": "PRICING_CONTRADICTION",
+        "platform": "PLATFORM_CONTRADICTION", "features": "FEATURES_CONTRADICTION",
+        "privacy": "PRIVACY_CONTRADICTION", "function": "FUNCTION_CONTRADICTION",
+        "trademark_state": "TRADEMARK_STATE_CONTRADICTION",
+    }
+    for field, code in claim_codes.items():
+        if field in canonical_claims and canonical_claims.get(field) != observed_claims.get(field):
+            findings.append(finding("BLOCKER", code, f"Public {field} claim contradicts canonical product truth", "Public and Apple metadata must match canonical product truth.", [f"field={field}"], "Observed and canonical claims agree.", "Reconcile the structured surface observation.", issue, "SEMANTIC", "BLOCKER"))
+    if canonical_claims.get("lifecycle") and canonical_claims["lifecycle"] != canonical.get("lifecycle"):
+        findings.append(finding("BLOCKER", "LIFECYCLE_CONTRADICTION", "Manifest lifecycle contradicts the identity registry", "The portfolio lifecycle propagated through the identity registry is authoritative.", ["canonical lifecycle mismatch"], "Manifest lifecycle agrees with the registry and portfolio.", "Reconcile canonical lifecycle records.", issue, "SEMANTIC", "BLOCKER"))
+    if canonical_claims.get("trademark_state") and canonical_claims["trademark_state"] != trademark_state:
+        findings.append(finding("BLOCKER", "TRADEMARK_STATE_CONTRADICTION", "Manifest trademark state contradicts the identity registry", "Trademark posture must come from the canonical registry.", ["canonical trademark state mismatch"], "Manifest trademark state agrees with registry.", "Reconcile trademark claims.", issue, "SEMANTIC", "BLOCKER"))
+
+    report_codes = {item.get("code") for item in (public_identity_report or {}).get("findings", [])}
+    if public_identity_report and public_identity_report.get("status") != "PASS":
+        findings.append(finding("BLOCKER", "PUBLIC_IDENTITY_REPORT_NOT_PASSING", "Public identity report is not a clean pass", "Warnings and blockers both require disposition before public release.", [f"scanner status={public_identity_report.get('status', 'UNKNOWN')}"], "The release-mode public identity scan reports PASS.", "Resolve or audibly override eligible findings and rerun the release scan.", issue, "SEMANTIC", "BLOCKER"))
+    scanner_map = {
+        "PRIVATE_ADDRESS_PATTERN": "PRIVATE_ADDRESS_EXPOSURE",
+        "PUBLIC_STREET_ADDRESS_UNAPPROVED": "PRIVATE_ADDRESS_EXPOSURE",
+        "OWNER_CONFLICT": "LEGAL_OWNER_CONFLICT",
+        "SELLER_CONFLICT": "APP_STORE_SELLER_CONFLICT",
+        "UNAUTHORIZED_REGISTERED_SYMBOL": "UNAUTHORIZED_REGISTERED_SYMBOL",
+        "APPLICATION_DESCRIBED_AS_REGISTERED": "APPLICATION_DESCRIBED_AS_REGISTERED",
+        "PRIVACY_CONTRADICTION": "PRIVACY_SUPPORT_TERMS_CONTRADICTION",
+        "LIFECYCLE_CONTRADICTION": "LIFECYCLE_CONTRADICTION",
+        "PRICING_CONTRADICTION": "PRICING_CONTRADICTION",
+        "PLATFORM_CONTRADICTION": "PLATFORM_CONTRADICTION",
+        "FEATURES_CONTRADICTION": "FEATURES_CONTRADICTION",
+        "FUNCTION_CONTRADICTION": "FUNCTION_CONTRADICTION",
+        "TRADEMARK_STATE_CLAIM": "TRADEMARK_STATE_CONTRADICTION",
+    }
+    existing = {item["code"] for item in findings}
+    for scanner_code, apple_code in scanner_map.items():
+        if scanner_code in report_codes and apple_code not in existing:
+            findings.append(finding("BLOCKER", apple_code, "Sanitized public-identity report contains a release blocker", "Public surfaces must pass identity governance before Apple release.", [f"scanner finding={scanner_code}"], "The scanner report contains no blocking contradiction.", "Remediate the public surface and rerun the scanner.", issue, "SEMANTIC", "BLOCKER"))
+    return findings
+
+
+def preflight(product: dict[str, Any], registry: dict[str, Any], identity_registry: dict[str, Any] | None = None, public_identity_report: dict[str, Any] | None = None) -> dict[str, Any]:
     findings: list[dict[str, Any]] = []
     issue = product.get("default_blocking_issue")
     evidence = product.get("evidence", {})
@@ -197,6 +281,7 @@ def preflight(product: dict[str, Any], registry: dict[str, Any]) -> dict[str, An
     if missing_metadata:
         findings.append(finding("METADATA_DEFECT", "METADATA_INCOMPLETE", "Required store metadata is missing", "App Store Connect metadata must be complete and accurate.", [f"missing fields: {', '.join(missing_metadata)}"], "All applicable metadata fields are populated from product truth and reviewed.", "Validate the metadata draft against the App Store Connect field contract.", issue))
     findings.extend(review_identity(product))
+    findings.extend(review_identity_governance(product, identity_registry or load(IDENTITY_REGISTRY), public_identity_report))
     findings.extend(review_metadata(product))
     findings.extend(review_discoverability(product))
     if not evidence.get("customer_zero"):
@@ -345,6 +430,8 @@ def discovery(registry: dict[str, Any]) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--registry", type=Path, default=REGISTRY)
+    parser.add_argument("--identity-registry", type=Path, default=IDENTITY_REGISTRY)
+    parser.add_argument("--public-identity-report", type=Path)
     parser.add_argument("--validate", action="store_true")
     parser.add_argument("--list", action="store_true", dest="list_capabilities")
     parser.add_argument("--can", metavar="CAPABILITY")
@@ -359,6 +446,7 @@ def main() -> int:
         print(f"ERROR: {args.mode} is hard-denied; explicit human authority does not enable this factory path")
         return 3
     registry = load(args.registry)
+    identity_registry = load(args.identity_registry)
     errors = validate_registry(registry)
     if errors:
         for error in errors:
@@ -390,7 +478,12 @@ def main() -> int:
         if not product_path.is_file():
             print(f"ERROR: product manifest missing: {product_path}")
             return 1
-        report = preflight(load(product_path), registry)
+        report = preflight(
+            load(product_path),
+            registry,
+            identity_registry,
+            load(args.public_identity_report) if args.public_identity_report else None,
+        )
         print(json.dumps(report, indent=2, sort_keys=True))
         if args.write_report:
             REPORTS.mkdir(parents=True, exist_ok=True)

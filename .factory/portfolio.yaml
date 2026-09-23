@@ -190,6 +190,13 @@ inventory_notes:
 # Canonical Apple product inventory. Distribution tooling must enumerate this
 # section rather than maintaining a second product registry.
 apple_products:
+  - id: nownest
+    repository: edoworks/nownest
+    source_of_truth: https://github.com/edoworks/nownest.git
+    platform: iOS/iPadOS
+    lifecycle: validating
+    release_state: uploaded_processing
+    bundle_id: com.foculoom.nownest
   - id: product-a
     repository: edoworks/product-a
     source_of_truth: https://github.com/edoworks/product-a.git
