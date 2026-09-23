@@ -1,0 +1,248 @@
+{
+  "manifest_version": "1.0.0",
+  "created": "2026-09-22",
+  "owner": "hellofoculoom",
+  "purpose": "Predecessor obligation disposition manifest for edoworks/factory cutover gate #16. Every open issue across predecessor repositories must be classified with a successor link before predecessor freeze.",
+  "repositories": {
+    "edoworks/sf0.8": {
+      "status": " inventoried",
+      "open_issue_count": 23,
+      "issues": [
+        {
+          "number": 30,
+          "title": "Adaptive pet-made play prototype revival",
+          "classification": "superseded",
+          "successor": "edoworks/factory Reference App 2 (meow-capture) if revived; otherwise not planned",
+          "reason": "Predecessor prototype concept; superseded by the factory reference-app qualification path",
+          "review_date": "2026-09-22"
+        },
+        {
+          "number": 32,
+          "title": "Factory: Apple-first product experience quality",
+          "classification": "migrated",
+          "successor": "edoworks/factory#10 (Reference App 1 Apple submission) and edoworks/factory apple-quality validator",
+          "reason": "Apple quality validation migrated to factory apple-quality.py and factory issue #10",
+          "review_date": "2026-09-22"
+        },
+        {
+          "number": 33,
+          "title": "Factory: Apple distribution readiness and App Store submission preparation",
+          "classification": "migrated",
+          "successor": "edoworks/factory#10 and edoworks/factory distribution capability registry",
+          "reason": "Distribution readiness migrated to factory paved road and issue #10",
+          "review_date": "2026-09-22"
+        },
+        {
+          "number": 34,
+          "title": "Apple distribution capability registry and discovery",
+          "classification": "migrated",
+          "successor": "edoworks/factory capability registry and validator",
+          "reason": "Capability registry ported to factory",
+          "review_date": "2026-09-22"
+        },
+        {
+          "number": 35,
+          "title": "Apple App Review preflight and issue linkage",
+          "classification": "migrated",
+          "successor": "edoworks/factory#10 Apple acceptance gate",
+          "reason": "App Review preflight subsumed by factory release ladder G10/G11",
+          "review_date": "2026-09-22"
+        },
+        {
+          "number": 40,
+          "title": "Product A distribution preflight",
+          "classification": "superseded",
+          "successor": "edoworks/factory#10 (NowNest as Reference App 1)",
+          "reason": "Product A distribution path superseded by factory reference-app qualification",
+          "review_date": "2026-09-22"
+        },
+        {
+          "number": 41,
+          "title": "App Store Connect authorization and configuration",
+          "classification": "retained-evidence",
+          "successor": "edoworks/factory human authority boundary for Apple credentials",
+          "reason": "ASC authorization is owner-controlled; retained as evidence of the human-gate boundary",
+          "review_date": "2026-09-22"
+        },
+        {
+          "number": 42,
+          "title": "Product A TestFlight readiness",
+          "classification": "superseded",
+          "successor": "edoworks/nownest (NowNest G8 TestFlight passed 2026-09-21)",
+          "reason": "Product A TestFlight superseded by NowNest G8 evidence",
+          "review_date": "2026-09-22"
+        },
+        {
+          "number": 44,
+          "title": "Second product readiness blockers",
+          "classification": "superseded",
+          "successor": "edoworks/factory#12 (Reference App 2 identity) and edoworks/factory#13 (build)",
+          "reason": "Second product blockers superseded by factory Reference App 2 issues",
+          "review_date": "2026-09-22"
+        },
+        {
+          "number": 45,
+          "title": "Historical knowledge extraction",
+          "classification": "retained-evidence",
+          "successor": "none",
+          "reason": "Historical knowledge extraction is out of scope for the factory paved road; retained as evidence",
+          "review_date": "2026-09-22"
+        },
+        {
+          "number": 47,
+          "title": "Historical Apple review",
+          "classification": "retained-evidence",
+          "successor": "edoworks/factory apple-distribution workflow",
+          "reason": "Historical Apple review evidence retained; factory distribution workflow is the successor",
+          "review_date": "2026-09-22"
+        },
+        {
+          "number": 50,
+          "title": "Map: AI-era individualized learning opportunity discovery",
+          "classification": "retained-evidence",
+          "successor": "none",
+          "reason": "Research map; out of scope for factory paved road; retained as evidence",
+          "review_date": "2026-09-22"
+        },
+        {
+          "number": 51,
+          "title": "Prevent false factory idleness with bounded work harvesting",
+          "classification": "retained-evidence",
+          "successor": "edoworks/factory idle-work sources (if revived)",
+          "reason": "Bounded work harvesting is a control-plane feature excluded from factory v1; retained as evidence",
+          "review_date": "2026-09-22"
+        },
+        {
+          "number": 57,
+          "title": "Repair and qualify local standard model routing",
+          "classification": "retained-evidence",
+          "successor": "none",
+          "reason": "Model routing is out of scope for the factory paved road; retained as evidence",
+          "review_date": "2026-09-22"
+        },
+        {
+          "number": 60,
+          "title": "Enforce foculoom-suffixed GitHub identities for edoworks changes",
+          "classification": "migrated",
+          "successor": "edoworks/factory CHARTER.md authority boundaries and sf0.8 governance",
+          "reason": "Identity enforcement migrated to factory charter and existing governance policy",
+          "review_date": "2026-09-22"
+        },
+        {
+          "number": 62,
+          "title": "Reconcile open factory item tracking and lifecycle states",
+          "classification": "migrated",
+          "successor": "edoworks/factory issue queue and open-issue-queue-audit-2026-09-22.md",
+          "reason": "Lifecycle reconciliation migrated to factory issue tracking and audit",
+          "review_date": "2026-09-22"
+        },
+        {
+          "number": 63,
+          "title": "Create durable checkpoint for current factory increment",
+          "classification": "completed",
+          "successor": "edoworks/factory v0.1.0-rc2",
+          "reason": "Checkpoint superseded by factory release rc2; work is complete",
+          "review_date": "2026-09-22"
+        },
+        {
+          "number": 73,
+          "title": "Add host-side audio validation E2E",
+          "classification": "superseded",
+          "successor": "edoworks/factory#13 (Reference App 2 build with audio validation)",
+          "reason": "Audio validation E2E superseded by factory Reference App 2 path",
+          "review_date": "2026-09-22"
+        },
+        {
+          "number": 75,
+          "title": "Integrate portable audio core with Mac replay",
+          "classification": "superseded",
+          "successor": "edoworks/factory#13 (Reference App 2 audio capability)",
+          "reason": "Audio core integration superseded by factory v0.3.0 meow-capture capability",
+          "review_date": "2026-09-22"
+        },
+        {
+          "number": 76,
+          "title": "Add bounded visible Mac live-listening probe",
+          "classification": "retained-evidence",
+          "successor": "none",
+          "reason": "Mac live-listening probe is out of scope for iOS factory paved road; retained as evidence",
+          "review_date": "2026-09-22"
+        },
+        {
+          "number": 77,
+          "title": "Build iOS and iPadOS meow-capture vertical slice",
+          "classification": "superseded",
+          "successor": "edoworks/factory#13 (Reference App 2 build)",
+          "reason": "Meow-capture vertical slice superseded by factory Reference App 2 qualification path",
+          "review_date": "2026-09-22"
+        },
+        {
+          "number": 78,
+          "title": "Automate physical iPhone and iPad audio validation",
+          "classification": "superseded",
+          "successor": "edoworks/factory#12 (physical-device validation for Reference App 2)",
+          "reason": "Physical audio validation superseded by factory Reference App 2 device validation gate",
+          "review_date": "2026-09-22"
+        },
+        {
+          "number": 79,
+          "title": "Complete real-cat and family-visible acceptance",
+          "classification": "superseded",
+          "successor": "edoworks/factory#14 (Reference App 2 Apple acceptance)",
+          "reason": "Real-cat acceptance superseded by factory Reference App 2 acceptance gate",
+          "review_date": "2026-09-22"
+        }
+      ]
+    },
+    "edoworks/product-a": {
+      "status": "blocked",
+      "reason": "Permission policy does not allow issue queries for edoworks/product-a. Requires allowlist update or out-of-session query before manifest can be completed.",
+      "open_issue_count": "unknown"
+    },
+    "edoworks/sf0.7": {
+      "status": "blocked",
+      "reason": "Permission policy does not allow issue queries for edoworks/sf0.7. Requires allowlist update or out-of-session query.",
+      "open_issue_count": "unknown"
+    },
+    "edoworks/sf0.5": {
+      "status": "blocked",
+      "reason": "Permission policy does not allow issue queries for edoworks/sf0.5. Requires allowlist update or out-of-session query.",
+      "open_issue_count": "unknown"
+    },
+    "edoworks/factory": {
+      "status": " inventoried",
+      "open_issue_count": 17,
+      "note": "Factory issues are the successor tracker, not predecessor obligations. They are listed here for completeness; disposition is tracked by the factory issue queue itself.",
+      "issues": [
+        {"number": 10, "classification": "active", "title": "Reference App 1: Apple submission and acceptance"},
+        {"number": 11, "classification": "active", "title": "30-day factory qualification"},
+        {"number": 12, "classification": "owner-gated", "title": "Authorize meow-capture public identity and physical-device validation"},
+        {"number": 13, "classification": "future", "title": "Build Reference App 2 (meow-capture) using factory v0.2.0"},
+        {"number": 14, "classification": "owner-gated", "title": "Reference App 2: Apple submission and acceptance"},
+        {"number": 15, "classification": "owner-gated", "title": "Freeze sf0.8 and publish successor notices"},
+        {"number": 16, "classification": "active", "title": "Disposition all open sf0.8 issues with successor links"},
+        {"number": 17, "classification": "owner-gated", "title": "Archive predecessor repositories after recovery proof"},
+        {"number": 18, "classification": "owner-gated", "title": "Productization gate: assess paid pilot readiness"},
+        {"number": 28, "classification": "active", "title": "NowNest calm expressive UX redesign map"},
+        {"number": 29, "classification": "completion-candidate", "title": "Build NowNest prototype visual system"},
+        {"number": 30, "classification": "completion-candidate", "title": "Apply expressive and Sophie capture treatments"},
+        {"number": 32, "classification": "owner-gated", "title": "Run human comparison and select NowNest treatment"},
+        {"number": 33, "classification": "completion-candidate", "title": "Complete NowNest review and accessibility qualification without archive"},
+        {"number": 34, "classification": "completion-candidate", "title": "Chunk B1: Home + Capture treatments (expressive + sophie)"},
+        {"number": 35, "classification": "completion-candidate", "title": "Chunk B2: Quiet Mode + reduced-motion behavior"},
+        {"number": 36, "classification": "completion-candidate", "title": "Chunk B3: UI test extension + screenshot retention for all variants"}
+      ]
+    }
+  },
+  "summary": {
+    "total_inventoried": 23,
+    "migrated": 5,
+    "completed": 1,
+    "superseded": 9,
+    "retained-evidence": 6,
+    "rejected": 0,
+    "duplicate": 0,
+    "blocked_repos": ["edoworks/product-a", "edoworks/sf0.7", "edoworks/sf0.5"],
+    "completion_blocker": "Three predecessor repositories could not be queried due to permission policy restrictions. The manifest covers edoworks/sf0.8 (23 issues) and edoworks/factory (17 issues). An allowlist update is needed to complete the manifest for product-a, sf0.7, and sf0.5."
+  }
+}
