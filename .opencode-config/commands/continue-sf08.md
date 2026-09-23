@@ -17,7 +17,7 @@ sf0.8, but cutover is not ready.
   #44-#47 remain open. Cross-surface reconciliation is tracked by map #48.
 - Canonical status: `IN_PROGRESS`
 - Canonical active map issue: `#48`
-- Canonical active increment issue: `#50`
+- Canonical active increment issue: `#51`
 - Existing gate issues remain #10 (Apple acceptance), #11 (30-day
   qualification), #15 (predecessor freeze), and #28/#32 (UX map and owner-only
   treatment selection).
@@ -46,8 +46,8 @@ sf0.8, but cutover is not ready.
 
 ## Next Work
 
-1. Complete factory issue #50: repair repository inventory and predecessor obligations.
-2. Then issue #51: correct active website state claims.
+1. Integrate the prepared Edoworks and Foculoom website branches for issue #51 once PR creation is permitted.
+2. Verify the deployed URLs, then close issue #51.
 3. Then issue #52: reconcile repository metadata and release claims.
 4. Then issue #53: run the final cross-surface rubberduck and closeout.
 5. Independently resume issue #44: repair Quiet Mode and complete the 36-cell
