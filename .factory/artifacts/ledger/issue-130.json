@@ -1,0 +1,49 @@
+{
+  "issue": 130,
+  "capability": "canonical identity, trademark, domain, and address governance",
+  "change_units": 16,
+  "changed_paths": [
+    "scripts/identity_model.py",
+    "scripts/validate-identity-registry.py"
+  ],
+  "reuse": {
+    "searched": 2,
+    "compatible": 1,
+    "reason": "Extend the repository's canonical identity model and validator rather than adding a parallel policy store.",
+    "discovery": {
+      "capability": "structured identity-governance validation",
+      "decision": "EXTEND_EXISTING",
+      "matches": ["sf08-identity-model", "json-schema-2020-12"],
+      "specialization_reason": "The existing identity model lacked trademark, domain, owner, and address-privacy invariants required by this registry."
+    },
+    "candidates": [
+      {
+        "id": "sf08-identity-model",
+        "source": "scripts/identity_model.py",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "identity-policy-model",
+        "revision": "892a7979314cd2736f75f6484bb70944b6191b38",
+        "license": "internal",
+        "security": "local deterministic validation",
+        "disposition": "ADAPT",
+        "reason": "Extend the existing canonical model with the missing governance states and invariants."
+      },
+      {
+        "id": "json-schema-2020-12",
+        "source": "https://json-schema.org/draft/2020-12/json-schema-core",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "schema-standard",
+        "revision": "retrieved-2026-09-23",
+        "license": "JSON Schema specification terms",
+        "security": "documentation only; not executed",
+        "disposition": "LEARN_FROM",
+        "reason": "Use standard schema constraints while retaining repository-specific semantic validation."
+      }
+    ]
+  },
+  "contribution": {"classification": "internal-reusable"},
+  "shareability": {
+    "disposition": "INTERNAL_SHARED",
+    "evidence": "The registry model and deterministic validator are reusable across the repository, while canonical legal facts remain repository-specific."
+  }
+}

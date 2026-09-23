@@ -1,0 +1,46 @@
+{
+  "issue": 132,
+  "capability": "redacted identity governance audit and human action register",
+  "change_units": 8,
+  "changed_paths": ["scripts/identity_governance_report.py"],
+  "reuse": {
+    "searched": 2,
+    "compatible": 1,
+    "reason": "Adapt repository evidence-report conventions and privacy guidance rather than introducing an external reporting dependency.",
+    "discovery": {
+      "capability": "redacted governance report generation",
+      "decision": "SPECIALIZE",
+      "matches": ["sf08-evidence-artifacts", "nist-privacy-framework"],
+      "specialization_reason": "Identity audit output requires canonical matrix rendering without emitting private address values or unsupported legal conclusions."
+    },
+    "candidates": [
+      {
+        "id": "sf08-evidence-artifacts",
+        "source": ".factory/artifacts/evidence/",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "evidence-report-convention",
+        "revision": "892a7979314cd2736f75f6484bb70944b6191b38",
+        "license": "internal",
+        "security": "local checked-in evidence patterns",
+        "disposition": "ADAPT",
+        "reason": "Reuse deterministic, reviewable evidence artifacts and redacted source references."
+      },
+      {
+        "id": "nist-privacy-framework",
+        "source": "https://www.nist.gov/privacy-framework",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "privacy-risk-guidance",
+        "revision": "retrieved-2026-09-23",
+        "license": "United States government work",
+        "security": "documentation only; not executed",
+        "disposition": "LEARN_FROM",
+        "reason": "Inform data-minimizing audit output without importing an external implementation."
+      }
+    ]
+  },
+  "contribution": {"classification": "internal-reusable"},
+  "shareability": {
+    "disposition": "KNOWLEDGE_ARTIFACT",
+    "evidence": "The reporting approach is reusable knowledge; the generated legal and portfolio findings remain repository-specific."
+  }
+}
