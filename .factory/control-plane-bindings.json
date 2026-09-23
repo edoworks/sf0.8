@@ -80,6 +80,11 @@
       "number": 105,
       "url": "https://github.com/edoworks/sf0.8/issues/105",
       "repo": "edoworks/sf0.8"
+    },
+    "evidence-integrity qualification and cutover consistency": {
+      "number": 47,
+      "url": "https://github.com/edoworks/factory/issues/47",
+      "repo": "edoworks/factory"
     }
   },
   "policy": "Material work without a factory binding is blocked; callers cannot select an arbitrary issue."

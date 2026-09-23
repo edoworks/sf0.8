@@ -13,7 +13,7 @@
   "daily_receipts": [
     {
       "date": "2026-09-22",
-      "weekday": "Monday",
+      "weekday": "Tuesday",
       "change_description": "G9 recovery fix: NowNest NowNestApp.swift createRecoverableModelContainer catches corrupted SwiftData store, deletes it, and retries with fresh store. Factory v0.1.0-rc3 published with strengthened release-contract test. Obligation disposition manifest completed. 6 factory issues closed.",
       "unattended_success": true,
       "manual_repair_required": false,

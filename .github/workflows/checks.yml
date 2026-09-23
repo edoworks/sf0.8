@@ -49,6 +49,8 @@ jobs:
         run: python3 scripts/validate-control-plane.py
       - name: Control-plane capability contract
         run: python3 scripts/validate-control-plane-contract.py .factory/control-plane-requirements.json
+      - name: Evidence-integrity consistency guard
+        run: python3 scripts/validate-evidence-integrity.py
       - name: Human action queue validation
         run: python3 scripts/validate-human-action-queue.py .factory/human-action-queue.json
       - name: Education evidence and hypothesis contract
