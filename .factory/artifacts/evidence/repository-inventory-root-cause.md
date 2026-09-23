@@ -22,3 +22,15 @@ The obligation manifest queried `edoworks/sf0.7` and `edoworks/sf0.5`, then inte
 - Recurrence guard: `scripts/validate-repository-inventory.py` rejects wrong owners, false private completeness, stale or future-dated snapshots, public count drift, portfolio disagreement, contradictory lifecycle fields, inaccurate obligation totals, and numeric counts for blocked predecessors. Its negative tests exercise each failure class.
 
 Private repository completeness remains blocked by authenticated organization-wide enumeration policy. No claim is made beyond known local repositories.
+
+## Failed verification analysis
+
+PR #121 initially failed the changed-path ecosystem gate.
+
+1. The gate failed because three changed policy paths were not claimed by an increment ledger.
+2. They were unclaimed because factory issue #50 had no sf0.8 control-plane capability binding or ledger.
+3. The binding was absent because creating the cross-repository tracker did not automatically update this repository's local control plane.
+4. The omission reached CI because local verification ran content validators but not the exact committed PR revision-range gate.
+5. Evidence stops there; no claim is made about why the established pre-push checklist did not include that command.
+
+Immediate correction: bind issue #50 and add its changed-path ledger. Root-cause correction: run `validate-ci-change.py` against the exact base and committed head before every retry. The existing CI guard detected the failure class and remains the recurrence control.
