@@ -17,7 +17,7 @@
     "48": {"repo": "edoworks/factory", "number": 48, "remote_state": "OPEN", "evidence_state": "INCOMPLETE", "effective_state": "OPEN"},
     "49": {"repo": "edoworks/factory", "number": 49, "remote_state": "CLOSED", "evidence_state": "VALID", "effective_state": "CLOSED"},
     "50": {"repo": "edoworks/factory", "number": 50, "remote_state": "CLOSED", "evidence_state": "VALID", "effective_state": "CLOSED"},
-    "51": {"repo": "edoworks/factory", "number": 51, "remote_state": "OPEN", "evidence_state": "INCOMPLETE", "effective_state": "OPEN"},
+    "51": {"repo": "edoworks/factory", "number": 51, "remote_state": "OPEN", "evidence_state": "VALID", "effective_state": "OPEN"},
     "52": {"repo": "edoworks/factory", "number": 52, "remote_state": "OPEN", "evidence_state": "INCOMPLETE", "effective_state": "OPEN"},
     "53": {"repo": "edoworks/factory", "number": 53, "remote_state": "OPEN", "evidence_state": "INCOMPLETE", "effective_state": "OPEN"}
   },
