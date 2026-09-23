@@ -1,0 +1,70 @@
+{
+  "gate": "G9",
+  "title": "NowNest recovery testing",
+  "date": "2026-09-22",
+  "operator": "hellofoculoom",
+  "app": "com.foculoom.nownest",
+  "revision": "5895c37 + recovery fix",
+  "simulator": "iPhone 17 Pro (5CD09DB8-79EB-4DAA-B52F-FC92DD4500BD)",
+  "tests": [
+    {
+      "test": "G9.1: Corrupted SwiftData store recovery (initial run)",
+      "procedure": [
+        "Built NowNest from main at 5895c37",
+        "Installed app on iPhone 17 Pro simulator",
+        "Launched app and verified normal operation",
+        "Terminated app",
+        "Backed up default.store to /tmp/nownest-g9-default-store-backup.store",
+        "Overwrote default.store with garbage data",
+        "Launched app with corrupted store"
+      ],
+      "result": "FAIL (initial)",
+      "finding": "App crashed with fatal error at NowNestApp.swift:48. CoreData NSCocoaErrorDomain Code=259, NSSQLiteErrorDomain=26 (SQLITE_NOTADB).",
+      "classification": "DEFECT — violated PRD Recovery Law",
+      "root_cause": "NowNestApp.swift:48 used fatalError for ModelContainer creation failure instead of a recovery path.",
+      "correction": "Added createRecoverableModelContainer(for:) that catches store load failure, removes the corrupted store files, and retries with a fresh store."
+    },
+    {
+      "test": "G9.2: Delete/reinstall recovery",
+      "procedure": [
+        "Uninstalled com.foculoom.nownest from simulator",
+        "Reinstalled NowNest.app from same build",
+        "Launched app"
+      ],
+      "result": "PASS",
+      "finding": "App launched successfully with a fresh SwiftData store. No errors. Clean state displayed correctly."
+      "screenshots": ["/tmp/nownest-g9-reinstall.png"]
+    },
+    {
+      "test": "G9.3: Corrupted SwiftData store recovery (after fix)",
+      "procedure": [
+        "Built NowNest with recovery fix (createRecoverableModelContainer)",
+        "Uninstalled old app, reinstalled fixed build",
+        "Launched app and verified normal operation",
+        "Terminated app",
+        "Overwrote default.store with garbage data ('CORRUPTED-DATA-G9-RECOVERY-TEST-RETRY')",
+        "Launched app with corrupted store"
+      ],
+      "result": "PASS",
+      "finding": "App detected corrupted store, deleted it, created a fresh store, and launched successfully. No crash, no fatal error. Logs show normal app lifecycle (scene creation, keyboard arbitration, background tasks). 32/32 unit tests pass.",
+      "screenshots": ["/tmp/nownest-g9-recovery-after-corruption.png"]
+    }
+  ],
+  "summary": {
+    "total_tests": 3,
+    "passed": 2,
+    "failed_initial": 1,
+    "defects_found": 1,
+    "defects_fixed": 1,
+    "gate_status": "PASS — defect found, fixed, and verified. All tests pass after fix.",
+    "unit_tests": "32/32 passed"
+  },
+  "evidence_files": [
+    "/tmp/nownest-g9-launch.png",
+    "/tmp/nownest-g9-corrupted-launch.png",
+    "/tmp/nownest-g9-reinstall.png",
+    "/tmp/nownest-g9-fresh-launch.png",
+    "/tmp/nownest-g9-recovery-after-corruption.png",
+    "/tmp/nownest-g9-default-store-backup.store"
+  ]
+}
