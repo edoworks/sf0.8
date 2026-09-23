@@ -34,6 +34,28 @@ class IdentityRegistryTests(unittest.TestCase):
         private["street_address"] = "must never be committed"
         self.assertTrue(any("metadata only" in error for error in self.validate(registry)))
 
+    def test_address_values_are_rejected_outside_private_domicile(self):
+        for target in ("legal_entity", "PUBLIC_MAILING_ADDRESS"):
+            with self.subTest(target=target):
+                registry = copy.deepcopy(self.registry)
+                record = registry["legal_entity"] if target == "legal_entity" else next(item for item in registry["address_policies"] if item["category"] == target)
+                record["street_address"] = "must never be committed"
+                self.assertTrue(any("repository address values are prohibited" in error for error in self.validate(registry)))
+
+    def test_nested_and_variant_address_keys_are_rejected(self):
+        for key in ("mailing_address", "residential_address", "address_line_1", "locality", "province"):
+            with self.subTest(key=key):
+                registry = copy.deepcopy(self.registry)
+                registry["legal_entity"]["metadata"] = {key: "must never be committed"}
+                self.assertTrue(any("repository address values are prohibited" in error for error in self.validate(registry)))
+
+    def test_address_values_are_rejected_in_every_record_class(self):
+        for group in ("contacts", "identities", "trademarks", "domains"):
+            with self.subTest(group=group):
+                registry = copy.deepcopy(self.registry)
+                registry[group][0]["metadata"] = {"residential_address": "must never be committed"}
+                self.assertTrue(any("repository address values are prohibited" in error for error in self.validate(registry)))
+
     def test_unresolved_identity_cannot_allow_adoption(self):
         registry = copy.deepcopy(self.registry)
         veilsort = next(item for item in registry["identities"] if item["name"] == "Veilsort")

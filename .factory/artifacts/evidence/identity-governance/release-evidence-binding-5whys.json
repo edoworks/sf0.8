@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "trigger": "Independent review found that a caller-labeled PASS report, an unreadable input, or an incomplete scan scope could satisfy release preflight.",
+  "whys": [
+    {"why": 1, "answer": "Preflight trusted report status and subject labels without binding them to the candidate files and scanner configuration.", "evidence": "Independent review of the public identity report contract"},
+    {"why": 2, "answer": "The first digest covered only successfully read allowlisted files, excluding observations, registry state, overrides, private-pattern configuration, and other scoped files.", "evidence": "scripts/public_identity.py digest contract before correction"},
+    {"why": 3, "answer": "File discovery was designed for convenient text scanning rather than complete release-evidence provenance.", "evidence": "Extensionless and unreadable-input regression cases"},
+    {"why": 4, "answer": "Tests generated synthetic PASS objects instead of proving the scanner-to-preflight evidence chain.", "evidence": "tests/test_public_identity.py and tests/test_apple_distribution.py before correction"}
+  ],
+  "stop_reason": "Evidence does not establish that a public release or submission relied on the incomplete report contract.",
+  "immediate_correction": "Block missing, empty, or unreadable text inputs and require current, internally consistent release reports.",
+  "root_cause_correction": "Bind release evidence to the canonical subject, exact declared text paths, registry, observations, private-pattern hashes, overrides, roots, and every scoped file byte.",
+  "recurrence_guard": "End-to-end scanner and Apple preflight tests reject stale, unrelated, omitted, unreadable, empty, configuration-changed, and digest-mismatched evidence."
+}

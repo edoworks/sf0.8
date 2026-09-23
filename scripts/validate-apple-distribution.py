@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+from datetime import date
 import importlib.util
 import json
 import re
@@ -208,6 +209,37 @@ def review_identity_governance(
     legal = product.get("legal", {})
     if public_identity_report is None:
         findings.append(finding("BLOCKER", "PUBLIC_IDENTITY_REPORT_MISSING", "Release-mode public identity report is missing", "A public Apple candidate must pass the reusable public-surface identity scanner.", ["public_identity_report is absent"], "A current release-mode scanner report records PASS.", "Run the public identity scanner against candidate surfaces and bind the sanitized report.", issue, "SEMANTIC", "BLOCKER"))
+    else:
+        report_errors: list[str] = []
+        if public_identity_report.get("schema_version") != 1:
+            report_errors.append("schema version")
+        if public_identity_report.get("mode") != "release":
+            report_errors.append("mode")
+        if public_identity_report.get("subject_identity") != reference:
+            report_errors.append("subject identity")
+        public_surface = product.get("public_surface", {})
+        expected_digest = public_surface.get("identity_scan_digest")
+        if not isinstance(expected_digest, str) or not re.fullmatch(r"sha256:[0-9a-f]{64}", expected_digest) or public_identity_report.get("evaluation_digest") != expected_digest:
+            report_errors.append("candidate evaluation digest")
+        expected_paths = public_surface.get("identity_scan_paths")
+        if not isinstance(expected_paths, list) or not expected_paths or public_identity_report.get("scanned_paths") != sorted(expected_paths):
+            report_errors.append("candidate surface paths")
+        if not isinstance(public_identity_report.get("scanned_files"), int) or public_identity_report.get("scanned_files", 0) < 1:
+            report_errors.append("scan scope")
+        report_findings = public_identity_report.get("findings")
+        if not isinstance(report_findings, list) or public_identity_report.get("finding_count") != len(report_findings or []):
+            report_errors.append("finding count")
+        if public_identity_report.get("status") == "PASS" and any(public_identity_report.get(field) != 0 for field in ("finding_count", "blocker_count", "warning_count")):
+            report_errors.append("pass counts")
+        try:
+            captured = date.fromisoformat(str(public_identity_report.get("captured_at", "")))
+            age_days = (date.today() - captured).days
+            if age_days < 0 or age_days > 30:
+                report_errors.append("freshness")
+        except ValueError:
+            report_errors.append("capture date")
+        if report_errors:
+            findings.append(finding("BLOCKER", "PUBLIC_IDENTITY_REPORT_INVALID", "Public identity report is not valid evidence for this candidate", "The release scan must be current, candidate-bound, internally consistent, and cover at least one surface.", [f"invalid fields: {', '.join(report_errors)}"], "A current release-mode report for the same canonical identity records a consistent PASS.", "Rerun the scanner for the exact candidate surfaces.", issue, "SEMANTIC", "BLOCKER"))
     if (state == "INTERNAL" or trademark_state == "INTERNAL") and (identity.get("public_name") or product.get("metadata")):
         findings.append(finding("BLOCKER", "INTERNAL_IDENTITY_PUBLIC_REQUEST", "Internal identity requested for public distribution", "INTERNAL identities cannot be published.", [f"identity={reference}"], "A separately governed public identity is selected.", "Resolve identity governance before public distribution.", issue, "SEMANTIC", "BLOCKER"))
     if state in {"PROVISIONAL", "CLEARANCE_REQUIRED"} or trademark_state in {"PROVISIONAL", "CLEARANCE_REQUIRED", "LEGAL_REVIEW_REQUIRED"}:

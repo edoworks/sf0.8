@@ -54,6 +54,22 @@ def _duplicates(values: list[str]) -> set[str]:
     return {value for value in values if values.count(value) > 1}
 
 
+def _address_value_paths(value: Any, prefix: str = "", allow_top_level_state: bool = False) -> list[str]:
+    paths: list[str] = []
+    if isinstance(value, dict):
+        for key, child in value.items():
+            normalized = re.sub(r"[^a-z0-9]+", "_", str(key).casefold()).strip("_")
+            child_path = f"{prefix}.{key}" if prefix else str(key)
+            address_key = normalized in PRIVATE_VALUE_KEYS or normalized in {"mailing_address", "residential_address", "locality", "province"} or normalized.startswith("address_line") or normalized.endswith("_address")
+            if address_key and not (allow_top_level_state and not prefix and normalized == "state"):
+                paths.append(child_path)
+            paths.extend(_address_value_paths(child, child_path))
+    elif isinstance(value, list):
+        for index, child in enumerate(value):
+            paths.extend(_address_value_paths(child, f"{prefix}[{index}]"))
+    return paths
+
+
 def validate(registry: dict[str, Any], portfolio_text: str) -> list[str]:
     errors: list[str] = []
     if registry.get("schema_version") != 1:
@@ -83,6 +99,11 @@ def validate(registry: dict[str, Any], portfolio_text: str) -> list[str]:
         errors.append(f"duplicate durable entity identity: {duplicate}")
     for record in records:
         errors.extend(f"{record.get('entity_id', '<unknown>')}: {error}" for error in validate_governed_identity(record))
+
+    for record in records:
+        exposed = _address_value_paths(record, allow_top_level_state=record.get("entity_type") == "trademark_application")
+        if exposed:
+            errors.append(f"{record.get('entity_id', '<unknown>')}: repository address values are prohibited")
 
     private_records = [item for item in registry.get("address_policies", []) if item.get("category") == "PRIVATE_DOMICILE"]
     if len(private_records) != 1:

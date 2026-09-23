@@ -1,8 +1,10 @@
 import importlib.util
 import copy
+from datetime import date
 import json
 import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -11,6 +13,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SPEC = importlib.util.spec_from_file_location("apple_distribution", ROOT / "scripts/validate-apple-distribution.py")
 MODULE = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(MODULE)
+sys.path.insert(0, str(ROOT / "scripts"))
+import public_identity
 
 
 class AppleDistributionTests(unittest.TestCase):
@@ -18,6 +22,14 @@ class AppleDistributionTests(unittest.TestCase):
     def setUpClass(cls):
         cls.registry = MODULE.load(ROOT / ".factory/apple-distribution/capabilities.json")
         cls.identity_registry = MODULE.load(ROOT / ".factory/identity-registry.json")
+
+    def passing_identity_report(self, identity):
+        return {
+            "schema_version": 1, "captured_at": date.today().isoformat(), "subject_identity": identity,
+            "mode": "release", "status": "PASS", "scanned_files": 1,
+            "evaluation_digest": "sha256:" + "a" * 64, "scanned_paths": ["surface.md"],
+            "finding_count": 0, "blocker_count": 0, "warning_count": 0, "findings": [],
+        }
 
     def test_registry_is_complete(self):
         self.assertEqual([], MODULE.validate_registry(self.registry))
@@ -148,7 +160,7 @@ class AppleDistributionTests(unittest.TestCase):
             "software_production_ready": True,
             "identity": {"registry_ref": "product:complete-fixture", "internal_codename": "Complete Fixture", "public_name": "present", "identity_state": "ESTABLISHED", "trademark_state": "CLEARED", "authorized": True, "blocking_issue": 35, "customer_zero_alignment": True},
             "legal": {"owner_name": "Foculoom LLC", "seller_name": "Foculoom LLC", "approved_owner_names": ["Foculoom LLC"], "approved_seller_names": ["Foculoom LLC"]},
-            "public_surface": {"registered_symbol": False, "application_described_as_registration": False, "private_or_stale_address_exposed": False, "privacy_support_terms_consistent": True},
+            "public_surface": {"registered_symbol": False, "application_described_as_registration": False, "private_or_stale_address_exposed": False, "privacy_support_terms_consistent": True, "identity_scan_digest": "sha256:" + "a" * 64, "identity_scan_paths": ["surface.md"]},
             "canonical_claims": {"lifecycle": "active", "trademark_state": "CLEARED"},
             "observed_claims": {"lifecycle": "active", "trademark_state": "CLEARED"},
             "discoverability": {"reviewed": True},
@@ -165,24 +177,46 @@ class AppleDistributionTests(unittest.TestCase):
             "entity_id": "product:complete-fixture", "name": "present", "identity_state": "ESTABLISHED",
             "trademark_state": "CLEARED", "lifecycle": "active",
         })
-        report = MODULE.preflight(product, self.registry, identity_registry, {"status": "PASS", "findings": []})
+        report = MODULE.preflight(product, self.registry, identity_registry, self.passing_identity_report("product:complete-fixture"))
         self.assertTrue(report["states"]["app_review_ready"])
         self.assertFalse(report["states"]["human_authorized"])
         self.assertEqual([], report["findings"])
 
         product["screenshots"]["reviewer_validated"] = False
-        blocked = MODULE.preflight(product, self.registry, identity_registry, {"status": "PASS", "findings": []})
+        blocked = MODULE.preflight(product, self.registry, identity_registry, self.passing_identity_report("product:complete-fixture"))
         self.assertIn("SCREENSHOTS_NOT_REVIEWER_VALIDATED", {item["code"] for item in blocked["findings"]})
         self.assertFalse(blocked["states"]["app_review_ready"])
 
     def test_public_candidate_requires_registry_binding_and_scanner_report(self):
         product = self.nownest_fixture()
         product["identity"].pop("registry_ref")
-        codes = {item["code"] for item in MODULE.review_identity_governance(product, self.identity_registry, {"status": "PASS", "findings": []})}
+        codes = {item["code"] for item in MODULE.review_identity_governance(product, self.identity_registry, self.passing_identity_report("product:nownest"))}
         self.assertIn("IDENTITY_REGISTRY_BINDING_MISSING", codes)
         product = self.nownest_fixture()
         codes = {item["code"] for item in MODULE.review_identity_governance(product, self.identity_registry)}
         self.assertIn("PUBLIC_IDENTITY_REPORT_MISSING", codes)
+
+    def test_public_identity_report_must_be_release_mode_current_and_subject_bound(self):
+        report = self.passing_identity_report("product:nownest")
+        report["mode"] = "audit"
+        report["subject_identity"] = "product:vorynce"
+        report["captured_at"] = "2026-01-01"
+        codes = {item["code"] for item in MODULE.review_identity_governance(self.nownest_fixture(), self.identity_registry, report)}
+        self.assertIn("PUBLIC_IDENTITY_REPORT_INVALID", codes)
+
+    def test_public_identity_report_is_bound_to_scanned_candidate_content(self):
+        product = self.nownest_fixture()
+        product["public_surface"]["identity_scan_paths"] = ["surface.md"]
+        with tempfile.TemporaryDirectory() as directory:
+            surface = Path(directory) / "surface.md"
+            surface.write_text("NowNest support: support@foculoom.com")
+            report = public_identity.scan([surface], self.identity_registry, mode="release", subject_identity="product:nownest")
+        product["public_surface"]["identity_scan_digest"] = report["evaluation_digest"]
+        codes = {item["code"] for item in MODULE.review_identity_governance(product, self.identity_registry, report)}
+        self.assertNotIn("PUBLIC_IDENTITY_REPORT_INVALID", codes)
+        report["evaluation_digest"] = "sha256:" + "0" * 64
+        codes = {item["code"] for item in MODULE.review_identity_governance(product, self.identity_registry, report)}
+        self.assertIn("PUBLIC_IDENTITY_REPORT_INVALID", codes)
 
     def test_product_cli_exits_nonzero_when_preflight_is_blocked(self):
         result = subprocess.run(

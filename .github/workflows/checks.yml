@@ -64,6 +64,7 @@ jobs:
       - name: Public identity scanner passing fixture
         run: >-
           python3 scripts/validate-public-identity.py --mode release
+          --subject-identity product:skiplet
           --observations tests/fixtures/public-identity/pass/observations.json
           tests/fixtures/public-identity/pass/public.md
       - name: Apple distribution capability and preflight contract

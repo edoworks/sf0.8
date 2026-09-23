@@ -39,6 +39,7 @@ Audit one or more checked-out public surfaces without emitting matched text:
 ```text
 python3 scripts/validate-public-identity.py --mode audit public-root
 python3 scripts/validate-public-identity.py --mode release \
+  --subject-identity product:canonical-id \
   --observations sanitized-observations.json public-root
 ```
 
@@ -46,7 +47,13 @@ python3 scripts/validate-public-identity.py --mode release \
 Patterns and matched snippets are never included in output; findings contain
 only code, severity/classification, relative path, line, canonical identity,
 and a redacted identifier. The scanner skips dependency, VCS, build, and cache
-trees. Release mode exits nonzero for blockers.
+trees. Release mode requires a canonical subject and exits nonzero unless the
+result is a clean `PASS`. Apple preflight accepts only a current release-mode
+report for the same identity with nonempty scan scope, exact paths matching
+`public_surface.identity_scan_paths`, and an evaluation digest matching
+`public_surface.identity_scan_digest`. The digest binds the registry,
+observations, private-pattern hashes, overrides, roots, and all scoped file
+bytes. Missing or unreadable text inputs block release.
 
 Overrides are JSON records under `overrides` with `id`, `code`,
 `authorization_reference`, `rationale`, `expires_on`, and `scope`. Only

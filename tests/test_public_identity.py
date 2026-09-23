@@ -30,6 +30,39 @@ class PublicIdentityTests(unittest.TestCase):
         report = MODULE.scan([root / "public.md"], self.registry, observations=observations, mode="release")
         self.assertEqual("PASS", report["status"])
 
+    def test_release_scan_blocks_missing_and_empty_scope(self):
+        report = MODULE.scan([ROOT / "tests/fixtures/public-identity/does-not-exist"], self.registry, mode="release", subject_identity="product:nownest")
+        self.assertEqual("BLOCKED", report["status"])
+        self.assertTrue({"SCAN_INPUT_MISSING", "SCAN_SCOPE_EMPTY"} <= {item["code"] for item in report["findings"]})
+
+    def test_release_scan_blocks_unreadable_text_input(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "surface.md"
+            path.write_bytes(b"\xff\xfe")
+            report = MODULE.scan([path], self.registry, mode="release", subject_identity="product:nownest")
+        self.assertEqual("BLOCKED", report["status"])
+        self.assertIn("SCAN_INPUT_UNREADABLE", {item["code"] for item in report["findings"]})
+        self.assertEqual(0, report["scanned_files"])
+
+    def test_extensionless_utf8_surface_is_scanned(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "NOTICE"
+            path.write_text("FOCULOOM is a registered trademark")
+            report = MODULE.scan([path], self.registry, mode="release", subject_identity="brand:foculoom")
+        self.assertIn("APPLICATION_DESCRIBED_AS_REGISTERED", {item["code"] for item in report["findings"]})
+
+    def test_observations_and_registry_are_bound_into_evaluation_digest(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "surface.md"
+            path.write_text("NowNest")
+            clean = MODULE.scan([path], self.registry, mode="release", subject_identity="product:nownest")
+            observed = MODULE.scan([path], self.registry, mode="release", subject_identity="product:nownest", observations={"surfaces": [{"identity": "product:nownest", "owner": "Other Corp"}]})
+            changed_registry = copy.deepcopy(self.registry)
+            changed_registry["as_of"] = "2026-09-24"
+            changed = MODULE.scan([path], changed_registry, mode="release", subject_identity="product:nownest")
+        self.assertNotEqual(clean["evaluation_digest"], observed["evaluation_digest"])
+        self.assertNotEqual(clean["evaluation_digest"], changed["evaluation_digest"])
+
     def test_unregistered_mark_cannot_use_registered_symbol(self):
         report = self.scan_text("FOCULOOM\u00ae software")
         self.assertIn("UNAUTHORIZED_REGISTERED_SYMBOL", {item["code"] for item in report["findings"]})
@@ -46,6 +79,40 @@ class PublicIdentityTests(unittest.TestCase):
         report = self.scan_text("FOCULOOM is not a registered trademark; SKIPLET is a registered trademark.")
         findings = [item for item in report["findings"] if item["code"] == "APPLICATION_DESCRIBED_AS_REGISTERED"]
         self.assertTrue(any(item["identity"] == "trademark:99731845" for item in findings))
+
+    def test_negative_and_positive_claims_for_same_mark_are_evaluated_separately(self):
+        report = self.scan_text("FOCULOOM is not a registered trademark; FOCULOOM is a registered trademark.")
+        self.assertIn("APPLICATION_DESCRIBED_AS_REGISTERED", {item["code"] for item in report["findings"]})
+
+    def test_claim_local_negation_does_not_hide_later_positive_claim(self):
+        report = self.scan_text("FOCULOOM does not require attribution and is a registered trademark.")
+        self.assertIn("APPLICATION_DESCRIBED_AS_REGISTERED", {item["code"] for item in report["findings"]})
+
+    def test_registered_claim_before_mark_is_detected(self):
+        report = self.scan_text("Registered trademark: FOCULOOM")
+        self.assertIn("APPLICATION_DESCRIBED_AS_REGISTERED", {item["code"] for item in report["findings"]})
+
+    def test_common_negative_registration_phrases_are_not_blocked(self):
+        for text in (
+            "FOCULOOM is no longer a registered trademark.",
+            "FOCULOOM is not considered a registered trademark.",
+            "FOCULOOM is not a federally registered trademark.",
+        ):
+            with self.subTest(text=text):
+                report = self.scan_text(text)
+                self.assertNotIn("APPLICATION_DESCRIBED_AS_REGISTERED", {item["code"] for item in report["findings"]})
+
+    def test_unrelated_negation_does_not_hide_positive_registration_claim(self):
+        for text in (
+            "FOCULOOM is not only a registered trademark.",
+            "FOCULOOM is not merely a registered trademark.",
+            "FOCULOOM is not just a registered trademark.",
+            "FOCULOOM is not exclusively a registered trademark.",
+            "FOCULOOM does not require attribution because it is a registered trademark.",
+        ):
+            with self.subTest(text=text):
+                report = self.scan_text(text)
+                self.assertIn("APPLICATION_DESCRIBED_AS_REGISTERED", {item["code"] for item in report["findings"]})
 
     def test_canonical_name_registered_symbol_covers_unfiled_identity(self):
         report = self.scan_text("EDOWORKS\u00ae")
@@ -81,6 +148,10 @@ class PublicIdentityTests(unittest.TestCase):
         applicant = next(item["owner_name"] for item in self.registry["trademarks"] if item["mark"] == "FOCULOOM")
         report = self.scan_text(f"NowNest owner: {applicant}")
         self.assertIn("OWNER_CONFLICT", {item["code"] for item in report["findings"]})
+
+    def test_seller_only_lines_are_identity_scoped_and_do_not_crash(self):
+        report = self.scan_text("NowNest seller: Fixture Other Corp")
+        self.assertIn("SELLER_CONFLICT", {item["code"] for item in report["findings"]})
 
     def test_noncanonical_contact_is_warning_not_pass(self):
         report = self.scan_text("Email other@example.com or call 415-555-1212.")
@@ -139,7 +210,7 @@ class PublicIdentityTests(unittest.TestCase):
             path = Path(directory) / "surface.md"
             path.write_text("FOCULOOM\u00ae")
             result = subprocess.run(
-                [sys.executable, "scripts/validate-public-identity.py", "--mode", "release", str(path)],
+                [sys.executable, "scripts/validate-public-identity.py", "--mode", "release", "--subject-identity", "product:nownest", str(path)],
                 cwd=ROOT, capture_output=True, text=True,
             )
         self.assertEqual(1, result.returncode)
@@ -150,7 +221,7 @@ class PublicIdentityTests(unittest.TestCase):
             path = Path(directory) / "surface.md"
             path.write_text("Contact other@example.com")
             result = subprocess.run(
-                [sys.executable, "scripts/validate-public-identity.py", "--mode", "release", str(path)],
+                [sys.executable, "scripts/validate-public-identity.py", "--mode", "release", "--subject-identity", "product:nownest", str(path)],
                 cwd=ROOT, capture_output=True, text=True,
             )
         self.assertEqual(1, result.returncode)
@@ -158,7 +229,7 @@ class PublicIdentityTests(unittest.TestCase):
     def test_checked_in_stale_address_fixture_blocks_release(self):
         fixture = ROOT / "tests/fixtures/public-identity/fail"
         result = subprocess.run(
-            [sys.executable, "scripts/validate-public-identity.py", "--mode", "release", "--private-pattern-file", str(fixture / "private-patterns.txt"), str(fixture / "stale-address.md")],
+            [sys.executable, "scripts/validate-public-identity.py", "--mode", "release", "--subject-identity", "product:nownest", "--private-pattern-file", str(fixture / "private-patterns.txt"), str(fixture / "stale-address.md")],
             cwd=ROOT, capture_output=True, text=True,
         )
         self.assertEqual(1, result.returncode)
@@ -168,7 +239,7 @@ class PublicIdentityTests(unittest.TestCase):
     def test_checked_in_false_registered_symbol_fixture_blocks_release(self):
         fixture = ROOT / "tests/fixtures/public-identity/fail/false-registered-symbol.md"
         result = subprocess.run(
-            [sys.executable, "scripts/validate-public-identity.py", "--mode", "release", str(fixture)],
+            [sys.executable, "scripts/validate-public-identity.py", "--mode", "release", "--subject-identity", "product:nownest", str(fixture)],
             cwd=ROOT, capture_output=True, text=True,
         )
         self.assertEqual(1, result.returncode)
@@ -177,7 +248,7 @@ class PublicIdentityTests(unittest.TestCase):
     def test_checked_in_owner_conflict_fixture_blocks_release(self):
         fixture = ROOT / "tests/fixtures/public-identity/fail"
         result = subprocess.run(
-            [sys.executable, "scripts/validate-public-identity.py", "--mode", "release", "--observations", str(fixture / "owner-conflict.json"), str(fixture / "owner-conflict.md")],
+            [sys.executable, "scripts/validate-public-identity.py", "--mode", "release", "--subject-identity", "product:nownest", "--observations", str(fixture / "owner-conflict.json"), str(fixture / "owner-conflict.md")],
             cwd=ROOT, capture_output=True, text=True,
         )
         self.assertEqual(1, result.returncode)

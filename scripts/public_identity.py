@@ -69,6 +69,16 @@ def _finding(code: str, severity: str, path: str, line: int, identity: str, valu
     }
 
 
+def _locally_negated(prefix: str) -> bool:
+    clause = re.split(r"(?:[;,]|\b(?:and|but)\b)", prefix, flags=re.IGNORECASE)[-1]
+    predicates = list(re.finditer(r"\b(?:is|was|are|were)\b", clause, re.IGNORECASE))
+    if predicates:
+        clause = clause[predicates[-1].start():]
+    if re.search(r"\bnot\s+(?:only|merely|just|simply|solely|exclusively)\b", clause, re.IGNORECASE):
+        return False
+    return bool(re.search(r"\b(?:no\s+longer|no|not|never)\b", clause, re.IGNORECASE))
+
+
 def _identity_data(registry: dict[str, Any]) -> tuple[dict[str, dict[str, Any]], dict[str, dict[str, Any]]]:
     identities = {str(item.get("name", "")).casefold(): item for item in registry.get("identities", []) if item.get("name")}
     marks = {str(item.get("mark", "")).casefold(): item for item in registry.get("trademarks", []) if item.get("mark")}
@@ -87,8 +97,6 @@ def _iter_files(roots: Iterable[Path]) -> Iterable[tuple[Path, str]]:
         candidates = [root] if root.is_file() else root.rglob("*")
         for path in candidates:
             if not path.is_file() or any(part.casefold() in SKIP_DIRECTORIES for part in path.parts):
-                continue
-            if path.suffix.casefold() not in TEXT_EXTENSIONS and path.name.casefold() not in METADATA_NAMES:
                 continue
             relative = path.name if root.is_file() else path.relative_to(root).as_posix()
             yield path, relative
@@ -110,28 +118,40 @@ def _text_findings(
     for number, line in enumerate(text.splitlines(), 1):
         identity = _identity_for_line(line, identities, marks)
         folded = line.casefold()
+        approved_sellers = {legal_owner} - {None}
         for name, governed in governed_names.items():
             expected_state = governed.get("state") or governed.get("trademark_state")
             if name and re.search(rf"\b{re.escape(name)}\s*\u00ae", folded, re.IGNORECASE) and expected_state != "REGISTERED":
                 findings.append(_finding("UNAUTHORIZED_REGISTERED_SYMBOL", "BLOCKER", path, number, str(governed["entity_id"]), name))
-            registration_claim = bool(re.search(rf"\b{re.escape(name)}\b.{{0,50}}\b(?:is\s+registered|registered\s+trademark|trademark\s+registration)\b", folded, re.IGNORECASE))
-            negative = bool(
-                re.search(rf"\b{re.escape(name)}\b.{{0,30}}\b(?:not|isn't|is not|never)\s+(?:a\s+)?registered\b", folded, re.IGNORECASE)
-                or re.search(rf"\bno\s+registered\s+trademark\b.{{0,30}}\b{re.escape(name)}\b", folded, re.IGNORECASE)
-            )
-            if registration_claim and not negative and expected_state != "REGISTERED":
-                findings.append(_finding("APPLICATION_DESCRIBED_AS_REGISTERED", "BLOCKER", path, number, str(governed["entity_id"]), name))
-            state_match = re.search(
-                rf"\b{re.escape(name)}\b.{{0,50}}\b(INTERNAL|PROVISIONAL|CLEARANCE_REQUIRED|CLEARED|FILED|REGISTERED|LEGAL_REVIEW_REQUIRED|ABANDONED|RETIRED)\b",
+            registration_matches = list(re.finditer(
+                rf"\b{re.escape(name)}\b(?P<context>.{{0,50}}?)(?P<claim>\bis\s+registered\b|\bregistered\s+trademark\b|\btrademark\s+registration\b)",
                 line,
                 re.IGNORECASE,
-            )
-            state_negated = bool(
-                state_match
-                and re.search(r"\b(?:no|not|never)\s+(?:a\s+)?$", line[max(0, state_match.start(1) - 16):state_match.start(1)], re.IGNORECASE)
-            )
-            if state_match and not negative and not state_negated and state_match.group(1).upper() != expected_state:
-                findings.append(_finding("TRADEMARK_STATE_CLAIM", "BLOCKER", path, number, str(governed["entity_id"]), state_match.group(1).upper()))
+            ))
+            registration_matches.extend(re.finditer(
+                rf"(?P<claim>\bregistered\s+trademark\b|\btrademark\s+registration\b)(?P<context>.{{0,50}}?)\b{re.escape(name)}\b",
+                line,
+                re.IGNORECASE,
+            ))
+            if expected_state != "REGISTERED" and any(not _locally_negated(
+                match.group("context") if match.start("context") < match.start("claim") else line[max(0, match.start("claim") - 40):match.start("claim")]
+            ) for match in registration_matches):
+                findings.append(_finding("APPLICATION_DESCRIBED_AS_REGISTERED", "BLOCKER", path, number, str(governed["entity_id"]), name))
+            state_matches = list(re.finditer(
+                rf"\b{re.escape(name)}\b(?P<context>.{{0,50}}?)\b(?P<state>INTERNAL|PROVISIONAL|CLEARANCE_REQUIRED|CLEARED|FILED|REGISTERED|LEGAL_REVIEW_REQUIRED|ABANDONED|RETIRED)\b",
+                line,
+                re.IGNORECASE,
+            ))
+            state_matches.extend(re.finditer(
+                rf"\b(?P<state>INTERNAL|PROVISIONAL|CLEARANCE_REQUIRED|CLEARED|FILED|REGISTERED|LEGAL_REVIEW_REQUIRED|ABANDONED|RETIRED)\b(?P<context>.{{0,50}}?)\b{re.escape(name)}\b",
+                line,
+                re.IGNORECASE,
+            ))
+            for state_match in state_matches:
+                observed_state = state_match.group("state").upper()
+                prefix = state_match.group("context") if state_match.start("context") < state_match.start("state") else line[max(0, state_match.start("state") - 40):state_match.start("state")]
+                if not _locally_negated(prefix) and observed_state != expected_state:
+                    findings.append(_finding("TRADEMARK_STATE_CLAIM", "BLOCKER", path, number, str(governed["entity_id"]), observed_state))
         for pattern in private_patterns:
             if pattern and pattern.casefold() in folded:
                 findings.append(_finding("PRIVATE_ADDRESS_PATTERN", "BLOCKER", path, number, identity, pattern))
@@ -148,7 +168,7 @@ def _text_findings(
             if owner.group(1).strip() not in approved_owners:
                 findings.append(_finding("OWNER_CONFLICT", "BLOCKER", path, number, identity, owner.group(1).strip()))
         seller = SELLER_RE.search(line)
-        if seller and seller.group(1).strip() not in approved_owners:
+        if seller and seller.group(1).strip() not in approved_sellers:
             findings.append(_finding("SELLER_CONFLICT", "BLOCKER", path, number, identity, seller.group(1).strip()))
     return findings
 
@@ -252,16 +272,34 @@ def scan(
     overrides: list[dict[str, Any]] | None = None,
     mode: str = "audit",
     today: date | None = None,
+    subject_identity: str | None = None,
 ) -> dict[str, Any]:
+    today = today or date.today()
     findings: list[dict[str, Any]] = []
     scanned_files = 0
+    scanned_paths: list[str] = []
+    scope_entries: list[tuple[str, str]] = []
+    for root in roots:
+        if not root.exists():
+            findings.append(_finding("SCAN_INPUT_MISSING", "BLOCKER", root.name or "scan-input", 0, subject_identity or "UNKNOWN", str(root)))
     for source, relative in _iter_files(roots):
-        scanned_files += 1
         try:
-            text = source.read_text(encoding="utf-8")
-        except (OSError, UnicodeDecodeError):
+            content = source.read_bytes()
+        except OSError:
+            findings.append(_finding("SCAN_INPUT_UNREADABLE", "BLOCKER", relative, 0, subject_identity or "UNKNOWN", relative))
             continue
+        scope_entries.append((relative, hashlib.sha256(content).hexdigest()))
+        try:
+            text = content.decode("utf-8")
+        except UnicodeDecodeError:
+            if source.suffix.casefold() in TEXT_EXTENSIONS or source.name.casefold() in METADATA_NAMES:
+                findings.append(_finding("SCAN_INPUT_UNREADABLE", "BLOCKER", relative, 0, subject_identity or "UNKNOWN", relative))
+            continue
+        scanned_files += 1
+        scanned_paths.append(relative)
         findings.extend(_text_findings(relative, text, registry, private_patterns or []))
+    if mode == "release" and scanned_files == 0:
+        findings.append(_finding("SCAN_SCOPE_EMPTY", "BLOCKER", "scan-input", 0, subject_identity or "UNKNOWN", "empty-scan-scope"))
     if observations:
         findings.extend(_observation_findings(observations, registry))
     findings.sort(key=lambda item: (item["path"], item["line"], item["code"], item["redacted_identifier"]))
@@ -269,11 +307,27 @@ def scan(
     blocker_count = sum(item["classification"] == "BLOCKER" for item in effective)
     warning_count = sum(item["classification"] == "WARNING" for item in effective)
     status = "BLOCKED" if blocker_count or override_errors else "WARN" if warning_count else "PASS"
+    evaluation_inputs = {
+        "mode": mode,
+        "subject_identity": subject_identity,
+        "roots": sorted(_safe_path(root.name) for root in roots),
+        "scope": sorted(scope_entries),
+        "registry": registry,
+        "observations": observations,
+        "private_pattern_hashes": sorted(_token(pattern) for pattern in (private_patterns or []) if pattern),
+        "overrides": overrides or [],
+    }
+    evaluation_payload = json.dumps(evaluation_inputs, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
     return {
         "schema_version": 1,
+        "captured_at": today.isoformat(),
+        "subject_identity": subject_identity,
         "mode": mode,
         "status": status,
         "scanned_files": scanned_files,
+        "scoped_files": len(scope_entries),
+        "scanned_paths": sorted(scanned_paths),
+        "evaluation_digest": "sha256:" + hashlib.sha256(evaluation_payload.encode("utf-8")).hexdigest(),
         "finding_count": len(effective),
         "blocker_count": blocker_count,
         "warning_count": warning_count,

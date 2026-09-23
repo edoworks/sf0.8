@@ -25,8 +25,12 @@ def main() -> int:
     parser.add_argument("--observations", type=Path)
     parser.add_argument("--overrides", type=Path)
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--subject-identity")
     parser.add_argument("--mode", choices=("audit", "release"), default="audit")
     args = parser.parse_args()
+    if args.mode == "release" and not args.subject_identity:
+        print(json.dumps({"schema_version": 1, "mode": args.mode, "status": "ERROR", "error": "release scans require --subject-identity"}, sort_keys=True))
+        return 2
     try:
         patterns = args.private_pattern_file.read_text(encoding="utf-8").splitlines() if args.private_pattern_file else []
         report = scan(
@@ -36,6 +40,7 @@ def main() -> int:
             observations=_json(args.observations) if args.observations else None,
             overrides=_json(args.overrides).get("overrides", []) if args.overrides else None,
             mode=args.mode,
+            subject_identity=args.subject_identity,
         )
     except (OSError, UnicodeDecodeError, json.JSONDecodeError, TypeError, ValueError):
         print(json.dumps({"schema_version": 1, "mode": args.mode, "status": "ERROR", "error": "scanner input is invalid"}, sort_keys=True))
