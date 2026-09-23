@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "status": "IN_PROGRESS",
+  "active_factory": "edoworks/sf0.8",
+  "continuation": {
+    "status": "IN_PROGRESS",
+    "active_map_issue": 42,
+    "active_increment_issue": 47,
+    "source_of_truth": ".factory/continuation-state.json"
+  },
+  "lifecycle": {
+    "state": "ACTIVE",
+    "contract": ".factory/lifecycle-contract.json"
+  },
+  "gates": {
+    "10": "OPEN",
+    "11": "OPEN",
+    "15": "OPEN",
+    "16": "OPEN",
+    "42": "OPEN",
+    "43": "CLOSED",
+    "44": "OPEN",
+    "45": "OPEN",
+    "46": "OPEN",
+    "47": "OPEN"
+  },
+  "control_plane_statuses": {
+    "github-issue-write": null,
+    "app-store-connect": null,
+    "testflight": "UNPROVEN",
+    "signing-notarization": "UNPROVEN",
+    "publishing-deployment": "UNPROVEN",
+    "artifact-publication": "UNPROVEN",
+    "external-artifact-intake": "UNPROVEN",
+    "external-contribution": "UNPROVEN"
+  },
+  "required_human_actions": ["apple-release-authority"],
+  "evidence_references": [
+    {"path": ".factory/qualification-ledger.json", "revision": "HEAD"},
+    {"path": ".factory/control-plane-requirements.json", "revision": "HEAD"},
+    {"path": ".factory/human-action-queue.json", "revision": "HEAD"},
+    {"path": ".factory/lifecycle-contract.json", "revision": "HEAD"},
+    {"path": "docs/PRD-edoworks-factory.md", "revision": "HEAD"}
+  ]
+}

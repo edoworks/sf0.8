@@ -1,0 +1,50 @@
+{
+  "issue": 47,
+  "capability": "evidence-integrity qualification and cutover consistency",
+  "change_units": 8,
+  "changed_paths": [
+    ".github/workflows/checks.yml",
+    "scripts/evidence_integrity.py",
+    "scripts/validate-evidence-integrity.py"
+  ],
+  "reuse": {
+    "searched": 2,
+    "compatible": 1,
+    "reason": "Extend the existing lifecycle, control-plane, and changed-path validators instead of creating a parallel release state system.",
+    "discovery": {
+      "capability": "evidence-integrity qualification and cutover consistency",
+      "decision": "EXTEND_EXISTING",
+      "matches": ["validate-lifecycle", "validate-control-plane", "validate-ci-change"],
+      "specialization_reason": "The missing contract is cross-system timeout, evidence, ledger, and continuation reconciliation; it cannot be represented by any one existing validator."
+    },
+    "candidates": [
+      {
+        "id": "existing-factory-integrity-validators",
+        "source": "scripts/validate-lifecycle.py and scripts/validate-control-plane.py",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "deterministic validators",
+        "revision": "working-tree",
+        "license": "internal",
+        "security": "local fail-closed state validation",
+        "disposition": "ADAPT",
+        "reason": "Reuse the existing lifecycle and control-plane boundaries."
+      },
+      {
+        "id": "python-datetime-iso-calendar",
+        "source": "https://docs.python.org/3/library/datetime.html",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "standard-library documentation",
+        "revision": "retrieved-2026-09-22",
+        "license": "documentation reference",
+        "security": "documentation only; not executed",
+        "disposition": "LEARN_FROM",
+        "reason": "Use ISO date parsing and derived weekday values rather than trusting entered weekday labels."
+      }
+    ]
+  },
+  "contribution": {"classification": "internal-reusable"},
+  "shareability": {
+    "disposition": "REUSE_CANDIDATE",
+    "evidence": "The guard is consumed by sf0.8 CI; an independent second consumer is not claimed."
+  }
+}
