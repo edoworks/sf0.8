@@ -66,6 +66,16 @@ class EvidenceIntegrityTests(unittest.TestCase):
             )
             self.assertTrue(any("not tracked" in error for error in errors))
 
+    def test_evidence_revision_must_be_exact_or_current(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            evidence = root / "receipt.json"
+            evidence.write_text("{}")
+            errors = MODULE.validate_evidence_references(
+                [{"path": "receipt.json", "revision": "working-tree"}], root, ["receipt.json"]
+            )
+            self.assertTrue(any("full commit id" in error for error in errors))
+
     def test_continuation_drift_is_rejected(self):
         state = {
             "status": "IN_PROGRESS",

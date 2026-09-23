@@ -6,6 +6,7 @@ from __future__ import annotations
 from datetime import date, datetime, timezone
 import math
 from pathlib import Path
+import re
 from typing import Any, Iterable
 
 
@@ -128,8 +129,11 @@ def validate_evidence_references(
             errors.append(f"{prefix}: evidence is not tracked at the referenced revision: {relative}")
         if not (root / relative).is_file():
             errors.append(f"{prefix}: evidence file does not exist: {relative}")
-        if not str(reference.get("revision", "")).strip():
+        revision = str(reference.get("revision", "")).strip()
+        if not revision:
             errors.append(f"{prefix}: evidence revision is required")
+        elif revision != "HEAD" and not re.fullmatch(r"[0-9a-fA-F]{40}", revision):
+            errors.append(f"{prefix}: evidence revision must be HEAD or a full commit id")
     return errors
 
 
@@ -193,8 +197,9 @@ def validate_qualification_ledger(ledger: dict[str, Any], require_promotion: boo
         parsed_receipts.append((receipt_date, receipt))
 
     parsed_receipts.sort(key=lambda item: item[0])
-    for (previous_date, _), (current_date, _) in zip(parsed_receipts, parsed_receipts[1:]):
-        if previous_date.weekday() < 5 and current_date.weekday() < 5 and _business_days_between(previous_date, current_date) != 1:
+    weekday_receipts = [item for item in parsed_receipts if item[0].weekday() < 5]
+    for (previous_date, _), (current_date, _) in zip(weekday_receipts, weekday_receipts[1:]):
+        if _business_days_between(previous_date, current_date) != 1:
             errors.append("weekday receipts must form a consecutive business-day sequence")
 
     denominator = sum(int(receipt.get("denominator", 0) or 0) for _, receipt in parsed_receipts)
@@ -251,6 +256,8 @@ def validate_reconciliation(
     portfolio_text: str,
 ) -> list[str]:
     errors: list[str] = []
+    if state.get("schema_version") != 1:
+        errors.append("integrity state must use schema version 1")
     active_factory = state.get("active_factory")
     if f"active_factory: {active_factory}" not in portfolio_text:
         errors.append("active factory is not present in portfolio state")
@@ -266,6 +273,9 @@ def validate_reconciliation(
         if item.get("status") not in CONTROL_PLANE_STATUSES | {None}:
             errors.append(f"control-plane requirement has invalid status: {identifier}")
     expected_statuses = state.get("control_plane_statuses", {})
+    if not isinstance(expected_statuses, dict):
+        errors.append("canonical control-plane statuses must be an object")
+        expected_statuses = {}
     if set(expected_statuses) != requirement_ids:
         errors.append("canonical control-plane statuses do not match requirements")
     for identifier, status in expected_statuses.items():
@@ -276,9 +286,14 @@ def validate_reconciliation(
     for action_id in state.get("required_human_actions", []):
         if action_id not in action_ids:
             errors.append(f"required human action is absent from queue: {action_id}")
-    for issue, status in state.get("gates", {}).items():
+    gates = state.get("gates", {})
+    if not isinstance(gates, dict):
+        errors.append("gate status must be an object")
+        gates = {}
+    for issue, status in gates.items():
         if status not in GATE_STATUSES:
             errors.append(f"gate {issue} has invalid status")
-    if str(state.get("gates", {}).get("47")) != "OPEN":
-        errors.append("issue 47 must remain open while its validator is being implemented")
+    active_issue = str(state.get("continuation", {}).get("active_increment_issue", ""))
+    if gates.get(active_issue) != "OPEN":
+        errors.append("active increment gate must remain OPEN until its closeout is verified")
     return errors
