@@ -9,18 +9,18 @@ This is a visibility aid. `.factory/continuation-state.json` and
 
 - Active map: issue #48, organization repository and public-state
   reconciliation.
-- Active increment: issue #51, verified website closeout pending tracker closure.
+- Active increment: issue #52, repository metadata and release claims.
 - Issue #50 is integrated and closed. Public inventory is freshness-bounded;
   inaccessible private completeness remains `UNKNOWN`.
-- Issue #51 website corrections are merged and deployed on both Edoworks and
-  Foculoom; live claims, links, policy pages, and sitemaps match merged source.
+- Issue #51 is integrated and closed. Website corrections are deployed on both
+  Edoworks and Foculoom; live claims, links, policy pages, and sitemaps match
+  merged source.
 
 ## Next
 
-- Merge the verified issue #51 evidence checkpoint, close its tracker, refresh
-  the remote-state snapshot, and advance continuation to issue #52.
-- Then reconcile repository metadata and release claims under issue #52 before
-  final cross-surface review under issue #53.
+- Reconcile repository metadata, README lifecycle statements, homepage URLs,
+  licenses, and release claims under issue #52.
+- Then run final cross-surface review and closeout under issue #53.
 
 ## Blocked
 

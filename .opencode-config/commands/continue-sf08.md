@@ -1,5 +1,5 @@
 ---
-description: Finish verified website tracker closeout
+description: Resume repository metadata and release-claim reconciliation
 agent: explore
 ---
 
@@ -7,7 +7,7 @@ agent: explore
 
 - Canonical status: `IN_PROGRESS`
 - Canonical active map issue: `#48` (`edoworks/factory`)
-- Canonical active increment issue: `#51` (`edoworks/factory`)
+- Canonical active increment issue: `#52` (`edoworks/factory`)
 - Edoworks website PR #70 merged at `ec74a6`; deployed pages and sitemap were
   verified against the corrected source.
 - Foculoom website PR #184 merged normally at `f4e0bc9`; post-merge Pages build
@@ -18,14 +18,16 @@ agent: explore
   `supportfoculoom` retains review access but is not a bypass actor.
 - Issue #51 completion evidence is in
   `.factory/artifacts/evidence/issue-51-source-status.md`.
+- Issue #51 is closed and its closeout guard reported `CLOSED`.
 
 ## Next Work
 
-1. Merge the verified issue #51 evidence checkpoint.
-2. Close issue #51 and require the issue closeout guard to report `CLOSED`.
-3. Refresh the remote-state and integrity snapshots, then advance canonical
-   continuation to issue #52.
-4. Load issue #52 and reconcile repository metadata and release claims.
+1. Load issue #52, canonical inventory, and current authenticated repository and
+   release metadata snapshots.
+2. Correct active homepage, lifecycle, license, and release claims without
+   unarchiving deprecated repositories or publishing new releases.
+3. Verify the metadata snapshot and documented release URLs/assets.
+4. Then run issue #53 final cross-surface state review and closeout.
 
 ## Authority Boundaries
 

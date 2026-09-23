@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "captured_at": "2026-09-23T07:20:00Z",
+  "captured_at": "2026-09-23T10:01:33Z",
   "max_age_hours": 168,
   "source": "GitHub issue API readback",
   "issues": [
@@ -13,7 +13,7 @@
     {"repo": "edoworks/factory", "number": 48, "state": "OPEN"},
     {"repo": "edoworks/factory", "number": 49, "state": "CLOSED"},
     {"repo": "edoworks/factory", "number": 50, "state": "CLOSED"},
-    {"repo": "edoworks/factory", "number": 51, "state": "OPEN"},
+    {"repo": "edoworks/factory", "number": 51, "state": "CLOSED"},
     {"repo": "edoworks/factory", "number": 52, "state": "OPEN"},
     {"repo": "edoworks/factory", "number": 53, "state": "OPEN"}
   ]
