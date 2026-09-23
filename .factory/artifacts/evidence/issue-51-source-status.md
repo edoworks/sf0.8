@@ -88,9 +88,12 @@ on it is proposed but not yet implemented or verified.
 
 The immediate correction removed `supportfoculoom`; `Owner Ref Writers` is again
 sole-member. The root-cause correction separates repository review access from
-owner bypass membership. The mechanical recurrence guard is an explicit
-continuation-contract assertion that `supportfoculoom` remains outside `Owner Ref
-Writers`; the assertion is covered by `tests.test_continuation_contract`.
+owner bypass membership. The mechanical recurrence guard extends the existing
+GitHub identity snapshot validator to require `hellofoculoom` as the exclusive
+bypass actor; `tests.test_github_identity` verifies that a snapshot containing
+`supportfoculoom` as a bypass actor is rejected. The continuation contract also
+preserves the operational warning, but is not treated as proof of live team
+membership.
 
 ## Continuation validation analysis
 
