@@ -40,8 +40,11 @@ class PermissionPolicyFixtureTests(unittest.TestCase):
 
     def test_issue_mutations_are_repo_scoped_asks_without_issue_literals(self):
         issue_rules = [(pattern, action) for pattern, action in self.fixture["rules"] if pattern.startswith("gh issue")]
+        repo_names = ("edoworks/sf0.8", "edoworks/factory", "edoworks/product-a", "edoworks/sf0.7", "edoworks/sf0.5", "edoworks/nownest")
         for pattern, action in issue_rules:
-            without_repo = pattern.replace("edoworks/sf0.8", "")
+            without_repo = pattern
+            for repo in repo_names:
+                without_repo = without_repo.replace(repo, "")
             self.assertIsNone(re.search(r"\b\d+\b", without_repo), pattern)
             if pattern.startswith(("gh issue create ", "gh issue comment ", "gh issue close ")):
                 if "edoworks/factory" in pattern and pattern.startswith("gh issue create "):
