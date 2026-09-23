@@ -205,18 +205,106 @@ until its validation command passes and its evidence artifact is committed.
 
 ### Apple Acceptance Receipt
 
-- **Evidence:** a receipt recording app bundle ID, version, build number,
-  Apple processing status, submission date, review disposition, and acceptance
-  date. Distinguishes archive, processed build, submitted version, and
-  accepted version.
+- **Evidence:** one typed receipt recording the clean subject revision, the
+  later evidence revision that commits the receipt, app
+  bundle ID, version, build number, archive and exported-artifact digests,
+  effective archived `Info.plist`, authorization reference, operation,
+  operator, timestamp, Apple delivery/build/group identifiers, processing
+  state, review disposition, acceptance date, and sanitized feedback location
+  or `NO_DURABLE_FEEDBACK`.
 - **Owner:** founder (submission is human-authorized).
-- **Validation:** the cutover guard verifies the receipt is committed and its
-  acceptance status is confirmed. TestFlight or simulator evidence does not
-  satisfy this gate.
+- **Validation:** the cutover guard verifies the receipt is tracked at its
+  evidence revision, binds its artifacts to the subject revision, is internally
+  consistent, and records acceptance by Apple.
+  TestFlight or simulator evidence does not satisfy this gate.
 - **Fail condition:** no acceptance receipt exists, or the receipt records a
-  status short of Apple acceptance.
+  status short of Apple acceptance, references dirty/untracked input, or lacks
+  provenance for an external operation.
 - **Synchronization:** factory issue #10 (and #14 for Reference App 2) must be
   closed with the receipt attached before predecessor freeze can proceed.
+
+Apple lifecycle states are distinct:
+
+```
+ARCHIVED -> UPLOADED -> PROCESSED -> TESTFLIGHT_ACTIVE ->
+SUBMITTED_FOR_REVIEW -> ACCEPTED
+```
+
+Each receipt retains transition history with state-specific timestamps and may
+record terminal `REJECTED`, `DEVELOPER_REJECTED`, or `WITHDRAWN` outcomes.
+TestFlight activation is required by this factory's release ladder before App
+Review submission even though the external API may permit other paths. No state
+implies a later state. A worktree plist change does not alter an
+uploaded build; validators inspect the effective plist inside the exact signed
+archive or exported artifact named by the receipt. App Store Connect platform
+messages (for example export-compliance guidance) are not tester feedback.
+Absence of durable tester feedback is recorded as `NO_DURABLE_FEEDBACK`, never
+as "no issues found." Raw private tester identities and comments are not placed
+in public evidence; durable records contain sanitized findings and provenance.
+Receipts live at
+`.factory/artifacts/evidence/apple/<bundle>-<version>-<build>.json` and are
+validated by `python3 scripts/validate-apple-receipt.py RECEIPT` once the
+validator lands under the implementation issue.
+
+### Claim-To-Evidence Contract
+
+- Every normative PRD requirement maps to a direct assertion, measured result,
+  authenticated external receipt, explicit human observation, or `NOT_RUN`.
+- A test name, PR title, prose summary, source inspection, screenshot capture,
+  or passing count does not prove behavior that the underlying assertion does
+  not inspect.
+- Every `PASS` records the source revision, mode, destination, command,
+  timestamp, result artifact, and direct pass condition.
+- Evidence referenced by a gate must be tracked at its evidence revision and
+  bind the tested artifact to its subject revision. Dirty or untracked evidence
+  cannot close a gate.
+- Conflicting lifecycle, control-plane, queue, ledger, evidence, or continuation
+  records fail closed until reconciled against the canonical receipt.
+
+### Verification Outcome Contract
+
+Verification reports one of: `PASSED`, `FAILED`,
+`COMMAND_TIMEOUT_PROGRESSING`, `COMMAND_TIMEOUT_NO_PROGRESS`,
+`TEST_HANG_CONFIRMED`, `INFRASTRUCTURE_ERROR`, or `INCOMPLETE_NO_RESULT`.
+A command timeout alone is not a test failure or confirmed hang.
+`COMMAND_TIMEOUT_NO_PROGRESS` means no test event or output occurred within the
+configured inactivity threshold, which is recorded in the receipt.
+`TEST_HANG_CONFIRMED` additionally requires two process samples across that
+threshold showing the same active test and no output, result-bundle, or process
+progress. Receipts record start time, last-progress time, current test,
+completed count, exit status, threshold, process samples, and result-bundle
+path. Retries are bounded and preserve the first attempt's evidence.
+
+### Integrated Completion Contract
+
+Non-trivial work starts from a canonical issue and a dedicated feature branch.
+Implementation is complete only after review of the final diff, applicable
+verification, commit, identity-verified push, pull request, checks, merge,
+verification of the merged target revision, and safe feature-branch cleanup.
+Dirty or untracked implementation/evidence blocks integrated-complete status.
+Notifications distinguish a completed audit or local preparation from an
+integrated repository change. A material defect, blocker, trust gap, or
+recurring workflow failure also requires an evidence-backed root-cause record
+and a verified mechanical recurrence guard before closure.
+
+### 2026-09-22 Evidence-Integrity 5-Whys
+
+1. Completion claims were unreliable because prose, test names, and passing
+   counts were treated as proof of the behavior they named.
+2. Green tests did not establish PRD compliance because requirements were not
+   mapped to direct positive and negative assertions.
+3. Release state drifted because app evidence, factory evidence, queues,
+   ledgers, and continuation files represented it independently.
+4. Drift persisted because no typed receipt reconciled source, artifact,
+   authorization, external operation, feedback, and resulting state.
+5. The root cause was a completion model that rewarded artifact existence and
+   command success without enforcing semantic coverage and provenance.
+
+The immediate correction is to downgrade unsupported claims and repair the
+known product/test defects. The root correction is the claim-to-evidence
+contract and canonical lifecycle receipt above. The recurrence guards are the
+tracked-evidence, state-reconciliation, timeout-classification, and integrated-
+completion checks specified here and implemented under factory map issue #42.
 
 ### Qualification Ledger
 
@@ -225,9 +313,12 @@ until its validation command passes and its evidence artifact is committed.
   manual repair flag, failure classification, operator identity, denominator,
   and cumulative success rate.
 - **Owner:** founder (qualification execution is owner-authorized).
-- **Validation:** the promotion guard verifies the ledger covers at least 10
-  consecutive weekday changes, cumulative unattended success rate >= 95%, at
-  least one second-operator run, and a complete failure taxonomy.
+- **Validation:** the promotion guard verifies a 30-calendar-day observation
+  window containing qualifying changes on at least 10 consecutive weekdays,
+  cumulative unattended success rate >= 95%, at least one second-operator run,
+  and a complete failure taxonomy.
+- **Calendar validation:** weekday names are derived from ISO dates; inconsistent
+  names, duplicate dates, or invalid business-day sequences fail validation.
 - **Fail condition:** the ledger is missing, incomplete, below threshold, or
   lacks independent-operator evidence.
 - **Synchronization:** factory issue #11 must be closed with the ledger
