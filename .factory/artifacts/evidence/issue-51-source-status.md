@@ -59,11 +59,15 @@ a hypothesis supported by the local commit lacking a signature.
 
 1. The continuation contract test failed because the refreshed prompt omitted
    required authority and scope-preflight phrases.
-2. The prompt had been reduced to the active website blocker and no longer
-   carried the repository's durable continuation safeguards.
-3. The prompt was updated before its contract test was run.
-4. The immediate and root-cause correction is to retain the canonical
-   `Continuation Contract` section during status refreshes.
-5. The mechanical recurrence guard is
-   `tests.test_continuation_contract`, which now verifies the global prompt
-   after every refresh.
+2. Those phrases were omitted because the prompt was replaced with a narrow
+   blocker snapshot instead of preserving its durable contract section.
+3. The replacement was not caught before editing because validation ran only
+   after the prompt refresh.
+4. Evidence does not establish why the earlier refresh process skipped that
+   checkpoint, so deeper causes remain `UNKNOWN`.
+
+The immediate correction restores the canonical `Continuation Contract`
+section. The root-cause correction is to preserve that section during status
+refreshes and run `tests.test_continuation_contract` at the same checkpoint.
+That test is the mechanical recurrence guard and now passes against the global
+prompt.

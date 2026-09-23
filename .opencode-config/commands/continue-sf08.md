@@ -1,5 +1,5 @@
 ---
-description: Resume cross-surface reconciliation at Foculoom review gate
+description: Resume cross-surface reconciliation at Foculoom branch-policy gate
 agent: explore
 ---
 
@@ -40,6 +40,7 @@ agent: explore
   `gh api user --jq .login == hellofoculoom`.
 - Reviewer identities may review or comment only and must be asserted before
   those actions.
+- Issue mutations are prohibited in `--auto` mode.
 - Never use `--admin`, an API workaround, force-push, or overwrite unrelated
   dirty work.
 - Private predecessor completeness remains `UNKNOWN`; issue #16 remains
