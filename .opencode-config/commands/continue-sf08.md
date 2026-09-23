@@ -5,9 +5,9 @@ agent: explore
 
 ## Current State (2026-09-23)
 
-- Status: `IN_PROGRESS`
-- Active map: `edoworks/factory#48`
-- Active increment: `edoworks/factory#51`
+- Canonical status: `IN_PROGRESS`
+- Canonical active map issue: `#48` (`edoworks/factory`)
+- Canonical active increment issue: `#51` (`edoworks/factory`)
 - Edoworks website PR #70 merged at `ec74a6`; deployed pages and sitemap were
   verified against the corrected source.
 - Foculoom website PR #184 is open at `00a9458`, mergeable, and green, but
