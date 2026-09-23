@@ -6,5 +6,5 @@
   "active_increment_issue": 51,
   "source_of_truth": ".factory/continuation-state.json",
   "next_increments": [52, 53],
-  "blocked_external_actions": ["owner inspection of the effective Foculoom master branch rule blocking PR #184", "Apple credentials", "upload", "submission", "physical-device validation"]
+  "blocked_external_actions": ["capture and satisfy the exact unmet requirement shown in the Foculoom PR #184 merge box", "Apple credentials", "upload", "submission", "physical-device validation"]
 }

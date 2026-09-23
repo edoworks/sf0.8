@@ -13,17 +13,19 @@ agent: explore
 - Foculoom website PR #184 is open at `00a9458`, mergeable, green, and approved
   by `supportfoculoom` against the current head, but GitHub's base-branch policy
   still blocks merge, squash, and rebase.
-- Auto-merge is disabled. The exact effective rule is not exposed by permitted
-  read interfaces. The head is unsigned, but signing enforcement is only an
-  unconfirmed hypothesis.
+- The owner enabled repository auto-merge, and PR #184 has an active auto-merge
+  request for the current head. It remains blocked with no pending required
+  check. The exact effective rule is not exposed by permitted read interfaces.
+  The head is unsigned, but signing enforcement is only an unconfirmed
+  hypothesis.
 - Updated blocker evidence is in
   `.factory/artifacts/evidence/issue-51-source-status.md`.
 
 ## Next Work
 
-1. Inspect the effective `master` branch rule for Foculoom PR #184 through the
-   owner web UI or a narrowly permitted authenticated read, and record the exact
-   unmet requirement. Do not infer it from the unsigned head alone.
+1. Capture the exact unmet requirement from the Foculoom PR #184 merge box or a
+   narrowly permitted authenticated read. Do not infer it from the unsigned head
+   alone.
 2. Satisfy that requirement without weakening policy or invalidating the current
    approval. Confirm `gh api user --jq .login` is exactly `hellofoculoom`, merge
    PR #184 normally without `--admin`, and verify the merged target.
