@@ -9,32 +9,32 @@ This is a visibility aid. `.factory/continuation-state.json` and
 
 - Active map: issue #48, organization repository and public-state
   reconciliation.
-- Active increment: issue #50, repository inventory and predecessor
-  obligations.
-- Public inventory covers all 11 repositories visible through the public
-  organization APIs: eight Edoworks and three Foculoom.
-- Private inventory completeness is `UNKNOWN`; authenticated organization-wide
-  enumeration is unavailable under current tool policy.
+- Active increment: issue #51, website state-claim corrections.
+- Issue #50 is integrated and closed. Public inventory is freshness-bounded;
+  inaccessible private completeness remains `UNKNOWN`.
+- Corrected Edoworks and Foculoom website sources are committed and pushed to
+  feature branches, with local claim tests and desktop/mobile render evidence.
 
 ## Next
 
-- Complete and integrate issue #50 without representing inaccessible private
-  scope as empty.
-- Continue in dependency order through website claims (#51), repository and
-  release claims (#52), and final cross-surface review (#53).
+- Create, review, and merge website pull requests when the current tool policy
+  permits those repository-specific PR writes.
+- Verify deployed URLs against merged revisions, then close issue #51.
+- Continue to repository metadata and release claims (#52), then final
+  cross-surface review (#53).
 
 ## Blocked
 
-- Remote issue inventories for private predecessors `foculoom/sf0.7` and
-  `foculoom/sf0.5` are not authenticated. Their open-obligation counts are
-  `UNKNOWN`, so the predecessor disposition manifest remains incomplete.
-- Issue #16 is remotely closed but its zero-obligation evidence is invalid;
-  its effective gate state remains `BLOCKED`.
+- Current tool policy permits feature-branch pushes but not PR creation for
+  `edoworks/edoworks.github.io` or `foculoom/foculoom.github.io`; website source
+  is not yet integrated or deployed.
+- Private predecessor issue inventories remain unauthenticated and `UNKNOWN`;
+  issue #16 remains effectively `BLOCKED`.
 - Apple credentials, upload, submission, and physical-device validation remain
   outside this lane.
 
 ## Preserved Work
 
+- Existing dirty Edoworks website logo/contact changes were not modified or
+  included in the issue #51 branch.
 - Product A remains shelved and predecessor factories remain read-only.
-- The meow-capture and NowNest qualification lanes remain recorded but are not
-  the active cross-surface reconciliation increment.
