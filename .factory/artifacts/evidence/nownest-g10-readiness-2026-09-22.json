@@ -1,0 +1,43 @@
+{
+  "gate": "G10-readiness",
+  "title": "NowNest App Store submission readiness",
+  "date": "2026-09-22",
+  "operator": "hellofoculoom",
+  "app": "com.foculoom.nownest",
+  "revision": "33e4fce",
+  "archive": {
+    "path": "/tmp/nownest-g10-archive.xcarchive",
+    "result": "ARCHIVE SUCCEEDED",
+    "signing_identity": "Apple Development: MOVOTOSA OJIRU (YM5MWC8YJF)",
+    "provisioning_profile": "iOS Team Provisioning Profile: * (19c6db8d-fd9e-4c4c-9dec-a299d5576014)",
+    "configuration": "Release",
+    "destination": "generic/platform/iOS"
+  },
+  "metadata_draft": {
+    "path": "evidence/apple-distribution/now-nest-submission-draft-2026-09-22.json",
+    "name": "NowNest",
+    "subtitle": "Park ideas. Return to now.",
+    "category": "Productivity",
+    "pending_owner_decisions": [
+      "copyright text",
+      "privacy URL",
+      "support URL",
+      "age rating",
+      "export compliance",
+      "App Review contact info",
+      "setup instructions",
+      "pricing and availability",
+      "screenshot families",
+      "localized metadata"
+    ]
+  },
+  "submission": {
+    "performed": false,
+    "human_authorization_required": true,
+    "next_step": "Owner resolves pending metadata decisions, then authorizes distribution signing and App Store Connect upload"
+  },
+  "g8_evidence": ".factory/artifacts/evidence/nownest-g8-visual-testflight-2026-09-21.json",
+  "g9_evidence": ".factory/artifacts/evidence/nownest-g9-recovery-2026-09-22.json",
+  "unit_tests": "33/33 passed (including recovery regression test)",
+  "notes": "Archive built from main at 33e4fce (includes G9 recovery fix and regression test). Distribution signing requires owner-authorized App Store Connect API key and a distribution provisioning profile. The archive uses development signing; re-signing with a distribution identity is required before upload."
+}
