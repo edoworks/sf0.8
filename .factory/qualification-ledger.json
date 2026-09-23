@@ -24,7 +24,11 @@
       "verification": {
         "sf0.8_tests": "253/253 passed",
         "factory_tests": "7/7 passed",
-        "nownest_unit_tests": "32/32 passed",
+        "nownest_unit_tests": "33/33 passed (including recovery regression test)",
+        "nownest_ui_tests_iphone": "30/30 passed",
+        "nownest_ui_tests_ipad": "30/30 passed",
+        "nownest_analyze": "ANALYZE SUCCEEDED (no warnings)",
+        "nownest_archive": "ARCHIVE SUCCEEDED (Apple Development signing)",
         "g9_recovery_test": "PASS (corrupted store recovery verified on simulator)",
         "git_diff_check": "clean",
         "continuation_command_test": "1/1 passed"
@@ -36,11 +40,14 @@
         "edoworks/sf0.8#110 (obligation manifest)",
         "edoworks/sf0.8#111 (permission allowlist)",
         "edoworks/sf0.8#112 (G9 evidence + ledger)",
-        "edoworks/nownest#15 (G9 recovery fix)"
+        "edoworks/nownest#15 (G9 recovery fix)",
+        "edoworks/nownest#16 (G9 regression test)",
+        "edoworks/sf0.8#113 (complete obligation manifest)",
+        "edoworks/sf0.8#114 (G10 readiness evidence)"
       ],
       "issues_closed": ["edoworks/factory#29", "#30", "#33", "#34", "#35", "#36"]
     }
   ],
   "status": "in_progress",
-  "notes": "Ledger started 2026-09-22. Entry 1 of 10 completed. Must accumulate 10 consecutive weekday changes with >=95% unattended success rate before v0.2.0 promotion or predecessor freeze. Second-operator run still required."
+  "notes": "Ledger started 2026-09-22. Entry 1 of 10 completed. Full verification: 33 unit tests, 30 UI tests on iPhone 17 Pro, 30 UI tests on iPad Pro 11-inch, static analysis clean, archive built. Must accumulate 10 consecutive weekday changes with >=95% unattended success rate before v0.2.0 promotion or predecessor freeze. Second-operator run still required."
 }
