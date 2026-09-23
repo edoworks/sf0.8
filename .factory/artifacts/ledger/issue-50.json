@@ -1,0 +1,61 @@
+{
+  "issue": 50,
+  "capability": "repository inventory and predecessor obligation integrity",
+  "change_units": 15,
+  "changed_paths": [
+    ".github/workflows/checks.yml",
+    "scripts/validate-apple-distribution.py",
+    "scripts/validate-repository-inventory.py"
+  ],
+  "reuse": {
+    "searched": 3,
+    "compatible": 2,
+    "reason": "Extend the existing lifecycle and Apple distribution validators, and add only the missing repository-boundary check.",
+    "discovery": {
+      "capability": "repository inventory and predecessor obligation integrity",
+      "decision": "EXTEND_EXISTING",
+      "matches": ["validate-lifecycle", "validate-apple-distribution"],
+      "specialization_reason": "Existing validators do not check organization repository coverage, inaccessible private scope, predecessor owner identity, or obligation count integrity."
+    },
+    "candidates": [
+      {
+        "id": "existing-lifecycle-validator",
+        "source": "scripts/validate-lifecycle.py",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "deterministic validator",
+        "revision": "edab9eeca3a929395e5d4c54f8312d75c075b6c1",
+        "license": "internal",
+        "security": "local fail-closed state validation",
+        "disposition": "ADAPT",
+        "reason": "Preserve the canonical portfolio parser and lifecycle authority rules."
+      },
+      {
+        "id": "existing-apple-distribution-validator",
+        "source": "scripts/validate-apple-distribution.py",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "deterministic validator",
+        "revision": "edab9eeca3a929395e5d4c54f8312d75c075b6c1",
+        "license": "internal",
+        "security": "local distribution-state validation",
+        "disposition": "ADAPT",
+        "reason": "Separate canonical shelved manifests from products currently requiring distribution manifests."
+      },
+      {
+        "id": "github-organization-repository-api",
+        "source": "https://docs.github.com/en/rest/repos/repos#list-organization-repositories",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "API documentation",
+        "revision": "retrieved-2026-09-23",
+        "license": "documentation reference",
+        "security": "public read-only enumeration",
+        "disposition": "LEARN_FROM",
+        "reason": "Record the public organization inventory without claiming inaccessible private coverage."
+      }
+    ]
+  },
+  "contribution": {"classification": "internal-reusable"},
+  "shareability": {
+    "disposition": "REUSE_CANDIDATE",
+    "evidence": "The guard is consumed by sf0.8 CI; no independent second consumer is claimed."
+  }
+}

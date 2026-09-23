@@ -85,6 +85,11 @@
       "number": 49,
       "url": "https://github.com/edoworks/factory/issues/49",
       "repo": "edoworks/factory"
+    },
+    "repository inventory and predecessor obligation integrity": {
+      "number": 50,
+      "url": "https://github.com/edoworks/factory/issues/50",
+      "repo": "edoworks/factory"
     }
   },
   "policy": "Material work without a factory binding is blocked; callers cannot select an arbitrary issue."

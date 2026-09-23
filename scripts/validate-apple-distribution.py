@@ -44,9 +44,13 @@ def canonical_products() -> list[dict[str, str]]:
 
 def validate_product_inventory(products: list[dict[str, Any]]) -> list[str]:
     errors: list[str] = []
-    canonical = {product["id"]: product for product in canonical_products() if product.get("lifecycle") in {"active", "released"}}
+    canonical = {product["id"]: product for product in canonical_products()}
+    required = {
+        product_id for product_id, product in canonical.items()
+        if product.get("lifecycle") in {"active", "released"}
+    }
     manifests = {product.get("id") for product in products}
-    missing = sorted(set(canonical) - manifests)
+    missing = sorted(required - manifests)
     unknown = sorted(manifests - set(canonical))
     if missing:
         errors.append(f"distribution manifests missing canonical Apple products: {', '.join(missing)}")

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-09-23T06:10:00Z",
+  "max_age_hours": 168,
+  "public_inventory": {
+    "complete": true,
+    "source": "unauthenticated GitHub organization API",
+    "counts": {"edoworks": 8, "foculoom": 3},
+    "repositories": [
+      {"id": "edoworks/edoworks.github.io", "lifecycle": "active", "disposition": "keep"},
+      {"id": "edoworks/rung", "lifecycle": "active", "disposition": "keep"},
+      {"id": "edoworks/trycycle", "lifecycle": "upstream_tracked", "disposition": "keep"},
+      {"id": "edoworks/asc-client", "lifecycle": "deprecated", "disposition": "keep_read_only"},
+      {"id": "edoworks/factory-constitution", "lifecycle": "deprecated", "disposition": "keep_read_only"},
+      {"id": "edoworks/artifacts", "lifecycle": "active", "disposition": "keep"},
+      {"id": "edoworks/factory", "lifecycle": "active", "disposition": "keep"},
+      {"id": "edoworks/nownest", "lifecycle": "validating", "disposition": "keep"},
+      {"id": "foculoom/rung-plugin", "lifecycle": "archived", "disposition": "keep_read_only"},
+      {"id": "foculoom/edglex.com", "lifecycle": "archived", "disposition": "keep_read_only"},
+      {"id": "foculoom/noraze.com", "lifecycle": "archived", "disposition": "keep_read_only"}
+    ]
+  },
+  "private_inventory": {
+    "complete": false,
+    "known_repositories": ["edoworks/sf0.8", "edoworks/product-a", "foculoom/vorynce", "foculoom/sf0.7", "foculoom/sf0.5"],
+    "blocker": "Authenticated organization-wide repository enumeration is denied by the current tool policy. Known local repositories are classified, but completeness is UNKNOWN."
+  }
+}
