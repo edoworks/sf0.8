@@ -1,5 +1,5 @@
 ---
-description: Resume cross-surface reconciliation at Foculoom branch-policy gate
+description: Resume repository metadata and release-claim reconciliation
 agent: explore
 ---
 
@@ -7,34 +7,26 @@ agent: explore
 
 - Canonical status: `IN_PROGRESS`
 - Canonical active map issue: `#48` (`edoworks/factory`)
-- Canonical active increment issue: `#51` (`edoworks/factory`)
+- Canonical active increment issue: `#52` (`edoworks/factory`)
 - Edoworks website PR #70 merged at `ec74a6`; deployed pages and sitemap were
   verified against the corrected source.
-- Foculoom website PR #184 is open at `00a9458`, mergeable, green, and approved
-  by `supportfoculoom` against the current head, but GitHub's base-branch policy
-  still blocks merge, squash, and rebase.
-- The owner enabled repository auto-merge, and PR #184 has an active auto-merge
-  request for the current head. It remains blocked with no pending required
-  check.
-- The exact conflict is confirmed: the organization-wide `Restrict updates`
-  rule requires explicit bypass, while this lane prohibits `--admin` or web
-  bypass. Review, required check, owner-team membership, and repository binding
-  are all satisfied. Normal merge remains impossible under the current policy.
-- Updated blocker evidence is in
+- Foculoom website PR #184 merged normally at `f4e0bc9`; post-merge Pages build
+  and deployment passed, and live home, policy, sitemap, and Rung destination
+  checks match source.
+- The permanent branch-policy replacement preserves owner-only mutations without
+  requiring explicit merge bypass. `Owner Ref Writers` remains sole-member;
+  `supportfoculoom` retains review access but is not a bypass actor.
+- Issue #51 completion evidence is in
   `.factory/artifacts/evidence/issue-51-source-status.md`.
 
 ## Next Work
 
-1. Design and review a permanent policy or merge-automation change that preserves
-   owner-only ref mutation while allowing ordinary reviewed PR merges without
-   explicit bypass. Do not weaken policy temporarily for PR #184.
-2. After that design is approved and implemented, confirm
-   `gh api user --jq .login` is exactly `hellofoculoom`, merge PR #184 normally
-   without `--admin`, and verify the merged target.
-3. Fetch deployed Foculoom URLs until Pages propagation completes and verify
-   the claims and links match merged source.
-4. Finalize and integrate the sf0.8 issue #51 evidence, close issue #51, and
-   advance continuation to issue #52.
+1. Load issue #52, canonical inventory, and current authenticated repository and
+   release metadata snapshots.
+2. Correct active homepage, lifecycle, license, and release claims without
+   unarchiving deprecated repositories or publishing new releases.
+3. Verify the metadata snapshot and documented release URLs/assets.
+4. Then run issue #53 final cross-surface state review and closeout.
 
 ## Authority Boundaries
 

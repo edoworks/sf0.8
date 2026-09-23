@@ -3,8 +3,8 @@
   "status": "IN_PROGRESS",
   "subject": "Organization repository and public-state reconciliation",
   "active_map_issue": 48,
-  "active_increment_issue": 51,
+  "active_increment_issue": 52,
   "source_of_truth": ".factory/continuation-state.json",
-  "next_increments": [52, 53],
-  "blocked_external_actions": ["approve a permanent Foculoom policy design that permits ordinary reviewed owner merges without explicit bypass", "Apple credentials", "upload", "submission", "physical-device validation"]
+  "next_increments": [53],
+  "blocked_external_actions": ["Apple credentials", "upload", "submission", "physical-device validation"]
 }
