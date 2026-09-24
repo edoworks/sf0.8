@@ -1,13 +1,13 @@
 {
   "evidence_id": "issue-52-rung-visual-verification-2026-09-24",
-  "status": "PENDING_EVIDENCE_COMMIT",
+  "status": "PASS",
   "url": "https://edoworks.com/rung/",
   "source_repository": "edoworks/edoworks.github.io",
   "source_revision": "70a724055bcde7be5fb8965e5b0462fec1ba98da",
   "source_artifact": "rung/index.html",
   "mode": "live deployed page in Safari; desktop and narrow-window captures",
   "destination": "https://edoworks.com/rung/",
-  "evidence_revision": "PENDING_FIRST_COMMIT",
+  "evidence_revision": "0fdf4ffea028a35c6595925e6a0f0644bd82e04e",
   "command": "python3 scripts/public-surface-preflight.py https://edoworks.com/rung/ --expected-canonical https://edoworks.com/rung/ --require-text 'Available without a hosted service' --require-text 'The former laptop-hosted web distribution is not required for the Rung engine and is not advertised here.' --forbid-text rung.edoworks.com --json",
   "direct_pass_condition": "HTTP 200, exact canonical URL, required retirement copy, no retired hostname, passing links, and no visible overlap, clipping, or horizontal overflow in desktop and narrow captures.",
   "deterministic_verification": {

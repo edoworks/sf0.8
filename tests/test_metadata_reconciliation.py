@@ -1,5 +1,7 @@
 import json
+import hashlib
 from pathlib import Path
+import subprocess
 import unittest
 
 
@@ -71,6 +73,35 @@ class MetadataReconciliationTests(unittest.TestCase):
             "owner-decision-pending",
         )
         self.assertTrue(repositories["edoworks/nownest"]["allow_missing_license"])
+
+    def test_visual_receipt_binds_committed_screenshots(self):
+        receipt_path = (
+            ROOT
+            / ".factory/artifacts/evidence/public-surface-review/issue-52-rung-visual-verification-2026-09-24.json"
+        )
+        receipt = json.loads(receipt_path.read_text())
+        self.assertEqual(receipt["status"], "PASS")
+        self.assertRegex(receipt["source_revision"], r"^[0-9a-f]{40}$")
+        self.assertRegex(receipt["evidence_revision"], r"^[0-9a-f]{40}$")
+
+        for screenshot in receipt["visual_verification"]["screenshots"]:
+            screenshot_path = ROOT / screenshot["path"]
+            self.assertEqual(
+                hashlib.sha256(screenshot_path.read_bytes()).hexdigest(),
+                screenshot["sha256"],
+            )
+            result = subprocess.run(
+                [
+                    "git",
+                    "cat-file",
+                    "-e",
+                    f"{receipt['evidence_revision']}:{screenshot['path']}",
+                ],
+                cwd=ROOT,
+                capture_output=True,
+                check=False,
+            )
+            self.assertEqual(result.returncode, 0)
 
 
 if __name__ == "__main__":
