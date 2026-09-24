@@ -116,6 +116,41 @@ Recurrence guard: `test_blocker_visual_receipt_is_scoped_and_bound` checks the
 receipt structure, cropped capture scope, screenshot hashes, and per-screenshot
 metadata result.
 
+## Permission Path Blocker
+
+1. Approved metadata and PR operations could not execute because broad `gh repo`
+   and `gh pr` denials had no repository-specific path for this increment.
+2. Repeated owner approval and process restarts did not help because runtime
+   consent cannot override a missing declarative policy rule.
+3. The policy fixture did not catch the missing path because its resolved-config
+   parity test covered `gh pr`, `gh issue`, and `gh api`, but excluded `gh repo`.
+4. Expanding that parity check initially exposed another existing omission: the
+   fixture lacked the scoped `edoworks/artifacts` repository-create ask already
+   present in both configuration files.
+
+Root cause: the policy had no narrow, test-covered exception for the exact
+approved repository mutations, and fixture parity did not cover repository
+commands.
+
+Correction: add ask-only rules for the three exact metadata fields and two exact
+PR-creation repositories, retain read-only PR inspection, and preserve the broad
+denials for every other repository command.
+
+Recurrence guard: permission-policy tests now compare all resolved `gh repo`
+rules and prove intended commands resolve to `ask` while adjacent fields,
+malicious repository names, and unrelated repositories remain denied.
+
+Independent trust review found that the first narrow rules still ended in broad
+wildcards. GitHub CLI accepts repeated scalar flags, so an appended `--repo` or
+additional `gh repo edit` setting could have changed the effective target or
+mutation. It also found that resolved-config parity alone read the installed
+global policy rather than proving the checked-in source matched the fixture.
+
+The corrected rules match the complete approved mutation commands, constrain PR
+read commands to fixed endings, and compare both installed and checked-in policy
+with the fixture. Negative tests append a second repository and an unrelated
+visibility mutation and require both to remain denied.
+
 ## Evidence References
 
 - Factory correction: `edoworks/factory` PR #58, merged as

@@ -1,0 +1,13 @@
+## Summary
+
+- restore the standalone source's historical MIT license
+- link its exact canonical `constitution/v1.0.0` successor release
+- retain explicit deprecated, history-only lifecycle wording
+
+## Verification
+
+- license compared with historical commit `737761e`
+- canonical source and release URLs resolve
+- independent diff review found no issues
+
+Tracks edoworks/factory#52.
