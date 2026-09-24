@@ -74,8 +74,10 @@ Root cause: the increment omitted its repository-local capability binding and
 reuse ledger before opening the PR.
 
 Correction and guard: bind the exact Factory issue and add
-`.factory/artifacts/ledger/issue-52.json` with only the four gated paths. Re-run
-the same pull-request range validator before updating the PR.
+`.factory/artifacts/ledger/issue-52-factory-metadata.json` with only the four
+gated paths while preserving the historical sf0.8 `issue-52.json`. The local
+pull-request range `6c419b6...354066f` then passed with exactly those four gated
+paths.
 
 ## Remaining authority blockers
 
