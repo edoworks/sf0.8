@@ -60,6 +60,23 @@ Correction and guard: the workflow passes its scoped read token, the test
 authenticates when one is available, and missing release fields no longer pass
 through permissive defaults. The corrected check passed before merge.
 
+## sf0.8 changed-path gate failure
+
+1. The first sf0.8 PR run `35945261793` blocked four changed machinery paths.
+2. The feature added validators and workflow enforcement without a current
+   issue ledger claiming those paths.
+3. Issue #52 existed in the canonical Factory tracker but had not been added to
+   sf0.8's capability binding registry.
+4. Local unit and semantic validators do not substitute for the complete-event
+   changed-path ownership gate.
+
+Root cause: the increment omitted its repository-local capability binding and
+reuse ledger before opening the PR.
+
+Correction and guard: bind the exact Factory issue and add
+`.factory/artifacts/ledger/issue-52.json` with only the four gated paths. Re-run
+the same pull-request range validator before updating the PR.
+
 ## Remaining authority blockers
 
 - The normal `gh repo edit` command is denied by active tool policy. No API

@@ -1,57 +1,55 @@
 {
   "issue": 52,
-  "capability": "evidence-driven executive review",
+  "capability": "repository metadata and release claim reconciliation",
   "change_units": 4,
   "changed_paths": [
-    ".agents/skills/executive-council/SKILL.md",
-    "scripts/executive_council.py"
+    ".github/workflows/checks.yml",
+    "scripts/public-surface-preflight.py",
+    "scripts/validate-evidence-integrity.py",
+    "scripts/validate-repository-inventory.py"
   ],
   "reuse": {
-    "searched": 3,
+    "searched": 2,
     "compatible": 1,
-    "reason": "Adapt existing Foculoom evidence primitives. Reject persona-heavy external council implementations and add only the missing evidence-integrated review glue.",
+    "reason": "Extend the existing public-surface, inventory, evidence-integrity, and changed-path controls instead of creating a parallel metadata control plane.",
     "discovery": {
-      "capability": "evidence-driven executive review",
+      "capability": "repository metadata and release claim reconciliation",
       "decision": "EXTEND_EXISTING",
-      "matches": ["customer-zero", "release-board", "evidence-strength", "human-action-queue", "governance"],
-      "specialization_reason": "External candidates simulate executive personas but do not bind recommendations to Foculoom factory, customer, portfolio, and outcome evidence."
+      "matches": [
+        "public-surface-preflight"
+      ],
+      "specialization_reason": "The existing preflight already owns live public URL and GitHub metadata checks; this increment binds it to exact canonical repository and release contracts."
     },
     "candidates": [
       {
-        "id": "foculoom-decision-evidence-primitives",
-        "source": ".factory/customer-zero.json and existing factory evidence contracts",
+        "id": "public-surface-preflight",
+        "source": "scripts/public-surface-preflight.py",
         "source_type": "FOCULOOM_SHARED",
-        "artifact_type": "evidence-contracts",
-        "revision": "working-tree-2026-09-19",
-        "license": "Foculoom internal",
-        "security": "local metadata only",
+        "artifact_type": "public metadata validator",
+        "revision": "6c419b6e3ad39722fc961d8235965f00bfb6fbb1",
+        "license": "internal",
+        "security": "read-only public metadata and URL validation",
         "disposition": "ADAPT",
-        "reason": "Reuse canonical evidence, authority, and tracking contracts instead of creating a council platform."
+        "reason": "Add exact contracts, authenticated API reads, release assets, tag revisions, and declared-blocker semantics to the existing validator."
       },
       {
-        "id": "ajayjohn-tars-think",
-        "source": "https://github.com/ajayjohn/tars-work-assistant",
-        "source_type": "SOURCE_REPOSITORY",
-        "artifact_type": "agent-skill",
-        "revision": "previewed-2026-09-19",
-        "license": "requires exact artifact review",
-        "security": "preview only; not installed or executed",
-        "disposition": "REJECT",
-        "reason": "Executive persona simulation, memory persistence, and multi-agent ceremony conflict with the minimal evidence-first Foculoom objective."
-      },
-      {
-        "id": "awesome-copilot-ai-team-orchestration",
-        "source": "https://github.com/github/awesome-copilot/tree/main/plugins/ai-team-orchestration",
-        "source_type": "CURATED_CATALOG",
-        "artifact_type": "copilot-plugin",
-        "revision": "catalog-reviewed-2026-09-19",
-        "license": "repository MIT; exact plugin review required",
-        "security": "catalog metadata only; not installed or executed",
-        "disposition": "REJECT",
-        "reason": "A multi-agent development-team plugin would add orchestration and role simulation rather than compact founder decision support."
+        "id": "github-rest-repository-and-release-api",
+        "source": "https://docs.github.com/en/rest/repos/repos and https://docs.github.com/en/rest/releases/releases",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "API documentation",
+        "revision": "retrieved-2026-09-24",
+        "license": "documentation reference",
+        "security": "read-only public API fields with scoped CI token",
+        "disposition": "LEARN_FROM",
+        "reason": "Use first-party definitions for repository metadata, release immutability, assets, and digest fields."
       }
     ]
   },
-  "contribution": {"classification": "internal-reusable"},
-  "shareability": {"disposition": "REUSE_CANDIDATE", "evidence": "Generated review is internal-only and founder-gated; second real consumer not established."}
+  "contribution": {
+    "classification": "internal-reusable"
+  },
+  "shareability": {
+    "disposition": "REUSE_CANDIDATE",
+    "evidence": "The exact contract and declared-blocker pattern is used by sf0.8 CI; no independent second consumer is claimed."
+  }
 }

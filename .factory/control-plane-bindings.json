@@ -110,6 +110,11 @@
       "number": 51,
       "url": "https://github.com/edoworks/factory/issues/51",
       "repo": "edoworks/factory"
+    },
+    "repository metadata and release claim reconciliation": {
+      "number": 52,
+      "url": "https://github.com/edoworks/factory/issues/52",
+      "repo": "edoworks/factory"
     }
   },
   "policy": "Material work without a factory binding is blocked; callers cannot select an arbitrary issue."
