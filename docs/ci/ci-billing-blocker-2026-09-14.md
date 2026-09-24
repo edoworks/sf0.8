@@ -54,3 +54,12 @@ repository. The immediate cause was the wrong working directory; the
 contributing cause was a fake service command that did not enforce the vendor
 script's directory contract. The guard now executes `svc.sh` from the runner
 root, and the positive test fails unless that working directory is used.
+
+The first updated PR run then failed the changed-path ecosystem gate because the
+two new scripts were not claimed by a current capability ledger. The issue
+existed, but its binding and ledger had not been added before push; local unit
+tests validate record semantics, not the complete GitHub pull-request range.
+The policy therefore failed correctly. The correction binds issue 147 to the
+self-hosted runner readiness capability and claims exactly the two gated paths
+in `.factory/artifacts/ledger/issue-147.json`. The complete PR-range CI check is
+the recurrence guard; local green tests cannot replace it.
