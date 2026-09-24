@@ -547,9 +547,16 @@ def main() -> int:
         }
         declared_blockers = contract["declared_repository_blockers"]
         non_repository_failures = results + releases + packages
-        return 0 if (
+        blockers_match_status = (
             contract["completion_status"] == "IN_PROGRESS"
             and actual_blockers == declared_blockers
+        ) or (
+            contract["completion_status"] == "COMPLETE"
+            and not actual_blockers
+            and not declared_blockers
+        )
+        return 0 if (
+            blockers_match_status
             and all(item["status"] == "pass" for item in non_repository_failures)
         ) else 1
     return 0 if all(item["status"] == "pass" for item in checks) else 1

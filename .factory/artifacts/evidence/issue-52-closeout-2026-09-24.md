@@ -39,3 +39,18 @@ across verification phases. Immediate correction: update the checked-in prompt
 in the same branch. Root-cause correction and recurrence guard: retain the
 existing evidence-integrity comparison, which detected the mismatch before
 commit; rerun it after every continuation-state change.
+
+## Complete-Contract CI Failure
+
+1. PR 143's policy job returned exit 1 after all ten live contract checks passed.
+2. CI always invokes the contract with `--allow-declared-blockers` so an exact
+   declared blocker set can keep an `IN_PROGRESS` contract verifiable.
+3. That mode returned success only when `completion_status` was `IN_PROGRESS`.
+4. No regression test exercised the transition from a matching in-progress
+   blocker set to a blocker-free complete contract under the CI command shape.
+
+Root cause: declared-blocker mode encoded only the intermediate state, while CI
+used it for the contract's full lifecycle. Immediate correction: complete mode
+now succeeds only when declared and actual blockers are both empty and all
+non-repository checks pass. Root-cause correction: regression tests execute the
+CI command path for both blocker-free success and live-drift rejection.
