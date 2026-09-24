@@ -18,14 +18,17 @@ This is a visibility aid. `.factory/continuation-state.json` and
 
 ## Next
 
-- Reconcile repository metadata, README lifecycle statements, homepage URLs,
-  licenses, and release claims under issue #52.
+- Complete the five remaining live effects under issue #52: the Rung homepage,
+  both deprecated-repository descriptions, and both prepared source PRs.
 - Then run final cross-surface review and closeout under issue #53.
 
 ## Blocked
 
 - Private predecessor issue inventories remain unauthenticated and `UNKNOWN`;
   issue #16 remains effectively `BLOCKED`.
+- Owner identity is verified, but active command policy denies `gh repo edit`
+  for the three metadata fields and `gh pr create` for `asc-client` and
+  `factory-constitution`. No API workaround or direct `main` push is permitted.
 - Apple credentials, upload, submission, and physical-device validation remain
   outside this lane.
 

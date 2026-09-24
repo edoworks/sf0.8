@@ -82,13 +82,39 @@ paths.
 ## Remaining authority blockers
 
 - The normal `gh repo edit` command is denied by active tool policy. No API
-  workaround was used.
+  workaround was used. This blocks the Rung homepage and the `asc-client` and
+  `factory-constitution` description fields required by the exact contract.
 - PR creation is denied for `edoworks/asc-client` and
   `edoworks/factory-constitution`. Reviewed feature branches are pushed, but
   direct pushes to `main` are prohibited.
+- Owner identity was reverified as `hellofoculoom` immediately before the
+  denied canonical homepage and PR-creation attempts on 2026-09-24.
 
 These are observed trust-boundary constraints, not evidence that the target
 state was reached.
+
+## Closeout Evidence Review Findings
+
+1. The first blocker update changed human-readable continuation files but left
+   the authoritative `.factory/continuation-state.json` blocker list unchanged.
+2. The update treated the JSON as a stable pointer rather than as the canonical
+   machine-readable representation required by the PRD.
+3. The first visual receipt also aggregated model labels across three screenshots,
+   which obscured which assertions applied to each repository.
+4. The receipt was written from the summary output rather than the repository's
+   per-screenshot visual-evidence contract.
+
+Root cause: the blocker-evidence update did not reconcile every projection with
+its canonical record or validate the receipt shape against the documented visual
+contract before review.
+
+Correction: the canonical continuation state now lists all five blocked effects;
+the receipt binds results and reclassifications to each cropped screenshot; and
+unrelated browser context is excluded from committed evidence.
+
+Recurrence guard: `test_blocker_visual_receipt_is_scoped_and_bound` checks the
+receipt structure, cropped capture scope, screenshot hashes, and per-screenshot
+metadata result.
 
 ## Evidence References
 

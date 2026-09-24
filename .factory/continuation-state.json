@@ -6,5 +6,15 @@
   "active_increment_issue": 52,
   "source_of_truth": ".factory/continuation-state.json",
   "next_increments": [53],
-  "blocked_external_actions": ["Apple credentials", "upload", "submission", "physical-device validation"]
+  "blocked_external_actions": [
+    "Rung repository homepage update",
+    "asc-client repository description update",
+    "factory-constitution repository description update",
+    "asc-client prepared PR integration",
+    "factory-constitution prepared PR integration",
+    "Apple credentials",
+    "upload",
+    "submission",
+    "physical-device validation"
+  ]
 }

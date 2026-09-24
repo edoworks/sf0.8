@@ -285,6 +285,20 @@ validator lands under the implementation issue.
   with a declared maximum age. A remotely closed issue and valid closure
   evidence are separate conditions; either can block effective completion.
 
+### Repository Metadata Contract
+
+- Canonical lifecycle state is bound to the exact public repository description,
+  homepage, archive state, visibility, license, default branch, and supported
+  release properties that users can observe.
+- Source-only changes do not satisfy a live metadata requirement. Repository
+  fields and merged default-branch content must independently match the contract.
+- An incomplete contract names every observed blocker exactly. Completion clears
+  the blocker set and passes the authenticated contract without a declared-
+  blocker allowance.
+- Public repository-page validation includes a rendered visual check that active,
+  deprecated, archived, and successor language is visible and unambiguous. A
+  screenshot does not substitute for live metadata or source verification.
+
 ### Verification Outcome Contract
 
 Verification reports one of: `PASSED`, `FAILED`,
