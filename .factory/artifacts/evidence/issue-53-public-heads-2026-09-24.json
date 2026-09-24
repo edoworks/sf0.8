@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-09-24T06:51:38Z",
+  "source": "read-only git ls-remote default-branch readback",
+  "repositories": {
+    "edoworks/edoworks.github.io": "70a724055bcde7be5fb8965e5b0462fec1ba98da",
+    "edoworks/rung": "e1f2d922ed88623abb8b6800031dea8cf04cf880",
+    "edoworks/trycycle": "72bcc737886e10cdcbb971f365c3732c54bda7bf",
+    "edoworks/asc-client": "b1127bc9b97daaf2c39ee0bb7afa93849b797653",
+    "edoworks/factory-constitution": "a21a5234e4a95875fab11bcf7c0d419d200ec38d",
+    "edoworks/artifacts": "9d868f8565c94709a34d7dd79501d994776e46bd",
+    "edoworks/factory": "d1f13f7824c176840d16555b9dd2524c7c1be674",
+    "edoworks/nownest": "b5ef5fc4a2543101f0e441e07162e88eed334d84",
+    "foculoom/rung-plugin": "5140b87bfa7cfec7a928e49a0dd5eb5dba83345c",
+    "foculoom/edglex.com": "fd4b99f2e461ee1270d077c94835628d9a2ac4fd",
+    "foculoom/noraze.com": "22726d02deb310e8b6d7d60346e0fb43637d3ada"
+  }
+}
