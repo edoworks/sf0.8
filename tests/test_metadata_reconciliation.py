@@ -103,6 +103,32 @@ class MetadataReconciliationTests(unittest.TestCase):
             )
             self.assertEqual(result.returncode, 0)
 
+    def test_blocker_visual_receipt_is_scoped_and_bound(self):
+        receipt_path = (
+            ROOT
+            / ".factory/artifacts/evidence/public-surface-review/issue-52-repository-blocker-visual-2026-09-24.json"
+        )
+        receipt = json.loads(receipt_path.read_text())
+
+        self.assertEqual(receipt["status"], "BLOCKED")
+        self.assertEqual(len(receipt["screenshots"]), 3)
+        verifications = receipt["visual_verification"]["vision_model_verification"]
+        self.assertEqual(len(verifications), 3)
+
+        by_path = {item["screenshot"]: item for item in verifications}
+        for screenshot in receipt["screenshots"]:
+            self.assertEqual(screenshot["capture_scope"], "repository-content-cropped")
+            self.assertTrue(screenshot["browser_context_removed"])
+            screenshot_path = ROOT / screenshot["path"]
+            self.assertEqual(
+                hashlib.sha256(screenshot_path.read_bytes()).hexdigest(),
+                screenshot["sha256"],
+            )
+            verification = by_path[screenshot["path"]]
+            self.assertTrue(verification["date"])
+            results = {item["check"]: item["status"] for item in verification["results"]}
+            self.assertEqual(results["metadata"], "BLOCKED")
+
 
 if __name__ == "__main__":
     unittest.main()

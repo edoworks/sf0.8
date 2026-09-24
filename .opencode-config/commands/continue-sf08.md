@@ -1,9 +1,9 @@
 ---
-description: Resume repository metadata and release-claim reconciliation
+description: Resume five blocked repository reconciliation effects
 agent: explore
 ---
 
-## Current State (2026-09-23)
+## Current State (2026-09-24)
 
 - Canonical status: `IN_PROGRESS`
 - Canonical active map issue: `#48` (`edoworks/factory`)
@@ -19,15 +19,20 @@ agent: explore
 - Issue #51 completion evidence is in
   `.factory/artifacts/evidence/issue-51-source-status.md`.
 - Issue #51 is closed and its closeout guard reported `CLOSED`.
+- Issue #52 source, release, contract, and Rung destination work is prepared and
+  verified. Completion is blocked by five live effects: three repository fields
+  and two prepared PR integrations.
 
 ## Next Work
 
-1. Load issue #52, canonical inventory, and current authenticated repository and
-   release metadata snapshots.
-2. Correct active homepage, lifecycle, license, and release claims without
-   unarchiving deprecated repositories or publishing new releases.
-3. Verify the metadata snapshot and documented release URLs/assets.
-4. Then run issue #53 final cross-surface state review and closeout.
+1. Authorize the canonical `gh repo edit` command for the Rung homepage and both
+   deprecated-repository descriptions; do not use an API workaround.
+2. Authorize `gh pr create` for `edoworks/asc-client` at `c49e8a2` and
+   `edoworks/factory-constitution` at `1412836`, then merge normally without
+   rewriting either reviewed head.
+3. Refresh the authenticated metadata contract and require a blocker-free pass.
+4. Close issue #52 only after its closeout guard reports `CLOSED`, then run issue
+   #53 final cross-surface state review.
 
 ## Authority Boundaries
 

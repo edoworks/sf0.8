@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "evidence_id": "issue-52-repository-blocker-visual-2026-09-24",
+  "captured_at": "2026-09-24T05:37:07Z",
+  "status": "BLOCKED",
+  "subject": "Rendered GitHub repository surfaces for the five remaining issue #52 effects",
+  "screenshots": [
+    {
+      "repository": "edoworks/asc-client",
+      "revision": "c49e8a2886665e95276e4a5305c3ce21a8fa392f",
+      "path": ".factory/artifacts/evidence/public-surface-review/issue-52-asc-prepared-cropped-20260924-v2.png",
+      "sha256": "cb9482b83fa9dfed55a208d41aac240436aa3cb70bee520ee4fefe46d59bc071",
+      "capture_scope": "repository-content-cropped",
+      "browser_context_removed": true,
+      "observation": "The prepared branch visibly communicates deprecation, the canonical successor, exact asc/v1.0.0 release, and MIT license. The About description still advertises the former active client and therefore contradicts the canonical lifecycle contract."
+    },
+    {
+      "repository": "edoworks/factory-constitution",
+      "revision": "1412836bfa91d9fac627bc8dd7e83bd0e46f0d53",
+      "path": ".factory/artifacts/evidence/public-surface-review/issue-52-constitution-prepared-cropped-20260924-v2.png",
+      "sha256": "99369d1b2311d97fe71d85879039843e325f65e4cce189328cfc24a296919f47",
+      "capture_scope": "repository-content-cropped",
+      "browser_context_removed": true,
+      "observation": "The prepared branch visibly communicates deprecation, the canonical successor, exact constitution/v1.0.0 release, and MIT license. The About description still advertises the former templates and therefore contradicts the canonical lifecycle contract."
+    },
+    {
+      "repository": "edoworks/rung",
+      "revision": "e1f2d922ed88623abb8b6800031dea8cf04cf880",
+      "path": ".factory/artifacts/evidence/public-surface-review/issue-52-rung-repository-blocker-cropped-20260924-v2.png",
+      "sha256": "43dec576006600886da4eadbc707aac758eb1aebc07323841f5751df09eecd46",
+      "capture_scope": "repository-content-cropped",
+      "browser_context_removed": true,
+      "observation": "The repository is readable and visibly active, but its About homepage remains rung.edoworks.com while the separate sponsor destination is edoworks.com/rung/. The About field is the contract blocker."
+    }
+  ],
+  "visual_verification": {
+    "vision_model_verification": [
+      {
+        "model": "ollama/qwen3.5:4b",
+        "screenshot": ".factory/artifacts/evidence/public-surface-review/issue-52-asc-prepared-cropped-20260924-v2.png",
+        "date": "2026-09-24",
+        "results": [
+          {"check": "lifecycle", "status": "PASS", "observation": "Deprecated heading and history-only wording are visible."},
+          {"check": "successor", "status": "PASS", "observation": "Canonical asc artifact and exact asc/v1.0.0 release are visible."},
+          {"check": "license", "status": "PASS", "observation": "MIT license is visible in the tree and README."},
+          {"check": "layout", "status": "PASS", "observation": "Content is readable without overlap or clipping."},
+          {"check": "metadata", "status": "BLOCKED", "observation": "The About description advertises the former active client instead of the canonical deprecated wording."}
+        ],
+        "note": "The model labeled metadata PASS; deterministic comparison with the canonical target reclassified it as BLOCKED."
+      },
+      {
+        "model": "ollama/qwen3.5:4b",
+        "screenshot": ".factory/artifacts/evidence/public-surface-review/issue-52-constitution-prepared-cropped-20260924-v2.png",
+        "date": "2026-09-24",
+        "results": [
+          {"check": "lifecycle", "status": "PASS", "observation": "Deprecated heading and history-only wording are visible."},
+          {"check": "successor", "status": "PASS", "observation": "Canonical constitution artifact and exact constitution/v1.0.0 release are visible."},
+          {"check": "license", "status": "PASS", "observation": "MIT license is visible in the tree and README."},
+          {"check": "layout", "status": "PASS", "observation": "Content is readable without overlap or clipping."},
+          {"check": "metadata", "status": "BLOCKED", "observation": "The About description advertises the former templates instead of the canonical deprecated wording."}
+        ],
+        "note": "The model labeled metadata PASS; deterministic comparison with the canonical target reclassified it as BLOCKED."
+      },
+      {
+        "model": "ollama/qwen3.5:4b",
+        "screenshot": ".factory/artifacts/evidence/public-surface-review/issue-52-rung-repository-blocker-cropped-20260924-v2.png",
+        "date": "2026-09-24",
+        "results": [
+          {"check": "lifecycle", "status": "PASS", "observation": "The repository is visibly active."},
+          {"check": "successor", "status": "NOT_APPLICABLE", "observation": "Rung is active rather than deprecated."},
+          {"check": "license", "status": "PASS", "observation": "MIT license is visible in the About panel."},
+          {"check": "layout", "status": "PASS", "observation": "Content is readable without overlap or clipping."},
+          {"check": "metadata", "status": "BLOCKED", "observation": "The About homepage is the retired rung.edoworks.com URL while the canonical sponsor link is edoworks.com/rung/."}
+        ],
+        "note": "The model labeled metadata PASS; deterministic comparison with the canonical target reclassified it as BLOCKED."
+      }
+    ]
+  },
+  "direct_pass_condition": "All three About fields match the canonical contract, both prepared branches are merged to main, and a fresh rendered review shows lifecycle and successor language on the default branches.",
+  "result": "The prepared source is visually clear, but live metadata and default-branch integration remain blocked."
+}
