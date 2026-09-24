@@ -1,0 +1,51 @@
+{
+  "issue": 52,
+  "capability": "repository metadata and release claim reconciliation",
+  "change_units": 4,
+  "changed_paths": [
+    ".github/workflows/checks.yml",
+    "scripts/public-surface-preflight.py",
+    "scripts/validate-evidence-integrity.py",
+    "scripts/validate-repository-inventory.py"
+  ],
+  "reuse": {
+    "searched": 2,
+    "compatible": 1,
+    "reason": "Extend the existing public-surface, inventory, evidence-integrity, and changed-path controls instead of creating a parallel metadata control plane.",
+    "discovery": {
+      "capability": "repository metadata and release claim reconciliation",
+      "decision": "EXTEND_EXISTING",
+      "matches": ["public-surface-preflight"],
+      "specialization_reason": "The existing preflight already owns live public URL and GitHub metadata checks; this increment binds it to exact canonical repository and release contracts."
+    },
+    "candidates": [
+      {
+        "id": "public-surface-preflight",
+        "source": "scripts/public-surface-preflight.py",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "public metadata validator",
+        "revision": "6c419b6e3ad39722fc961d8235965f00bfb6fbb1",
+        "license": "internal",
+        "security": "read-only public metadata and URL validation",
+        "disposition": "ADAPT",
+        "reason": "Add exact contracts, authenticated API reads, release assets, tag revisions, and declared-blocker semantics to the existing validator."
+      },
+      {
+        "id": "github-rest-repository-and-release-api",
+        "source": "https://docs.github.com/en/rest/repos/repos and https://docs.github.com/en/rest/releases/releases",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "API documentation",
+        "revision": "retrieved-2026-09-24",
+        "license": "documentation reference",
+        "security": "read-only public API fields with scoped CI token",
+        "disposition": "LEARN_FROM",
+        "reason": "Use first-party definitions for repository metadata, release immutability, assets, and digest fields."
+      }
+    ]
+  },
+  "contribution": {"classification": "internal-reusable"},
+  "shareability": {
+    "disposition": "REUSE_CANDIDATE",
+    "evidence": "The exact contract and declared-blocker pattern is used by sf0.8 CI; no independent second consumer is claimed."
+  }
+}
