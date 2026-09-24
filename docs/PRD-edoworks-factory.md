@@ -386,6 +386,11 @@ Before waiting on a self-hosted check, completion procedure verifies that the
 repository-scoped service and listener are active. A zero-step queued job with
 an unavailable runner is a blocker, not normal CI latency; readiness must fail
 fast rather than consume the general check timeout.
+CI observation is state-aware: report transitions among queued, active step, and
+terminal states; distinguish expected long-running work from no-progress; and
+apply explicit queue, step-progress, and overall deadlines. Long blocking
+`gh ... --watch` calls are not completion evidence because they hide state and
+delay diagnosis.
 Dirty or untracked implementation/evidence blocks integrated-complete status.
 Notifications distinguish a completed audit or local preparation from an
 integrated repository change. A material defect, blocker, trust gap, or
