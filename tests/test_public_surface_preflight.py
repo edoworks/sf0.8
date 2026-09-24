@@ -262,6 +262,68 @@ class PublicSurfacePreflightTests(unittest.TestCase):
         ):
             self.assertEqual(MODULE.main(), 1)
 
+    @patch.object(MODULE, "github_release")
+    @patch.object(MODULE, "github_metadata")
+    def test_complete_contract_rejects_declared_blockers(
+        self, github_metadata_mock, github_release_mock
+    ):
+        contract_path = Path(__file__).parents[1] / ".factory/repository-metadata-target.json"
+        contract = json.loads(contract_path.read_text())
+        contract["declared_repository_blockers"] = {"edoworks/rung": ["drift"]}
+        github_metadata_mock.side_effect = [
+            {"repo": item["repo"], "errors": [], "status": "pass"}
+            for item in contract["repositories"]
+        ]
+        github_release_mock.side_effect = [
+            {"repo": item["repo"], "tag": item["tag"], "errors": [], "status": "pass"}
+            for item in contract["releases"]
+        ]
+
+        with patch.object(MODULE.json, "load", return_value=contract), patch.object(
+            sys,
+            "argv",
+            [
+                "public-surface-preflight.py",
+                "--github-contract",
+                str(contract_path),
+                "--allow-declared-blockers",
+            ],
+        ):
+            self.assertEqual(MODULE.main(), 1)
+
+    @patch.object(MODULE, "github_release")
+    @patch.object(MODULE, "github_metadata")
+    def test_complete_contract_rejects_failed_release_check(
+        self, github_metadata_mock, github_release_mock
+    ):
+        contract_path = Path(__file__).parents[1] / ".factory/repository-metadata-target.json"
+        contract = json.loads(contract_path.read_text())
+        github_metadata_mock.side_effect = [
+            {"repo": item["repo"], "errors": [], "status": "pass"}
+            for item in contract["repositories"]
+        ]
+        github_release_mock.side_effect = [
+            {
+                "repo": item["repo"],
+                "tag": item["tag"],
+                "errors": ["drift"] if index == 0 else [],
+                "status": "blocked" if index == 0 else "pass",
+            }
+            for index, item in enumerate(contract["releases"])
+        ]
+
+        with patch.object(
+            sys,
+            "argv",
+            [
+                "public-surface-preflight.py",
+                "--github-contract",
+                str(contract_path),
+                "--allow-declared-blockers",
+            ],
+        ):
+            self.assertEqual(MODULE.main(), 1)
+
     @patch.object(MODULE, "fetch_json")
     def test_missing_package_license_blocks(self, fetch_json):
         fetch_json.return_value = {"info": {"version": "1.0.0", "license": None, "home_page": None}}

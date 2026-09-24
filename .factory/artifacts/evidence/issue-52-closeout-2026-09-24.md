@@ -69,3 +69,10 @@ history instead of an exact current-range capability binding. Immediate
 correction: bind only `scripts/public-surface-preflight.py`. Root-cause
 correction and recurrence guard: run `validate-ci-change.py` with the PR base and
 head range before pushing any follow-up that changes a capability ledger.
+
+## Final Review
+
+Independent review found the implementation and live completion claims sound,
+with one low-severity regression-test gap: complete mode did not directly test a
+non-empty declared blocker set or a failed non-repository check. Focused tests
+now require rejection for both a declared blocker and a failed release check.
