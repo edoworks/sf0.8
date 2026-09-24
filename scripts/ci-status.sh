@@ -7,6 +7,7 @@
 # may be made without this file existing (per handoff rule).
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO="${1:-edoworks/sf0.8}"
 RUN_ID="${2:-}"           # empty = latest run on main
 OUT_DIR="${3:-docs/ci}"
@@ -22,6 +23,11 @@ resolve_run() {
 
 RUN_ID="$(resolve_run)"
 [ -n "$RUN_ID" ] || { echo "no runs found for $REPO" >&2; exit 2; }
+
+initial_status=$(gh run view "$RUN_ID" --repo "$REPO" --json status -q .status 2>/dev/null || echo "unknown")
+if [ "$REPO" = "edoworks/sf0.8" ] && [ "$initial_status" = "queued" ]; then
+  "$SCRIPT_DIR/runner-readiness.sh" "${RUNNER_SERVICE_DIR:-$HOME/actions-runner-sf08}"
+fi
 
 deadline=$(( $(date +%s) + TIMEOUT_MIN * 60 ))
 echo "watching $REPO run $RUN_ID (cap ${TIMEOUT_MIN}m)"

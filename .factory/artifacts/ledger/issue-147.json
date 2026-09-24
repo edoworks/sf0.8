@@ -1,0 +1,52 @@
+{
+  "issue": 147,
+  "capability": "self-hosted runner readiness preflight",
+  "change_units": 5,
+  "changed_paths": [
+    "scripts/ci-status.sh",
+    "scripts/runner-readiness.sh"
+  ],
+  "reuse": {
+    "searched": 2,
+    "compatible": 1,
+    "reason": "Extend the existing bounded CI status gate with a repository-scoped service and listener preflight, informed by GitHub's runner ownership model.",
+    "discovery": {
+      "capability": "self-hosted runner readiness preflight",
+      "decision": "EXTEND_EXISTING",
+      "matches": ["sf08-ci-status-gate", "github-self-hosted-runner-model"],
+      "specialization_reason": "The existing status gate required a terminal result but could spend its entire timeout on a queued job whose only eligible runner was offline."
+    },
+    "candidates": [
+      {
+        "id": "sf08-ci-status-gate",
+        "source": "scripts/ci-status.sh",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "ci-status-gate",
+        "revision": "265cca79face4cfbecaeca063fd5c8b308c9e475",
+        "license": "internal",
+        "security": "Local read-only GitHub status checks; no credentials or runner tokens are emitted",
+        "disposition": "ADAPT",
+        "reason": "Add readiness before its bounded wait rather than introducing a second completion watcher."
+      },
+      {
+        "id": "github-self-hosted-runner-model",
+        "source": "https://docs.github.com/en/actions/concepts/runners/self-hosted-runners",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "platform-documentation",
+        "revision": "retrieved-2026-09-24",
+        "license": "GitHub documentation terms; reference only",
+        "security": "Documentation consulted; no external code installed or executed",
+        "disposition": "LEARN_FROM",
+        "reason": "Confirm repository-scoped ownership and operator responsibility for maintaining runner availability."
+      }
+    ]
+  },
+  "contribution": {
+    "classification": "internal-reusable",
+    "target": "sf0.8 CI completion gate"
+  },
+  "shareability": {
+    "disposition": "REUSE_CANDIDATE",
+    "evidence": "The preflight pattern is reusable, but its default runner root and trust boundary are sf0.8-specific."
+  }
+}
