@@ -1,15 +1,15 @@
 # Now
 
-Status: `IN_PROGRESS`
+Status: `COMPLETE`
 
 This is a visibility aid. `.factory/continuation-state.json` and
 `.factory/portfolio.yaml` are authoritative.
 
 ## Now
 
-- Active map: issue #48, organization repository and public-state
+- Completed map: issue #48, organization repository and public-state
   reconciliation.
-- Active increment: issue #53, final cross-surface state review and closeout.
+- Completed final increment: issue #53, cross-surface state review and closeout.
 - Issue #50 is integrated and closed. Public inventory is freshness-bounded;
   inaccessible private completeness remains `UNKNOWN`.
 - Issue #51 is integrated and closed. Website corrections are deployed on both
@@ -20,7 +20,7 @@ This is a visibility aid. `.factory/continuation-state.json` and
 
 ## Next
 
-- Integrate issue #53's final matrix, close its guard, then close map issue #48.
+- Continue NowNest Customer Zero work without bypassing its release gates.
 
 ## Blocked
 
