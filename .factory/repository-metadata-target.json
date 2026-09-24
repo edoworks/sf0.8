@@ -1,21 +1,7 @@
 {
   "schema_version": 1,
-  "completion_status": "IN_PROGRESS",
-  "declared_repository_blockers": {
-    "edoworks/rung": [
-      "homepage mismatch: expected 'https://edoworks.com/rung/', observed 'https://rung.edoworks.com/'"
-    ],
-    "edoworks/asc-client": [
-      "repository has no detected license",
-      "description mismatch: expected 'Deprecated standalone source: use the versioned asc artifact in edoworks/artifacts.', observed 'Headless, dependency-free App Store Connect client (ES256 JWT from .p8) — no Apple-ID session cookie'",
-      "license mismatch: expected 'MIT', observed None"
-    ],
-    "edoworks/factory-constitution": [
-      "repository has no detected license",
-      "description mismatch: expected 'Deprecated standalone source: use the versioned constitution artifact in edoworks/artifacts.', observed 'Thin-factory constitution templates: North Star, policy caps, PRD, 5-Whys incident — verified human value over automation'",
-      "license mismatch: expected 'MIT', observed None"
-    ]
-  },
+  "completion_status": "COMPLETE",
+  "declared_repository_blockers": {},
   "repositories": [
     {
       "repo": "edoworks/rung",

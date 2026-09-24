@@ -1,5 +1,5 @@
 ---
-description: Resume five blocked repository reconciliation effects
+description: Resume final cross-surface state review
 agent: explore
 ---
 
@@ -7,7 +7,7 @@ agent: explore
 
 - Canonical status: `IN_PROGRESS`
 - Canonical active map issue: `#48` (`edoworks/factory`)
-- Canonical active increment issue: `#52` (`edoworks/factory`)
+- Canonical active increment issue: `#53` (`edoworks/factory`)
 - Edoworks website PR #70 merged at `ec74a6`; deployed pages and sitemap were
   verified against the corrected source.
 - Foculoom website PR #184 merged normally at `f4e0bc9`; post-merge Pages build
@@ -19,20 +19,22 @@ agent: explore
 - Issue #51 completion evidence is in
   `.factory/artifacts/evidence/issue-51-source-status.md`.
 - Issue #51 is closed and its closeout guard reported `CLOSED`.
-- Issue #52 source, release, contract, and Rung destination work is prepared and
-  verified. Completion is blocked by five live effects: three repository fields
-  and two prepared PR integrations.
+- Issue #52's three repository metadata changes are live. The `asc-client` and
+  `factory-constitution` prepared heads merged normally as `b1127bc` and
+  `a21a523`, and their feature refs were removed.
+- The authenticated metadata contract passes without declared blockers. Issue
+  #52 closeout evidence is in
+  `.factory/artifacts/evidence/issue-52-closeout-2026-09-24.md`.
 
 ## Next Work
 
-1. Authorize the canonical `gh repo edit` command for the Rung homepage and both
-   deprecated-repository descriptions; do not use an API workaround.
-2. Authorize `gh pr create` for `edoworks/asc-client` at `c49e8a2` and
-   `edoworks/factory-constitution` at `1412836`, then merge normally without
-   rewriting either reviewed head.
-3. Refresh the authenticated metadata contract and require a blocker-free pass.
-4. Close issue #52 only after its closeout guard reports `CLOSED`, then run issue
-   #53 final cross-surface state review.
+1. Close issue #52 only after its integrated closeout branch passes review and
+   its closeout guard reports `CLOSED`.
+2. Run issue #53's final read-only cross-surface review against merged repository
+   targets, deployed websites, issue states, continuation state, and strongest
+   counterevidence.
+3. Keep private predecessor completeness `UNKNOWN` and preserve all unrelated
+   dirty work.
 
 ## Authority Boundaries
 

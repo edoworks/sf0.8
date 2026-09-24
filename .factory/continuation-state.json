@@ -3,18 +3,12 @@
   "status": "IN_PROGRESS",
   "subject": "Organization repository and public-state reconciliation",
   "active_map_issue": 48,
-  "active_increment_issue": 52,
+  "active_increment_issue": 53,
   "source_of_truth": ".factory/continuation-state.json",
-  "next_increments": [53],
+  "next_increments": [],
   "blocked_external_actions": [
-    "Rung repository homepage update",
-    "asc-client repository description update",
-    "factory-constitution repository description update",
-    "asc-client prepared PR integration",
-    "factory-constitution prepared PR integration",
     "Apple credentials",
-    "upload",
     "submission",
-    "physical-device validation"
+    "exact-TestFlight-build physical accessibility"
   ]
 }

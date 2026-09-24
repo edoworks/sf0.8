@@ -93,6 +93,16 @@ paths.
 These are observed trust-boundary constraints, not evidence that the target
 state was reached.
 
+### Resolution
+
+The narrow, tested permission path became active after restart. On 2026-09-24,
+the owner identity was asserted before each write, all three exact repository
+metadata changes succeeded, and both prepared branches were integrated through
+normal merge commits without rewriting either reviewed head. The strict
+authenticated metadata contract then passed without declared blockers. The
+feature refs were deleted by the normal merge flow and remote readback confirms
+only the merged default-branch refs remain.
+
 ## Closeout Evidence Review Findings
 
 1. The first blocker update changed human-readable continuation files but left
