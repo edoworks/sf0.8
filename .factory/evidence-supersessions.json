@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "supersessions": [
+    {
+      "original": ".factory/artifacts/evidence/reusefirst-public-surface-preflight-2026-09-20.json",
+      "correction": ".factory/artifacts/evidence/reusefirst-public-surface-preflight-correction-2026-09-24.json"
+    }
+  ]
+}

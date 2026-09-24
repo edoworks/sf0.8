@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "completion_status": "IN_PROGRESS",
+  "declared_repository_blockers": {
+    "edoworks/rung": [
+      "homepage mismatch: expected 'https://edoworks.com/rung/', observed 'https://rung.edoworks.com/'"
+    ],
+    "edoworks/asc-client": [
+      "repository has no detected license",
+      "description mismatch: expected 'Deprecated standalone source; use the versioned asc artifact in edoworks/artifacts.', observed 'Headless, dependency-free App Store Connect client (ES256 JWT from .p8) — no Apple-ID session cookie'",
+      "license mismatch: expected 'MIT', observed None"
+    ],
+    "edoworks/factory-constitution": [
+      "repository has no detected license",
+      "description mismatch: expected 'Deprecated standalone source; use the versioned constitution artifact in edoworks/artifacts.', observed 'Thin-factory constitution templates: North Star, policy caps, PRD, 5-Whys incident — verified human value over automation'",
+      "license mismatch: expected 'MIT', observed None"
+    ]
+  },
+  "repositories": [
+    {
+      "repo": "edoworks/rung",
+      "description": "Assess observable repository evidence for responsible AI coding-agent authority.",
+      "homepage": "https://edoworks.com/rung/",
+      "archived": false,
+      "fork": false,
+      "visibility": "public",
+      "license": "MIT",
+      "default_branch": "main"
+    },
+    {
+      "repo": "edoworks/asc-client",
+      "description": "Deprecated standalone source; use the versioned asc artifact in edoworks/artifacts.",
+      "homepage": null,
+      "archived": false,
+      "fork": false,
+      "visibility": "public",
+      "license": "MIT",
+      "default_branch": "main"
+    },
+    {
+      "repo": "edoworks/factory-constitution",
+      "description": "Deprecated standalone source; use the versioned constitution artifact in edoworks/artifacts.",
+      "homepage": null,
+      "archived": false,
+      "fork": false,
+      "visibility": "public",
+      "license": "MIT",
+      "default_branch": "main"
+    },
+    {
+      "repo": "edoworks/artifacts",
+      "description": "Versioned, reusable Edoworks artifacts",
+      "homepage": null,
+      "archived": false,
+      "fork": false,
+      "visibility": "public",
+      "license": null,
+      "allow_missing_license": true,
+      "license_policy": "mixed-per-artifact",
+      "default_branch": "main"
+    },
+    {
+      "repo": "edoworks/factory",
+      "description": "A public, versioned, MIT-licensed software factory for producing offline-first iOS/iPadOS apps through a deterministic paved road.",
+      "homepage": null,
+      "archived": false,
+      "fork": false,
+      "visibility": "public",
+      "license": "MIT",
+      "default_branch": "main"
+    },
+    {
+      "repo": "edoworks/nownest",
+      "description": "NowNest — offline iPhone and iPad app for protecting the current NOW context",
+      "homepage": null,
+      "archived": false,
+      "fork": false,
+      "visibility": "public",
+      "license": null,
+      "allow_missing_license": true,
+      "license_policy": "owner-decision-pending",
+      "default_branch": "main"
+    }
+  ],
+  "releases": [
+    {
+      "repo": "edoworks/factory",
+      "tag": "v0.1.0-rc3",
+      "draft": false,
+      "prerelease": true,
+      "immutable": false,
+      "asset_count": 0,
+      "asset_names": [],
+      "asset_digests": {},
+      "tag_target_commit": "a627c88ff9382b4a24887b0a4a5418e8f6c6de7e",
+      "distribution_url": "https://github.com/edoworks/factory/archive/refs/tags/v0.1.0-rc3.tar.gz",
+      "documentation_url": "https://raw.githubusercontent.com/edoworks/factory/main/README.md",
+      "documentation_contains": [
+        "FACTORY_VERSION=0.1.0-rc3",
+        "FACTORY_REVISION=a627c88ff9382b4a24887b0a4a5418e8f6c6de7e"
+      ]
+    },
+    {
+      "repo": "edoworks/artifacts",
+      "tag": "reusefirst/v1.2.1",
+      "draft": false,
+      "prerelease": false,
+      "immutable": false,
+      "asset_count": 0,
+      "asset_names": [],
+      "asset_digests": {},
+      "tag_target_commit": "30502b958a485e5466e20c554ee3c159044bb0a6"
+    },
+    {
+      "repo": "edoworks/artifacts",
+      "tag": "constitution/v1.0.0",
+      "draft": false,
+      "prerelease": false,
+      "immutable": false,
+      "asset_count": 5,
+      "asset_names": [
+        "RELEASE_NOTES.md",
+        "SHA256SUMS",
+        "constitution-1.0.0.manifest.json",
+        "constitution-1.0.0.tar.gz",
+        "constitution-1.0.0.zip"
+      ],
+      "asset_digests": {
+        "RELEASE_NOTES.md": "sha256:8a5149121323bb0c7920c97c7cbdaeb323dcf79849d5209352d6ea68fa43292b",
+        "SHA256SUMS": "sha256:31a61a618563f42d8a9d5dabea1a6a0349df85bac1ab1cbb73e295abd7a89de9",
+        "constitution-1.0.0.manifest.json": "sha256:95a94c60c68df742fb1a3e017a75d55effa70c0c148008ed044ff00bfd2abd92",
+        "constitution-1.0.0.tar.gz": "sha256:f14dc9ad078cd57721bef5a7ac8e9a780c1bde5858a6f3f2f58536682111df8b",
+        "constitution-1.0.0.zip": "sha256:1de4c73133db191cae373f6b0afb51429cdc7d53038358df823d6e3f29f0adc5"
+      },
+      "tag_target_commit": "5b0817594e9f0ad7fa5fb1588f22c755cf70f71b"
+    },
+    {
+      "repo": "edoworks/artifacts",
+      "tag": "asc/v1.0.0",
+      "draft": false,
+      "prerelease": false,
+      "immutable": false,
+      "asset_count": 5,
+      "asset_names": [
+        "RELEASE_NOTES.md",
+        "SHA256SUMS",
+        "asc-1.0.0.manifest.json",
+        "asc-1.0.0.tar.gz",
+        "asc-1.0.0.zip"
+      ],
+      "asset_digests": {
+        "RELEASE_NOTES.md": "sha256:8a5149121323bb0c7920c97c7cbdaeb323dcf79849d5209352d6ea68fa43292b",
+        "SHA256SUMS": "sha256:31a61a618563f42d8a9d5dabea1a6a0349df85bac1ab1cbb73e295abd7a89de9",
+        "asc-1.0.0.manifest.json": "sha256:f66f6fc968577f99b7a7a4e03abcc71f7c8f409908a655f3ef6b65003a9dba93",
+        "asc-1.0.0.tar.gz": "sha256:04087d53abd887e5e4e2acc47c96ac40ce14df6554c8c1acedf98a58389588cd",
+        "asc-1.0.0.zip": "sha256:4f2e2bc5d1e6a8c24a91c0b8d1741d22092fb289e0c4e3c0675bfadc2c72dbd2"
+      },
+      "tag_target_commit": "5b0817594e9f0ad7fa5fb1588f22c755cf70f71b"
+    }
+  ]
+}

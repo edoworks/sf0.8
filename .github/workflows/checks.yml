@@ -33,6 +33,13 @@ jobs:
         run: python3 scripts/validate-lifecycle.py
       - name: Repository inventory boundary guard
         run: python3 scripts/validate-repository-inventory.py
+      - name: Public repository metadata and release contract
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+          python3 scripts/public-surface-preflight.py
+          --github-contract .factory/repository-metadata-target.json
+          --allow-declared-blockers
       - name: Lifecycle contract validation
         run: python3 scripts/validate-lifecycle-contract.py
       - name: Bounded lane selection

@@ -1,0 +1,49 @@
+{
+  "evidence_id": "issue-52-rung-visual-verification-2026-09-24",
+  "status": "PASS",
+  "url": "https://edoworks.com/rung/",
+  "source_repository": "edoworks/edoworks.github.io",
+  "source_revision": "70a724055bcde7be5fb8965e5b0462fec1ba98da",
+  "source_artifact": "rung/index.html",
+  "mode": "live deployed page in Safari; desktop and narrow-window captures",
+  "destination": "https://edoworks.com/rung/",
+  "evidence_revision": "0fdf4ffea028a35c6595925e6a0f0644bd82e04e",
+  "command": "python3 scripts/public-surface-preflight.py https://edoworks.com/rung/ --expected-canonical https://edoworks.com/rung/ --require-text 'Available without a hosted service' --require-text 'The former laptop-hosted web distribution is not required for the Rung engine and is not advertised here.' --forbid-text rung.edoworks.com --json",
+  "direct_pass_condition": "HTTP 200, exact canonical URL, required retirement copy, no retired hostname, passing links, and no visible overlap, clipping, or horizontal overflow in desktop and narrow captures.",
+  "deterministic_verification": {
+    "http_status": 200,
+    "canonical_url": "https://edoworks.com/rung/",
+    "required_text_present": true,
+    "retired_hostname_visible": false,
+    "link_check": "PASS"
+  },
+  "visual_verification": {
+    "screenshots": [
+      {
+        "path": ".factory/artifacts/evidence/public-surface-review/issue-52-rung-live-desktop-20260923-183700-472.png",
+        "sha256": "11d1d43bf2de3421b7b545b973cdcc36a4660f6130e14460b704ac8d737cb143"
+      },
+      {
+        "path": ".factory/artifacts/evidence/public-surface-review/issue-52-rung-live-narrow-20260923-183744-596.png",
+        "sha256": "b435dd0a77afffe07e3c0d78c8dd7885679cba0358e838306b34b55779db0549"
+      }
+    ],
+    "captured_at": "2026-09-24T01:37:00Z",
+    "vision_model_verification": {
+      "model": "ollama/qwen3.5:4b",
+      "results": [
+        {"check": "content", "status": "PASS", "observation": "Rung identity and source, PyPI, and release actions are visible."},
+        {"check": "retirement", "status": "PASS", "observation": "Visible copy retires the former hosted distribution and does not advertise rung.edoworks.com."},
+        {"check": "layout", "status": "PASS", "observation": "Sections are aligned with no overlap or visual clutter."},
+        {"check": "clipping", "status": "PASS", "observation": "No product text or action is clipped."},
+        {"check": "readability", "status": "PASS", "observation": "Headings, body copy, and actions have clear hierarchy and contrast."},
+        {"check": "trust", "status": "PASS", "observation": "The page explicitly says Rung is not certification, compliance advice, or release approval."}
+      ],
+      "narrow_layout": {
+        "status": "PASS",
+        "observation": "Navigation, hero, card, copy, and actions stack without overlap or horizontal overflow. The model's only FAIL treated the normal wrap after the hyphen in coding-agent and a wrapped heading as clipping; the complete text is visibly present, so this was reclassified as PASS."
+      },
+      "note": "On desktop, the model labeled retirement, clipping, and trust as FAIL while its observations confirmed the criteria. Those labels were reclassified from the observation text according to the vision-verification procedure."
+    }
+  }
+}

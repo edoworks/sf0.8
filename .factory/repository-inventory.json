@@ -1,23 +1,23 @@
 {
   "schema_version": 1,
-  "captured_at": "2026-09-23T06:10:00Z",
+  "captured_at": "2026-09-24T01:29:19Z",
   "max_age_hours": 168,
   "public_inventory": {
     "complete": true,
-    "source": "unauthenticated GitHub organization API",
+    "source": "public GitHub repository API",
     "counts": {"edoworks": 8, "foculoom": 3},
     "repositories": [
-      {"id": "edoworks/edoworks.github.io", "lifecycle": "active", "disposition": "keep"},
-      {"id": "edoworks/rung", "lifecycle": "active", "disposition": "keep"},
-      {"id": "edoworks/trycycle", "lifecycle": "upstream_tracked", "disposition": "keep"},
-      {"id": "edoworks/asc-client", "lifecycle": "deprecated", "disposition": "keep_read_only"},
-      {"id": "edoworks/factory-constitution", "lifecycle": "deprecated", "disposition": "keep_read_only"},
-      {"id": "edoworks/artifacts", "lifecycle": "active", "disposition": "keep"},
-      {"id": "edoworks/factory", "lifecycle": "active", "disposition": "keep"},
-      {"id": "edoworks/nownest", "lifecycle": "validating", "disposition": "keep"},
-      {"id": "foculoom/rung-plugin", "lifecycle": "archived", "disposition": "keep_read_only"},
-      {"id": "foculoom/edglex.com", "lifecycle": "archived", "disposition": "keep_read_only"},
-      {"id": "foculoom/noraze.com", "lifecycle": "archived", "disposition": "keep_read_only"}
+      {"id": "edoworks/edoworks.github.io", "lifecycle": "active", "disposition": "keep", "metadata": {"description": "Edoworks — the software factory brand of Foculoom LLC. Factory portfolio + engineering blog.", "homepage": "https://edoworks.com/", "archived": false, "fork": false, "visibility": "public", "license": null, "default_branch": "master", "head_sha": "70a724055bcde7be5fb8965e5b0462fec1ba98da"}},
+      {"id": "edoworks/rung", "lifecycle": "active", "disposition": "keep", "metadata": {"description": "Assess observable repository evidence for responsible AI coding-agent authority.", "homepage": "https://rung.edoworks.com/", "archived": false, "fork": false, "visibility": "public", "license": "MIT", "default_branch": "main", "head_sha": "e1f2d922ed88623abb8b6800031dea8cf04cf880"}},
+      {"id": "edoworks/trycycle", "lifecycle": "upstream_tracked", "disposition": "keep", "metadata": {"description": "Fork of danshapiro/trycycle retained as a research dependency; not an Edoworks product.", "homepage": "https://github.com/danshapiro/trycycle", "archived": false, "fork": true, "visibility": "public", "license": "MIT", "default_branch": "main", "head_sha": "72bcc737886e10cdcbb971f365c3732c54bda7bf"}},
+      {"id": "edoworks/asc-client", "lifecycle": "deprecated", "disposition": "keep_read_only", "metadata": {"description": "Headless, dependency-free App Store Connect client (ES256 JWT from .p8) — no Apple-ID session cookie", "homepage": null, "archived": false, "fork": false, "visibility": "public", "license": null, "default_branch": "main", "head_sha": "44ab54fbe015938a55794ce0111ba3a00ee3a25a"}},
+      {"id": "edoworks/factory-constitution", "lifecycle": "deprecated", "disposition": "keep_read_only", "metadata": {"description": "Thin-factory constitution templates: North Star, policy caps, PRD, 5-Whys incident — verified human value over automation", "homepage": null, "archived": false, "fork": false, "visibility": "public", "license": null, "default_branch": "main", "head_sha": "20170526eb66a0ddc3f8fa7b4dde844879d72f05"}},
+      {"id": "edoworks/artifacts", "lifecycle": "active", "disposition": "keep", "metadata": {"description": "Versioned, reusable Edoworks artifacts", "homepage": null, "archived": false, "fork": false, "visibility": "public", "license": null, "default_branch": "main", "head_sha": "9d868f8565c94709a34d7dd79501d994776e46bd"}},
+      {"id": "edoworks/factory", "lifecycle": "active", "disposition": "keep", "metadata": {"description": "A public, versioned, MIT-licensed software factory for producing offline-first iOS/iPadOS apps through a deterministic paved road.", "homepage": null, "archived": false, "fork": false, "visibility": "public", "license": "MIT", "default_branch": "main", "head_sha": "d1f13f7824c176840d16555b9dd2524c7c1be674"}},
+      {"id": "edoworks/nownest", "lifecycle": "validating", "disposition": "keep", "metadata": {"description": "NowNest — offline iPhone and iPad app for protecting the current NOW context", "homepage": null, "archived": false, "fork": false, "visibility": "public", "license": null, "default_branch": "main", "head_sha": "78f6742b310a428ec7826f2d0101a40b0f910486"}},
+      {"id": "foculoom/rung-plugin", "lifecycle": "archived", "disposition": "keep_read_only", "metadata": {"description": "Archived retirement record for the former free opencode Rung plugin; the paid rung.dev audit was never launched. No source or deployment is maintained here.", "homepage": null, "archived": true, "fork": false, "visibility": "public", "license": "MIT", "default_branch": "master", "head_sha": "5140b87bfa7cfec7a928e49a0dd5eb5dba83345c"}},
+      {"id": "foculoom/edglex.com", "lifecycle": "archived", "disposition": "keep_read_only", "metadata": {"description": "Archived Edglex source. The public site is retired; no product or service is offered.", "homepage": null, "archived": true, "fork": false, "visibility": "public", "license": null, "default_branch": "master", "head_sha": "fd4b99f2e461ee1270d077c94835628d9a2ac4fd"}},
+      {"id": "foculoom/noraze.com", "lifecycle": "archived", "disposition": "keep_read_only", "metadata": {"description": "Archived Noraze source. The public site is retired.", "homepage": null, "archived": true, "fork": false, "visibility": "public", "license": null, "default_branch": "master", "head_sha": "22726d02deb310e8b6d7d60346e0fb43637d3ada"}}
     ]
   },
   "private_inventory": {
