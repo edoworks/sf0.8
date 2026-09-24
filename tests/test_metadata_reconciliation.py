@@ -9,6 +9,22 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class MetadataReconciliationTests(unittest.TestCase):
+    def test_public_inventory_heads_match_final_review_receipt(self):
+        inventory = json.loads((ROOT / ".factory/repository-inventory.json").read_text())
+        receipt = json.loads(
+            (
+                ROOT
+                / ".factory/artifacts/evidence/issue-53-public-heads-2026-09-24.json"
+            ).read_text()
+        )
+        inventory_heads = {
+            item["id"]: item["metadata"]["head_sha"]
+            for item in inventory["public_inventory"]["repositories"]
+        }
+
+        self.assertEqual(inventory["captured_at"], receipt["captured_at"])
+        self.assertEqual(inventory_heads, receipt["repositories"])
+
     def test_reusefirst_correction_supersedes_false_immutable_claim(self):
         original_path = (
             ROOT

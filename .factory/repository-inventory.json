@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "captured_at": "2026-09-24T06:33:27Z",
+  "captured_at": "2026-09-24T06:51:38Z",
   "max_age_hours": 168,
   "public_inventory": {
     "complete": true,
@@ -14,7 +14,7 @@
       {"id": "edoworks/factory-constitution", "lifecycle": "deprecated", "disposition": "keep_read_only", "metadata": {"description": "Deprecated standalone source: use the versioned constitution artifact in edoworks/artifacts.", "homepage": null, "archived": false, "fork": false, "visibility": "public", "license": "MIT", "default_branch": "main", "head_sha": "a21a5234e4a95875fab11bcf7c0d419d200ec38d"}},
       {"id": "edoworks/artifacts", "lifecycle": "active", "disposition": "keep", "metadata": {"description": "Versioned, reusable Edoworks artifacts", "homepage": null, "archived": false, "fork": false, "visibility": "public", "license": null, "default_branch": "main", "head_sha": "9d868f8565c94709a34d7dd79501d994776e46bd"}},
       {"id": "edoworks/factory", "lifecycle": "active", "disposition": "keep", "metadata": {"description": "A public, versioned, MIT-licensed software factory for producing offline-first iOS/iPadOS apps through a deterministic paved road.", "homepage": null, "archived": false, "fork": false, "visibility": "public", "license": "MIT", "default_branch": "main", "head_sha": "d1f13f7824c176840d16555b9dd2524c7c1be674"}},
-      {"id": "edoworks/nownest", "lifecycle": "validating", "disposition": "keep", "metadata": {"description": "NowNest — offline iPhone and iPad app for protecting the current NOW context", "homepage": null, "archived": false, "fork": false, "visibility": "public", "license": null, "default_branch": "main", "head_sha": "78f6742b310a428ec7826f2d0101a40b0f910486"}},
+      {"id": "edoworks/nownest", "lifecycle": "validating", "disposition": "keep", "metadata": {"description": "NowNest — offline iPhone and iPad app for protecting the current NOW context", "homepage": null, "archived": false, "fork": false, "visibility": "public", "license": null, "default_branch": "main", "head_sha": "b5ef5fc4a2543101f0e441e07162e88eed334d84"}},
       {"id": "foculoom/rung-plugin", "lifecycle": "archived", "disposition": "keep_read_only", "metadata": {"description": "Archived retirement record for the former free opencode Rung plugin; the paid rung.dev audit was never launched. No source or deployment is maintained here.", "homepage": null, "archived": true, "fork": false, "visibility": "public", "license": "MIT", "default_branch": "master", "head_sha": "5140b87bfa7cfec7a928e49a0dd5eb5dba83345c"}},
       {"id": "foculoom/edglex.com", "lifecycle": "archived", "disposition": "keep_read_only", "metadata": {"description": "Archived Edglex source. The public site is retired; no product or service is offered.", "homepage": null, "archived": true, "fork": false, "visibility": "public", "license": null, "default_branch": "master", "head_sha": "fd4b99f2e461ee1270d077c94835628d9a2ac4fd"}},
       {"id": "foculoom/noraze.com", "lifecycle": "archived", "disposition": "keep_read_only", "metadata": {"description": "Archived Noraze source. The public site is retired.", "homepage": null, "archived": true, "fork": false, "visibility": "public", "license": null, "default_branch": "master", "head_sha": "22726d02deb310e8b6d7d60346e0fb43637d3ada"}}
