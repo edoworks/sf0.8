@@ -382,6 +382,10 @@ Non-trivial work starts from a canonical issue and a dedicated feature branch.
 Implementation is complete only after review of the final diff, applicable
 verification, commit, identity-verified push, pull request, checks, merge,
 verification of the merged target revision, and safe feature-branch cleanup.
+Before waiting on a self-hosted check, completion procedure verifies that the
+repository-scoped service and listener are active. A zero-step queued job with
+an unavailable runner is a blocker, not normal CI latency; readiness must fail
+fast rather than consume the general check timeout.
 Dirty or untracked implementation/evidence blocks integrated-complete status.
 Notifications distinguish a completed audit or local preparation from an
 integrated repository change. A material defect, blocker, trust gap, or
