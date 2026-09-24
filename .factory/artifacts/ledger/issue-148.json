@@ -1,0 +1,46 @@
+{
+  "issue": 148,
+  "capability": "state-aware bounded CI observation",
+  "change_units": 6,
+  "changed_paths": ["scripts/ci-status.sh"],
+  "reuse": {
+    "searched": 2,
+    "compatible": 1,
+    "reason": "Extend the canonical terminal-result gate with explicit queue, active-step, and no-progress states rather than adding another watcher.",
+    "discovery": {
+      "capability": "state-aware bounded CI observation",
+      "decision": "EXTEND_EXISTING",
+      "matches": ["sf08-ci-status-gate", "github-cli-run-observation"],
+      "specialization_reason": "The existing gate bounded total time but hid whether work was queued, progressing, or stalled."
+    },
+    "candidates": [
+      {
+        "id": "sf08-ci-status-gate",
+        "source": "scripts/ci-status.sh",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "ci-status-gate",
+        "revision": "5b3860d9b4b219bbbd035cea856a30ad07ab4b3a",
+        "license": "internal",
+        "security": "Read-only GitHub status observation with sanitized local evidence",
+        "disposition": "ADAPT",
+        "reason": "Preserve one canonical status gate and add state-specific deadlines."
+      },
+      {
+        "id": "github-cli-run-observation",
+        "source": "https://cli.github.com/manual/gh_run_view",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "platform-documentation",
+        "revision": "retrieved-2026-09-24",
+        "license": "GitHub CLI documentation terms; reference only",
+        "security": "Documentation consulted; no external code installed or executed",
+        "disposition": "LEARN_FROM",
+        "reason": "Use structured run and job fields instead of terminal watch rendering."
+      }
+    ]
+  },
+  "contribution": {"classification": "internal-reusable", "target": "sf0.8 CI completion gate"},
+  "shareability": {
+    "disposition": "REUSE_CANDIDATE",
+    "evidence": "State-aware polling is reusable; local runner readiness remains repository-specific."
+  }
+}
