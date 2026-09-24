@@ -50,6 +50,56 @@ def load(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def validate_supersessions(root: Path) -> list[str]:
+    errors: list[str] = []
+    registry_path = root / ".factory/evidence-supersessions.json"
+    registry = load(registry_path)
+    if set(registry) != {"schema_version", "supersessions"}:
+        errors.append("evidence supersession registry fields drifted")
+    if registry.get("schema_version") != 1:
+        errors.append("evidence supersession registry schema is invalid")
+    records = registry.get("supersessions")
+    if not isinstance(records, list):
+        return errors + ["evidence supersessions must be a list"]
+
+    originals: set[str] = set()
+    corrections: set[str] = set()
+    for index, record in enumerate(records):
+        if not isinstance(record, dict) or set(record) != {"original", "correction"}:
+            errors.append(f"evidence supersessions[{index}] fields drifted")
+            continue
+        original = str(record["original"])
+        correction = str(record["correction"])
+        if original in originals or correction in corrections:
+            errors.append("evidence supersession paths must be unique")
+        originals.add(original)
+        corrections.add(correction)
+        original_path = root / original
+        correction_path = root / correction
+        if not original_path.is_file():
+            errors.append(f"superseded evidence is missing: {original}")
+        if not correction_path.is_file():
+            errors.append(f"superseding evidence is missing: {correction}")
+            continue
+        correction_record = load(correction_path)
+        if correction_record.get("supersedes") != original:
+            errors.append(f"superseding evidence does not point to original: {correction}")
+        if not str(correction_record.get("status", "")).startswith("SUPERSEDES_"):
+            errors.append(f"superseding evidence status is invalid: {correction}")
+
+    discovered = set()
+    for path in sorted((root / ".factory/artifacts/evidence").rglob("*.json")):
+        try:
+            record = load(path)
+        except json.JSONDecodeError:
+            continue
+        if "supersedes" in record:
+            discovered.add(str(path.relative_to(root)))
+    if discovered != corrections:
+        errors.append("evidence supersession registry does not match correction records")
+    return errors
+
+
 def validate(
     root: Path,
     state_path: Path,
@@ -83,6 +133,7 @@ def validate(
     errors.extend(validate_evidence_references(references, root, tracked_paths(root)))
     errors.extend(evidence_at_revision(root, references))
     errors.extend(validate_remote_snapshot(snapshot, state.get("gates", {})))
+    errors.extend(validate_supersessions(root))
     for path in sorted((root / ".factory/artifacts/evidence/verification-receipts").glob("*.json")):
         errors.extend(f"{path.relative_to(root)}: {error}" for error in validate_timeout_receipt(load(path)))
     return errors

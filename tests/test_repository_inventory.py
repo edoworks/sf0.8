@@ -106,6 +106,29 @@ class RepositoryInventoryTests(unittest.TestCase):
         errors = MODULE.validate(self.inventory, self.manifest, portfolio)
         self.assertTrue(any("exactly one lifecycle" in error for error in errors))
 
+    def test_public_repository_requires_metadata_snapshot(self):
+        inventory = copy.deepcopy(self.inventory)
+        del inventory["public_inventory"]["repositories"][0]["metadata"]
+        errors = MODULE.validate(inventory, self.manifest, self.portfolio)
+        self.assertTrue(any("lacks metadata snapshot" in error for error in errors))
+
+    def test_archived_lifecycle_must_match_live_metadata(self):
+        inventory = copy.deepcopy(self.inventory)
+        repository = next(
+            item
+            for item in inventory["public_inventory"]["repositories"]
+            if item["id"] == "foculoom/rung-plugin"
+        )
+        repository["metadata"]["archived"] = False
+        errors = MODULE.validate(inventory, self.manifest, self.portfolio)
+        self.assertTrue(any("archived lifecycle disagrees" in error for error in errors))
+
+    def test_repository_head_revision_must_be_exact_sha(self):
+        inventory = copy.deepcopy(self.inventory)
+        inventory["public_inventory"]["repositories"][0]["metadata"]["head_sha"] = "main"
+        errors = MODULE.validate(inventory, self.manifest, self.portfolio)
+        self.assertTrue(any("head revision is invalid" in error for error in errors))
+
 
 if __name__ == "__main__":
     unittest.main()

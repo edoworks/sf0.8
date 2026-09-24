@@ -9,9 +9,9 @@ Parent research: [Edoworks Canonical Factory Deep Dive](research/edoworks-canoni
 
 Edoworks Factory is a public, versioned, MIT-licensed software factory that
 produces offline-first iOS/iPadOS apps through a deterministic paved road. The
-founder is customer zero. The factory is downloaded as an immutable release
-artifact, used to scaffold and verify an app, and produces human-gated release
-candidates for Apple App Store submission.
+founder is customer zero. The factory is downloaded from the generated source
+archive for an exact release tag, used to scaffold and verify an app, and
+produces human-gated release candidates for Apple App Store submission.
 
 The factory does not autonomously publish. It does not promise Apple approval
 dates. It does not manage multiple tenants until v1.0.0.
@@ -146,8 +146,10 @@ Track these, not app count:
 - `v1.0.0` — Stable public compatibility contract (only after second
   independent consumer and paid pilot)
 
-Every factory correction is a new immutable version. The reference app pins to
-an exact release artifact digest and upgrades explicitly.
+Every factory correction is a new tagged version. The reference app records the
+exact tag and source revision and upgrades explicitly. Release records state
+whether they are prereleases, immutable, and accompanied by attached assets;
+those properties are not inferred from a version tag.
 
 ## Non-Goals
 
@@ -201,18 +203,21 @@ until its validation command passes and its evidence artifact is committed.
 
 ### Release Distribution Contract
 
-- **Evidence:** a release receipt recording tag, artifact URL, digest,
-  prerelease flag, immutability flag, and README install-path verification.
+- **Evidence:** a release receipt recording tag, source revision, distribution
+  URL, prerelease flag, immutability flag, attached asset inventory, available
+  asset digests, and README install-path verification.
 - **Owner:** founder (release publication is human-authorized).
 - **Validation:** a CI release-contract test resolves the documented download
-  URL, verifies the artifact and digest, checks prerelease/immutability state,
-  and rejects any release whose README path is unavailable or whose declared
-  artifact does not match the release record.
-- **Fail condition:** the documented URL returns 404, the artifact digest does
-  not match, or the release is marked prerelease when a stable release is
+  URL, verifies the tag's source revision, compares prerelease/immutability
+  state and attached assets with the documentation, and verifies digests for
+  any assets whose release records provide them.
+- **Fail condition:** the documented URL is unavailable, the tag moves from the
+  recorded source revision, a documented asset is absent, a provided digest
+  does not match, or the release is marked prerelease when a stable release is
   required for cutover.
-- **Synchronization:** README, release record, and CI test must all agree on
-  the exact artifact URL and digest.
+- **Synchronization:** README, release record, source revision, asset inventory,
+  and CI test must agree. An assetless generated source archive must be named as
+  such rather than described as an attached release artifact.
 
 ### Apple Acceptance Receipt
 

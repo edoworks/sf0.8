@@ -1,0 +1,34 @@
+{
+  "evidence_id": "reusefirst-public-surface-preflight-correction-2026-09-24",
+  "status": "SUPERSEDES_WITH_BLOCKERS",
+  "supersedes": ".factory/artifacts/evidence/reusefirst-public-surface-preflight-2026-09-20.json",
+  "reason": "The original interpretation called the release immutable without recording the live immutable flag or attached asset inventory.",
+  "observed_at": "2026-09-24T01:29:19Z",
+  "release": {
+    "repository": "edoworks/artifacts",
+    "tag": "reusefirst/v1.2.1",
+    "draft": false,
+    "prerelease": false,
+    "immutable": false,
+    "asset_count": 0,
+    "asset_names": [],
+    "tag_target_commit": "30502b958a485e5466e20c554ee3c159044bb0a6",
+    "status": "RELEASED_KNOWN_DEFECTS"
+  },
+  "repository_license": {
+    "detected_spdx": null,
+    "policy": "mixed-per-artifact",
+    "policy_url": "https://github.com/edoworks/artifacts/blob/main/LICENSING.md"
+  },
+  "artifact_license": {
+    "spdx": "Apache-2.0",
+    "corrected_main_path": "artifacts/reusefirst/LICENSE-APACHE-2.0",
+    "tag_includes_complete_terms": false
+  },
+  "known_defects": [
+    "The release tag omits the complete Apache-2.0 terms.",
+    "The tag documentation promises a checksum that the release does not provide."
+  ],
+  "interpretation": "The stable release record exists but is mutable, assetless, and not a supported download. Corrected source on main is not a new release.",
+  "external_action_performed": false
+}

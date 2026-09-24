@@ -80,6 +80,34 @@ def validate(
 
     for repository in repositories:
         repository_id = repository.get("id")
+        metadata = repository.get("metadata")
+        if not isinstance(metadata, dict):
+            errors.append(f"public repository lacks metadata snapshot: {repository_id}")
+        else:
+            required_metadata = {
+                "description",
+                "homepage",
+                "archived",
+                "fork",
+                "visibility",
+                "license",
+                "default_branch",
+                "head_sha",
+            }
+            if set(metadata) != required_metadata:
+                errors.append(f"public repository metadata fields drifted: {repository_id}")
+            if metadata.get("visibility") != "public":
+                errors.append(f"public repository visibility drifted: {repository_id}")
+            if not isinstance(metadata.get("description"), str) or not metadata.get("description"):
+                errors.append(f"public repository description is empty: {repository_id}")
+            if metadata.get("homepage") is not None and not isinstance(metadata.get("homepage"), str):
+                errors.append(f"public repository homepage is invalid: {repository_id}")
+            if not re.fullmatch(r"[0-9a-f]{40}", str(metadata.get("head_sha", ""))):
+                errors.append(f"public repository head revision is invalid: {repository_id}")
+            if repository.get("lifecycle") == "archived" and metadata.get("archived") is not True:
+                errors.append(f"archived lifecycle disagrees with metadata: {repository_id}")
+            if repository.get("lifecycle") != "archived" and metadata.get("archived") is not False:
+                errors.append(f"non-archived lifecycle disagrees with metadata: {repository_id}")
         block = blocks.get(repository_id, "")
         if not block:
             continue

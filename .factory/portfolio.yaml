@@ -128,12 +128,12 @@ surfaces:
     source_of_truth: https://github.com/edoworks/trycycle
     purpose: upstream research dependency; not an Edoworks product
   - id: rung.edoworks.com
-    type: public_web_surface
-    lifecycle: active
-    health: degraded
-    disposition: keep
-    source_of_truth: https://github.com/edoworks/rung
-    purpose: Rung public web distribution URL; currently returning Cloudflare 530
+    type: public_retirement_record
+    lifecycle: retired
+    health: unavailable
+    disposition: keep_read_only
+    source_of_truth: https://edoworks.com/rung/
+    purpose: retired custom hostname; replacement Rung page is https://edoworks.com/rung/
   - id: edoworks/rung
     type: public_product
     lifecycle: active
