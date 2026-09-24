@@ -64,6 +64,41 @@ class PermissionPolicyFixtureTests(unittest.TestCase):
         self.assertEqual(resolve(rules, command.replace("edoworks/sf0.8", "other/repo")), "deny")
         self.assertEqual(resolve(rules, "gh pr create --title test --repo edoworks/sf0.8"), "deny")
 
+    def test_metadata_reconciliation_writes_are_narrow_asks(self):
+        rules = self.fixture["rules"]
+        asks = (
+            'gh repo edit edoworks/rung --homepage "https://edoworks.com/rung/"',
+            'gh repo edit edoworks/asc-client --description "Deprecated standalone source: use the versioned asc artifact in edoworks/artifacts."',
+            'gh repo edit edoworks/factory-constitution --description "Deprecated standalone source: use the versioned constitution artifact in edoworks/artifacts."',
+            'gh pr create --repo edoworks/asc-client --base main --head feature/metadata-reconciliation-52 --title "docs: reconcile deprecated asc source metadata (#52)" --body-file .factory/issue-comments/issue-52-asc-pr.md',
+            'gh pr create --repo edoworks/factory-constitution --base main --head feature/metadata-reconciliation-52 --title "docs: reconcile deprecated constitution source metadata (#52)" --body-file .factory/issue-comments/issue-52-constitution-pr.md',
+        )
+        for command in asks:
+            with self.subTest(command=command):
+                self.assertEqual(resolve(rules, command), "ask")
+
+        denied = (
+            "gh repo edit edoworks/rung --description unexpected",
+            "gh repo edit edoworks/asc-client --homepage https://example.com",
+            "gh repo edit edoworks/factory-constitution --visibility private",
+            'gh repo edit edoworks/rung --homepage "https://edoworks.com/rung/" --visibility private',
+            'gh pr create --repo edoworks/asc-client --base main --head feature/metadata-reconciliation-52 --title "docs: reconcile deprecated asc source metadata (#52)" --body-file .factory/issue-comments/issue-52-asc-pr.md --repo other/repo',
+            'gh pr create --repo edoworks/asc-client-malicious --base main --head feature/metadata-reconciliation-52 --title "docs: reconcile deprecated asc source metadata (#52)" --body-file .factory/issue-comments/issue-52-asc-pr.md',
+        )
+        for command in denied:
+            with self.subTest(command=command):
+                self.assertEqual(resolve(rules, command), "deny")
+
+        allowed_reads = (
+            "gh pr view 1 --repo edoworks/asc-client --json number,state,mergeable,reviewDecision,headRefOid,baseRefOid,url,mergedAt,mergeCommit",
+            "gh pr checks 1 --repo edoworks/asc-client --watch",
+            "gh pr view 1 --repo edoworks/factory-constitution --json number,state,mergeable,reviewDecision,headRefOid,baseRefOid,url,mergedAt,mergeCommit",
+            "gh pr checks 1 --repo edoworks/factory-constitution --watch",
+        )
+        for command in allowed_reads:
+            with self.subTest(command=command):
+                self.assertEqual(resolve(rules, command), "allow")
+
     def test_nownest_pr_review_path_is_repo_scoped(self):
         rules = self.fixture["rules"]
         commands = (
@@ -100,12 +135,20 @@ class PermissionPolicyFixtureTests(unittest.TestCase):
         result = subprocess.run(["opencode", "debug", "config", "--pure"], cwd=ROOT, capture_output=True, text=True)
         self.assertEqual(result.returncode, 0, result.stderr)
         resolved = json.loads(result.stdout)["permission"]["bash"]
+        checked_in = json.loads((ROOT / ".opencode-config" / "opencode.jsonc").read_text())["permission"]["bash"]
         def covered(pattern):
-            return pattern.startswith(("gh issue", "gh api", "gh pr"))
+            return pattern.startswith(("gh issue", "gh api", "gh pr", "gh repo"))
 
         actual = [(pattern, action) for pattern, action in resolved.items() if covered(pattern)]
         expected = [(pattern, action) for pattern, action in self.fixture["rules"] if covered(pattern)]
         self.assertEqual(actual, expected)
+        relevant = lambda pattern: any(
+            repository in pattern
+            for repository in ("edoworks/rung", "edoworks/asc-client", "edoworks/factory-constitution")
+        )
+        source = [(pattern, action) for pattern, action in checked_in.items() if relevant(pattern)]
+        expected_source = [(pattern, action) for pattern, action in self.fixture["rules"] if relevant(pattern)]
+        self.assertEqual(source, expected_source)
 
 
 if __name__ == "__main__":
