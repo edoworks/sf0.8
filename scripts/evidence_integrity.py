@@ -354,7 +354,18 @@ def validate_reconciliation(
     for issue, gate in gates.items():
         if not isinstance(gate, dict):
             errors.append(f"gate {issue} must be an object")
-    active_issue = str(state.get("continuation", {}).get("active_increment_issue", ""))
-    if gates.get(active_issue, {}).get("effective_state") != "OPEN":
-        errors.append("active increment gate must remain OPEN until its closeout is verified")
+    continuation = state.get("continuation", {})
+    continuation_status = continuation.get("status")
+    if state.get("status") != continuation_status:
+        errors.append("integrity status must match canonical continuation status")
+    required_gate_state = "CLOSED" if continuation_status == "COMPLETE" else "OPEN"
+    active_gates = {
+        "map": str(continuation.get("active_map_issue", "")),
+        "increment": str(continuation.get("active_increment_issue", "")),
+    }
+    for label, issue in active_gates.items():
+        if gates.get(issue, {}).get("effective_state") != required_gate_state:
+            errors.append(
+                f"active {label} gate must be {required_gate_state} for {continuation_status} continuation"
+            )
     return errors

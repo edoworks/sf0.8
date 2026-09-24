@@ -115,6 +115,11 @@
       "number": 52,
       "url": "https://github.com/edoworks/factory/issues/52",
       "repo": "edoworks/factory"
+    },
+    "completed-continuation integrity validation": {
+      "number": 48,
+      "url": "https://github.com/edoworks/factory/issues/48",
+      "repo": "edoworks/factory"
     }
   },
   "policy": "Material work without a factory binding is blocked; callers cannot select an arbitrary issue."

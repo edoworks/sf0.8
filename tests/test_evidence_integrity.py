@@ -154,6 +154,104 @@ class EvidenceIntegrityTests(unittest.TestCase):
         )
         self.assertTrue(any("must be BLOCKED" in error for error in errors))
 
+    def test_complete_continuation_requires_closed_active_increment(self):
+        state = {
+            "schema_version": 1,
+            "status": "COMPLETE",
+            "active_factory": "edoworks/sf0.8",
+            "lifecycle": {"state": "ACTIVE"},
+            "gates": {
+                "48": {"effective_state": "CLOSED"},
+                "53": {"effective_state": "CLOSED"},
+            },
+            "control_plane_statuses": {},
+            "required_human_actions": [],
+            "continuation": {
+                "status": "COMPLETE",
+                "active_map_issue": 48,
+                "active_increment_issue": 53,
+            },
+        }
+        errors = MODULE.validate_reconciliation(
+            state,
+            {"requirements": []},
+            {"actions": []},
+            {"states": ["ACTIVE"]},
+            "active_factory: edoworks/sf0.8",
+        )
+        self.assertEqual([], errors)
+
+        state["gates"]["53"]["effective_state"] = "OPEN"
+        errors = MODULE.validate_reconciliation(
+            state,
+            {"requirements": []},
+            {"actions": []},
+            {"states": ["ACTIVE"]},
+            "active_factory: edoworks/sf0.8",
+        )
+        self.assertIn(
+            "active increment gate must be CLOSED for COMPLETE continuation",
+            errors,
+        )
+
+        state["gates"]["53"]["effective_state"] = "CLOSED"
+        state["gates"]["48"]["effective_state"] = "OPEN"
+        errors = MODULE.validate_reconciliation(
+            state,
+            {"requirements": []},
+            {"actions": []},
+            {"states": ["ACTIVE"]},
+            "active_factory: edoworks/sf0.8",
+        )
+        self.assertIn(
+            "active map gate must be CLOSED for COMPLETE continuation",
+            errors,
+        )
+
+        state["gates"]["48"]["effective_state"] = "CLOSED"
+        state["status"] = "IN_PROGRESS"
+        errors = MODULE.validate_reconciliation(
+            state,
+            {"requirements": []},
+            {"actions": []},
+            {"states": ["ACTIVE"]},
+            "active_factory: edoworks/sf0.8",
+        )
+        self.assertIn(
+            "integrity status must match canonical continuation status",
+            errors,
+        )
+
+    def test_in_progress_continuation_requires_open_active_increment(self):
+        state = {
+            "schema_version": 1,
+            "status": "IN_PROGRESS",
+            "active_factory": "edoworks/sf0.8",
+            "lifecycle": {"state": "ACTIVE"},
+            "gates": {
+                "48": {"effective_state": "OPEN"},
+                "53": {"effective_state": "CLOSED"},
+            },
+            "control_plane_statuses": {},
+            "required_human_actions": [],
+            "continuation": {
+                "status": "IN_PROGRESS",
+                "active_map_issue": 48,
+                "active_increment_issue": 53,
+            },
+        }
+        errors = MODULE.validate_reconciliation(
+            state,
+            {"requirements": []},
+            {"actions": []},
+            {"states": ["ACTIVE"]},
+            "active_factory: edoworks/sf0.8",
+        )
+        self.assertIn(
+            "active increment gate must be OPEN for IN_PROGRESS continuation",
+            errors,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

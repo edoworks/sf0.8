@@ -1,11 +1,11 @@
 ---
-description: Resume final cross-surface state review
+description: Resume NowNest Customer Zero work
 agent: explore
 ---
 
 ## Current State (2026-09-24)
 
-- Canonical status: `IN_PROGRESS`
+- Canonical status: `COMPLETE`
 - Canonical active map issue: `#48` (`edoworks/factory`)
 - Canonical active increment issue: `#53` (`edoworks/factory`)
 - Edoworks website PR #70 merged at `ec74a6`; deployed pages and sitemap were
@@ -25,15 +25,16 @@ agent: explore
 - The authenticated metadata contract passes without declared blockers. Issue
   #52 closeout evidence is in
   `.factory/artifacts/evidence/issue-52-closeout-2026-09-24.md`.
+- Issue #53 merged at `e0f0bd5`; issues #48-#53 are closed and the combined
+  closeout guard reports `CLOSED`. The final matrix is
+  `.factory/artifacts/evidence/issue-53-final-cross-surface-review.md`.
 
 ## Next Work
 
-1. Close issue #52 only after its integrated closeout branch passes review and
-   its closeout guard reports `CLOSED`.
-2. Run issue #53's final read-only cross-surface review against merged repository
-   targets, deployed websites, issue states, continuation state, and strongest
-   counterevidence.
-3. Keep private predecessor completeness `UNKNOWN` and preserve all unrelated
+1. Continue NowNest without bypassing its release gates. Complete measured
+   contrast and exact-TestFlight-build physical accessibility for build 4, then
+   use that build for build-bound feedback and seven-day Customer Zero use.
+2. Keep private predecessor completeness `UNKNOWN` and preserve all unrelated
    dirty work.
 
 ## Authority Boundaries

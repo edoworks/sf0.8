@@ -1,0 +1,48 @@
+{
+  "issue": 48,
+  "capability": "completed-continuation integrity validation",
+  "change_units": 1,
+  "changed_paths": [
+    "scripts/evidence_integrity.py"
+  ],
+  "reuse": {
+    "searched": 2,
+    "compatible": 1,
+    "reason": "Extend the existing continuation-to-gate consistency check for its terminal state instead of adding a second closeout validator.",
+    "discovery": {
+      "capability": "completed-continuation integrity validation",
+      "decision": "EXTEND_EXISTING",
+      "matches": ["evidence-integrity continuation reconciliation"],
+      "specialization_reason": "The existing guard owns active-increment state and only lacked terminal-state semantics."
+    },
+    "candidates": [
+      {
+        "id": "evidence-integrity-continuation-reconciliation",
+        "source": "scripts/evidence_integrity.py",
+        "source_type": "FOCULOOM_SHARED",
+        "artifact_type": "integrity validator",
+        "revision": "e0f0bd5f6256b3ef396706e0c9e216ee201cfbc1",
+        "license": "internal",
+        "security": "local deterministic state validation",
+        "disposition": "ADAPT",
+        "reason": "Require the active gate to be OPEN during work and CLOSED after canonical completion."
+      },
+      {
+        "id": "github-issue-state-contract",
+        "source": "https://docs.github.com/en/rest/issues/issues#get-an-issue",
+        "source_type": "FIRST_PARTY",
+        "artifact_type": "API state contract",
+        "revision": "retrieved-2026-09-24",
+        "license": "documentation reference",
+        "security": "read-only issue state semantics",
+        "disposition": "LEARN_FROM",
+        "reason": "Use GitHub's OPEN/CLOSED issue state as remote evidence while retaining local effective-state and evidence-validity controls."
+      }
+    ]
+  },
+  "contribution": {"classification": "internal-reusable"},
+  "shareability": {
+    "disposition": "REUSE_CANDIDATE",
+    "evidence": "The terminal-state rule is exercised by sf0.8; no independent second consumer is claimed."
+  }
+}

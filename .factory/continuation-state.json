@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "IN_PROGRESS",
+  "status": "COMPLETE",
   "subject": "Organization repository and public-state reconciliation",
   "active_map_issue": 48,
   "active_increment_issue": 53,
