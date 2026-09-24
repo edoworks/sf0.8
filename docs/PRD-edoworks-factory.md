@@ -1,6 +1,7 @@
 # Edoworks Factory PRD
 
 Date: 2026-09-20
+Updated: 2026-09-24
 Status: ACTIVE
 Owner: founder (customer zero)
 Parent research: [Edoworks Canonical Factory Deep Dive](research/edoworks-canonical-factory-deep-dive-2026-09-20.md)
@@ -55,6 +56,18 @@ and are explicitly out of scope.
 Every failure must have a machine-readable classification and a documented
 recovery path. If the factory cannot recover, it must fail safely and report.
 
+### Storage Envelope Law
+
+Every disk-expensive operation declares its expected peak, maximum peak, and
+maximum persistent growth before execution. Admission is based on measured
+available space minus active reservations and a configured recovery floor.
+Routine successful work approaches zero persistent growth unless it promotes a
+named artifact with an owner and retention policy. Low-storage failures are not
+retried until capacity is re-established. Automatic cleanup is limited to the
+exact factory-owned reproducible or temporary paths recorded by the job; source,
+uncommitted work, promoted artifacts, pinned resources, and global developer
+state are never inferred to be disposable.
+
 ### Identity Governance Law
 
 The canonical identity registry governs legal identity, brands, product names,
@@ -76,9 +89,10 @@ release evidence → human-authorized Apple submission
 
 ### Lifecycle Scripts
 
-- `doctor.sh` — verify Xcode, simulators, disk space, and dependencies
+- `doctor.sh` — verify Xcode, simulators, storage admission, and dependencies
 - `bootstrap.sh` — scaffold a new app from the factory template
-- `verify.sh` — run build, unit tests, UI tests, static analysis, archive
+- `verify.sh` — reserve storage, run build, tests, analysis, and an optional
+  retained archive in factory-scoped paths, then emit a storage receipt
 - `uninstall.sh` — remove factory and residual state
 
 ### What the Factory Includes
@@ -91,6 +105,7 @@ release evidence → human-authorized Apple submission
 - CI policy gate (deterministic verification)
 - SLSA-style provenance template for release artifacts
 - Compatibility matrix (supported macOS + Xcode versions)
+- Storage admission, reservation, and per-run lifecycle receipts
 - One opinionated SwiftUI universal-app template (iPhone + iPad)
 
 ### What the Factory Excludes
@@ -134,6 +149,8 @@ Track these, not app count:
 | Apple review outcomes | No template/spam/privacy/metadata rejection |
 | Recovery from deliberate failure | Documented and rehearsed |
 | Second-operator execution | Succeeds without oral help |
+| Successful-run persistent disk growth | Zero except named retained artifacts |
+| Storage attribution | 100% of retained job output has owner and retention |
 
 ## Versioning
 
@@ -315,6 +332,49 @@ path. Retries are bounded and preserve the first attempt's evidence.
 Every durable timeout-classification receipt under
 `.factory/artifacts/evidence/verification-receipts/` is validated by CI. In the
 absence of a compliant receipt, historical timeout prose remains `UNKNOWN`.
+
+### Storage Lifecycle Contract
+
+- **Evidence:** every `doctor` and `verify` receipt records filesystem capacity,
+  starting and ending available bytes, required bytes, recovery-floor bytes,
+  active reservation bytes, this job's reservation, run-owned paths, cleanup
+  outcome, retained artifacts, and any unknown persistent growth. Verification
+  additionally records minimum available space and peak consumption when the
+  platform can measure them reliably.
+- **Owner:** the creating job owns temporary and reproducible paths until it
+  completes; a product or release owner must explicitly accept promoted
+  artifacts. External stores such as global Xcode state, OpenCode history,
+  model caches, Docker, and virtual machines remain external owners and are
+  inventory-only until an owner-specific retention policy exists.
+- **Admission:** a disk-expensive job acquires an atomic lease before creating
+  expensive state. Available bytes minus live reservations and the configured
+  recovery floor must cover its declared maximum peak. Unknown expensive jobs
+  fail closed; read-only diagnosis remains available.
+- **Concurrency:** reservation creation is serialized. Leases bind job identity,
+  process identity, boot identity, owned roots, creation time, and expiry.
+  Cleanup cannot target a resource with a live lease.
+- **Success:** run-owned reproducible and temporary paths are retired, selected
+  artifacts are promoted explicitly, and unexplained persistent growth above a
+  declared measurement tolerance fails the receipt. The tolerance is reported,
+  calibrated from observed shared-filesystem drift, and never subtracted from
+  measured growth.
+- **Failure:** run-owned state is preserved at a reported path for a bounded
+  diagnostic period. A low-space failure is non-retryable until a later
+  preflight proves sufficient unreserved capacity.
+- **Crash recovery:** startup or the next preflight reconciles expired leases.
+  Orphaned resources are quarantined before any owner-specific, idempotent
+  cleanup. Correctness must not depend only on an EXIT trap.
+- **Thresholds:** absolute recovery floors and workload maxima are calibrated
+  from measured representative runs. Percentage free is advisory and cannot
+  replace the absolute completion envelope. The historical 5 GB and current
+  10 GB checks are not treated as validated universal limits.
+- **Fail condition:** verification starts without a reservation, active jobs can
+  overcommit capacity, cleanup escapes a recorded owned root, retained growth
+  lacks an owner, or a storage receipt omits required measurements.
+- **Implementation:** `edoworks/factory` issue #60 owns the initial
+  non-destructive governor increment. A background daemon and global cache
+  migration remain out of scope until simpler preflight reconciliation proves
+  insufficient.
 
 ### Integrated Completion Contract
 
