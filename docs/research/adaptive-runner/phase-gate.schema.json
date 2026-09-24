@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edoworks.ai/schemas/adaptive-runner-phase-gate-v1.json",
+  "title": "Adaptive Runner Phase Gate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_stage",
+    "phase",
+    "preregistered_at",
+    "protocol_sha256",
+    "primary_outcome",
+    "comparator",
+    "practical_threshold",
+    "observation_window",
+    "minimum_complete_sample",
+    "denominator_rule",
+    "exclusion_rule",
+    "missing_data_rule",
+    "safety_vetoes",
+    "reviewer",
+    "reviewed_at",
+    "implementation_authorized",
+    "next_phase_authorized"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "record_stage": {"enum": ["PREREGISTRATION", "RESULT"]},
+    "phase": {"enum": ["E0", "P1", "P2", "P3", "P4", "P5"]},
+    "preregistered_at": {"type": "string", "format": "date-time"},
+    "preregistration_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "protocol_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "build_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "analysis_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "primary_outcome": {"type": "string", "minLength": 1},
+    "comparator": {"type": "string", "minLength": 1},
+    "practical_threshold": {"type": "string", "minLength": 1},
+    "observation_window": {"type": "string", "minLength": 1},
+    "minimum_complete_sample": {"type": "integer", "minimum": 1},
+    "denominator_rule": {"type": "string", "minLength": 1},
+    "exclusion_rule": {"type": "string", "minLength": 1},
+    "missing_data_rule": {"type": "string", "minLength": 1},
+    "safety_vetoes": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "result": {"enum": ["PASS", "REVISE", "STOP", "INCONCLUSIVE"]},
+    "reviewer": {"type": "string", "minLength": 1},
+    "reviewed_at": {"type": "string", "format": "date-time"},
+    "implementation_authorized": {"type": "boolean"},
+    "next_phase_authorized": {"type": "boolean"},
+    "owner_override": {
+      "description": "Audits an exceptional protocol or scheduling deviation; never authorizes the next phase or changes the empirical result.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authorized_by", "reason", "expires_at"],
+      "properties": {
+        "authorized_by": {"type": "string", "minLength": 1},
+        "reason": {"type": "string", "minLength": 1},
+        "expires_at": {"type": "string", "format": "date-time"}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"record_stage": {"const": "PREREGISTRATION"}}, "required": ["record_stage"]},
+      "then": {
+        "properties": {"next_phase_authorized": {"const": false}},
+        "not": {
+          "anyOf": [
+            {"required": ["preregistration_sha256"]},
+            {"required": ["build_sha256"]},
+            {"required": ["analysis_sha256"]},
+            {"required": ["result"]}
+          ]
+        }
+      }
+    },
+    {
+      "if": {"properties": {"record_stage": {"const": "RESULT"}}, "required": ["record_stage"]},
+      "then": {
+        "required": ["preregistration_sha256", "build_sha256", "analysis_sha256", "result"],
+        "properties": {"implementation_authorized": {"const": true}}
+      }
+    },
+    {
+      "if": {"properties": {"result": {"const": "PASS"}}, "required": ["result"]},
+      "then": {"properties": {"next_phase_authorized": {"const": true}}},
+      "else": {"properties": {"next_phase_authorized": {"const": false}}}
+    }
+  ]
+}
