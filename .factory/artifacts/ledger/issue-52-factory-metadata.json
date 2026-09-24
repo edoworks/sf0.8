@@ -1,13 +1,9 @@
 {
   "issue": 52,
   "capability": "repository metadata and release claim reconciliation",
-  "change_units": 5,
+  "change_units": 1,
   "changed_paths": [
-    ".github/workflows/checks.yml",
-    "scripts/public-surface-preflight.py",
-    "scripts/validate-evidence-integrity.py",
-    "scripts/validate-repository-inventory.py",
-    "tests/test_public_surface_preflight.py"
+    "scripts/public-surface-preflight.py"
   ],
   "reuse": {
     "searched": 2,

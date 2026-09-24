@@ -54,3 +54,18 @@ used it for the contract's full lifecycle. Immediate correction: complete mode
 now succeeds only when declared and actual blockers are both empty and all
 non-repository checks pass. Root-cause correction: regression tests execute the
 CI command path for both blocker-free success and live-drift rejection.
+
+## Changed-Path Binding Failure
+
+1. The second PR 143 run passed the authenticated contract but the ecosystem
+   gate rejected three ledger paths that were unchanged in the PR range.
+2. The ledger retained gated paths from issue 52's earlier merged implementation
+   and added the regression-test path.
+3. The gate binds a ledger to the current PR's gated diff, not cumulative issue
+   history; the test path is not gated and the earlier paths are already merged.
+
+Root cause: the follow-up edit treated `changed_paths` as cumulative issue
+history instead of an exact current-range capability binding. Immediate
+correction: bind only `scripts/public-surface-preflight.py`. Root-cause
+correction and recurrence guard: run `validate-ci-change.py` with the PR base and
+head range before pushing any follow-up that changes a capability ledger.
