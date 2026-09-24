@@ -28,3 +28,18 @@ guard requires both active map and increment gates to match the lifecycle,
 requires both status projections to agree, and binds issue 48 canonically.
 Focused negative tests cover an open terminal increment, an open terminal map,
 status drift, and a closed in-progress increment.
+
+## Capability-Ledger Gate Failure
+
+1. The first exact PR-range validation blocked the issue 48 ledger for lacking
+   an external candidate.
+2. The ledger documented only the existing internal integrity validator because
+   the code change was a narrow terminal-state extension.
+3. The ecosystem policy requires external discovery evidence for every new or
+   extended machinery path, regardless of implementation size.
+
+Root cause: the closeout ledger omitted the proportional external-discovery
+record required by the changed-path policy. Immediate correction: add the
+first-party GitHub issue-state contract as `LEARN_FROM` while retaining the
+internal validator as the only compatible implementation. Recurrence guard:
+run the exact PR event range before every push; the corrected range must pass.
